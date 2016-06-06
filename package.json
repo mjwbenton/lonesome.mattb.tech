@@ -20,13 +20,17 @@
     "eslint": "^2.8.0",
     "eslint-plugin-flowtype": "^2.2.7",
     "eslint-plugin-react": "^5.0.1",
-    "flow-bin": "^0.23.1"
+    "flow-bin": "^0.23.1",
+    "sass": "^0.5.0"
   },
   "scripts": {
     "all": "npm run build && npm run flow && npm run lint",
     "build": "babel src -d build",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
-    "lint": "eslint src tst"
+    "lint": "eslint src tst",
+    "generate:css": "sass css/style.scss output/style.css",
+    "generate:pages": "npm run build && node build/index.js",
+    "generate": "npm run generate:css && npm run generate:pages"
   },
   "author": "Matt Benton <m@mattb.tech>",
   "license": "UNLICENSED"
