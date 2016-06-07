@@ -3,6 +3,7 @@
 import React from 'react';
 import HtmlHeader from './HtmlHeader';
 import Navigation from './Navigation';
+import LeftSide from './LeftSide';
 import Photos from './Photos';
 import type { ContentItem, Site } from 'staircase';
 import { NAVIGATION_META_KEY, PHOTOS_META_KEY } from 'staircase/features';
@@ -14,9 +15,13 @@ export default function Page({item, site}
     return <html>
         <HtmlHeader />
         <body>
-            <Navigation navigation={site.getMeta(NAVIGATION_META_KEY)} />
-            <div dangerouslySetInnerHTML={{ __html: item.getContent() }} />
-            {photos}
+            <LeftSide>
+                <Navigation navigation={site.getMeta(NAVIGATION_META_KEY)} />
+            </LeftSide>
+            <div id="content">
+                <div dangerouslySetInnerHTML={{ __html: item.getContent() }} />
+                {photos}
+            </div>
         </body>
     </html>;
 }
