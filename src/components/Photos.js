@@ -16,7 +16,7 @@ export default function Photos({photos} : {photos : Photo[]}) : React.Element {
 function SinglePhoto({id, pageUrl, url}
         : {[key : string] : string}) : React.Element {
     return <li><div className="imagecontainer" >
-        <img src={url} />
+        <img src={url} alt={`Image titled "${id}"`}/>
         <div className="overlay">
            <h3 className="phototitle">{id}</h3>
            <a href={pageUrl} title="Flickr Page">Fl&#8594;</a>
