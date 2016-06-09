@@ -33,7 +33,8 @@
     "generate:css": "sass css/style.scss output/style.css",
     "generate:pages": "node build/index.js | bunyan -l info",
     "generate": "npm run build && npm run generate:pages && npm run generate:css",
-    "serve": "http-server output"
+    "serve": "http-server output",
+    "upload": "s3_website push"
   },
   "author": "Matt Benton <m@mattb.tech>",
   "license": "UNLICENSED"
