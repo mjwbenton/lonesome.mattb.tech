@@ -22,6 +22,7 @@
     "eslint-plugin-flowtype": "^2.2.7",
     "eslint-plugin-react": "^5.0.1",
     "flow-bin": "^0.23.1",
+    "http-server": "^0.9.0",
     "sass": "^0.5.0"
   },
   "scripts": {
@@ -31,7 +32,8 @@
     "lint": "eslint src tst",
     "generate:css": "sass css/style.scss output/style.css",
     "generate:pages": "node build/index.js | bunyan -l info",
-    "generate": "npm run build && npm run generate:pages && npm run generate:css"
+    "generate": "npm run build && npm run generate:pages && npm run generate:css",
+    "serve": "http-server output"
   },
   "author": "Matt Benton <m@mattb.tech>",
   "license": "UNLICENSED"
