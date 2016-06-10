@@ -1,0 +1,61 @@
+.imagecontainer {
+  /* Relative position allows us to absolutely position
+   * the overlay div inside it. */
+  position: relative;
+  display: inline-block;
+
+  /* starting values for elements inside imagecontainer */
+  div.overlay {
+    position: absolute;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+
+    /* HACK: otherwise it overhangs the bottom of the image */
+    bottom: 4px;
+    left: 0;
+    background-color: #333;
+    line-height: 1.5;
+
+    /* Reasonable font colour for overlaying on images */
+    color: #ddd;
+
+    /* Hide unless hover on the imagecontainer */
+    opacity: 0;
+  }
+
+  img {
+    opacity: 1;
+  }
+
+  div *:last-child {
+    float: right;
+    width: 10%;
+    text-align: right;
+  }
+
+  a {
+    font-size: 0.7em;
+    padding-top: 0.5em;
+    color: #99f;
+  }
+}
+
+.imagecontainer:hover {
+
+  div.overlay {
+    opacity: 0.8;
+  }
+
+  img {
+    opacity: 0.7;
+  }
+
+  div.overlay,
+  img {
+    transition: opacity 0.25s ease-in-out;
+    -moz-transition: opacity 0.25s ease-in-out;
+    -webkit-transition: opacity 0.25s ease-in-out;
+  }
+
+}

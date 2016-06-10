@@ -1,0 +1,11 @@
+@import 'destyle_list';
+
+.phototitle {
+  display: inline;
+  font-family: 'TrendSansOne-Italic';
+  font-size: 0.8em;
+}
+
+#photos {
+  @include destyle-list();
+}

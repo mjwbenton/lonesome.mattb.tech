@@ -1,0 +1,94 @@
+
+html,
+body,
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  position: relative;
+  width: 1020px;
+  margin: auto;
+  font-family: Arial, sans;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+}
+
+#leftside {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 360px;
+}
+
+#logo {
+  width: 360px;
+  margin-top: 80px;
+  text-align: right;
+}
+
+#logo a {
+  font-family: 'TrendSansFour';
+  font-size: 3.5em;
+  color: #222;
+}
+
+#navigation {
+  width: 360px;
+  margin-top: 20px;
+  text-align: right;
+}
+
+#navigation ul li {
+  margin-bottom: 20px;
+  list-style-type: none;
+}
+
+.navigation-link {
+  font-family: 'TrendSansOne-Italic';
+  color: #222;
+  font-size: 1.2em;
+  text-decoration: none;
+}
+
+#navigation-other {
+  border-top: 1px solid #969696;
+  padding-top: 20px;
+  font-size: 0.8em;
+}
+
+h2 {
+  font-family: 'TrendSansOne-Italic';
+  color: #222;
+  font-size: 1em;
+  margin-bottom: 0.5em;
+}
+
+#content {
+  position: absolute;
+  top: 0;
+  left: 380px;
+  width: 640px;
+  margin-top: 20px;
+
+  p {
+    margin-bottom: 15px;
+  }
+
+  ul {
+    margin-bottom: 15px;
+    margin-left: 3em;
+  }
+}
+
+.stuck {
+  position: fixed;
+  top: 0;
+}
+
+@import 'imagecontainer';
+@import 'photo';
