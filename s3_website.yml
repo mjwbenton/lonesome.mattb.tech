@@ -5,3 +5,16 @@ site: output
 index_document: index.html
 s3_endpoint: eu-west-1
 s3_reduced_redundancy: true
+gzip: true
+
+cloudfront_distribution_id: <%= ENV['CLOUDFRONT_DISTRIBUTION_ID'] %>
+cloudfront_distribution_config:
+  default_cache_behavior:
+    min_TTL: <%= 60 * 60 * 24 %>
+  aliases:
+    quantity: 2
+    items:
+      CNAME0: mattbenton.co.uk
+      CNAME1: www.mattbenton.co.uk
+cloudfront_wildcard_invalidation: true
+cloudfront_invalidate_root: true
