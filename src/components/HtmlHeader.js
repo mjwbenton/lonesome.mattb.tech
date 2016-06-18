@@ -15,7 +15,7 @@ export default function HtmlHeader() : React.Element {
         <title>Matthew Benton Photographer</title>
         <link rel="stylesheet" href="/style.css" />
         <link rel="stylesheet"
-                href="//media.mattbenton.co.uk/font/trend-font-kit.css" />
+                href="https://media.mattbenton.co.uk/font/trend-font-kit.css" />
         <script type="text/javascript" src={JQUERY} />
         <script type="text/javascript" src={WAYPOINTS} />
         <script type="text/javascript" src={WAYPOINTS_STICKY} />
