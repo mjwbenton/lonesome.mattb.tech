@@ -11,7 +11,8 @@ import Page from './components/Page';
 setupDefaultLogger();
 
 async function generateSite() {
-    getLogger('main').info('Starting Generation');
+    const log = getLogger('main');
+    log.info('Starting Generation');
     try {
         const site = await readSiteFromPath('./content');
         const transformedSite = await compose(
@@ -27,5 +28,6 @@ async function generateSite() {
         console.error(`Error generating site: ${err}`);
         throw err;
     }
+    log.info('Finished Generation');
 }
 generateSite();
