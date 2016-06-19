@@ -8,7 +8,7 @@ const JQUERY = `${CDN_PREFIX}jquery/2.1.1/jquery.min.js`;
 const WAYPOINTS_STICKY = CDN_PREFIX
         + 'waypoints/2.0.5/shortcuts/sticky-elements/waypoints-sticky.min.js';
 
-const JS = '$(function() { $("#navigation").waypoint("sticky"); });';
+const JS = '$(function() { $("#navigation-sticky").waypoint("sticky"); });';
 
 export default function HtmlHeader() : React.Element {
     return <head>

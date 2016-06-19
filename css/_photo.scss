@@ -8,4 +8,9 @@
 
 #photos {
   @include destyle-list();
+
+  img {
+    max-width: 100%;
+    max-height: 800px;
+  }
 }
