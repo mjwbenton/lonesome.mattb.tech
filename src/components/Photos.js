@@ -1,7 +1,7 @@
 /* @flow */
 
 import React from 'react';
-import type { Photo } from 'staircase/features';
+import type { Photo } from 'staircase-generator/features';
 
 export default function Photos({photos} : {photos : Photo[]}) : React.Element {
     return <div id="photos">

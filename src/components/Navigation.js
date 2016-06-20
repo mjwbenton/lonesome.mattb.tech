@@ -1,7 +1,7 @@
 /* @flow */
 
 import React from 'react';
-import type { NavigationEntry } from 'staircase/features';
+import type { NavigationEntry } from 'staircase-generator/features';
 
 export default function Navigation({navigation}
         : {navigation : NavigationEntry[] }) : React.Element {

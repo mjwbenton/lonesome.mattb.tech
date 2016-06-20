@@ -2,10 +2,10 @@
 
 import {
     handleFrontMatter, handleMarkdown, wrapReact, addDoctype
-} from 'staircase/transforms';
-import { buildNavigation, buildFlickrSet } from 'staircase/features';
+} from 'staircase-generator/transforms';
+import { buildNavigation, buildFlickrSet } from 'staircase-generator/features';
 import { readSiteFromPath, compose, setupDefaultLogger, getLogger }
-        from 'staircase';
+        from 'staircase-generator';
 import Page from './components/Page';
 
 setupDefaultLogger();

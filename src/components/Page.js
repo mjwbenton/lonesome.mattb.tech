@@ -5,8 +5,9 @@ import HtmlHeader from './HtmlHeader';
 import Navigation from './Navigation';
 import LeftSide from './LeftSide';
 import Photos from './Photos';
-import type { ContentItem, Site } from 'staircase';
-import { NAVIGATION_META_KEY, PHOTOS_META_KEY } from 'staircase/features';
+import type { ContentItem, Site } from 'staircase-generator';
+import { NAVIGATION_META_KEY, PHOTOS_META_KEY }
+        from 'staircase-generator/features';
 
 export default function Page({item, site}
         : {item : ContentItem, site : Site}) : React.Element {
