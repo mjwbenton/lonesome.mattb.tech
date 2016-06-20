@@ -7,7 +7,9 @@ import { buildNavigation, buildFlickrSet } from 'staircase-generator/features';
 import { readSiteFromPath, compose, setupDefaultLogger, getLogger }
         from 'staircase-generator';
 import Page from './components/Page';
+import dotenv from 'dotenv';
 
+dotenv.config();
 setupDefaultLogger();
 
 async function generateSite() {
@@ -18,7 +20,7 @@ async function generateSite() {
         const transformedSite = await compose(
             handleFrontMatter,
             buildNavigation,
-            buildFlickrSet('ad7d7f87cbe5cdf41c1fe66808d5cc7d'),
+            buildFlickrSet(process.env.FLICKR_API_KEY),
             handleMarkdown,
             wrapReact(Page),
             addDoctype
