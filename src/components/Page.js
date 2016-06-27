@@ -11,8 +11,8 @@ import { NAVIGATION_META_KEY, PHOTOS_META_KEY }
 
 export default function Page({item, site}
         : {item : ContentItem, site : Site}) : React.Element {
-    const photos = item.getMeta(PHOTOS_META_KEY)
-        ? <Photos photos={item.getMeta(PHOTOS_META_KEY)} /> : '';
+    const photos = item.meta[PHOTOS_META_KEY]
+        ? <Photos photos={item.meta[PHOTOS_META_KEY]} /> : '';
     return <html>
         <HtmlHeader />
         <body>
@@ -20,7 +20,7 @@ export default function Page({item, site}
                 <Navigation navigation={site.getMeta(NAVIGATION_META_KEY)} />
             </LeftSide>
             <div id="content">
-                <div dangerouslySetInnerHTML={{ __html: item.getContent() }} />
+                <div dangerouslySetInnerHTML={{ __html: item.content }} />
                 {photos}
             </div>
         </body>
