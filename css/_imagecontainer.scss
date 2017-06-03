@@ -1,59 +1,68 @@
-.imagecontainer {
-  /* Relative position allows us to absolutely position
-   * the overlay div inside it. */
+@import 'typography';
+
+.mb-photo {
+  $overlay-background-color: #333;
+  $overlay-hover-opacity: 0.8;
+  $overlay-padding: 8px;
+
+  $flickr-link-color: #99f;
+  $flickr-right-arrow: '\2192';
+
+  $image-max-height: 800px;
+  $image-hover-opacity: 0.7;
+
+  $opacity-transition: opacity 0.25s ease-in-out;
+
   position: relative;
   display: inline-block;
 
-  /* starting values for elements inside imagecontainer */
-  div.overlay {
+  .mb-photo__image {
+    opacity: 1;
+    display: block;
+    max-width: 100%;
+    max-height: $image-max-height;
+  }
+
+  .mb-photo__overlay {
+    display: flex;
     position: absolute;
     width: 100%;
-    padding: 5px;
-    box-sizing: border-box;
-
-    /* HACK: otherwise it overhangs the bottom of the image */
-    bottom: 4px;
+    padding: $overlay-padding;
     left: 0;
-    background-color: #333;
-    line-height: 1.5;
-
-    /* Reasonable font colour for overlaying on images */
+    bottom: 0;
+    background-color: $overlay-background-color;
     color: #ddd;
-
-    /* Hide unless hover on the imagecontainer */
     opacity: 0;
   }
 
-  img {
-    opacity: 1;
+  .mb-photo__overlay__title {
+    @include font-heading-4();
+    display: inline;
+    flex: 1;
   }
 
-  div *:last-child {
-    float: right;
-    width: 10%;
-    text-align: right;
+  .mb-photo__overlay__flickr-link {
+    @include font-smaller();
+    color: $flickr-link-color;
+
+    &::after {
+      content: $flickr-right-arrow;
+    }
   }
 
-  a {
-    font-size: 0.7em;
-    padding-top: 0.5em;
-    color: #99f;
+  &:hover {
+    .mb-photo__overlay {
+      opacity: $overlay-hover-opacity;
+    }
+
+    .mb-photo__image {
+      opacity: $image-hover-opacity;
+    }
+
+    .mb-photo__overlay,
+    .mb-photo__image {
+      transition: $opacity-transition;
+    }
   }
 }
 
-.imagecontainer:hover {
-
-  div.overlay {
-    opacity: 0.8;
-  }
-
-  img {
-    opacity: 0.7;
-  }
-
-  div.overlay,
-  img {
-    transition: opacity 0.25s ease-in-out;
-  }
-
-}

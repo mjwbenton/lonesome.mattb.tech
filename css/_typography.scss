@@ -1,0 +1,39 @@
+$font-size-base: 16px;
+$font-size-heading-1: 3.5rem;
+$font-size-heading-2: 1.25rem;
+$font-size-heading-3: 1rem;
+$font-size-smaller: 0.75rem;
+
+$font-family-base: Arial, sans-serif;
+$font-family-heading-1: 'TrendSansFour', sans-serif;
+$font-family-heading-2: 'TrendSansOne-Italic', sans-serif;
+
+@mixin font-base() {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+}
+
+@mixin font-smaller() {
+  font-size: $font-size-smaller;
+  font-family: $font-family-base;
+}
+
+@mixin font-heading-1() {
+  font-family: $font-family-heading-1;
+  font-size: $font-size-heading-1;
+}
+
+@mixin font-heading-2() {
+  font-family: $font-family-heading-2;
+  font-size: $font-size-heading-2;
+}
+
+@mixin font-heading-3() {
+  font-family: $font-family-heading-2;
+  font-size: $font-size-heading-3;
+}
+
+@mixin font-heading-4() {
+  font-family: $font-family-heading-2;
+  font-size: $font-size-smaller;
+}
