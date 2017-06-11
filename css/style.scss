@@ -6,7 +6,8 @@ $rightside-width: 63%;
 $between-column-margin: (100% - $leftside-width - $rightside-width) / 2;
 
 html {
-  @include font-base();
+  @include font-size-base();
+  @include font-color-dark();
 }
 
 body {
@@ -20,10 +21,10 @@ body {
 
   .mb-leftside__logo {
     display: block;
-
-    @include font-heading-1();
     margin-top: 80px;
-    color: #222;
+
+    @include font-color-dark();
+    @include font-heading-1();
   }
 }
 
@@ -42,7 +43,7 @@ body {
 
   .navigation-link {
     @include font-heading-2();
-    color: #222;
+    @include font-color-dark();
     text-decoration: none;
   }
 
@@ -59,7 +60,7 @@ body {
 
 h2 {
   @include font-heading-3();
-  color: #222;
+  @include font-color-dark();
   margin-bottom: 15px;
 }
 

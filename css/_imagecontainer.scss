@@ -5,7 +5,6 @@
   $overlay-hover-opacity: 0.8;
   $overlay-padding: 8px;
 
-  $flickr-link-color: #99f;
   $flickr-right-arrow: '\2192';
 
   $image-max-height: 800px;
@@ -31,8 +30,9 @@
     left: 0;
     bottom: 0;
     background-color: $overlay-background-color;
-    color: #ddd;
     opacity: 0;
+
+    @include font-color-light();
   }
 
   .mb-photo__overlay__title {
@@ -43,7 +43,6 @@
 
   .mb-photo__overlay__flickr-link {
     @include font-smaller();
-    color: $flickr-link-color;
 
     &::after {
       content: $flickr-right-arrow;

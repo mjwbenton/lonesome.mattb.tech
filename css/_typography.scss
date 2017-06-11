@@ -1,3 +1,8 @@
+$font-color-dark: #222;
+$font-color-light: #ddd;
+$font-link-color-dark: #551a8b;
+$font-link-color-light: #99f;
+
 $font-size-base: 16px;
 $font-size-heading-1: 3.5rem;
 $font-size-heading-2: 1.25rem;
@@ -8,7 +13,7 @@ $font-family-base: Arial, sans-serif;
 $font-family-heading-1: 'TrendSansFour', sans-serif;
 $font-family-heading-2: 'TrendSansOne-Italic', sans-serif;
 
-@mixin font-base() {
+@mixin font-size-base() {
   font-family: $font-family-base;
   font-size: $font-size-base;
 }
@@ -37,3 +42,18 @@ $font-family-heading-2: 'TrendSansOne-Italic', sans-serif;
   font-family: $font-family-heading-2;
   font-size: $font-size-smaller;
 }
+
+@mixin font-color-dark() {
+  color: $font-color-dark;
+  a {
+    color: $font-link-color-dark;
+  }
+}
+
+@mixin font-color-light() {
+  color: $font-color-light;
+  a {
+    color: $font-link-color-light;
+  }
+}
+
