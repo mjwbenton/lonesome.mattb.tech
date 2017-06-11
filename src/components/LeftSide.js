@@ -5,13 +5,11 @@ import React from 'react';
 
 export default function LeftSide({ children }
         : { children : React.Element }) : React.Element {
-    return <div id="leftside">
-        <div id="logo">
-            <a href="/">
-                Matthew<br/>
-                Benton
-            </a>
-        </div>
+    return <div className="mb-leftside">
+        <a href="/" className="mb-leftside__logo">
+            Matthew<br/>
+            Benton
+        </a>
         {children}
     </div>;
 }
