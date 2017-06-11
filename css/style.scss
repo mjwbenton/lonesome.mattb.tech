@@ -20,6 +20,7 @@ body {
 
   .mb-leftside__logo {
     display: block;
+
     @include font-heading-1();
     margin-top: 80px;
     color: #222;
@@ -62,12 +63,12 @@ h2 {
   margin-bottom: 15px;
 }
 
-#rightside {
+.mb-rightside {
   width: $rightside-width;
   margin-top: 20px;
 }
 
-#content {
+.mb-content {
   p {
     max-width: 45rem;
     margin-bottom: 15px;
@@ -79,7 +80,7 @@ h2 {
   }
 }
 
-#photos {
+.mb-photos {
   ul li {
     margin-bottom: 20px;
     list-style-type: none;

@@ -4,6 +4,7 @@ import React from 'react';
 import HtmlHeader from './HtmlHeader';
 import Navigation from './Navigation';
 import LeftSide from './LeftSide';
+import RightSide from './RightSide';
 import Photos from './Photos';
 import type { ContentItem, Site } from 'staircase-generator';
 import { NAVIGATION_META_KEY, PHOTOS_META_KEY }
@@ -19,10 +20,7 @@ export default function Page({item, site}
             <LeftSide>
                 <Navigation navigation={site.getMeta(NAVIGATION_META_KEY)} />
             </LeftSide>
-            <div id="rightside">
-                <div id="content" dangerouslySetInnerHTML={{ __html: item.content }} />
-                {photos}
-            </div>
+            <RightSide contentHtml={item.content} photos={photos} />
         </body>
     </html>;
 }
