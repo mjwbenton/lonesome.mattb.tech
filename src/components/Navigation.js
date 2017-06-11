@@ -5,20 +5,21 @@ import type { NavigationEntry } from 'staircase-generator/features';
 
 export default function Navigation({navigation}
         : {navigation : NavigationEntry[] }) : React.Element {
-    return <div id="navigation">
-        <ul>
+    return <div className="mb-navigation">
+        <ul className="mb-navigation__main">
             {navigation.map((ne) =>
-                <li key={ne.path}>
-                    <a className="navigation-link" href={`/${ne.path}`}>
+                <li key={ne.path} className="mb-navigation__item">
+                    <a href={`/${ne.path}`}
+                            className="mb-navigation__link">
                         {ne.title}
                     </a>
                 </li>
             )}
         </ul>
-        <ul id="navigation-other">
-            <li>
+        <ul className="mb-navigation__other">
+            <li className="mb-navigation__item">
                 <a href="http://blog.mattbenton.co.uk"
-                        className="navigation-link">
+                        className="mb-navigation__link">
                     Stream
                 </a>
                 &nbsp;To <a href="http://blog.mattbenton.co.uk">

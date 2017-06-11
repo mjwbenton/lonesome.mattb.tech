@@ -28,7 +28,7 @@ body {
   }
 }
 
-#navigation {
+.mb-navigation {
   float: right;
   width: 360px;
   text-align: right;
@@ -36,23 +36,24 @@ body {
   top: 0;
   padding-top: 20px;
 
-  ul li {
+  .mb-navigation__item {
     margin-bottom: 20px;
     list-style-type: none;
   }
 
-  .navigation-link {
-    @include font-heading-2();
-    @include font-color-dark();
-    text-decoration: none;
+  .mb-navigation__main {
+    .mb-navigation__link {
+      @include font-heading-2();
+      @include font-color-dark();
+    }
   }
 
-  #navigation-other {
+  .mb-navigation__other {
     border-top: 1px solid #969696;
     padding-top: 20px;
     font-size: $font-size-smaller;
 
-    .navigation-link {
+    .mb-navigation__link {
       @include font-heading-3();
     }
   }
