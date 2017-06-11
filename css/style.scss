@@ -1,6 +1,9 @@
 @import 'reset';
-@import 'destyle_list';
 @import 'typography';
+
+$leftside-width: 33%;
+$rightside-width: 63%;
+$between-column-margin: (100% - $leftside-width - $rightside-width) / 2;
 
 a:link,
 a:visited {
@@ -11,10 +14,14 @@ html {
   @include font-base();
 }
 
+body {
+  display: flex;
+}
+
 #leftside {
-  width: 33%;
-  float: left;
+  width: $leftside-width;
   text-align: right;
+  margin-right: $between-column-margin;
 }
 
 #logo {
@@ -32,6 +39,9 @@ html {
   float: right;
   width: 360px;
   text-align: right;
+  position: sticky;
+  top: 10px;
+  padding-top: 20px;
 
   ul li {
     margin-bottom: 20px;
@@ -55,27 +65,18 @@ html {
   }
 }
 
-#navigation-sticky {
-  padding-top: 20px;
-  width: 360px;
-}
-
-#navigation-sticky.stuck {
-  position: fixed;
-  top: 0;
-}
-
 h2 {
   @include font-heading-3();
   color: #222;
   margin-bottom: 15px;
 }
 
-#content {
-  margin-left: 35%;
-  width: 63%;
+#rightside {
+  width: $rightside-width;
   margin-top: 20px;
+}
 
+#content {
   p {
     max-width: 45rem;
     margin-bottom: 15px;
@@ -88,7 +89,10 @@ h2 {
 }
 
 #photos {
-  @include destyle-list();
+  ul li {
+    margin-bottom: 20px;
+    list-style-type: none;
+  }
 }
 
 @import 'imagecontainer';

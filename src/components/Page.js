@@ -19,8 +19,8 @@ export default function Page({item, site}
             <LeftSide>
                 <Navigation navigation={site.getMeta(NAVIGATION_META_KEY)} />
             </LeftSide>
-            <div id="content">
-                <div dangerouslySetInnerHTML={{ __html: item.content }} />
+            <div id="rightside">
+                <div id="content" dangerouslySetInnerHTML={{ __html: item.content }} />
                 {photos}
             </div>
         </body>
