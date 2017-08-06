@@ -1,9 +1,6 @@
-/* @flow */
+import * as React from 'react';
 
-import React from 'react';
-
-export default function Photo(
-        {pageUrl, url, title}: {[key : string] : string}): React.Element {
+const Photo: React.SFC<{pageUrl: string, url: string, title: string}> = ({pageUrl, url, title}) => {
     return <div className="mb-photo" >
         <img className="mb-photo__image" src={url}
              alt={`Image titled "${title}"`}/>
@@ -13,4 +10,5 @@ export default function Photo(
                  title="Flickr Page">Fl</a>
         </div>
     </div>;
-}
+};
+export default Photo;

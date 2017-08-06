@@ -1,10 +1,7 @@
-/* @flow */
+import * as React from 'react';
+import { NavigationEntry } from 'staircase-generator/features';
 
-import React from 'react';
-import type { NavigationEntry } from 'staircase-generator/features';
-
-export default function Navigation({navigation}
-        : {navigation : NavigationEntry[] }) : React.Element {
+const Navigation: React.SFC<{navigation: NavigationEntry[]}> = ({navigation}) => {
     return <div className="mb-navigation">
         <ul className="mb-navigation__main">
             {navigation.map((ne) =>
@@ -27,4 +24,5 @@ export default function Navigation({navigation}
             </li>
         </ul>
     </div>;
-}
+};
+export default Navigation;

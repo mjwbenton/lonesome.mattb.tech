@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "jsx": "react",
+    "jsxFactory": "React.createElement",
+    "target": "ES2016",
+    "sourceMap": true,
+    "inlineSources": true,
+    "noImplicitReturns": true,
+    // Currently disabled due to issue with dependencies in staircase-generator
+    // "noImplicitAny": true,
+    "strictNullChecks": true,
+    "lib": [
+      "es2017",
+      "dom"
+    ]
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
