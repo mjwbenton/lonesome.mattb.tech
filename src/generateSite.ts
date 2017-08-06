@@ -1,5 +1,3 @@
-/* @flow */
-
 import {
     handleFrontMatter, handleMarkdown, wrapReact, addDoctype
 } from 'staircase-generator/transforms';
@@ -7,10 +5,18 @@ import { buildNavigation, buildFlickrSet } from 'staircase-generator/features';
 import { readSiteFromPath, compose, setupDefaultLogger, getLogger }
         from 'staircase-generator';
 import Page from './components/Page';
-import dotenv from 'dotenv';
+import * as dotenv from 'dotenv';
 
 dotenv.config();
 setupDefaultLogger();
+
+function getFlickrApiKey(): string {
+    const flickrApiKey: string | undefined = process.env.FLICKR_API_KEY;
+    if (!flickrApiKey) {
+        throw new Error('Missing FLICKR_API_KEY env variable');
+    }
+    return flickrApiKey;
+}
 
 async function generateSite() {
     const log = getLogger('main');
@@ -20,7 +26,7 @@ async function generateSite() {
         const transformedSite = await compose(
             handleFrontMatter,
             buildNavigation,
-            buildFlickrSet(process.env.FLICKR_API_KEY),
+            buildFlickrSet(getFlickrApiKey()),
             handleMarkdown,
             wrapReact(Page),
             addDoctype

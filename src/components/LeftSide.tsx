@@ -1,9 +1,6 @@
-/* @flow */
+import * as React from 'react';
 
-import React from 'react';
-
-export default function LeftSide({ children }
-        : { children : React.Element }) : React.Element {
+const LeftSide: React.SFC<{}> = ({ children }) => {
     return <div className="mb-leftside">
         <a href="/" className="mb-leftside__logo">
             Matthew<br/>
@@ -12,3 +9,4 @@ export default function LeftSide({ children }
         {children}
     </div>;
 }
+export default LeftSide;
