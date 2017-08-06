@@ -1,8 +1,9 @@
 import * as React from 'react';
+import {Photo} from "staircase-generator/features";
 
-const Photo: React.SFC<{pageUrl: string, url: string, title: string}> = ({pageUrl, url, title}) => {
+const Photo: React.SFC<Photo> = ({pageUrl, sources, mainSource, title}) => {
     return <div className="mb-photo" >
-        <img className="mb-photo__image" src={url}
+        <img className="mb-photo__image" src={mainSource.url}
              alt={`Image titled "${title}"`}/>
         <div className="mb-photo__overlay">
             <h3 className="mb-photo__overlay__title">{title}</h3>
