@@ -17,6 +17,7 @@
     "staircase-generator": "1.0.0",
     "stylelint": "^6.5.1",
     "stylelint-config-standard": "^8.0.0",
+    "stylelint-order": "^0.6.0",
     "ts-node": "^3.3.0",
     "typescript": "^2.3.4"
   },

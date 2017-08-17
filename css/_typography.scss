@@ -28,8 +28,8 @@ $font-family-heading-2: 'TrendSansOne-Italic', sans-serif;
 }
 
 @mixin font-smaller() {
-  font-size: $font-size-smaller;
   font-family: $font-family-base;
+  font-size: $font-size-smaller;
 }
 
 @mixin font-heading-1() {
