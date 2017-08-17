@@ -1,9 +1,18 @@
 @import 'reset';
 @import 'typography';
+@import 'breakpoint';
 
-$leftside-width: 33%;
-$rightside-width: 63%;
-$between-column-margin: (100% - $leftside-width - $rightside-width) / 2;
+$desktop-leftside-width: 33%;
+$desktop-leftside-min-width: 400px;
+$desktop-rightside-width: 63%;
+$mobile-width: 100%;
+$column-margin: (100% - $desktop-leftside-width - $desktop-rightside-width) / 2;
+$spacing-unit: 20px;
+$hamburger-icon-dimension: 32px;
+$offscreen-unit: -9999px;
+$border-color: #969696;
+$alt-background-color: #f7f7f7;
+$max-text-width: 45rem;
 
 html {
   @include font-size-base();
@@ -12,16 +21,30 @@ html {
 
 body {
   display: flex;
+  flex-flow: row wrap;
 }
 
 .mb-leftside {
-  width: $leftside-width;
-  text-align: right;
-  margin-right: $between-column-margin;
+  text-align: center;
+  width: $mobile-width;
+
+  @media (min-width: $breakpoint-desktop-min-width) {
+    min-width: $desktop-leftside-min-width;
+    text-align: right;
+    width: $desktop-leftside-width;
+  }
 
   .mb-leftside__logo {
     display: block;
-    margin-top: 80px;
+    margin-bottom: $spacing-unit;
+    margin-top: $spacing-unit;
+
+    @media (min-width: $breakpoint-desktop-min-width) {
+      float: right;
+      margin-bottom: 0;
+      margin-top: $spacing-unit * 4;
+      width: $desktop-leftside-min-width;
+    }
 
     @include font-color-dark();
     @include font-heading-1();
@@ -29,15 +52,58 @@ body {
 }
 
 .mb-navigation {
-  float: right;
-  width: 360px;
-  text-align: right;
-  position: sticky;
-  top: 0;
-  padding-top: 20px;
+  background-color: $alt-background-color;
+  border-top: 1px dotted $border-color;
+  min-height: 2 * $spacing-unit + $hamburger-icon-dimension;
+  overflow: hidden;
+  padding: $spacing-unit $column-margin;
+  position: relative;
+
+  @media (min-width: $breakpoint-desktop-min-width) {
+    background-color: transparent;
+    border-top: none;
+    clear: right;
+    float: right;
+    padding: $spacing-unit 0;
+    position: sticky;
+    width: $desktop-leftside-min-width;
+  }
+
+  .mb-navigation__expander-label {
+    display: block;
+    height: $hamburger-icon-dimension;
+    left: $spacing-unit;
+    margin-bottom: $spacing-unit;
+    position: absolute;
+    top: $spacing-unit;
+    width: $hamburger-icon-dimension;
+
+    @media (min-width: $breakpoint-desktop-min-width) {
+      display: none;
+    }
+  }
+
+  .mb-navigation__expander-checkbox {
+    left: $offscreen-unit;
+    position: absolute;
+    top: $offscreen-unit;
+
+    /* On mobile control the size of the navigation container with the expander-checkbox state */
+    @media (max-width: $breakpoint-mobile-max-width) {
+      &:not(:checked) ~ .mb-navigation__container {
+        height: 0;
+        overflow: hidden;
+      }
+
+      &:checked ~ .mb-navigation__container {
+        height: auto;
+      }
+    }
+
+  }
 
   .mb-navigation__item {
-    margin-bottom: 20px;
+    padding-bottom: $spacing-unit;
     list-style-type: none;
   }
 
@@ -49,12 +115,13 @@ body {
   }
 
   .mb-navigation__other {
-    border-top: 1px solid #969696;
-    padding-top: 20px;
+    border-top: 1px solid $border-color;
     font-size: $font-size-smaller;
+    padding-top: $spacing-unit;
 
     .mb-navigation__link {
       @include font-heading-3();
+      @include font-color-dark();
     }
   }
 }
@@ -62,30 +129,35 @@ body {
 h2 {
   @include font-heading-3();
   @include font-color-dark();
-  margin-bottom: 15px;
+  margin-bottom: $spacing-unit;
 }
 
 .mb-rightside {
-  width: $rightside-width;
-  margin-top: 20px;
+  margin: $spacing-unit $column-margin;
+  width: $mobile-width;
+
+  @media (min-width: $breakpoint-desktop-min-width) {
+    width: $desktop-rightside-width;
+  }
 }
 
 .mb-content {
   p {
-    max-width: 45rem;
-    margin-bottom: 15px;
+    margin-bottom: $spacing-unit;
+    max-width: $max-text-width;
+    text-align: justify;
   }
 
   ul {
-    margin-bottom: 15px;
-    margin-left: 3rem;
+    margin-bottom: $spacing-unit;
+    margin-left: $spacing-unit;
   }
 }
 
 .mb-photos {
   ul li {
-    margin-bottom: 20px;
     list-style-type: none;
+    margin-bottom: $spacing-unit;
   }
 }
 
