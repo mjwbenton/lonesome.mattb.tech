@@ -1,9 +1,7 @@
 @import 'breakpoint';
 
-$font-color-dark: #222;
-$font-color-light: #ddd;
-$font-link-color-dark: #551a8b;
-$font-link-color-light: #99f;
+$font-color: #222;
+$font-link-color: #551a8b;
 
 $mobile-multipler: 1.125;
 $font-size-base: 16px;
@@ -56,17 +54,9 @@ $font-family-heading-2: 'TrendSansOne-Italic', sans-serif;
   font-size: $font-size-smaller;
 }
 
-@mixin font-color-dark() {
-  color: $font-color-dark;
+@mixin font-color() {
+  color: $font-color;
   a {
-    color: $font-link-color-dark;
+    color: $font-link-color;
   }
 }
-
-@mixin font-color-light() {
-  color: $font-color-light;
-  a {
-    color: $font-link-color-light;
-  }
-}
-

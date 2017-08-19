@@ -1,7 +1,7 @@
 @import 'typography';
 
 .mb-photo {
-  $overlay-background-color: #333;
+  $overlay-background-color: #f7f7f7;
   $overlay-hover-opacity: 0.8;
   $overlay-padding: 8px;
 
@@ -24,15 +24,9 @@
 
   .mb-photo__overlay {
     background-color: $overlay-background-color;
-    bottom: 0;
     display: flex;
-    left: 0;
-    opacity: 0;
     padding: $overlay-padding;
-    position: absolute;
     width: 100%;
-
-    @include font-color-light();
   }
 
   .mb-photo__overlay__title {
@@ -47,21 +41,6 @@
 
     &::after {
       content: $flickr-right-arrow;
-    }
-  }
-
-  &:hover {
-    .mb-photo__overlay {
-      opacity: $overlay-hover-opacity;
-    }
-
-    .mb-photo__image {
-      opacity: $image-hover-opacity;
-    }
-
-    .mb-photo__overlay,
-    .mb-photo__image {
-      transition: $opacity-transition;
     }
   }
 }

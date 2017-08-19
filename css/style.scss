@@ -16,7 +16,7 @@ $max-text-width: 45rem;
 
 html {
   @include font-size-base();
-  @include font-color-dark();
+  @include font-color();
 }
 
 body {
@@ -46,7 +46,7 @@ body {
       width: $desktop-leftside-min-width;
     }
 
-    @include font-color-dark();
+    @include font-color();
     @include font-heading-1();
   }
 }
@@ -110,7 +110,7 @@ body {
   .mb-navigation__main {
     .mb-navigation__link {
       @include font-heading-2();
-      @include font-color-dark();
+      @include font-color();
     }
   }
 
@@ -121,14 +121,14 @@ body {
 
     .mb-navigation__link {
       @include font-heading-3();
-      @include font-color-dark();
+      @include font-color();
     }
   }
 }
 
 h2 {
   @include font-heading-3();
-  @include font-color-dark();
+  @include font-color();
   margin-bottom: $spacing-unit;
 }
 
