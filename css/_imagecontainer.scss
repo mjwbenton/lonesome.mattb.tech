@@ -1,9 +1,8 @@
 @import 'typography';
 
 .mb-photo {
-  $overlay-background-color: #f7f7f7;
-  $overlay-hover-opacity: 0.8;
-  $overlay-padding: 8px;
+  $infoline-background-color: #f7f7f7;
+  $infoline-padding: 8px;
 
   $flickr-right-arrow: '\2192';
 
@@ -22,21 +21,21 @@
     opacity: 1;
   }
 
-  .mb-photo__overlay {
-    background-color: $overlay-background-color;
+  .mb-photo__infoline {
+    background-color: $infoline-background-color;
     display: flex;
-    padding: $overlay-padding;
+    padding: $infoline-padding;
     width: 100%;
   }
 
-  .mb-photo__overlay__title {
+  .mb-photo__infoline__title {
     display: inline;
     flex: 1;
 
     @include font-heading-4();
   }
 
-  .mb-photo__overlay__flickr-link {
+  .mb-photo__infoline__flickr-link {
     @include font-smaller();
 
     &::after {
