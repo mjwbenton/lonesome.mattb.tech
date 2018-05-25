@@ -14,7 +14,9 @@ Resources:
   Certificate:
     Type: AWS::CertificateManager::Certificate
     Properties:
-      DomainName: photo.mattb.tech
+      DomainName: mattb.tech
+      SubjectAlternativeNames:
+      - photo.mattb.tech
   
   CloudFrontDistribution:
     Type: AWS::CloudFront::Distribution
@@ -22,6 +24,7 @@ Resources:
       DistributionConfig:
         Enabled: true
         Aliases:
+        - mattb.tech
         - photo.mattb.tech
         DefaultRootObject: index.html
         Origins:
@@ -51,6 +54,11 @@ Resources:
     Properties:
       HostedZoneName: mattb.tech.
       RecordSets:
+      - Name: mattb.tech
+        Type: A
+        AliasTarget:
+          HostedZoneId: Z2FDTNDATAQYW2
+          DNSName: !GetAtt CloudFrontDistribution.DomainName
       - Name: photo.mattb.tech
         Type: A
         AliasTarget:
