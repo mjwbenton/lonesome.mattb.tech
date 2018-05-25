@@ -6,7 +6,7 @@ Resources:
   SiteBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: photo.mattb.tech
+      BucketName: mattb.tech
       AccessControl: PublicRead
       WebsiteConfiguration:
         IndexDocument: index.html
@@ -28,7 +28,7 @@ Resources:
         - photo.mattb.tech
         DefaultRootObject: index.html
         Origins:
-        - DomainName: "photo.mattb.tech.s3-website-us-east-1.amazonaws.com"
+        - DomainName: "mattb.tech.s3-website-us-east-1.amazonaws.com"
           Id: S3Origin
           CustomOriginConfig:
             HTTPPort: 80
@@ -67,7 +67,7 @@ Resources:
 
 Outputs:
   CloudFrontDistribution:
-    Description: The 
+    Description: Distribution ID for CloudFront
     Value: !Ref CloudFrontDistribution
     Export:
       Name: CloudFrontDistribution

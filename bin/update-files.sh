@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-BUCKET_NAME=photo.mattb.tech
+BUCKET_NAME=mattb.tech
 CLOUD_FORMATION_DISTRIBUTION_ID=E34GUQO2H8CWV4
 PROFILE=test.mattb.tech-deploy
 
