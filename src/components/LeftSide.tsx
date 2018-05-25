@@ -3,7 +3,7 @@ import * as React from 'react';
 const LeftSide: React.SFC<{}> = ({ children }) => {
     return <div className="mb-leftside">
         <a href="/" className="mb-leftside__logo">
-            Matthew Benton
+            mattb
         </a>
         {children}
     </div>;
