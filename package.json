@@ -24,13 +24,20 @@
   "scripts": {
     "all": "npm run build && npm run lint",
     "build": "tsc",
+
     "lint:css": "stylelint css/*.scss",
     "lint": "npm run lint:css",
+
     "generate:css": "node-sass css/style.scss | postcss --use autoprefixer --use cssnano -o output/style.css",
     "generate:pages": "ts-node src/index.ts | bunyan -l info",
     "generate": "npm run build && npm run generate:pages && npm run generate:css",
+
     "serve": "http-server output",
-    "upload": "npm run generate && s3_website push"
+    "upload": "npm run generate && s3_website push",
+
+    "update-files": "./bin/update-files.sh",
+    "create-stack": "./bin/create-stack.sh",
+    "update-stack": "./bin/update-stack.sh"
   },
   "author": "Matt Benton <m@mattb.tech>",
   "license": "UNLICENSED"
