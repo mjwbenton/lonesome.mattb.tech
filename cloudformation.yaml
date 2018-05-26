@@ -16,7 +16,11 @@ Resources:
     Properties:
       DomainName: mattb.tech
       SubjectAlternativeNames:
-      - photo.mattb.tech
+      - www.mattb.tech
+      - mattbenton.co.uk
+      - www.mattbenton.co.uk
+      - lionsmane.co.uk
+      - www.lionsmane.co.uk
   
   CloudFrontDistribution:
     Type: AWS::CloudFront::Distribution
@@ -25,7 +29,6 @@ Resources:
         Enabled: true
         Aliases:
         - mattb.tech
-        - photo.mattb.tech
         DefaultRootObject: index.html
         Origins:
         - DomainName: "mattb.tech.s3-website-us-east-1.amazonaws.com"
@@ -49,6 +52,53 @@ Resources:
           AcmCertificateArn: !Ref Certificate
           SslSupportMethod: sni-only
 
+  # ====== BEGIN REDIRECT ======
+
+  RedirectBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: redirect-mattb-tech
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+        RedirectAllRequestsTo:
+          HostName: mattb.tech
+          Protocol: https
+
+  WwwRedirectCloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Aliases:
+        - www.mattb.tech
+        - mattbenton.co.uk
+        - www.mattbenton.co.uk
+        - lionsmane.co.uk
+        - www.lionsmane.co.uk
+        Origins:
+        - DomainName: "redirect-mattb-tech.s3-website-us-east-1.amazonaws.com"
+          Id: S3Origin
+          CustomOriginConfig:
+            HTTPPort: 80
+            HTTPSPort: 443
+            OriginProtocolPolicy: http-only
+        DefaultCacheBehavior:
+          TargetOriginId: S3Origin
+          AllowedMethods:
+          - GET
+          - HEAD
+          Compress: true
+          ForwardedValues:
+            QueryString: false
+            Cookies:
+              Forward: none
+          ViewerProtocolPolicy: redirect-to-https
+        ViewerCertificate:
+          AcmCertificateArn: !Ref Certificate
+          SslSupportMethod: sni-only
+
+  # ===== END REDIRECT ======
+
   Route53RecordSetGroup:
     Type: AWS::Route53::RecordSetGroup
     Properties:
@@ -59,11 +109,43 @@ Resources:
         AliasTarget:
           HostedZoneId: Z2FDTNDATAQYW2
           DNSName: !GetAtt CloudFrontDistribution.DomainName
-      - Name: photo.mattb.tech
+      - Name: www.mattb.tech
         Type: A
         AliasTarget:
           HostedZoneId: Z2FDTNDATAQYW2
-          DNSName: !GetAtt CloudFrontDistribution.DomainName
+          DNSName: !GetAtt WwwRedirectCloudFrontDistribution.DomainName
+  
+  MattBentonCoUkRoute53RecordSetGroup:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneName: mattbenton.co.uk.
+      RecordSets:
+      - Name: mattbenton.co.uk
+        Type: A
+        AliasTarget:
+          HostedZoneId: Z2FDTNDATAQYW2
+          DNSName: !GetAtt WwwRedirectCloudFrontDistribution.DomainName
+      - Name: www.mattbenton.co.uk
+        Type: A
+        AliasTarget:
+          HostedZoneId: Z2FDTNDATAQYW2
+          DNSName: !GetAtt WwwRedirectCloudFrontDistribution.DomainName
+
+  LionsmaneCoUkRoute53RecordSetGroup:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneName: lionsmane.co.uk.
+      RecordSets:
+      - Name: lionsmane.co.uk
+        Type: A
+        AliasTarget:
+          HostedZoneId: Z2FDTNDATAQYW2
+          DNSName: !GetAtt WwwRedirectCloudFrontDistribution.DomainName
+      - Name: www.lionsmane.co.uk
+        Type: A
+        AliasTarget:
+          HostedZoneId: Z2FDTNDATAQYW2
+          DNSName: !GetAtt WwwRedirectCloudFrontDistribution.DomainName
 
 Outputs:
   CloudFrontDistribution:

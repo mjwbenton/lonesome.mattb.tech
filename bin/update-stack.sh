@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-STACK_NAME=photo-mattb-tech
+STACK_NAME=mattb-tech-website
 PROFILE=test.mattb.tech-deploy
 
 aws cloudformation update-stack \
