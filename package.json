@@ -31,9 +31,7 @@
     "generate:css": "node-sass css/style.scss | postcss --use autoprefixer --use cssnano -o output/style.css",
     "generate:pages": "ts-node src/index.ts | bunyan -l info",
     "generate": "npm run build && npm run generate:pages && npm run generate:css",
-
     "serve": "http-server output",
-    "upload": "npm run generate && s3_website push",
 
     "update-files": "./bin/update-files.sh",
     "create-stack": "./bin/create-stack.sh",
