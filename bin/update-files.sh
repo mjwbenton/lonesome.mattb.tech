@@ -2,7 +2,7 @@
 
 BUCKET_NAME=mattb.tech
 CLOUD_FORMATION_DISTRIBUTION_ID=E3V3XQQRI8U9K3
-PROFILE=test.mattb.tech-deploy
+PROFILE=mattb.tech-deploy
 
 aws s3 sync --acl public-read --delete \
     --exclude "*" --include "*.html" \

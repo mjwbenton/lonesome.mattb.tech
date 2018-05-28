@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 STACK_NAME=mattb-tech-website
-PROFILE=test.mattb.tech-deploy
+PROFILE=mattb.tech-deploy
 
 aws cloudformation create-stack \
     --profile=$PROFILE \
