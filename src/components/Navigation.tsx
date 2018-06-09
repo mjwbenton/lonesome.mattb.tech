@@ -4,8 +4,8 @@ import HamburgerIcon from "./HamburgerIcon";
 
 const Navigation: React.SFC<{navigation: NavigationEntry[]}> = ({navigation}) => {
     return <div className="mb-navigation">
-        <label className="mb-navigation__expander-label" htmlFor="navigationExpander"><HamburgerIcon /></label>
         <input className="mb-navigation__expander-checkbox" type="checkbox" id="navigationExpander"/>
+        <label className="mb-navigation__expander-label" htmlFor="navigationExpander"><HamburgerIcon /></label>
         <div className="mb-navigation__container">
             <ul className="mb-navigation__main">
                 {navigation.map((ne) =>
