@@ -1,0 +1,12 @@
+
+@keyframes image-clicked {
+  0% { opacity: 1; }
+  50% { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+
+.animation-image-clicked {
+  opacity: 100%;
+  animation-name: image-clicked;
+  animation-duration: 0.75s;
+}
