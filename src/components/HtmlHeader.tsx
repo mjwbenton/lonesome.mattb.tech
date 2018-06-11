@@ -5,8 +5,7 @@ const HtmlHeader: React.SFC<{}> = () => {
         <title>Matthew Benton Photographer</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/style.css" />
-        <link rel="stylesheet"
-                href="https://media.mattbenton.co.uk/font/trend-font-kit.css" />
+        <link rel="stylesheet" href="https://use.typekit.net/ukk8ctr.css" />
     </head>;
 }
 export default HtmlHeader;

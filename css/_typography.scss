@@ -4,7 +4,7 @@ $font-color: #222;
 $font-link-color: #551a8b;
 
 $mobile-multipler: 1.125;
-$font-size-base: 16px;
+$font-size-base: 18px;
 $m-font-size-base: $font-size-base * $mobile-multipler;
 $font-size-heading-1: 4rem;
 $m-font-size-heading-1: 2.75rem;
@@ -12,9 +12,12 @@ $font-size-heading-2: 1.25rem;
 $font-size-heading-3: 1rem;
 $font-size-smaller: 0.75rem;
 
-$font-family-base: Arial, sans-serif;
-$font-family-heading-1: 'TrendSansFour', sans-serif;
-$font-family-heading-2: 'TrendSansOne-Italic', sans-serif;
+$font-family-base: "fira-sans", Arial, sans-serif;
+$font-family-heading-1: "fira-sans-2", Arial, sans-serif;
+$font-family-heading-2: "fira-sans", Arial, sans-serif;
+
+$font-weight-heading-1: 400;
+$font-weight-heading-2: 700;
 
 @mixin font-size-base() {
   font-family: $font-family-base;
@@ -33,6 +36,9 @@ $font-family-heading-2: 'TrendSansOne-Italic', sans-serif;
 @mixin font-heading-1() {
   font-family: $font-family-heading-1;
   font-size: $font-size-heading-1;
+  font-weight: $font-family-heading-1;
+  font-style: italic;
+  text-decoration: underline;
 
   @media (max-width: $breakpoint-mobile-max-width) {
     font-size: $m-font-size-heading-1;
@@ -42,16 +48,19 @@ $font-family-heading-2: 'TrendSansOne-Italic', sans-serif;
 @mixin font-heading-2() {
   font-family: $font-family-heading-2;
   font-size: $font-size-heading-2;
+  font-weight: $font-weight-heading-2;
 }
 
 @mixin font-heading-3() {
   font-family: $font-family-heading-2;
   font-size: $font-size-heading-3;
+  font-weight: $font-weight-heading-2;
 }
 
 @mixin font-heading-4() {
   font-family: $font-family-heading-2;
   font-size: $font-size-smaller;
+  font-weight: $font-weight-heading-2;
 }
 
 @mixin font-color() {
