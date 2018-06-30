@@ -1,4 +1,4 @@
-# mattbenton.co.uk
+# mattb.tech
 
 My personal photography website.
 
@@ -6,7 +6,7 @@ My personal photography website.
 
 ### Generate and upload site
 
-`$ npm run upload`
+`$ npm run generate && npm run update-files`
 
 ### Generate site from content
 
@@ -26,15 +26,6 @@ My personal photography website.
 
 ## AWS Setup
 
-### Cloudfront
+`$ npm run create-stack`
 
-* `$ s3_website cfg apply`
-* Say yes to cloudfront
-* When cloudfront domain is deployed, change DNS over to being an ALIAS record for cloudfront
-
-### HTTPS
-
-* Make a new certificate in AWS certificate manager
-* Verify domain owner
-* Bind to cloudfront domain
-* Use `$ s3_website push --force` to force clear the caches
+`$ npm run update-stack`
