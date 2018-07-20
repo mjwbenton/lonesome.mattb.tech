@@ -3,6 +3,8 @@ AWSTemplateFormatVersion: "2010-09-09"
 
 Resources:
 
+  # ====== BEGIN STATIC SITE ======
+
   SiteBucket:
     Type: AWS::S3::Bucket
     Properties:
@@ -52,6 +54,8 @@ Resources:
           AcmCertificateArn: !Ref Certificate
           SslSupportMethod: sni-only
 
+  # ====== END STATIC SITE ======
+
   # ====== BEGIN REDIRECT ======
 
   RedirectBucket:
@@ -98,6 +102,8 @@ Resources:
           SslSupportMethod: sni-only
 
   # ===== END REDIRECT ======
+  
+  # ===== BEGIN DNS ======
 
   Route53RecordSetGroup:
     Type: AWS::Route53::RecordSetGroup
@@ -146,6 +152,38 @@ Resources:
         AliasTarget:
           HostedZoneId: Z2FDTNDATAQYW2
           DNSName: !GetAtt WwwRedirectCloudFrontDistribution.DomainName
+
+  # ===== END DNS ======
+
+  # ===== BEGIN LAMBDA ======
+  
+  CodeBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: mattb.tech-code
+
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: "sts:AssumeRole"
+
+  MyLambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Handler: "src/index.handler"
+      Role: !GetAtt [ LambdaExecutionRole, Arn ]
+      Code:
+        S3Bucket: mattb.tech-code
+        S3Key: lambda.zip
+      Runtime: "nodejs8.10"
+
+  # ===== END LAMBDA ======
 
 Outputs:
   CloudFrontDistribution:

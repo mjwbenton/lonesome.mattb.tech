@@ -1,0 +1,17 @@
+{
+  "name": "@mattb/mattb.tech-api",
+  "version": "1.0.0",
+  "description": "API for mattb.tech",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "tsc",
+    "update-lambda": "cf-update-lambda -s mattb-tech-website -p mattb.tech-deploy -c mattb.tech-code -k lambda.zip --upload-only"
+  },
+  "author": "Matt Benton <m@mattb.tech>",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@mattb/cloudformation-scripts": "0.0.1",
+    "ts-node": "^7.0.0",
+    "typescript": "^2.9.2"
+  }
+}
