@@ -25,18 +25,15 @@
   "scripts": {
     "all": "npm run build && npm run lint",
     "build": "tsc",
-
     "lint:css": "stylelint css/*.scss",
     "lint": "npm run lint:css",
-
     "generate:css": "node-sass css/style.scss | postcss --use autoprefixer --use cssnano -o output/style.css",
     "generate:pages": "ts-node src/index.ts | bunyan -l info",
     "generate": "npm run build && npm run generate:pages && npm run generate:css",
     "serve": "http-server output",
-
     "update-files": "cf-update-files -b mattb.tech -d E3V3XQQRI8U9K3 -p mattb.tech-deploy",
     "create-stack": "cf-create-stack -s mattb-tech-website -p mattb.tech-deploy -f cloudformation.yaml",
-    "update-stack": "cf-update-stack -s mattb-tech-website -p mattb.tech-deploy -f cloudformation.yaml"
+    "update-stack": "cf-deploy-stack -s mattb-tech-website -p mattb.tech-deploy -f cloudformation.yaml"
   },
   "author": "Matt Benton <m@mattb.tech>",
   "license": "UNLICENSED"

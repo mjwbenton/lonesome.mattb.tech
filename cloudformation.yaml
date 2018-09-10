@@ -1,5 +1,15 @@
 ---
 AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+
+Globals:
+  Api:
+    Cors: "'https://mattb.tech'"
+    MethodSettings:
+    - CacheTtlInSeconds: 300
+      CachingEnabled: true
+      HttpMethod: "*"
+      ResourcePath: "/*"
 
 Resources:
 
@@ -23,7 +33,7 @@ Resources:
       - www.mattbenton.co.uk
       - lionsmane.co.uk
       - www.lionsmane.co.uk
-  
+
   CloudFrontDistribution:
     Type: AWS::CloudFront::Distribution
     Properties:
@@ -102,7 +112,7 @@ Resources:
           SslSupportMethod: sni-only
 
   # ===== END REDIRECT ======
-  
+
   # ===== BEGIN DNS ======
 
   Route53RecordSetGroup:
@@ -120,7 +130,7 @@ Resources:
         AliasTarget:
           HostedZoneId: Z2FDTNDATAQYW2
           DNSName: !GetAtt WwwRedirectCloudFrontDistribution.DomainName
-  
+
   MattBentonCoUkRoute53RecordSetGroup:
     Type: AWS::Route53::RecordSetGroup
     Properties:
@@ -155,35 +165,28 @@ Resources:
 
   # ===== END DNS ======
 
-  # ===== BEGIN LAMBDA ======
-  
+  # ===== BEGIN API ======
+
   CodeBucket:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: mattb.tech-code
 
-  LambdaExecutionRole:
-    Type: AWS::IAM::Role
+  GetPhotos:
+    Type: AWS::Serverless::Function
     Properties:
-      AssumeRolePolicyDocument:
-        Version: "2012-10-17"
-        Statement:
-          - Effect: Allow
-            Principal:
-              Service: lambda.amazonaws.com
-            Action: "sts:AssumeRole"
+      Handler: src/index.handler
+      Runtime: nodejs8.10
+      Policies: AmazonDynamoDBReadOnlyAccess
+      CodeUri: s3://mattb.tech-code/lambda.zip
+      Events:
+        GetPhotos:
+          Type: Api
+          Properties:
+            Path: /photos
+            Method: get
 
-  MyLambdaFunction:
-    Type: AWS::Lambda::Function
-    Properties:
-      Handler: "src/index.handler"
-      Role: !GetAtt [ LambdaExecutionRole, Arn ]
-      Code:
-        S3Bucket: mattb.tech-code
-        S3Key: lambda.zip
-      Runtime: "nodejs8.10"
-
-  # ===== END LAMBDA ======
+  # ===== END API ======
 
 Outputs:
   CloudFrontDistribution:
