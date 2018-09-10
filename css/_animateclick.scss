@@ -6,7 +6,7 @@
 }
 
 .animation-image-clicked {
-  opacity: 100%;
-  animation-name: image-clicked;
   animation-duration: 0.75s;
+  animation-name: image-clicked;
+  opacity: 100%;
 }

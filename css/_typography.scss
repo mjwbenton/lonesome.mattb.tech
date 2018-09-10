@@ -36,8 +36,8 @@ $font-weight-heading-2: 700;
 @mixin font-heading-1() {
   font-family: $font-family-heading-1;
   font-size: $font-size-heading-1;
-  font-weight: $font-family-heading-1;
   font-style: italic;
+  font-weight: $font-family-heading-1;
   text-decoration: underline;
 
   @media (max-width: $breakpoint-mobile-max-width) {
