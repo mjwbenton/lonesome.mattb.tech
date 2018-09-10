@@ -5,11 +5,6 @@ Transform: AWS::Serverless-2016-10-31
 Globals:
   Api:
     Cors: "'https://mattb.tech'"
-    MethodSettings:
-    - CacheTtlInSeconds: 300
-      CachingEnabled: true
-      HttpMethod: "*"
-      ResourcePath: "/*"
 
 Resources:
 
