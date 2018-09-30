@@ -1,0 +1,17 @@
+---
+title: Stream
+group: 1
+index: 1
+---
+## Stream
+
+Latest photos from [my Flickr page](https://www.flickr.com/photos/83914470@N00/).
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("jsExtensionPoint").innerHTML = "Loading...";
+        fetch("https://umpghq4xo2.execute-api.us-east-1.amazonaws.com/Prod/photos")
+            .then((response) => response.text())
+            .then((html) => document.getElementById("jsExtensionPoint").innerHTML = html);
+    });
+</script>

@@ -23,13 +23,13 @@ export async function callFlickr(apiKey : string, methodName : string,
     }
 }
 
-interface PhotoSource {
+export interface PhotoSource {
     url: string,
     width: number,
     height: number,
 }
 
-interface RecentPhoto {
+export interface RecentPhoto {
     pageUrl: string,
     title: string,
     mainSource: PhotoSource,

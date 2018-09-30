@@ -141,23 +141,19 @@ body {
     padding-bottom: $spacing-unit;
   }
 
-  .mb-navigation__main {
+  .mb-navigation__group {
     .mb-navigation__link {
       @include font-heading-2();
       @include font-color();
     }
   }
 
-  .mb-navigation__other {
+  .mb-navigation__group:nth-last-child(1) {
     border-top: 1px solid $border-color;
     font-size: $font-size-smaller;
     padding-top: $spacing-unit;
-
-    .mb-navigation__link {
-      @include font-heading-3();
-      @include font-color();
-    }
   }
+
 }
 
 h2 {

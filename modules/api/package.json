@@ -16,7 +16,9 @@
     "typescript": "^2.9.2"
   },
   "dependencies": {
+    "@types/handlebars": "^4.0.39",
     "dotenv": "^6.0.0",
+    "handlebars": "^4.0.12",
     "request": "^2.87.0",
     "request-promise-native": "^1.0.5"
   }
