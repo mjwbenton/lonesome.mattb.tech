@@ -18,21 +18,8 @@ const Page: React.SFC<{item: ContentItem, site: Site}> = ({item, site}) => {
                 <Navigation navigation={site.getMeta(NAVIGATION_META_KEY)} />
             </LeftSide>
             <RightSide contentHtml={item.content} photos={photos} />
-            <script dangerouslySetInnerHTML={createScript()}>
-            </script>
         </body>
     </html>;
 };
 
-function createScript() {
-    return { __html: `
-        const elements = document.getElementsByTagName("img")
-        for(let i = 0; i < elements.length; i++) {
-            elements[i].addEventListener("click", (_e) => {
-                elements[i].classList.remove("animation-image-clicked"); 
-                setTimeout(() => elements[i].classList.add("animation-image-clicked"), 10);
-            });
-        }
-    `};
-}
 export default Page;
