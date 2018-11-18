@@ -7,7 +7,8 @@ $desktop-leftside-min-width: 400px;
 $desktop-rightside-width: 63%;
 $mobile-width: 100%;
 $column-margin: (100% - $desktop-leftside-width - $desktop-rightside-width) / 2;
-$spacing-unit: 20px;
+$spacing-unit: 1rem;
+$spacing-unit-px: $font-size-base;
 $hamburger-icon-dimension: 32px;
 $offscreen-unit: -9999px;
 $border-color: #969696;
@@ -58,7 +59,7 @@ code {
 .mb-navigation {
   background-color: $alt-background-color;
   border-top: 1px dotted $border-color;
-  min-height: 2 * $spacing-unit + $hamburger-icon-dimension;
+  min-height: 2 * $spacing-unit-px + $hamburger-icon-dimension;
   overflow: hidden;
   padding: $spacing-unit $column-margin;
   position: relative;
@@ -189,6 +190,7 @@ h2 {
   ul {
     margin-bottom: $spacing-unit;
     margin-left: $spacing-unit;
+    max-width: ($max-text-width - $spacing-unit);
   }
 }
 
