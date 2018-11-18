@@ -24,6 +24,10 @@ body {
   flex-flow: row wrap;
 }
 
+code {
+  @include font-code();
+}
+
 .mb-leftside {
   text-align: center;
   width: $mobile-width;
@@ -175,6 +179,11 @@ h2 {
     margin-bottom: $spacing-unit;
     max-width: $max-text-width;
     text-align: justify;
+  }
+
+  pre {
+    margin-bottom: $spacing-unit;
+    max-width: $max-text-width;
   }
 
   ul {
