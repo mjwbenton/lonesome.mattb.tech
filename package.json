@@ -19,7 +19,7 @@
     "serve": "gatsby serve",
     "lint:css": "stylelint css/*.scss",
     "lint": "npm run lint:css",
-    "update-files": "cf-update-files -b mattb.tech -d E3V3XQQRI8U9K3 -p mattb.tech-deploy",
+    "update-files": "cf-update-files -f ./public -b mattb.tech -d E3V3XQQRI8U9K3 -p mattb.tech-deploy",
     "create-stack": "cf-create-stack -s mattb-tech-website -p mattb.tech-deploy -f cloudformation.yaml",
     "update-stack": "cf-deploy-stack -s mattb-tech-website -p mattb.tech-deploy -f cloudformation.yaml"
   },
