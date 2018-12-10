@@ -1,22 +1,15 @@
 {
   "compilerOptions": {
+    "target": "esnext",
     "module": "commonjs",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "jsx": "react",
     "jsxFactory": "React.createElement",
-    "target": "ES2016",
-    "sourceMap": true,
-    "inlineSources": true,
-    "noImplicitReturns": true,
-    // Currently disabled due to issue with dependencies in staircase-generator
-    // "noImplicitAny": true,
-    "strictNullChecks": true,
-    "lib": [
-      "es2017",
-      "dom"
-    ]
+    "strict": true,
+    "noImplicitAny": false,
+    "lib": ["esnext", "dom"],
+    "sourceMap": true
   },
-  "exclude": [
-    "node_modules",
-    "modules"
-  ]
+  "exclude": ["node_modules", "modules"]
 }
