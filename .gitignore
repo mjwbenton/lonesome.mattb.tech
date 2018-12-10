@@ -7,3 +7,5 @@ output
 *.js
 *.js.map
 *.zip
+public
+.cache
