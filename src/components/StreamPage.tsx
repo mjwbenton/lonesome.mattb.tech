@@ -1,36 +1,25 @@
 import React from "react";
 import { graphql } from "gatsby";
-import HtmlHeader from "./HtmlHeader";
-import LeftSide from "./LeftSide";
+import Layout from "./Layout";
 import "../../css/style.scss";
-import Navigation from "./Navigation";
 import Stream from "./Stream";
 
-type MarkdownRemark = {
-  html: string;
-  frontmatter: {
-    title: string;
-  };
-};
-
 type DataFormat = {
-  markdownRemark: MarkdownRemark;
+  markdownRemark: {
+    html: string;
+  };
 };
 
 const MarkdownPage: React.FunctionComponent<{ data: DataFormat }> = ({
   data
 }) => (
-  <div className="mb-body">
-    <HtmlHeader />
-    <LeftSide />
-    <div className="mb-rightside">
-      <div
-        className="mb-content"
-        dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
-      />
-      <Stream />
-    </div>
-  </div>
+  <Layout>
+    <div
+      className="mb-content"
+      dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
+    />
+    <Stream />
+  </Layout>
 );
 
 export const pageQuery = graphql`
