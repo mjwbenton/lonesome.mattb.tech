@@ -22,9 +22,7 @@ const MarkdownPage: React.FunctionComponent<{ data: DataFormat }> = ({
 }) => (
   <div className="mb-body">
     <HtmlHeader />
-    <LeftSide>
-      <Navigation />
-    </LeftSide>
+    <LeftSide />
     <div className="mb-rightside">
       <div
         className="mb-content"

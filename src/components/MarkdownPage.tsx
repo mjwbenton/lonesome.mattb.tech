@@ -4,7 +4,6 @@ import HtmlHeader from "./HtmlHeader";
 import LeftSide from "./LeftSide";
 import Photos, { PhotoSetFragmentType } from "./Photos";
 import "../../css/style.scss";
-import Navigation from "./Navigation";
 
 type MarkdownRemark = {
   html: string;
@@ -19,9 +18,7 @@ const MarkdownPage: React.FunctionComponent<{ data: DataFormat }> = ({
 }) => (
   <div className="mb-body">
     <HtmlHeader />
-    <LeftSide>
-      <Navigation />
-    </LeftSide>
+    <LeftSide />
     <div className="mb-rightside">
       <div
         className="mb-content"
