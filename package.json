@@ -4,7 +4,7 @@
   "description": "My personal photography website.",
   "main": "build/index.js",
   "devDependencies": {
-    "@mattb/cloudformation-scripts": "file:../cloudformation-scripts",
+    "@mattb/cloudformation-scripts": "git+ssh://git@github.com/mjwbenton/cloudformation-scripts.git",
     "@types/dotenv": "^4.0.0",
     "dotenv": "^2.0.0",
     "stylelint": "^6.5.1",
@@ -26,6 +26,7 @@
   "author": "Matt Benton <m@mattb.tech>",
   "license": "UNLICENSED",
   "dependencies": {
+    "@mattb/gatsby-transform-flickr-set": "git+ssh://git@github.com/mjwbenton/gatsby-transform-flickr-set.git",
     "@types/react": "^16.7.11",
     "@types/react-helmet": "^5.0.7",
     "gatsby": "^2.0.60",
