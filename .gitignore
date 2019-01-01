@@ -5,6 +5,7 @@ output
 .env
 .idea
 *.js
+!gatsby-config.js
 *.js.map
 *.zip
 public
