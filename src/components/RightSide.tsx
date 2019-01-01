@@ -5,7 +5,6 @@ const RightSide: React.SFC<{contentHtml: string, photos: React.ReactChild}> = ({
         <div className="mb-content"
              dangerouslySetInnerHTML={{ __html: contentHtml }} />
         {photos}
-        <div id="jsExtensionPoint"></div>
     </div>;
 };
 export default RightSide;
