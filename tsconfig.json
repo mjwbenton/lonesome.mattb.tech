@@ -9,7 +9,8 @@
     "strict": true,
     "noImplicitAny": false,
     "lib": ["esnext", "dom"],
-    "sourceMap": true
+    "sourceMap": true,
+    "noEmit": true
   },
   "exclude": ["node_modules", "modules"]
 }
