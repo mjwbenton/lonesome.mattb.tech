@@ -1,6 +1,9 @@
 import * as React from "react";
 import { graphql } from "gatsby";
-import { PhotoSource } from "@mattb/gatsby-transform-flickr-set";
+import {
+  Photo as PhotoType,
+  PhotoSource
+} from "@mattb/gatsby-transform-flickr-set";
 import SinglePhoto from "./Photo";
 
 const Photos: React.FunctionComponent<{ data: PhotoSetFragmentType }> = ({
@@ -29,12 +32,7 @@ export default Photos;
 export type PhotoSetFragmentType = {
   markdownRemark: {
     childFlickrSet?: {
-      photos?: Array<{
-        title: string;
-        pageUrl: string;
-        mainSource: PhotoSource;
-        sources: PhotoSource[];
-      }>;
+      photos?: Array<PhotoType>;
     };
   };
 };
@@ -43,6 +41,7 @@ export const query = graphql`
   fragment PhotoSetFragment on MarkdownRemark {
     childFlickrSet {
       photos {
+        id
         title
         pageUrl
         mainSource {
