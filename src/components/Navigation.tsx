@@ -10,6 +10,9 @@ const Navigation: React.FunctionComponent<{
   } = data.allMarkdownRemark.edges
     .map(edge => edge.node)
     .filter(node => node.fields.slug && node.frontmatter.index)
+    .sort(
+      (a, b) => parseInt(a.frontmatter.index!) - parseInt(b.frontmatter.index!)
+    )
     .reduce((grouping, node) => {
       const groupNumber = node.frontmatter.group || "0";
       (grouping[groupNumber] = grouping[groupNumber] || []).push(node);
