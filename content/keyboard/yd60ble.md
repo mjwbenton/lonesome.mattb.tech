@@ -6,8 +6,78 @@ index: 3
 
 ## Keyboards: YD60BLE
 
- * Parts
- * Link back to the previous post. Explain how I did all the same stuff but better.
- * Explain the problem that I faced (key chattering)
- * Explain how I fixed it
- * Flashing the firmware section
+![Finished product](https://c1.staticflickr.com/5/4834/45893538514_e60f1a2419_c.jpg)
+
+Only a couple of months after building my first keyboard (written about [here](/keyboard/first-build.html)) I've moved on to my second. The main aim was to create a quieter keyboard to use at work, but with the same 60% layout I used in my first build. Additionally I wanted to branch out a bit in the parts I used and apply my experince from the first build to improving the second.
+
+### Parts List
+
+- Keycaps: [DSA Mystery](https://mykeyboard.eu/catalogue/dsa-mystery-alpha-1_539/)
+- Case: [KDBfans Tofu 60% aluminium case grey](https://kbdfans.cn/collections/60-layout-case/products/kbdfans-tofu-60-aluminum-case?variant=13389974569018)
+- PCB: [YD60BLE 60% Bluetooth PCB](https://kbdfans.cn/collections/60/products/yd60ble-v1-60-bluetooth-customized-mechanical-keyboard-pcb)
+- Switches: [ZealPC Zilent 62g](https://zealpc.net/collections/switches/products/zilents)
+- Stabilizers: [PCB stabilizers black color](https://kbdfans.cn/products/pcb-stabilizers-black-color)
+- Battery: [3.7V 2500mAh Li-ion battery](https://www.amazon.co.uk/gp/product/B07DMCNXQK)
+
+The keycaps are the first group buy that I've taken part in. The caps are beautiful, well worth it.
+
+### The Process
+
+![Getting started](https://c1.staticflickr.com/5/4845/45893502794_b97d0f59b8_c.jpg)
+
+Getting the switches in and soldered was massively easier this time around owing to the fact that my Zilent switches were PCB mount. This means they have additional legs that hold the switch onto the PCB and ensure correct alignment.
+
+![Switches in](https://c2.staticflickr.com/8/7848/31676571097_a166fc4f1d_c.jpg)
+
+I gave the same treatment to the stabelizers as I did the [first time around](/keyboard/first-build.html), but this time I did a much better job.
+
+![Band-aid mod](https://c1.staticflickr.com/5/4828/45703307835_97a79caf13_c.jpg)
+
+Unfortunately I encountered a problem when I came to test my freshly soldered switches. A number of the keys, probably 6 or 7, chattered like crazy. I thought I'd done a pretty good job of the soldering, but it turns out this can be a common problem if you've applied the heat of the iron for too long, and the switch casing itself shrinks slightly with the heat. I did however successfully fix the problem without having to replace the switches.
+
+Initially this involved creating a tool to open the switch casings from one side of a binder clip.
+
+![Tool in action](https://c1.staticflickr.com/5/4900/46565863972_11ed47bf29_c.jpg)
+
+![Contacts](https://c1.staticflickr.com/5/4901/46565863512_7d62739ebb_c.jpg)
+
+My "fix" was to jam a screwdiver between the contacts and wiggle them apart a little. Surprisingly, this worked out great. Every key is now working without chattering and feels fine.
+
+!["Fixing" it](https://c2.staticflickr.com/8/7885/39653059523_79a18a553d_c.jpg)
+
+![Opening the switches](https://c2.staticflickr.com/8/7835/45703324015_45489b45ba_c.jpg)
+
+A bluetooth keyboard needs a battery. I bought the biggest capacity battery I could find that I was sure would fit in the case.
+
+![Attaching the battery](https://c1.staticflickr.com/5/4895/45893533324_9fd1cbf9a7_c.jpg)
+
+![In the case](https://c2.staticflickr.com/8/7857/45893531454_0fe99e03e9_c.jpg)
+
+With this keyboard finished up, my collection is up to four; two that I built, two that I bought.
+
+![The collection](https://c1.staticflickr.com/5/4854/45893537274_cddb020b7e_c.jpg)
+
+### Flashing the firmware
+
+This is the tool for editing the keymap: [ydkb.io](http://ydkb.io)
+
+Don't worry about losing your layout; you can upload an existing `.hex` file and use that as a starting point.
+
+The tool provided on [ydkb.io](http://ydkb.io) only supports flashing from windows, which doesn't help me as an OSX user. Luckily a search led me to [this post](https://www.reddit.com/r/MechanicalKeyboards/comments/8j62vh/programming_yd60ble_using_macos/) on reddit, where I learned the bootloadHID tool that can be used to flash the `.hex` file from [ydkb.io](http://ydkb.io).
+
+Here are the steps to follow:
+
+- Turn off the keyboard bluetooth function
+- Hold down the escape key when connecting the keyboard via USB to your macbook.
+- Run the bootloadHID tool...
+
+```
+$ ./bootloadHID yd60ble.hex
+Warning: could not detach kernel HID driver: Function not implemented
+Warning: could not detach kernel HID driver: Function not implemented
+Warning: could not detach kernel HID driver: Function not implemented
+Page size   = 128 (0x80)
+Device size = 32768 (0x8000); 31744 bytes remaining
+Uploading 31744 (0x7c00) bytes starting at 0 (0x0)
+0x07b80 ... 0x07c00
+```
