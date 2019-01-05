@@ -2,6 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import Layout from "./Layout";
 import Photos, { PhotoSetFragmentType } from "./Photos";
+import Playlist, { SpotifyPlaylistFragmentType } from "./Playlist";
 import "../../css/style.scss";
 
 type MarkdownRemarkFragmentType = {
@@ -10,7 +11,9 @@ type MarkdownRemarkFragmentType = {
   };
 };
 
-type DataFormat = MarkdownRemarkFragmentType & PhotoSetFragmentType;
+type DataFormat = MarkdownRemarkFragmentType &
+  PhotoSetFragmentType &
+  SpotifyPlaylistFragmentType;
 
 const MarkdownPage: React.FunctionComponent<{ data: DataFormat }> = ({
   data
@@ -21,6 +24,7 @@ const MarkdownPage: React.FunctionComponent<{ data: DataFormat }> = ({
       dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
     />
     <Photos data={data} />
+    <Playlist data={data} />
   </Layout>
 );
 
@@ -29,6 +33,7 @@ export const pageQuery = graphql`
     markdownRemark(fields: { slug: { eq: $path } }) {
       html
       ...PhotoSetFragment
+      ...SpotifyPlaylistFragment
     }
   }
 `;

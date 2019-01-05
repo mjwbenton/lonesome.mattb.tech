@@ -27,6 +27,7 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@mattb/gatsby-transform-flickr-set": "git+ssh://git@github.com/mjwbenton/gatsby-transform-flickr-set.git",
+    "@mattb/gatsby-transform-spotify-playlist": "git+ssh://git@github.com/mjwbenton/gatsby-transform-spotify-playlist.git",
     "@types/react": "^16.7.11",
     "@types/react-helmet": "^5.0.7",
     "gatsby": "^2.0.60",
