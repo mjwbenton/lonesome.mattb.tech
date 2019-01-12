@@ -10,12 +10,13 @@
   "author": "Matt Benton <m@mattb.tech>",
   "license": "UNLICENSED",
   "devDependencies": {
-    "@mattb/cloudformation-scripts": "0.0.1",
+    "@mattb/cloudformation-scripts": "git+ssh://git@github.com/mjwbenton/cloudformation-scripts.git",
     "@types/dotenv": "^4.0.3",
     "ts-node": "^7.0.0",
     "typescript": "^2.9.2"
   },
   "dependencies": {
+    "@mattb/flickr-api": "git+ssh://git@github.com/mjwbenton/flickr-api.git",
     "@types/handlebars": "^4.0.39",
     "dotenv": "^6.0.0",
     "handlebars": "^4.0.12",
