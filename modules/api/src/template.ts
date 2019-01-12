@@ -1,5 +1,5 @@
-import {RecentPhoto} from "./flickr";
 import Handlebars = require("handlebars");
+import { Photo } from "@mattb/flickr-api";
 
 // Reimplementation of src/components/Photo.tsx
 const SOURCE = `<div class="mb-photos"><ul>{{#photos}}
@@ -19,6 +19,6 @@ const SOURCE = `<div class="mb-photos"><ul>{{#photos}}
 
 const TEMPLATE = Handlebars.compile(SOURCE);
 
-export default function renderHtml(data: RecentPhoto[]): string {
-    return TEMPLATE({ photos: data });
+export default function renderHtml(data: Photo[]): string {
+  return TEMPLATE({ photos: data });
 }
