@@ -46,17 +46,13 @@ export const query = graphql`
         pageUrl
         mainSource {
           url
-          pageUrl
           width
           height
-          sizeLabel
         }
         sources {
           url
-          pageUrl
           width
           height
-          sizeLabel
         }
       }
     }
