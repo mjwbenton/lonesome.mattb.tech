@@ -1,6 +1,5 @@
 import { getRecentPhotos } from "@mattb/flickr-api";
 import * as dotenv from "dotenv";
-import renderHtml from "./template";
 
 dotenv.config();
 
@@ -11,7 +10,7 @@ export async function handler(event: any, context: any, callback: any) {
   );
   callback(null, {
     statusCode: 200,
-    body: renderHtml(response),
+    body: JSON.stringify(response),
     headers: {
       "Access-Control-Allow-Origin": "*"
     }
