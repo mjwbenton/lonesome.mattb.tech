@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    navigationGroups: ["Photos", "Keyboards", "Playlists", "Other"]
+    navigationGroups: ["Photos", "Keyboards", "Playlists"]
   },
   plugins: [
     `gatsby-plugin-typescript`,
