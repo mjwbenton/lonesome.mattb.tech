@@ -1,4 +1,7 @@
 module.exports = {
+  siteMetadata: {
+    navigationGroups: ["Photos", "Keyboards", "Playlists", "Other"]
+  },
   plugins: [
     `gatsby-plugin-typescript`,
     `gatsby-plugin-sass`,

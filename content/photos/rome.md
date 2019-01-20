@@ -1,8 +1,10 @@
 ---
 title: Roman Streets
-flickr_set: '72157645281878582'
+flickr_set: "72157645281878582"
+group: Photos
 index: 5
 ---
+
 ## Roman Streets
 
 Street photography from a bunch of touristy locations in Rome where all these photos were taken on a weekend in January 2011.

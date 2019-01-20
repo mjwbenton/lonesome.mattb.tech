@@ -1,6 +1,6 @@
 ---
 title: "Keyboards: First Build"
-group: 1
+group: Keyboards
 index: 2
 ---
 
@@ -16,11 +16,11 @@ Photos all on Flickr in [this set](https://www.flickr.com/photos/z-two/albums/72
 
 [KBDfans](https://kbdfans.cn) provided all of the parts. I've ordered from them from both the US and UK and, while it takes a little while, the stuff they have available is excellent, and generally it's actually in stock that they can ship rather than being part of a [group buy](https://en.wikipedia.org/wiki/Group_buying).
 
-* Keycaps: [DSA Lazer Etched PBT Keycaps in Blue/Yellow](https://kbdfans.cn/products/dsa-pbt-145keys-keycaps-laser-etched-front-printed-legends?variant=40419237389). Had these on a different keyboard for quite a while now, but whilst I wait for some fancier keycaps to be delivered these ones are great.
-* Case: [KBDfans 5° 60% keyboard aluminum case](https://kbdfans.cn/products/pre-orderkbdfans-5-60-case?variant=43337028493)
-* PCB: [DZ60 Rev 2.0 60% Mechanical Keyboard PCB](https://kbdfans.cn/products/dz60-60-pcb?variant=13001004679226). This included the switches and stabilizers.
-* Switches: [Kailh Box Royals](https://kbdfans.cn/collections/kailh-switches/products/kailh-box-royal-switches-10-pcs). I likely have the old version, whereas this link is for the new one.
-* Stabilizers: [PCB stabilizers black color](https://kbdfans.cn/products/pcb-stabilizers-black-color)
+- Keycaps: [DSA Lazer Etched PBT Keycaps in Blue/Yellow](https://kbdfans.cn/products/dsa-pbt-145keys-keycaps-laser-etched-front-printed-legends?variant=40419237389). Had these on a different keyboard for quite a while now, but whilst I wait for some fancier keycaps to be delivered these ones are great.
+- Case: [KBDfans 5° 60% keyboard aluminum case](https://kbdfans.cn/products/pre-orderkbdfans-5-60-case?variant=43337028493)
+- PCB: [DZ60 Rev 2.0 60% Mechanical Keyboard PCB](https://kbdfans.cn/products/dz60-60-pcb?variant=13001004679226). This included the switches and stabilizers.
+- Switches: [Kailh Box Royals](https://kbdfans.cn/collections/kailh-switches/products/kailh-box-royal-switches-10-pcs). I likely have the old version, whereas this link is for the new one.
+- Stabilizers: [PCB stabilizers black color](https://kbdfans.cn/products/pcb-stabilizers-black-color)
 
 ### The Process
 
@@ -54,7 +54,7 @@ And once I'd put it in a case, we get our first look at a finished product (bar 
 
 ![Wonky keys](https://c2.staticflickr.com/2/1954/45664098542_457bc38e90_c.jpg)
 
-What I'm not happy with however is the sound of the stabilized keys. I'm not super bothered about how they feel, but they sound *horrible*, rattly and scratchy. To fix this I turn to [topclack.com's "The Stab Lab: A living stabilizer modification guide](https://topclack.com/textclack/2018/4/29/the-stab-lab-a-stabilizer-modification-guide-by-quakemz). The stabilizers I have don't require "clipping", but I decided to try my hand at "lubing" and "band-aid modification". That required buying some lubricant, I went with [Silverhook SGPGT90 Silicone Grease](https://www.amazon.co.uk/gp/product/B00W6Q3B1G/).
+What I'm not happy with however is the sound of the stabilized keys. I'm not super bothered about how they feel, but they sound _horrible_, rattly and scratchy. To fix this I turn to [topclack.com's "The Stab Lab: A living stabilizer modification guide](https://topclack.com/textclack/2018/4/29/the-stab-lab-a-stabilizer-modification-guide-by-quakemz). The stabilizers I have don't require "clipping", but I decided to try my hand at "lubing" and "band-aid modification". That required buying some lubricant, I went with [Silverhook SGPGT90 Silicone Grease](https://www.amazon.co.uk/gp/product/B00W6Q3B1G/).
 
 ![Lubricant for the stabilizers](https://c2.staticflickr.com/2/1932/45664095472_00bc69e170_c.jpg)
 
@@ -82,7 +82,7 @@ To create my own custom layout I forked the QMK github repo, and added my own la
 
 [Link to my fork](https://github.com/mjwbenton/qmk_firmware/tree/mjwbenton), [Link to the commit where I added my custom layout](https://github.com/mjwbenton/qmk_firmware/commit/6f01195f35fc0e8d295ca9697e970e3be398e5ba).
 
-There's nothing too interesting about my  keymap, but it does show how you can get exactly what you're after if you are able to use QMK. I've been using software to make "some modifier + arrow key" be home/end/page up/page down for years, now I can add it directly to the keyboard firmware!
+There's nothing too interesting about my keymap, but it does show how you can get exactly what you're after if you are able to use QMK. I've been using software to make "some modifier + arrow key" be home/end/page up/page down for years, now I can add it directly to the keyboard firmware!
 
 Once you've got a custom keymap, the process to flash the firmware to the keyboard is pretty simple. Start by making sure you've got the prerequisites installed to be able to build the firmware. In the directory where you have qmk_firmware checked out:
 

@@ -1,5 +1,4 @@
 import * as React from "react";
-import HamburgerIcon from "./HamburgerIcon";
 import { graphql, StaticQuery } from "gatsby";
 
 const Navigation: React.FunctionComponent<{
@@ -14,27 +13,27 @@ const Navigation: React.FunctionComponent<{
       (a, b) => parseInt(a.frontmatter.index!) - parseInt(b.frontmatter.index!)
     )
     .reduce((grouping, node) => {
-      const groupNumber = node.frontmatter.group || "0";
-      (grouping[groupNumber] = grouping[groupNumber] || []).push(node);
+      const group = node.frontmatter.group || "Other";
+      (grouping[group] = grouping[group] || []).push(node);
       return grouping;
     }, {});
-  const groups = Object.keys(groupedNode).sort();
+  const groups = data.site.siteMetadata.navigationGroups;
   return (
     <div className="mb-navigation">
-      <input
-        className="mb-navigation__expander-checkbox"
-        type="checkbox"
-        id="navigationExpander"
-      />
-      <label
-        className="mb-navigation__expander-label"
-        htmlFor="navigationExpander"
-      >
-        <HamburgerIcon />
-      </label>
-      <div className="mb-navigation__container">
-        {groups.map((group, i) => (
-          <ul key={i} className="mb-navigation__group">
+      {groups.map((group, i) => (
+        <div className="mb-navigation__section">
+          <input
+            className="mb-navigation__checkbox"
+            type="checkbox"
+            id={`mbNavigationCheckbox${i}`}
+          />
+          <label
+            className="mb-navigation__label"
+            htmlFor={`mbNavigationCheckbox${i}`}
+          >
+            {group}
+          </label>
+          <ul className="mb-navigation__list">
             {groupedNode[group].map((node: Node) => (
               <li key={node.fields.slug} className="mb-navigation__item">
                 <a href={node.fields.slug} className="mb-navigation__link">
@@ -43,8 +42,8 @@ const Navigation: React.FunctionComponent<{
               </li>
             ))}
           </ul>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 };
@@ -66,12 +65,22 @@ type DataType = {
       node: Node;
     }>;
   };
+  site: {
+    siteMetadata: {
+      navigationGroups: Array<string>;
+    };
+  };
 };
 
 export default () => (
   <StaticQuery
     query={graphql`
       {
+        site {
+          siteMetadata {
+            navigationGroups
+          }
+        }
         allMarkdownRemark {
           edges {
             node {

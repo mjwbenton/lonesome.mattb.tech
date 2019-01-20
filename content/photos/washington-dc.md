@@ -1,8 +1,10 @@
 ---
 title: Washington DC
-flickr_set: '72157669745227783'
+flickr_set: "72157669745227783"
+group: Photos
 index: 1
 ---
+
 ## Washington DC
 
 All photos from my trip the capital of the United States in the summer of 2016.

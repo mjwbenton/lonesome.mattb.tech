@@ -1,7 +1,6 @@
 ---
 title: About
-group: 1
-index: 5
+index: 1
 ---
 
 ## About

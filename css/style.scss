@@ -59,6 +59,70 @@ code {
 .mb-navigation {
   background-color: $alt-background-color;
   border-top: 1px dotted $border-color;
+  padding-top: $spacing-unit;
+
+  @media (min-width: $breakpoint-desktop-min-width) {
+    background-color: transparent;
+    border: none;
+    clear: right;
+    float: right;
+    padding: $spacing-unit 0;
+    width: $desktop-leftside-min-width;
+  }
+
+  .mb-navigation__checkbox {
+    left: $offscreen-unit;
+    position: absolute;
+    top: $offscreen-unit;
+
+    &:not(:checked) ~ .mb-navigation__list {
+      max-height: 0;
+    }
+
+    &:checked ~ .mb-navigation__list {
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+      animation-name: expand-height;
+
+      @keyframes expand-height {
+        from {
+          max-height: 0;
+        }
+        to {
+          max-height: 1000px;
+        }
+      }
+    }
+  }
+
+  .mb-navigation__label {
+    display: block;
+    @include font-heading-2();
+    cursor: pointer;
+    margin-bottom: $spacing-unit;
+  }
+
+  .mb-navigation__list {
+    overflow: hidden;
+  }
+
+  .mb-navigation__item {
+    list-style-type: none;
+    padding-bottom: $spacing-unit;
+  }
+
+  .mb-navigation__link {
+    @include font-navigation-link();
+
+    @media (min-width: $breakpoint-desktop-min-width) {
+      padding-right: $spacing-unit;
+    }
+  }
+}
+
+/*.mb-navigation {
+  background-color: $alt-background-color;
+  border-top: 1px dotted $border-color;
   min-height: 2 * $spacing-unit-px + $hamburger-icon-dimension;
   overflow: hidden;
   padding: $spacing-unit $column-margin;
@@ -93,7 +157,6 @@ code {
     position: absolute;
     top: $offscreen-unit;
 
-    /* On mobile control the size of the navigation container with the expander-checkbox state */
     @media (max-width: $breakpoint-mobile-max-width) {
       & ~ .mb-navigation__container {
         overflow: hidden;
@@ -166,7 +229,7 @@ code {
     font-size: $font-size-smaller;
     padding-top: $spacing-unit;
   }
-}
+}*/
 
 h2 {
   @include font-heading-3();

@@ -1,7 +1,7 @@
 ---
 title: Stream
-group: 1
-index: 1
+group: Photos
+index: 0
 layout: StreamPage
 ---
 
