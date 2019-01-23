@@ -26,7 +26,7 @@ const Navigation: React.FunctionComponent<{
   return (
     <div className="mb-navigation">
       {orderedGroups.map((group, i) => (
-        <div className="mb-navigation__section">
+        <div key={group} className="mb-navigation__section">
           <input
             className="mb-navigation__checkbox"
             type="checkbox"
@@ -52,7 +52,7 @@ const Navigation: React.FunctionComponent<{
         </div>
       ))}
       {additional.map(node => (
-        <div className="mb-navigation__section">
+        <div key={node.fields.slug} className="mb-navigation__section">
           <a href={node.fields.slug} className="mb-navigation__label">
             {node.frontmatter.title}
           </a>
