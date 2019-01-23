@@ -1,8 +1,8 @@
 ---
 title: Stream
-group: Photos
-index: 0
 layout: StreamPage
+group: Photos
+index: 10
 ---
 
 ## Stream
