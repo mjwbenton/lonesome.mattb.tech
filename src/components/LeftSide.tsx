@@ -1,5 +1,5 @@
 import * as React from "react";
-import Navigation from "./Navigation";
+import Navigation from "./navigation/Navigation";
 
 const LeftSide: React.SFC<{}> = ({ children }) => {
   return (
