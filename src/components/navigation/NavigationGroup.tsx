@@ -4,12 +4,16 @@ import { Node } from "./Node";
 const NavigationGroup: React.FunctionComponent<{
   groupName: string;
   nodes: Array<Node>;
-}> = ({ groupName, nodes }) => (
+  open: boolean;
+  onToggle: () => void;
+}> = ({ groupName, nodes, open, onToggle }) => (
   <div key={groupName} className="mb-navigation__section">
     <input
       className="mb-navigation__checkbox"
       type="checkbox"
       id={`mbNavigationCheckbox${groupName}`}
+      {...open && { checked: true }}
+      onChange={onToggle}
     />
     <label
       className="mb-navigation__label"

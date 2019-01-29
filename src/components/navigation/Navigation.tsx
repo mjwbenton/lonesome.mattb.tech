@@ -4,21 +4,46 @@ import NavigationGroup from "./NavigationGroup";
 import NavigationSingleLink from "./NavigationSingleLink";
 import { Node } from "./Node";
 
-const Navigation: React.FunctionComponent<{
-  data: DataType;
-}> = ({ data }) => {
-  const { groups, additional } = responseToNavigationData(data);
-  return (
-    <div className="mb-navigation">
-      {groups.map((group, i) => (
-        <NavigationGroup {...group} key={group.groupName} />
-      ))}
-      {additional.map(node => (
-        <NavigationSingleLink node={node} key={node.fields.slug} />
-      ))}
-    </div>
-  );
-};
+class Navigation extends React.Component<
+  { data: DataType },
+  { [groupName: string]: boolean }
+> {
+  constructor(props: { data: DataType }) {
+    super(props);
+    const { groups } = responseToNavigationData(props.data);
+    this.state = groups
+      .map(group => group.groupName)
+      .reduce((groupMap, groupName) => {
+        groupMap[groupName] = false;
+        return groupMap;
+      }, {});
+  }
+
+  render() {
+    const { data } = this.props;
+    const { groups, additional } = responseToNavigationData(data);
+    return (
+      <div className="mb-navigation">
+        {groups.map((group, i) => (
+          <NavigationGroup
+            {...group}
+            key={group.groupName}
+            open={this.state[group.groupName]}
+            onToggle={() => {
+              const newState = {};
+              Object.keys(this.state).forEach(gN => (newState[gN] = false));
+              newState[group.groupName] = !this.state[group.groupName];
+              this.setState(newState);
+            }}
+          />
+        ))}
+        {additional.map(node => (
+          <NavigationSingleLink node={node} key={node.fields.slug} />
+        ))}
+      </div>
+    );
+  }
+}
 
 function responseToNavigationData(data: DataType): NavigationData {
   const orderedNodes = data.allMarkdownRemark.edges
