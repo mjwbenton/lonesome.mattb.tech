@@ -1,5 +1,6 @@
 import React from "react";
 import { Node } from "./Node";
+import { Link } from "gatsby";
 
 const NavigationGroup: React.FunctionComponent<{
   groupName: string;
@@ -24,9 +25,9 @@ const NavigationGroup: React.FunctionComponent<{
     <ul className="mb-navigation__list">
       {nodes.map((node: Node) => (
         <li key={node.fields.slug} className="mb-navigation__item">
-          <a href={node.fields.slug} className="mb-navigation__link">
+          <Link to={node.fields.slug!} className="mb-navigation__link">
             {node.frontmatter.title}
-          </a>
+          </Link>
         </li>
       ))}
     </ul>

@@ -1,13 +1,14 @@
 import React from "react";
 import { Node } from "./Node";
+import { Link } from "gatsby";
 
 const NavigationSingleLink: React.FunctionComponent<{ node: Node }> = ({
   node
 }) => (
   <div key={node.fields.slug} className="mb-navigation__section">
-    <a href={node.fields.slug} className="mb-navigation__label">
+    <Link to={node.fields.slug!} className="mb-navigation__label">
       {node.frontmatter.title}
-    </a>
+    </Link>
   </div>
 );
 export default NavigationSingleLink;
