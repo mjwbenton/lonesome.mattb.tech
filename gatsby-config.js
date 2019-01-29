@@ -12,6 +12,7 @@ module.exports = {
       options: { path: `${__dirname}/content`, name: "markdown-pages" }
     },
     `@mattb/gatsby-transform-flickr-set`,
-    `@mattb/gatsby-transform-spotify-playlist`
+    `@mattb/gatsby-transform-spotify-playlist`,
+    `gatsby-plugin-catch-links`
   ]
 };

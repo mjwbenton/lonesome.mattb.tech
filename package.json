@@ -31,6 +31,7 @@
     "@types/react": "^16.7.11",
     "@types/react-helmet": "^5.0.7",
     "gatsby": "^2.0.60",
+    "gatsby-plugin-catch-links": "^2.0.9",
     "gatsby-plugin-react-helmet": "^3.0.4",
     "gatsby-plugin-sass": "^2.0.5",
     "gatsby-plugin-typescript": "^2.0.2",
