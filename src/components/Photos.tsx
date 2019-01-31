@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import {
   Photo as PhotoType,
   PhotoSource
-} from "@mattb/gatsby-transform-flickr-set";
+} from "@mattb.tech/gatsby-transform-flickr-set";
 import SinglePhoto from "./Photo";
 
 const Photos: React.FunctionComponent<{ data: PhotoSetFragmentType }> = ({

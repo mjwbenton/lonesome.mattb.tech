@@ -11,8 +11,8 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: { path: `${__dirname}/content`, name: "markdown-pages" }
     },
-    `@mattb/gatsby-transform-flickr-set`,
-    `@mattb/gatsby-transform-spotify-playlist`,
+    `@mattb.tech/gatsby-transform-flickr-set`,
+    `@mattb.tech/gatsby-transform-spotify-playlist`,
     `gatsby-plugin-catch-links`
   ]
 };

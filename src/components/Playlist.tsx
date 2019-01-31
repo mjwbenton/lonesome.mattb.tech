@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import {
   Playlist as PlaylistType,
   Track as TrackType
-} from "@mattb/gatsby-transform-spotify-playlist";
+} from "@mattb.tech/gatsby-transform-spotify-playlist";
 
 const Playlist: React.FunctionComponent<{
   data: SpotifyPlaylistFragmentType;

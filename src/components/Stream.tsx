@@ -1,5 +1,5 @@
 import React from "react";
-import { Photo } from "@mattb/gatsby-transform-flickr-set";
+import { Photo } from "@mattb.tech/gatsby-transform-flickr-set";
 import SinglePhoto from "./Photo";
 
 export default class Stream extends React.Component<

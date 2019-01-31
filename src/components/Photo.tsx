@@ -2,7 +2,7 @@ import * as React from "react";
 import {
   PhotoSource,
   Photo as PhotoType
-} from "@mattb/gatsby-transform-flickr-set";
+} from "@mattb.tech/gatsby-transform-flickr-set";
 
 function generateSrcSet(sources: PhotoSource[]): string {
   return sources

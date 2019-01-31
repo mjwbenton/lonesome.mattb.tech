@@ -1,16 +1,7 @@
 {
-  "name": "@mattb/mattb.tech",
+  "name": "@mattb.tech/website",
   "version": "1.0.0",
-  "description": "My personal photography website.",
-  "main": "build/index.js",
-  "devDependencies": {
-    "@mattb/cloudformation-scripts": "git+ssh://git@github.com/mjwbenton/cloudformation-scripts.git",
-    "@types/dotenv": "^4.0.0",
-    "dotenv": "^2.0.0",
-    "stylelint": "^6.5.1",
-    "stylelint-config-standard": "^8.0.0",
-    "stylelint-order": "^0.6.0"
-  },
+  "description": "My personal website.",
   "scripts": {
     "all": "npm run build && npm run lint",
     "clean": "rm -Rf .cache public",
@@ -25,9 +16,17 @@
   },
   "author": "Matt Benton <m@mattb.tech>",
   "license": "UNLICENSED",
+  "devDependencies": {
+    "@types/dotenv": "^4.0.0",
+    "dotenv": "^2.0.0",
+    "stylelint": "^6.5.1",
+    "stylelint-config-standard": "^8.0.0",
+    "stylelint-order": "^0.6.0"
+  },
   "dependencies": {
-    "@mattb/gatsby-transform-flickr-set": "git+ssh://git@github.com/mjwbenton/gatsby-transform-flickr-set.git",
-    "@mattb/gatsby-transform-spotify-playlist": "git+ssh://git@github.com/mjwbenton/gatsby-transform-spotify-playlist.git",
+    "@mattb.tech/cloudformation-scripts": "^1.0.2",
+    "@mattb.tech/gatsby-transform-flickr-set": "^1.0.0",
+    "@mattb.tech/gatsby-transform-spotify-playlist": "^1.0.0",
     "@types/react": "^16.7.11",
     "@types/react-helmet": "^5.0.7",
     "gatsby": "^2.0.60",
