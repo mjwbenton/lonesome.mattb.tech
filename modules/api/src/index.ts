@@ -1,4 +1,4 @@
-import { getRecentPhotos } from "@mattb/flickr-api";
+import { getRecentPhotos } from "@mattb.tech/flickr-api";
 import * as dotenv from "dotenv";
 
 dotenv.config();

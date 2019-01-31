@@ -1,5 +1,5 @@
 {
-  "name": "@mattb/mattb.tech-api",
+  "name": "@mattb.tech/api",
   "version": "1.0.0",
   "description": "API for mattb.tech",
   "main": "src/index.js",
@@ -10,17 +10,17 @@
   "author": "Matt Benton <m@mattb.tech>",
   "license": "UNLICENSED",
   "devDependencies": {
-    "@mattb/cloudformation-scripts": "git+ssh://git@github.com/mjwbenton/cloudformation-scripts.git",
+    "@mattb.tech/cloudformation-scripts": "^1.0.2",
     "@types/dotenv": "^4.0.3",
-    "ts-node": "^7.0.0",
+    "ts-node": "^7.0.1",
     "typescript": "^2.9.2"
   },
   "dependencies": {
-    "@mattb/flickr-api": "git+ssh://git@github.com/mjwbenton/flickr-api.git",
-    "@types/handlebars": "^4.0.39",
-    "dotenv": "^6.0.0",
+    "@mattb.tech/flickr-api": "^1.0.0",
+    "@types/handlebars": "^4.0.40",
+    "dotenv": "^6.2.0",
     "handlebars": "^4.0.12",
-    "request": "^2.87.0",
+    "request": "^2.88.0",
     "request-promise-native": "^1.0.5"
   }
 }
