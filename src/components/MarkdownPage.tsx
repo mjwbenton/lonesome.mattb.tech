@@ -4,10 +4,11 @@ import Layout from "./Layout";
 import Photos, { PhotoSetFragmentType } from "./Photos";
 import Playlist, { SpotifyPlaylistFragmentType } from "./Playlist";
 import "../../css/style.scss";
+import MarkdownContent from "./MarkdownContent";
 
 type MarkdownRemarkFragmentType = {
   markdownRemark: {
-    html: string;
+    htmlAst: any;
   };
 };
 
@@ -19,10 +20,7 @@ const MarkdownPage: React.FunctionComponent<{ data: DataFormat }> = ({
   data
 }) => (
   <Layout>
-    <div
-      className="mb-content"
-      dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
-    />
+    <MarkdownContent htmlAst={data.markdownRemark.htmlAst} />
     <Photos data={data} />
     <Playlist data={data} />
   </Layout>
@@ -31,7 +29,7 @@ const MarkdownPage: React.FunctionComponent<{ data: DataFormat }> = ({
 export const pageQuery = graphql`
   query($path: String!) {
     markdownRemark(fields: { slug: { eq: $path } }) {
-      html
+      htmlAst
       ...PhotoSetFragment
       ...SpotifyPlaylistFragment
     }

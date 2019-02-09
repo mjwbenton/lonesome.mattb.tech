@@ -3,10 +3,11 @@ import { graphql } from "gatsby";
 import Layout from "./Layout";
 import "../../css/style.scss";
 import Stream from "./Stream";
+import MarkdownContent from "./MarkdownContent";
 
 type DataFormat = {
   markdownRemark: {
-    html: string;
+    htmlAst: any;
   };
 };
 
@@ -14,10 +15,7 @@ const MarkdownPage: React.FunctionComponent<{ data: DataFormat }> = ({
   data
 }) => (
   <Layout>
-    <div
-      className="mb-content"
-      dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
-    />
+    <MarkdownContent htmlAst={data.markdownRemark.htmlAst} />
     <Stream />
   </Layout>
 );
@@ -25,7 +23,7 @@ const MarkdownPage: React.FunctionComponent<{ data: DataFormat }> = ({
 export const pageQuery = graphql`
   query($path: String!) {
     markdownRemark(fields: { slug: { eq: $path } }) {
-      html
+      htmlAst
     }
   }
 `;
