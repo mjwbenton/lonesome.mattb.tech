@@ -1,6 +1,7 @@
 ---
-flickr_set: '72157669745227783'
+flickr_set: "72157669745227783"
 ---
+
 ## Washington DC
 
 All photos from my trip the capital of the United States in the summer of 2016.

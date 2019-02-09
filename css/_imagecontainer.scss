@@ -1,10 +1,10 @@
-@import 'typography';
+@import "typography";
 
 .mb-photo {
   $infoline-background-color: #f7f7f7;
   $infoline-padding: 8px;
 
-  $flickr-right-arrow: '\2192';
+  $flickr-right-arrow: "\2192";
 
   $image-max-height: 90vh;
 
@@ -39,4 +39,3 @@
     }
   }
 }
-

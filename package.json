@@ -3,13 +3,11 @@
   "version": "1.0.0",
   "description": "My personal website.",
   "scripts": {
-    "all": "npm run build && npm run lint",
     "clean": "rm -Rf .cache public",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "serve": "gatsby serve",
-    "lint:css": "stylelint css/*.scss",
-    "lint": "npm run lint:css",
+    "check": "tsc --noEmit && prettier --check '**/*'",
     "update-files": "cf-update-files -f ./public -b mattb.tech -d E3V3XQQRI8U9K3 -p mattb.tech-deploy",
     "create-stack": "cf-create-stack -s mattb-tech-website -p mattb.tech-deploy -f cloudformation.yaml",
     "update-stack": "cf-deploy-stack -s mattb-tech-website -p mattb.tech-deploy -f cloudformation.yaml"
@@ -18,31 +16,28 @@
   "license": "UNLICENSED",
   "devDependencies": {
     "@types/dotenv": "^4.0.0",
-    "dotenv": "^2.0.0",
-    "stylelint": "^6.5.1",
-    "stylelint-config-standard": "^8.0.0",
-    "stylelint-order": "^0.6.0"
+    "@types/react": "^16.7.11",
+    "@types/react-helmet": "^5.0.7",
+    "prettier": "^1.16.4",
+    "typescript": "^3.2.1"
   },
   "dependencies": {
+    "dotenv": "^2.0.0",
     "@mattb.tech/cloudformation-scripts": "^1.0.2",
     "@mattb.tech/gatsby-transform-flickr-set": "^1.0.0",
     "@mattb.tech/gatsby-transform-spotify-playlist": "^1.0.0",
-    "@types/react": "^16.7.11",
-    "@types/react-helmet": "^5.0.7",
-    "gatsby": "^2.0.60",
+    "gatsby": "^2.0.118",
     "gatsby-plugin-catch-links": "^2.0.9",
     "gatsby-plugin-react-helmet": "^3.0.4",
     "gatsby-plugin-sass": "^2.0.5",
     "gatsby-plugin-typescript": "^2.0.2",
     "gatsby-source-filesystem": "^2.0.10",
     "gatsby-transformer-remark": "^2.1.15",
-    "node-sass": "^4.10.0",
+    "node-sass": "^4.11.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-helmet": "^5.2.0",
     "react-live": "^1.12.0",
-    "rehype-react": "^3.1.0",
-    "ts-node": "^7.0.1",
-    "typescript": "^3.2.1"
+    "rehype-react": "^3.1.0"
   }
 }

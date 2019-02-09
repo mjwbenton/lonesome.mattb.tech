@@ -1,0 +1,16 @@
+build
+node_modules
+output
+.sass-cache
+.env
+.idea
+*.js
+!gatsby-config.js
+!gatsby-node.js
+*.js.map
+*.zip
+public
+.cache
+.gitignore
+.prettierignore
+
