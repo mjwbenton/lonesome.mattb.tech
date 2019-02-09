@@ -16,7 +16,7 @@
   "license": "UNLICENSED",
   "devDependencies": {
     "@types/dotenv": "^4.0.0",
-    "@types/react": "^16.7.11",
+    "@types/react": "^16.8.2",
     "@types/react-helmet": "^5.0.7",
     "prettier": "^1.16.4",
     "typescript": "^3.2.1"
