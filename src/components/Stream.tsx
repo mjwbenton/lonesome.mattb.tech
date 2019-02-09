@@ -1,36 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Photo } from "@mattb.tech/gatsby-transform-flickr-set";
 import SinglePhoto from "./Photo";
 
-export default class Stream extends React.Component<
-  {},
-  { photos: Array<Photo> | null }
-> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      photos: null
-    };
-  }
-  componentDidMount() {
-    fetch("https://umpghq4xo2.execute-api.us-east-1.amazonaws.com/Prod/photos")
+const ENDPOINT =
+  "https://umpghq4xo2.execute-api.us-east-1.amazonaws.com/Prod/photos";
+
+const Stream = () => {
+  const [photos, setPhotos] = useState(null as Array<Photo> | null);
+  useEffect(() => {
+    const response = fetch(ENDPOINT)
       .then(response => response.json())
-      .then(photos => this.setState({ photos }));
+      .then(setPhotos);
+  });
+
+  if (photos == null) {
+    return <span>"Loading..."</span>;
   }
-  render() {
-    if (this.state.photos == null) {
-      return "Loading...";
-    }
-    return (
-      <div className="mb-photos">
-        <ul>
-          {this.state.photos.map(p => (
-            <li key={p.pageUrl}>
-              <SinglePhoto {...p} />
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="mb-photos">
+      <ul>
+        {photos.map(p => (
+          <li key={p.pageUrl}>
+            <SinglePhoto {...p} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default Stream;
