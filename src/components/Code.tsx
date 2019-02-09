@@ -1,6 +1,5 @@
 import React from "react";
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
-import Test from "./Test";
 
 const Code: React.FunctionComponent<{
   children: Array<string>;
@@ -8,7 +7,7 @@ const Code: React.FunctionComponent<{
 }> = ({ children, className }) => {
   if (className === "language-jsx") {
     return (
-      <LiveProvider scope={{ Test }} code={children[0]}>
+      <LiveProvider code={children[0]}>
         <LiveEditor />
         <LiveError />
         <LivePreview />
