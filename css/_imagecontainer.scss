@@ -1,12 +1,12 @@
 @import "typography";
 
+$image-max-height: 90vh;
+
 .mb-photo {
   $infoline-background-color: #f7f7f7;
   $infoline-padding: 8px;
 
   $flickr-right-arrow: "\2192";
-
-  $image-max-height: 90vh;
 
   display: inline-block;
   position: relative;
@@ -38,4 +38,11 @@
       content: $flickr-right-arrow;
     }
   }
+}
+
+// Also do for all images to get images in markdown
+img {
+  display: block;
+  max-height: $image-max-height;
+  max-width: 100%;
 }

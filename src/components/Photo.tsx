@@ -1,4 +1,5 @@
 import * as React from "react";
+import sizes from "../../css/sizes";
 import {
   PhotoSource,
   Photo as PhotoType
@@ -22,7 +23,7 @@ const Photo: React.SFC<PhotoType> = ({
         className="mb-photo__image"
         src={mainSource.url}
         srcSet={generateSrcSet(sources)}
-        sizes="(max-width: 1090px) 100vw, 63vw"
+        sizes={sizes}
         alt={`Image titled "${title}"`}
       />
       <div className="mb-photo__infoline">

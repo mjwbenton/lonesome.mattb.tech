@@ -1,3 +1,7 @@
+require("ts-node/register");
+require("dotenv").config();
+const sizes = require("./css/sizes");
+
 module.exports = {
   siteMetadata: {
     navigationGroups: ["Photos", "Keyboards", "Playlists"]
@@ -6,7 +10,19 @@ module.exports = {
     `gatsby-plugin-typescript`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
-    `gatsby-transformer-remark`,
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `@mattb.tech/gatsby-remark-flickr`,
+            options: {
+              sizes
+            }
+          }
+        ]
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: { path: `${__dirname}/content`, name: "markdown-pages" }
