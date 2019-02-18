@@ -26,6 +26,7 @@ export const Pre = props => {
   ) {
     return <React.Fragment>{props.children}</React.Fragment>;
   }
+  return <pre {...props} />;
 };
 
 export default Code;
