@@ -6,7 +6,7 @@ index: 3
 
 ## Keyboards: YD60BLE
 
-![Finished product](https://c1.staticflickr.com/5/4834/45893538514_e60f1a2419_c.jpg)
+![](flickr://45893538514)
 
 Only a couple of months after building my first keyboard (written about [here](/keyboard/first-build.html)) I've moved on to my second. The main aim was to create a quieter keyboard to use at work, but with the same 60% layout I used in my first build. Additionally I wanted to branch out a bit in the parts I used and apply my experince from the first build to improving the second.
 
@@ -23,39 +23,39 @@ The keycaps are the first group buy that I've taken part in. The caps are beauti
 
 ### The Process
 
-![Getting started](https://c1.staticflickr.com/5/4845/45893502794_b97d0f59b8_c.jpg)
+![](flickr://45893502794)
 
 Getting the switches in and soldered was massively easier this time around owing to the fact that my Zilent switches were PCB mount. This means they have additional legs that hold the switch onto the PCB and ensure correct alignment.
 
-![Switches in](https://c2.staticflickr.com/8/7848/31676571097_a166fc4f1d_c.jpg)
+![](flickr://31676571097)
 
 I gave the same treatment to the stabelizers as I did the [first time around](/keyboard/first-build.html), but this time I did a much better job.
 
-![Band-aid mod](https://c1.staticflickr.com/5/4828/45703307835_97a79caf13_c.jpg)
+![](flickr://45703307835)
 
 Unfortunately I encountered a problem when I came to test my freshly soldered switches. A number of the keys, probably 6 or 7, chattered like crazy. I thought I'd done a pretty good job of the soldering, but it turns out this can be a common problem if you've applied the heat of the iron for too long, and the switch casing itself shrinks slightly with the heat. I did however successfully fix the problem without having to replace the switches.
 
 Initially this involved creating a tool to open the switch casings from one side of a binder clip.
 
-![Tool in action](https://c1.staticflickr.com/5/4900/46565863972_11ed47bf29_c.jpg)
+![](flickr://46565863972)
 
-![Contacts](https://c1.staticflickr.com/5/4901/46565863512_7d62739ebb_c.jpg)
+![](flickr://46565863512)
 
 My "fix" was to jam a screwdiver between the contacts and wiggle them apart a little. Surprisingly, this worked out great. Every key is now working without chattering and feels fine.
 
-!["Fixing" it](https://c2.staticflickr.com/8/7885/39653059523_79a18a553d_c.jpg)
+![](flickr://39653059523)
 
-![Opening the switches](https://c2.staticflickr.com/8/7835/45703324015_45489b45ba_c.jpg)
+![](flickr://45703324015)
 
 A bluetooth keyboard needs a battery. I bought the biggest capacity battery I could find that I was sure would fit in the case.
 
-![Attaching the battery](https://c1.staticflickr.com/5/4895/45893533324_9fd1cbf9a7_c.jpg)
+![](flickr://45893533324)
 
-![In the case](https://c2.staticflickr.com/8/7857/45893531454_0fe99e03e9_c.jpg)
+![](flickr://45893531454)
 
 With this keyboard finished up, my collection is up to four; two that I built, two that I bought.
 
-![The collection](https://c1.staticflickr.com/5/4854/45893537274_cddb020b7e_c.jpg)
+![](flickr://45893537274)
 
 ### Flashing the firmware
 
