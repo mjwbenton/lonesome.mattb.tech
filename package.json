@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@mattb.tech/cloudformation-scripts": "^1.0.2",
+    "@mattb.tech/gatsby-remark-flickr": "^1.0.0",
     "@mattb.tech/gatsby-transform-flickr-set": "^1.0.0",
     "@mattb.tech/gatsby-transform-spotify-playlist": "^1.0.0",
     "dotenv": "^2.0.0",
