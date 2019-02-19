@@ -1,6 +1,6 @@
 require("ts-node/register");
 require("dotenv").config();
-const sizes = require("./css/sizes");
+const { paragraphInline } = require("./css/sizes");
 
 module.exports = {
   siteMetadata: {
@@ -17,7 +17,7 @@ module.exports = {
           {
             resolve: `@mattb.tech/gatsby-remark-flickr`,
             options: {
-              sizes
+              sizes: paragraphInline
             }
           }
         ]

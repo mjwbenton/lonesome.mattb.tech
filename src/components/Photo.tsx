@@ -1,5 +1,5 @@
 import * as React from "react";
-import sizes from "../../css/sizes";
+import { largePicture as sizes } from "../../css/sizes";
 import {
   PhotoSource,
   Photo as PhotoType

@@ -39,10 +39,3 @@ $image-max-height: 90vh;
     }
   }
 }
-
-// Also do for all images to get images in markdown
-img {
-  display: block;
-  max-height: $image-max-height;
-  max-width: 100%;
-}
