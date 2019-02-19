@@ -71,8 +71,8 @@ Here are the steps to follow:
 - Hold down the escape key when connecting the keyboard via USB to your macbook.
 - Run the bootloadHID tool...
 
-```
-$ ./bootloadHID yd60ble.hex
+```bash
+$> ./bootloadHID yd60ble.hex
 Warning: could not detach kernel HID driver: Function not implemented
 Warning: could not detach kernel HID driver: Function not implemented
 Warning: could not detach kernel HID driver: Function not implemented

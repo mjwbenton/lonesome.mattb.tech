@@ -86,7 +86,7 @@ There's nothing too interesting about my keymap, but it does show how you can ge
 
 Once you've got a custom keymap, the process to flash the firmware to the keyboard is pretty simple. Start by making sure you've got the prerequisites installed to be able to build the firmware. In the directory where you have qmk_firmware checked out:
 
-```
+```bash
 $> ./util/qmk_install.sh
 $> export PATH="/usr/local/opt/avr-gcc@7/bin:$PATH"
 $> make dz60:mjwbenton
@@ -96,6 +96,6 @@ That will build the firmware with the custom keymap. If it's successful then you
 
 Plug the keyboard in whilst holding down "Space+b", then flash the firmware with:
 
-```
+```bash
 $> make dz60:mjwbenton:dfu
 ```

@@ -19,7 +19,8 @@ module.exports = {
             options: {
               sizes: paragraphInline
             }
-          }
+          },
+          `gatsby-remark-prismjs`
         ]
       }
     },
