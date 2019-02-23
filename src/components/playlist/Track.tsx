@@ -10,6 +10,7 @@ const Wrapper = styled.li`
   display: flex;
   height: calc(${IMAGE_SIZE} + (2 * ${spacingUnit}));
   overflow: hidden;
+  position: relative;
 
   :nth-child(even) {
     background-color: #f7f7f7;
@@ -18,8 +19,12 @@ const Wrapper = styled.li`
 
 const Index = styled.span`
   font-size: 8rem;
+  position: absolute;
+  width: 100%;
+  text-align: right;
   margin-top: -3rem;
   color: #f7f7f7;
+  z-index: 0;
 
   ${Wrapper}:nth-child(even) & {
     color: white;
@@ -35,6 +40,7 @@ const Image = styled.img`
 const Box = styled.div`
   margin: ${spacingUnit} ${spacingUnit} ${spacingUnit} 0;
   flex: 1;
+  z-index: 1;
 `;
 
 const Name = styled.h3`
