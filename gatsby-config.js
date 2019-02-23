@@ -1,6 +1,6 @@
 require("ts-node/register");
 require("dotenv").config();
-const { paragraphInline } = require("./css/sizes");
+const { largePicture } = require("./src/sizes");
 
 module.exports = {
   siteMetadata: {
@@ -8,7 +8,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-typescript`,
-    `gatsby-plugin-sass`,
+    `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-transformer-remark`,
@@ -17,7 +17,7 @@ module.exports = {
           {
             resolve: `@mattb.tech/gatsby-remark-flickr`,
             options: {
-              sizes: paragraphInline
+              sizes: largePicture
             }
           },
           `gatsby-remark-prismjs`

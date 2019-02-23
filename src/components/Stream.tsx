@@ -17,14 +17,12 @@ const Stream = () => {
     return <span>"Loading..."</span>;
   }
   return (
-    <div className="mb-photos">
-      <ul>
-        {photos.map(p => (
-          <li key={p.pageUrl}>
-            <SinglePhoto {...p} />
-          </li>
-        ))}
-      </ul>
+    <div>
+      {photos.map(p => (
+        <div key={p.pageUrl}>
+          <SinglePhoto {...p} key={p.pageUrl} />
+        </div>
+      ))}
     </div>
   );
 };

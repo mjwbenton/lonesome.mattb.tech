@@ -1,7 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
 import Layout from "./Layout";
-import "../../css/style.scss";
 import Stream from "./Stream";
 import MarkdownContent from "./MarkdownContent";
 

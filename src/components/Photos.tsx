@@ -1,9 +1,6 @@
 import * as React from "react";
 import { graphql } from "gatsby";
-import {
-  Photo as PhotoType,
-  PhotoSource
-} from "@mattb.tech/gatsby-transform-flickr-set";
+import { Photo as PhotoType } from "@mattb.tech/gatsby-transform-flickr-set";
 import SinglePhoto from "./Photo";
 
 const Photos: React.FunctionComponent<{ data: PhotoSetFragmentType }> = ({
@@ -16,14 +13,12 @@ const Photos: React.FunctionComponent<{ data: PhotoSetFragmentType }> = ({
     return null;
   }
   return (
-    <div className="mb-photos">
-      <ul>
-        {data.markdownRemark.childFlickrSet.photos.map(p => (
-          <li key={p.pageUrl}>
-            <SinglePhoto {...p} />
-          </li>
-        ))}
-      </ul>
+    <div>
+      {data.markdownRemark.childFlickrSet.photos.map(p => (
+        <div key={p.pageUrl}>
+          <SinglePhoto {...p} key={p.pageUrl} />
+        </div>
+      ))}
     </div>
   );
 };

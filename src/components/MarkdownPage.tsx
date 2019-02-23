@@ -2,8 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import Layout from "./Layout";
 import Photos, { PhotoSetFragmentType } from "./Photos";
-import Playlist, { SpotifyPlaylistFragmentType } from "./Playlist";
-import "../../css/style.scss";
+import Playlist, { SpotifyPlaylistFragmentType } from "./playlist/Playlist";
 import MarkdownContent from "./MarkdownContent";
 
 type MarkdownRemarkFragmentType = {

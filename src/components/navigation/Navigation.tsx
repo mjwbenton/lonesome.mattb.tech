@@ -3,6 +3,7 @@ import { graphql, StaticQuery } from "gatsby";
 import NavigationGroup from "./NavigationGroup";
 import NavigationSingleLink from "./NavigationSingleLink";
 import { Node } from "./Node";
+import NavigationWrapper from "./NavigationWrapper";
 
 export const Navigation: React.FunctionComponent<{
   groups: Array<NavigationGroup>;
@@ -18,7 +19,7 @@ export const Navigation: React.FunctionComponent<{
   });
 
   return (
-    <div className="mb-navigation">
+    <NavigationWrapper>
       {groups.map((group, i) => (
         <NavigationGroup
           {...group}
@@ -35,7 +36,7 @@ export const Navigation: React.FunctionComponent<{
       {additional.map(node => (
         <NavigationSingleLink node={node} key={node.fields.slug} />
       ))}
-    </div>
+    </NavigationWrapper>
   );
 };
 
