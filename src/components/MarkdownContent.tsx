@@ -26,7 +26,7 @@ const Styled = styled.div`
   }
   img {
     display: block;
-    max-width: 100%;
+    max-width: 96vw;
     max-height: 90vh;
   }
   pre {
