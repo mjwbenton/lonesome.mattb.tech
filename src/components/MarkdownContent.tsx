@@ -29,6 +29,10 @@ const Styled = styled.div`
     max-width: 100%;
     max-height: 90vh;
   }
+  pre {
+    max-width: 45rem;
+    margin-bottom: ${spacingUnit};
+  }
 `;
 
 const MarkdownContent: React.FunctionComponent<{ htmlAst: any }> = ({
