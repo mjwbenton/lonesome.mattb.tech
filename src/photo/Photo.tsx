@@ -14,7 +14,6 @@ function generateSrcSet(sources: PhotoSource[]): string {
 }
 
 const PhotoWrapper = styled.div`
-  position: relative;
   display: inline-block;
   margin-bottom: ${spacingUnit};
 `;

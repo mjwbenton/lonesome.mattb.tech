@@ -2,6 +2,7 @@ import * as React from "react";
 import { graphql } from "gatsby";
 import { Photo as PhotoType } from "@mattb.tech/gatsby-transform-flickr-set";
 import SinglePhoto from "./Photo";
+import PhotosWrapper from "./PhotosWrapper";
 
 const Photos: React.FunctionComponent<{ data: PhotoSetFragmentType }> = ({
   data
@@ -13,13 +14,13 @@ const Photos: React.FunctionComponent<{ data: PhotoSetFragmentType }> = ({
     return null;
   }
   return (
-    <div>
+    <PhotosWrapper>
       {data.markdownRemark.childFlickrSet.photos.map(p => (
         <div key={p.pageUrl}>
           <SinglePhoto {...p} key={p.pageUrl} />
         </div>
       ))}
-    </div>
+    </PhotosWrapper>
   );
 };
 export default Photos;

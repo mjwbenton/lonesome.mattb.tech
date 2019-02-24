@@ -5,6 +5,7 @@ import {
   Track as TrackType
 } from "@mattb.tech/gatsby-transform-spotify-playlist";
 import Track from "./Track";
+import PlaylistWrapper from "./PlaylistWrapper";
 
 const Playlist: React.FunctionComponent<{
   data: SpotifyPlaylistFragmentType;
@@ -17,14 +18,14 @@ const Playlist: React.FunctionComponent<{
     return null;
   }
   return (
-    <div>
+    <PlaylistWrapper>
       <a href={playlist.link}>View on Spotify</a>
       <ul>
         {playlist.tracks.map((t, i) => (
           <Track track={t} index={i} key={i} />
         ))}
       </ul>
-    </div>
+    </PlaylistWrapper>
   );
 };
 export default Playlist;
