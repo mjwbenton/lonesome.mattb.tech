@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { keyframes, css } from "styled-components";
 import { spacingUnit, fontColor } from "../../style";
-import { Node } from "./Node";
+import { Entry, Group } from "./navigationTypes";
 import { Link } from "gatsby";
 import NavigationHead from "./NavigationHead";
 
@@ -36,18 +36,18 @@ const NavLink = styled(Link)`
   color: #3c3c3c;
 `;
 
-const NavigationGroup: React.FunctionComponent<{
-  groupName: string;
-  nodes: Array<Node>;
-  open: boolean;
-  onToggle: () => void;
-}> = ({ groupName, nodes, open, onToggle }) => (
+const NavigationGroup: React.FunctionComponent<
+  Group & {
+    open: boolean;
+    onToggle: () => void;
+  }
+> = ({ title, entries, open, onToggle }) => (
   <div>
-    <NavigationHead onClick={onToggle}>{groupName}</NavigationHead>
+    <NavigationHead onClick={onToggle}>{title}</NavigationHead>
     <List open={open}>
-      {nodes.map((node: Node) => (
-        <Item key={node.fields.slug}>
-          <NavLink to={node.fields.slug!}>{node.frontmatter.title}</NavLink>
+      {entries.map((entry: Entry) => (
+        <Item key={entry.slug}>
+          <NavLink to={entry.slug}>{entry.title}</NavLink>
         </Item>
       ))}
     </List>

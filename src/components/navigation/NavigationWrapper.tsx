@@ -6,4 +6,11 @@ export default styled.div`
   border-top: 1px dotted #969696;
   padding: ${spacingUnit};
   text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
 `;

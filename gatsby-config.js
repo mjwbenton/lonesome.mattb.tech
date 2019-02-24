@@ -4,7 +4,7 @@ const { largePicture } = require("./src/sizes");
 
 module.exports = {
   siteMetadata: {
-    navigationGroups: ["Photos", "Keyboards", "Playlists"]
+    navigationColumns: [["Photos"], ["Keyboards", "Playlists"], ["About"]]
   },
   plugins: [
     `gatsby-plugin-typescript`,

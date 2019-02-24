@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { graphql, StaticQuery } from "gatsby";
 import NavigationGroup from "./NavigationGroup";
-import NavigationSingleLink from "./NavigationSingleLink";
-import { Node } from "./Node";
+import NavigationSingle from "./NavigationSingle";
+import { Column, Entry, Group } from "./navigationTypes";
 import NavigationWrapper from "./NavigationWrapper";
+import NavigationColumn from "./NavigationColumn";
 
 export const Navigation: React.FunctionComponent<{
-  groups: Array<NavigationGroup>;
-  additional: Array<Node>;
-}> = ({ groups, additional }) => {
+  columns: Array<Column>;
+}> = ({ columns }) => {
   const [state, setState] = useState(() => {
-    return groups
-      .map(group => group.groupName)
+    return columns
+      .flatMap(column => column)
+      .filter(groupOrEntry => groupOrEntry.type === "group")
+      .map(group => group.title)
       .reduce((groupMap, groupName) => {
         groupMap[groupName] = false;
         return groupMap;
@@ -20,67 +22,98 @@ export const Navigation: React.FunctionComponent<{
 
   return (
     <NavigationWrapper>
-      {groups.map((group, i) => (
-        <NavigationGroup
-          {...group}
-          key={group.groupName}
-          open={state[group.groupName]}
-          onToggle={() => {
-            const newState = {};
-            Object.keys(state).forEach(gN => (newState[gN] = false));
-            newState[group.groupName] = !state[group.groupName];
-            setState(newState);
-          }}
-        />
-      ))}
-      {additional.map(node => (
-        <NavigationSingleLink node={node} key={node.fields.slug} />
+      {columns.map((column, i) => (
+        <NavigationColumn key={i}>
+          {column.map(groupOrEntry => {
+            if (groupOrEntry.type === "entry") {
+              const entry = groupOrEntry as Entry;
+              return <NavigationSingle {...entry} key={entry.title} />;
+            } else {
+              const group = groupOrEntry as Group;
+              return (
+                <NavigationGroup
+                  {...group}
+                  key={group.title}
+                  open={state[group.title]}
+                  onToggle={() => {
+                    const newState = {};
+                    Object.keys(state).forEach(gN => (newState[gN] = false));
+                    newState[group.title] = !state[group.title];
+                    setState(newState);
+                  }}
+                />
+              );
+            }
+          })}
+        </NavigationColumn>
       ))}
     </NavigationWrapper>
   );
 };
 
-function responseToNavigationData(
-  data: DataType
-): { groups: Array<NavigationGroup>; additional: Array<Node> } {
+function responseToColumns(data: DataType): Array<Column> {
   const orderedNodes = data.allMarkdownRemark.edges
     .map(edge => edge.node)
     .filter(node => node.fields.slug && node.frontmatter.index)
     .sort(
       (a, b) => parseInt(a.frontmatter.index!) - parseInt(b.frontmatter.index!)
     );
-  const additional = orderedNodes.filter(node => !node.frontmatter.group);
-  const groupMap: { [groupName: string]: Array<Node> } = orderedNodes
-    .filter(node => node.frontmatter.group)
-    .reduce(
-      (groups, node) => {
-        const group = node.frontmatter.group as string;
-        (groups[group] = groups[group] || []).push(node);
-        return groups;
-      },
-      {} as { [groupName: string]: Array<Node> }
-    );
-  const orderedGroups = data.site.siteMetadata.navigationGroups;
-  const groups = orderedGroups
-    .filter(group => groupMap[group])
-    .map(group => ({ groupName: group, nodes: groupMap[group] }));
-  return { additional, groups };
+  const navigationColumns = data.site.siteMetadata.navigationColumns;
+  return navigationColumns.map(column =>
+    column.map(groupOrNodeName => {
+      const groupNodes = orderedNodes.filter(
+        node => node.frontmatter.group == groupOrNodeName
+      );
+      const entryNode = orderedNodes.find(
+        node => node.frontmatter.title == groupOrNodeName
+      );
+      if (entryNode && groupNodes.length) {
+        throw new Error(
+          `Cannot have a group with the same name as an entry. Name: ${groupOrNodeName}`
+        );
+      }
+      if (entryNode) {
+        return {
+          type: "entry",
+          title: groupOrNodeName,
+          slug: entryNode.fields.slug!
+        } as Entry;
+      } else {
+        return {
+          type: "group",
+          title: groupOrNodeName,
+          entries: groupNodes.map(
+            node =>
+              ({
+                type: "entry",
+                title: node.frontmatter.title!,
+                slug: node.fields.slug!
+              } as Entry)
+          )
+        } as Group;
+      }
+    })
+  );
 }
-
-type NavigationGroup = {
-  groupName: string;
-  nodes: Array<Node>;
-};
 
 type DataType = {
   allMarkdownRemark: {
     edges: Array<{
-      node: Node;
+      node: {
+        fields: {
+          slug?: string;
+        };
+        frontmatter: {
+          title?: string;
+          index?: string;
+          group?: string;
+        };
+      };
     }>;
   };
   site: {
     siteMetadata: {
-      navigationGroups: Array<string>;
+      navigationColumns: Array<Array<string>>;
     };
   };
 };
@@ -91,7 +124,7 @@ export default () => (
       {
         site {
           siteMetadata {
-            navigationGroups
+            navigationColumns
           }
         }
         allMarkdownRemark {
@@ -111,7 +144,7 @@ export default () => (
       }
     `}
     render={(data: DataType) => (
-      <Navigation {...responseToNavigationData(data)} />
+      <Navigation columns={responseToColumns(data)} />
     )}
   />
 );
