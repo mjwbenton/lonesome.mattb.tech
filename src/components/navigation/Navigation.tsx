@@ -5,13 +5,13 @@ import NavigationSingle from "./NavigationSingle";
 import { Column, Entry, Group } from "./navigationTypes";
 import NavigationWrapper from "./NavigationWrapper";
 import NavigationColumn from "./NavigationColumn";
+import flatMap from "lodash.flatmap";
 
 export const Navigation: React.FunctionComponent<{
   columns: Array<Column>;
 }> = ({ columns }) => {
   const [state, setState] = useState(() => {
-    return columns
-      .flatMap(column => column)
+    return flatMap(columns, column => column)
       .filter(groupOrEntry => groupOrEntry.type === "group")
       .map(group => group.title)
       .reduce((groupMap, groupName) => {
