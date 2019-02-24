@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Track as TrackType } from "@mattb.tech/gatsby-transform-spotify-playlist";
-import { spacingUnit } from "../../style";
+import { spacingUnit } from "../style/style";
 
 const IMAGE_SIZE = "64px";
 

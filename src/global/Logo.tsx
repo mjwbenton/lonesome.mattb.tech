@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { spacingUnit, fontColor } from "../style";
+import { spacingUnit, fontColor } from "../style/style";
 
 const LogoStyle = styled.a`
   display: block;

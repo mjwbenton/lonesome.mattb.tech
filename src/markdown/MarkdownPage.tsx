@@ -1,8 +1,8 @@
 import React from "react";
 import { graphql } from "gatsby";
-import Layout from "./Layout";
-import Photos, { PhotoSetFragmentType } from "./Photos";
-import Playlist, { SpotifyPlaylistFragmentType } from "./playlist/Playlist";
+import Layout from "../global/Layout";
+import Photos, { PhotoSetFragmentType } from "../photo/Photos";
+import Playlist, { SpotifyPlaylistFragmentType } from "../playlist/Playlist";
 import MarkdownContent from "./MarkdownContent";
 
 type MarkdownRemarkFragmentType = {

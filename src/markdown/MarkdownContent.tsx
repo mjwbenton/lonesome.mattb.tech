@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import renderAst from "../renderAst";
-import { spacingUnit } from "../style";
+import renderAst from "./renderAst";
+import { spacingUnit } from "../style/style";
 
 const Styled = styled.div`
   h2 {

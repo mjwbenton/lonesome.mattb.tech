@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Photo } from "@mattb.tech/gatsby-transform-flickr-set";
-import SinglePhoto from "./Photo";
+import SinglePhoto from "../photo/Photo";
 
 const ENDPOINT =
   "https://umpghq4xo2.execute-api.us-east-1.amazonaws.com/Prod/photos";

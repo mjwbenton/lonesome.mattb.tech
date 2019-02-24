@@ -31,7 +31,7 @@ type ResultType = {
 
 module.exports = async ({ actions, graphql }: GatsbyCreatePageParams) => {
   const { createPage } = actions;
-  const MarkdownPage = path.resolve(`src/components/MarkdownPage.tsx`);
+  const MarkdownPage = path.resolve(`src/markdown/MarkdownPage.tsx`);
 
   const result: ResultType = await graphql(`
     {
@@ -61,7 +61,7 @@ module.exports = async ({ actions, graphql }: GatsbyCreatePageParams) => {
 
     let Layout = MarkdownPage;
     if (node.frontmatter && node.frontmatter.layout) {
-      Layout = path.resolve(`src/components/${node.frontmatter.layout}.tsx`);
+      Layout = path.resolve(`src/${node.frontmatter.layout}.tsx`);
     }
 
     createPage({

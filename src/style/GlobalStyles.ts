@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { fontColor } from "../style";
+import { fontColor } from "./style";
 
 export default createGlobalStyle`
   html {

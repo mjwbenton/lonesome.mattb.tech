@@ -1,6 +1,6 @@
 ---
 title: Stream
-layout: StreamPage
+layout: stream/StreamPage
 group: Photos
 index: 99
 ---

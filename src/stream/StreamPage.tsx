@@ -1,8 +1,8 @@
 import React from "react";
 import { graphql } from "gatsby";
-import Layout from "./Layout";
+import Layout from "../global/Layout";
 import Stream from "./Stream";
-import MarkdownContent from "./MarkdownContent";
+import MarkdownContent from "../markdown/MarkdownContent";
 
 type DataFormat = {
   markdownRemark: {

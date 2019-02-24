@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { spacingUnit, fontColor } from "../../style";
+import { spacingUnit, fontColor } from "../style/style";
 
 export default styled.a`
   display: block;

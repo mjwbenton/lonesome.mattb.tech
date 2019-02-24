@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { keyframes, css } from "styled-components";
-import { spacingUnit, fontColor } from "../../style";
+import { spacingUnit, fontColor } from "../style/style";
 import { Entry, Group } from "./navigationTypes";
 import { Link } from "gatsby";
 import NavigationHead from "./NavigationHead";

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { spacingUnit } from "../../style";
+import { spacingUnit } from "../style/style";
 
 export default styled.div`
   flex-basis: 0;

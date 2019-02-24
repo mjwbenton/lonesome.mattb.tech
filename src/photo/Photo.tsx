@@ -1,11 +1,11 @@
 import * as React from "react";
 import styled from "styled-components";
-import { largePicture as sizes } from "../sizes";
+import { large as sizes } from "./sizes";
 import {
   PhotoSource,
   Photo as PhotoType
 } from "@mattb.tech/gatsby-transform-flickr-set";
-import { spacingUnit } from "../style";
+import { spacingUnit } from "../style/style";
 
 function generateSrcSet(sources: PhotoSource[]): string {
   return sources

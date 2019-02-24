@@ -1,6 +1,6 @@
 require("ts-node/register");
 require("dotenv").config();
-const { largePicture } = require("./src/sizes");
+const { largePicture } = require("./src/photo/sizes");
 
 module.exports = {
   siteMetadata: {
