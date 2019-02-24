@@ -13,4 +13,5 @@ public
 .cache
 .gitignore
 .prettierignore
-
+.DS_Store
+.vscode
