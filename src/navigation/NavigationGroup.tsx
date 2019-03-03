@@ -33,7 +33,7 @@ const Item = styled.li`
 
 const NavLink = styled(Link)`
   font-style: italic;
-  color: #3c3c3c;
+  color: ${fontColor};
 `;
 
 const NavigationGroup: React.FunctionComponent<

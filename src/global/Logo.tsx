@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { spacingUnit, fontColor } from "../style/style";
+import { spacingUnit, fontColor, fontStackHeading } from "../style/style";
 
 const LogoStyle = styled.a`
   display: block;
   margin-bottom: ${spacingUnit};
   margin-top: ${spacingUnit};
   color: ${fontColor};
-  font-family: "fira-sans-2", Arial, sans-serif;
+  font-family: ${fontStackHeading};
   font-size: 2.75rem;
   font-style: italic;
   text-decoration: underline;

@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { fontColor } from "./style";
+import { fontColor, backgroundColor, fontStack } from "./style";
 
 export default createGlobalStyle`
   html {
@@ -21,9 +21,10 @@ export default createGlobalStyle`
   }
 
   html {
-    font-family: "fira-sans", Arial, sans-serif;
+    font-family: ${fontStack};
     font-size: 20px;
     color: ${fontColor};
+    background-color: ${backgroundColor};
   }
   
   a {

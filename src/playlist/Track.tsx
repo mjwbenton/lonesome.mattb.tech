@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { Track as TrackType } from "@mattb.tech/gatsby-transform-spotify-playlist";
-import { spacingUnit } from "../style/style";
+import {
+  spacingUnit,
+  altBackgroundColor,
+  backgroundColor
+} from "../style/style";
 
 const IMAGE_SIZE = "64px";
 
@@ -13,7 +17,7 @@ const Wrapper = styled.li`
   position: relative;
 
   :nth-child(even) {
-    background-color: #f7f7f7;
+    background-color: ${altBackgroundColor};
   }
 `;
 
@@ -23,11 +27,11 @@ const Index = styled.span`
   width: 100%;
   text-align: right;
   margin-top: -3rem;
-  color: #f7f7f7;
+  color: ${altBackgroundColor};
   z-index: 0;
 
   ${Wrapper}:nth-child(even) & {
-    color: white;
+    color: ${backgroundColor};
   }
 `;
 

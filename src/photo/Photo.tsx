@@ -5,7 +5,7 @@ import {
   PhotoSource,
   Photo as PhotoType
 } from "@mattb.tech/gatsby-transform-flickr-set";
-import { spacingUnit } from "../style/style";
+import { spacingUnit, altBackgroundColor } from "../style/style";
 
 function generateSrcSet(sources: PhotoSource[]): string {
   return sources
@@ -25,7 +25,7 @@ const PhotoImg = styled.img`
 `;
 
 const Infoline = styled.div`
-  background-color: #f7f7f7;
+  background-color: ${altBackgroundColor};
   display: flex;
   padding: 8px;
   width: 100%;

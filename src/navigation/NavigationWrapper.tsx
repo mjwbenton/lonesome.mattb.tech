@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { spacingUnit } from "../style/style";
+import { spacingUnit, altBackgroundColor, fontColor } from "../style/style";
 
 export default styled.div`
-  background-color: #f7f7f7;
-  border-top: 1px dotted #969696;
+  background-color: ${altBackgroundColor};
+  border-top: 1px dotted ${fontColor};
   padding: ${spacingUnit};
   text-align: center;
   display: flex;
