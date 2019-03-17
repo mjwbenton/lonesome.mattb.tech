@@ -12,15 +12,10 @@
   "devDependencies": {
     "@mattb.tech/cloudformation-scripts": "^2.0.0",
     "@types/dotenv": "^4.0.3",
-    "ts-node": "^7.0.1",
     "typescript": "^2.9.2"
   },
   "dependencies": {
     "@mattb.tech/flickr-api": "^1.0.0",
-    "@types/handlebars": "^4.0.40",
-    "dotenv": "^6.2.0",
-    "handlebars": "^4.0.12",
-    "request": "^2.88.0",
-    "request-promise-native": "^1.0.5"
+    "dotenv": "^6.2.0"
   }
 }
