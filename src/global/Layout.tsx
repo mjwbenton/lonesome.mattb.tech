@@ -4,19 +4,20 @@ import HtmlHeader from "./HtmlHeader";
 import GlobalStyles from "../style/GlobalStyles";
 import Logo from "./Logo";
 import Navigation from "../navigation/Navigation";
+import ApiProvider from "./ApiProvider";
 
 const Content = styled.div`
   margin: 2vw;
 `;
 
 const Layout: React.FunctionComponent<{ children: any }> = ({ children }) => (
-  <div>
+  <ApiProvider>
     <GlobalStyles />
     <HtmlHeader />
     <Logo />
     <Navigation />
     <Content>{children}</Content>
-  </div>
+  </ApiProvider>
 );
 
 export default Layout;
