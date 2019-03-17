@@ -16,7 +16,7 @@
     "typescript": "^3.3.3333"
   },
   "dependencies": {
-    "@mattb.tech/flickr-api": "^1.0.0",
+    "@mattb.tech/flickr-api": "^1.1.1",
     "apollo-server-lambda": "^2.4.8",
     "aws-lambda": "^0.1.2",
     "dotenv": "^6.2.0",
