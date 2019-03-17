@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Photo } from "@mattb.tech/gatsby-transform-flickr-set";
 import SinglePhoto from "../photo/Photo";
+import PhotosWrapper from "../photo/PhotosWrapper";
 
 const ENDPOINT =
   "https://umpghq4xo2.execute-api.us-east-1.amazonaws.com/Prod/photos";
@@ -19,13 +20,13 @@ const Stream = () => {
     return <span>"Loading..."</span>;
   }
   return (
-    <div>
+    <PhotosWrapper>
       {photos.map(p => (
         <div key={p.pageUrl}>
           <SinglePhoto {...p} key={p.pageUrl} />
         </div>
       ))}
-    </div>
+    </PhotosWrapper>
   );
 };
 
