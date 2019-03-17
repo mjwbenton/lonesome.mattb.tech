@@ -4,7 +4,9 @@ Transform: AWS::Serverless-2016-10-31
 
 Globals:
   Api:
-    Cors: "'https://mattb.tech'"
+    Cors:
+      AllowHeaders: "'content-type'"
+      AllowOrigin: "'*'"
 
 Resources:
   # ====== BEGIN STATIC SITE ======
