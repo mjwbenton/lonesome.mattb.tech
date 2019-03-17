@@ -187,6 +187,24 @@ Resources:
             Path: /photos
             Method: get
 
+  GraphqlApi:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/index.handler
+      Runtime: nodejs8.10
+      CodeUri: s3://mattb.tech-code/graphql-api.zip
+      Events:
+        GraphqlPlayground:
+          Type: Api
+          Properties:
+            Path: /graphql
+            Method: get
+        Graphql:
+          Type: Api
+          Properties:
+            Path: /graphql
+            Method: post
+
   # ===== END API ======
 
 Outputs:
