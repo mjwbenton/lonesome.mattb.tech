@@ -8,9 +8,11 @@ const ENDPOINT =
 const Stream = () => {
   const [photos, setPhotos] = useState(null as Array<Photo> | null);
   useEffect(() => {
-    const response = fetch(ENDPOINT)
-      .then(response => response.json())
-      .then(setPhotos);
+    if (photos == null) {
+      fetch(ENDPOINT)
+        .then(response => response.json())
+        .then(setPhotos);
+    }
   });
 
   if (photos == null) {
