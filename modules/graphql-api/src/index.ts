@@ -1,6 +1,8 @@
 import * as dotenv from "dotenv";
-import { getRecentPhotos, getPhotoSet, getPhoto } from "@mattb.tech/flickr-api";
 import { ApolloServer, gql } from "apollo-server-lambda";
+import { FlickrDataSource } from "./FlickrApi";
+import DynamoDB from "aws-sdk/clients/dynamodb";
+import { DynamoDBCache } from "apollo-server-cache-dynamodb";
 
 dotenv.config();
 
@@ -33,18 +35,35 @@ const typeDefs = gql`
   }
 `;
 
+const dataSources = {
+  flickr: new FlickrDataSource(FLICKR_API_KEY)
+};
+
+type ContextType = {
+  dataSources: typeof dataSources;
+};
+
 const resolvers = {
   Query: {
-    recentPhotos: () => getRecentPhotos(FLICKR_API_KEY, USER_ID),
-    photoSet: (parent: never, args: any) =>
-      getPhotoSet(FLICKR_API_KEY, args.photosetId),
-    photo: (parent: never, args: any) => getPhoto(FLICKR_API_KEY, args.photoId)
+    recentPhotos: (_: never, __: never, context: ContextType) =>
+      context.dataSources.flickr.getRecentPhotos(),
+    photoSet: (
+      _: never,
+      { photosetId }: { photosetId: string },
+      context: ContextType
+    ) => context.dataSources.flickr.getPhotoSet(photosetId),
+    photo: (_: never, { photoId }: { photoId: string }, context: ContextType) =>
+      context.dataSources.flickr.getPhoto(photoId)
   }
 };
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
+  dataSources: () => dataSources,
+  cache: new DynamoDBCache(new DynamoDB.DocumentClient(), {
+    tableName: "apollo-cache-table"
+  })
 });
 
 exports.handler = server.createHandler({

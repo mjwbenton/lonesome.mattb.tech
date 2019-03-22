@@ -194,6 +194,18 @@ Resources:
     Properties:
       Handler: src/index.handler
       Runtime: nodejs8.10
+      Policies:
+        - Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:DeleteItem
+                - dynamodb:GetItem
+                - dynamodb:PutItem
+              Resource:
+                Fn::GetAtt:
+                  - ApolloCacheTable
+                  - Arn
       CodeUri: s3://mattb.tech-code/graphql-api.zip
       Events:
         GraphqlPlayground:
@@ -206,6 +218,18 @@ Resources:
           Properties:
             Path: /graphql
             Method: post
+
+  ApolloCacheTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: "apollo-cache-table"
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: CacheKey
+          AttributeType: S
+      KeySchema:
+        - AttributeName: CacheKey
+          KeyType: HASH
 
   # ===== END API ======
 
