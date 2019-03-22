@@ -175,20 +175,6 @@ Resources:
     Properties:
       BucketName: mattb.tech-code
 
-  GetPhotos:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: src/index.handler
-      Runtime: nodejs8.10
-      Policies: AmazonDynamoDBReadOnlyAccess
-      CodeUri: s3://mattb.tech-code/lambda.zip
-      Events:
-        GetPhotos:
-          Type: Api
-          Properties:
-            Path: /photos
-            Method: get
-
   GraphqlApi:
     Type: AWS::Serverless::Function
     Properties:
