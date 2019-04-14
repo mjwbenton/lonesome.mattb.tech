@@ -4,7 +4,11 @@ const { largePicture } = require("./src/photo/sizes");
 
 module.exports = {
   siteMetadata: {
-    navigationColumns: [["Photos"], ["Keyboards", "Playlists"], ["About"]]
+    navigationColumns: [
+      ["Photos", "Code"],
+      ["Keyboards", "Playlists"],
+      ["About"]
+    ]
   },
   plugins: [
     `gatsby-plugin-typescript`,
@@ -30,6 +34,15 @@ module.exports = {
     },
     `@mattb.tech/gatsby-transform-flickr-set`,
     `@mattb.tech/gatsby-transform-spotify-playlist`,
-    `gatsby-plugin-catch-links`
+    `gatsby-plugin-catch-links`,
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        typeName: "Api",
+        fieldName: "api",
+        url:
+          "https://dw0t56ddt6.execute-api.us-east-1.amazonaws.com/Prod/graphql"
+      }
+    }
   ]
 };
