@@ -117,7 +117,7 @@ export const pageQuery = graphql`
     api {
       github {
         repositories(
-          last: 8
+          first: 100
           privacy: PUBLIC
           isFork: false
           orderBy: { field: UPDATED_AT, direction: DESC }
