@@ -7,7 +7,7 @@ module.exports = {
     navigationColumns: [
       ["Photos", "Code"],
       ["Keyboards", "Playlists"],
-      ["About"]
+      ["Reading", "About"]
     ]
   },
   plugins: [
