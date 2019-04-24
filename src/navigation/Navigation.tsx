@@ -54,9 +54,11 @@ export const Navigation: React.FunctionComponent<{
 function responseToColumns(data: DataType): Array<Column> {
   const orderedNodes = data.allMarkdownRemark.edges
     .map(edge => edge.node)
-    .filter(node => node.fields.slug && node.frontmatter.index)
+    .filter(node => node.fields.slug)
     .sort(
-      (a, b) => parseInt(a.frontmatter.index!) - parseInt(b.frontmatter.index!)
+      (a, b) =>
+        parseInt(a.frontmatter.index || "0") -
+        parseInt(b.frontmatter.index || "0")
     );
   const navigationColumns = data.site.siteMetadata.navigationColumns;
   return navigationColumns.map(column =>
