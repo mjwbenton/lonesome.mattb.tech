@@ -3,4 +3,4 @@ title: Reading
 layout: reading/ReadingPage
 ---
 
-Test Page
+Recent books I've read (from Goodreads)
