@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import React from "react";
-import { spacingUnit, maxContentWidth } from "../style/style";
+import { spacingUnit } from "../style/style";
+import { maxWidthMixin } from "../global/MaxWidthWrapper";
 
 const TextP = styled.p`
-  max-width: ${maxContentWidth};
-  margin: 0 auto ${spacingUnit} auto;
+  ${maxWidthMixin}
   text-align: justify;
 `;
 

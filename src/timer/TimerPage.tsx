@@ -1,20 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Layout from "../global/Layout";
-import {
-  maxContentWidth,
-  spacingUnit,
-  altBackgroundColor
-} from "../style/style";
+import { spacingUnit, altBackgroundColor } from "../style/style";
 import { Thermometer, Watch } from "react-feather";
 import { h2 as H2 } from "../markdown/tags";
 import Timer from "./Timer";
 import useCountdownTimer, { State } from "./useCountdownTimer";
+import { maxWidthTagFactory } from "../global/MaxWidthWrapper";
 
-const TimerTable = styled.table`
-  max-width: ${maxContentWidth};
-  margin: auto;
-`;
+const MaxWidthTable = maxWidthTagFactory("table");
 
 const TimerHeader = styled.th`
   padding: calc(${spacingUnit} / 2) ${spacingUnit} calc(${spacingUnit} / 2)
@@ -101,7 +95,7 @@ const TimerPage = () => {
       {Object.keys(timings).map(film => (
         <div>
           <H2>{film}</H2>
-          <TimerTable>
+          <MaxWidthTable>
             <tbody>
               <TimerTableRow>
                 <TimerHeader>
@@ -138,7 +132,7 @@ const TimerPage = () => {
                 </TimerTableRow>
               ))}
             </tbody>
-          </TimerTable>
+          </MaxWidthTable>
         </div>
       ))}
     </Layout>
