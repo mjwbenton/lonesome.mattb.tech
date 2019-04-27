@@ -1,28 +1,21 @@
 import React from "react";
+import MaxWidthWrapper from "../global/MaxWidthWrapper";
+import Book, { BookType } from "./Book";
 
 export type RecentBooks = {
-  recentBooks: Array<{
-    title: string;
-    link: string;
-    rating: number;
-    image: string;
-    authors: Array<string>;
-    read: boolean;
-    started_at: string;
-    read_at: string;
-  }>;
+  recentBooks: Array<BookType>;
 };
 
 const RecentlyRead: React.FunctionComponent<RecentBooks> = ({
   recentBooks
 }) => (
-  <ul>
-    {recentBooks.map(book => (
-      <li>
-        <pre>{JSON.stringify(book, null, 2)}</pre>
-      </li>
-    ))}
-  </ul>
+  <MaxWidthWrapper>
+    <ul>
+      {recentBooks.map(book => (
+        <Book book={book} />
+      ))}
+    </ul>
+  </MaxWidthWrapper>
 );
 
 export default RecentlyRead;
