@@ -93,7 +93,7 @@ const TimerPage = () => {
     <Layout>
       <Timer {...{ minutes, seconds, state, startStop }} />
       {Object.keys(timings).map(film => (
-        <div>
+        <div key={film}>
           <H2>{film}</H2>
           <MaxWidthTable>
             <tbody>
@@ -120,7 +120,8 @@ const TimerPage = () => {
                   <TimerData>
                     <a
                       href="#"
-                      onClick={() => {
+                      onClick={e => {
+                        e.preventDefault();
                         state !== State.RUNNING && setTimerDuration(t);
                       }}
                     >
