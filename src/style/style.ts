@@ -1,4 +1,5 @@
 export const spacingUnit = "1rem";
+export const halfSpacingUnit = "0.5rem";
 export const maxContentWidth = "45rem";
 export const fontColor = "#222";
 export const backgroundColor = "#fff";

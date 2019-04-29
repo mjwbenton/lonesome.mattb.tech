@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 import { Playlist as PlaylistType } from "@mattb.tech/gatsby-transform-spotify-playlist";
 import Track from "./Track";
 import MaxWidthWrapper from "../global/MaxWidthWrapper";
+import StripedList from "../component/StripedList";
 
 const Playlist: React.FunctionComponent<{
   data: SpotifyPlaylistFragmentType;
@@ -17,11 +18,11 @@ const Playlist: React.FunctionComponent<{
   return (
     <MaxWidthWrapper>
       <a href={playlist.link}>View on Spotify</a>
-      <ul>
+      <StripedList>
         {playlist.tracks.map((t, i) => (
           <Track track={t} index={i} key={i} />
         ))}
-      </ul>
+      </StripedList>
     </MaxWidthWrapper>
   );
 };

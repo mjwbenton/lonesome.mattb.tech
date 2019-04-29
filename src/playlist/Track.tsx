@@ -1,72 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 import { Track as TrackType } from "@mattb.tech/gatsby-transform-spotify-playlist";
-import {
-  spacingUnit,
-  altBackgroundColor,
-  backgroundColor
-} from "../style/style";
+import { StripeElement } from "../component/StripedList";
+import TwoRowText from "../component/TwoRowText";
 
 const IMAGE_SIZE = "64px";
 
-const Wrapper = styled.li`
-  list-style-type: none;
-  display: flex;
-  height: calc(${IMAGE_SIZE} + (2 * ${spacingUnit}));
-  overflow: hidden;
-  position: relative;
-
-  :nth-child(even) {
-    background-color: ${altBackgroundColor};
-  }
-`;
-
-const Index = styled.span`
-  font-size: 8rem;
-  position: absolute;
-  width: 100%;
-  text-align: right;
-  margin-top: -3rem;
-  color: ${altBackgroundColor};
-  z-index: 0;
-
-  ${Wrapper}:nth-child(even) & {
-    color: ${backgroundColor};
-  }
-`;
-
 const Image = styled.img`
-  margin: ${spacingUnit};
   height: ${IMAGE_SIZE};
   width: ${IMAGE_SIZE};
-`;
-
-const Box = styled.div`
-  margin: ${spacingUnit} ${spacingUnit} ${spacingUnit} 0;
-  flex: 1;
-  z-index: 1;
-`;
-
-const Name = styled.h3`
-  font-size: 1rem;
-  font-weight: 700;
-`;
-
-const Artist = styled.span`
-  font-style: italic;
 `;
 
 const Track: React.FunctionComponent<{ track: TrackType; index: number }> = ({
   track,
   index
 }) => (
-  <Wrapper>
+  <StripeElement index={index}>
     <Image src={track.album.images[2].url} />
-    <Box>
-      <Name>{track.name}</Name>
-      <Artist>{track.artists.map(a => a.name).join(", ")}</Artist>
-    </Box>
-    <Index>{index}</Index>
-  </Wrapper>
+    <TwoRowText
+      row1={track.name}
+      row2={track.artists.map(a => a.name).join(", ")}
+    />
+  </StripeElement>
 );
 export default Track;
