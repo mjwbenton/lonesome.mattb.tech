@@ -4,7 +4,7 @@ import MaxWidthWrapper from "../global/MaxWidthWrapper";
 import TwoRowText from "./TwoRowText";
 import StripedList, { StripeElement } from "./StripedList";
 import Infoline from "./Infoline";
-import Block from "./Block";
+import ContentBlock from "./ContentBlock";
 
 export default () => (
   <Layout>
@@ -26,18 +26,18 @@ export default () => (
       </StripedList>
     </MaxWidthWrapper>
     <MaxWidthWrapper>
-      <Block>
+      <ContentBlock>
         <div>This is a block component</div>
         <Infoline externalLinkUrl="#" externalLinkText="ab">
           Testing
         </Infoline>
-      </Block>
-      <Block>
+      </ContentBlock>
+      <ContentBlock>
         <div>This is another block component</div>
         <Infoline externalLinkUrl="#" externalLinkText="ab">
           Testing
         </Infoline>
-      </Block>
+      </ContentBlock>
     </MaxWidthWrapper>
   </Layout>
 );

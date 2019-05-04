@@ -6,7 +6,7 @@ import {
   Photo as PhotoType
 } from "@mattb.tech/gatsby-transform-flickr-set";
 import Infoline from "../component/Infoline";
-import Block from "../component/Block";
+import ContentBlock from "../component/ContentBlock";
 
 function generateSrcSet(sources: PhotoSource[]): string {
   return sources
@@ -32,7 +32,7 @@ const Photo: React.FunctionComponent<PhotoType> = ({
   title
 }) => {
   return (
-    <Block>
+    <ContentBlock>
       <PhotoImg
         src={mainSource.url}
         srcSet={generateSrcSet(sources)}
@@ -42,7 +42,7 @@ const Photo: React.FunctionComponent<PhotoType> = ({
       <Infoline externalLinkUrl={pageUrl} externalLinkText="Fl">
         <InfolineTitle>{title}</InfolineTitle>
       </Infoline>
-    </Block>
+    </ContentBlock>
   );
 };
 export default Photo;

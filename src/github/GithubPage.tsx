@@ -6,7 +6,7 @@ import { spacingUnit } from "../style/style";
 import { Clock } from "react-feather";
 import MarkdownContent from "../markdown/MarkdownContent";
 import Infoline from "../component/Infoline";
-import Block from "../component/Block";
+import ContentBlock from "../component/ContentBlock";
 import MaxWidthWrapper from "../global/MaxWidthWrapper";
 
 const RepoName = styled.div`
@@ -39,7 +39,7 @@ const GithubPage: React.FunctionComponent<{ data: any }> = ({ data }) => (
     <MarkdownContent htmlAst={data.markdownRemark.htmlAst} />
     <MaxWidthWrapper>
       {data.api.github.repositories.edges.map((n: any) => (
-        <Block key={n.node.name}>
+        <ContentBlock key={n.node.name}>
           <RepoName>{n.node.name}</RepoName>
           {n.node.description && (
             <Description>{n.node.description}</Description>
@@ -57,7 +57,7 @@ const GithubPage: React.FunctionComponent<{ data: any }> = ({ data }) => (
             {", "}
             {n.node.primaryLanguage ? n.node.primaryLanguage.name : "UNKNOWN"}
           </Infoline>
-        </Block>
+        </ContentBlock>
       ))}
     </MaxWidthWrapper>
   </Layout>
