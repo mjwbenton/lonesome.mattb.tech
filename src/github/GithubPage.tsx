@@ -2,22 +2,12 @@ import React from "react";
 import { graphql } from "gatsby";
 import Layout from "../global/Layout";
 import styled from "styled-components";
-import {
-  spacingUnit,
-  maxContentWidth,
-  altBackgroundColor
-} from "../style/style";
+import { spacingUnit } from "../style/style";
 import { Clock } from "react-feather";
 import MarkdownContent from "../markdown/MarkdownContent";
-import remark from "remark";
-import remark2rehype from "remark-rehype";
-import unified from "unified";
-
-const RepoWrapper = styled.div`
-  margin: ${spacingUnit} auto calc(${spacingUnit} * 2) auto;
-  max-width: ${maxContentWidth};
-  border-top: 3px solid ${altBackgroundColor};
-`;
+import Infoline from "../component/Infoline";
+import Block from "../component/Block";
+import MaxWidthWrapper from "../global/MaxWidthWrapper";
 
 const RepoName = styled.div`
   font-size: 1.1rem;
@@ -26,11 +16,6 @@ const RepoName = styled.div`
 
 const Description = styled.p`
   margin-bottom: ${spacingUnit};
-`;
-
-const Readme = styled.div`
-  margin-bottom: ${spacingUnit};
-  font-size: 0.75rem;
 `;
 
 const Timesline = styled.div`
@@ -49,63 +34,32 @@ const Updated = styled.div`
   text-align: right;
 `;
 
-const Infoline = styled.div`
-  background-color: ${altBackgroundColor};
-  display: flex;
-  padding: 8px;
-  width: 100%;
-`;
-
-const Ghlink = styled.a`
-  font-size: 0.75rem;
-
-  :after {
-    content: "→";
-  }
-`;
-
-const Info = styled.div`
-  font-size: 0.75rem;
-  flex: 1;
-`;
-
-/* TODO: Finish adding README
-        {n.node.object && n.node.object.text && (
-          <Readme>
-            <MarkdownContent
-              htmlAst={unified()
-                .use(remark2rehype)
-                .runSync(remark().parse(n.node.object.text))}
-            />
-          </Readme>
-        )}
-*/
-
 const GithubPage: React.FunctionComponent<{ data: any }> = ({ data }) => (
   <Layout>
     <MarkdownContent htmlAst={data.markdownRemark.htmlAst} />
-    {data.api.github.repositories.edges.map(n => (
-      <RepoWrapper key={n.node.name}>
-        <RepoName>{n.node.name}</RepoName>
-        {n.node.description && <Description>{n.node.description}</Description>}
-        <Timesline>
-          <Created>
-            Created: <Clock size={14} /> {n.node.createdAt}
-          </Created>
-          <Updated>
-            Last Updated: <Clock size={14} /> {n.node.updatedAt}
-          </Updated>
-        </Timesline>
-        <Infoline>
-          <Info>
+    <MaxWidthWrapper>
+      {data.api.github.repositories.edges.map((n: any) => (
+        <Block key={n.node.name}>
+          <RepoName>{n.node.name}</RepoName>
+          {n.node.description && (
+            <Description>{n.node.description}</Description>
+          )}
+          <Timesline>
+            <Created>
+              Created: <Clock size={14} /> {n.node.createdAt}
+            </Created>
+            <Updated>
+              Last Updated: <Clock size={14} /> {n.node.updatedAt}
+            </Updated>
+          </Timesline>
+          <Infoline externalLinkUrl={n.node.url} externalLinkText="Gh">
             {n.node.licenseInfo ? n.node.licenseInfo.name : "UNLICENSED"}
             {", "}
             {n.node.primaryLanguage ? n.node.primaryLanguage.name : "UNKNOWN"}
-          </Info>
-          <Ghlink href={n.node.url}>Gh</Ghlink>
-        </Infoline>
-      </RepoWrapper>
-    ))}
+          </Infoline>
+        </Block>
+      ))}
+    </MaxWidthWrapper>
   </Layout>
 );
 

@@ -16,9 +16,7 @@ const Photos: React.FunctionComponent<{ data: PhotoSetFragmentType }> = ({
   return (
     <PhotosWrapper>
       {data.markdownRemark.childFlickrSet.photos.map(p => (
-        <div key={p.pageUrl}>
-          <SinglePhoto {...p} key={p.pageUrl} />
-        </div>
+        <SinglePhoto {...p} key={p.pageUrl} />
       ))}
     </PhotosWrapper>
   );
