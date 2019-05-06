@@ -10,11 +10,9 @@ const RecentlyRead: React.FunctionComponent<RecentBooks> = ({
   recentBooks
 }) => (
   <MaxWidthWrapper>
-    <ul>
-      {recentBooks.map(book => (
-        <Book book={book} />
-      ))}
-    </ul>
+    {recentBooks.map(book => (
+      <Book book={book} />
+    ))}
   </MaxWidthWrapper>
 );
 

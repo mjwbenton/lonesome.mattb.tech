@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { altBackgroundColor } from "../style/style";
+import ContentBlock from "../component/ContentBlock";
+import Infoline from "../component/Infoline";
+import TwoRowText from "../component/TwoRowText";
+import { halfSpacingUnit, spacingUnit } from "../style/style";
+import { Star, Clock } from "react-feather";
 
 export type BookType = {
   title: string;
@@ -13,33 +17,50 @@ export type BookType = {
   read_at: string;
 };
 
-const Wrapper = styled.li`
-  list-style-type: none;
-  :nth-child(even) {
-    background-color: ${altBackgroundColor};
+const Cover = styled.img``;
+
+const Wrapper = styled.div`
+  display: flex;
+  margin-top: ${halfSpacingUnit};
+  margin-bottom: ${halfSpacingUnit};
+
+  > * + * {
+    margin: ${halfSpacingUnit};
   }
 `;
 
-const Title = styled.h3`
-  font-size: 1rem;
-  font-weight: 700;
+const Timesline = styled.div`
+  display: flex;
+  width: 100%;
+  font-size: 0.75rem;
+  justify-content: space-between;
+  margin-bottom: ${halfSpacingUnit};
 `;
-
-const Author = styled.span`
-  font-style: italic;
-`;
-
-const Cover = styled.img``;
 
 const Book: React.FunctionComponent<{ book: BookType }> = ({ book }) => (
-  <Wrapper>
-    <Title>{book.title}</Title>
-    <Author>{book.authors.join(", ")}</Author>
-    <Cover src={book.image} alt={`Cover of ${book.title}`} />
-    {book.read && book.rating && <span>FINISHED! {book.rating}/5</span>}
-    <span>{book.started_at}</span>
-    {book.read_at && <span>{book.read_at}</span>}
-  </Wrapper>
+  <ContentBlock>
+    <Wrapper>
+      <Cover src={book.image} alt={`Cover of ${book.title}`} />
+      <TwoRowText row1={book.title} row2={book.authors.join(", ")} />
+    </Wrapper>
+    <Timesline>
+      <span>
+        <Clock size={14} /> {book.started_at}
+      </span>
+      {book.read_at && (
+        <span>
+          <Clock size={14} /> {book.read_at}
+        </span>
+      )}
+    </Timesline>
+    <Infoline externalLinkUrl={book.link} externalLinkText="Gr">
+      {book.read && book.rating && (
+        <span>
+          <Star size={14} /> {book.rating}/5
+        </span>
+      )}
+    </Infoline>
+  </ContentBlock>
 );
 
 export default Book;
