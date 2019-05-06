@@ -1,5 +1,6 @@
 ---
 flickr_set: "72157669745227783"
+layout: photo/PhotosPage
 ---
 
 ## Washington DC

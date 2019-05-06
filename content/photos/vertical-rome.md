@@ -3,6 +3,7 @@ title: Vertical Rome
 flickr_set: "72157706113309875"
 group: Photos
 index: 10
+layout: photo/PhotosPage
 ---
 
 ## Vertical Rome

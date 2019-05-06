@@ -3,6 +3,7 @@ title: Roman Streets
 flickr_set: "72157645281878582"
 group: Photos
 index: 5
+layout: photo/PhotosPage
 ---
 
 ## Roman Streets

@@ -3,6 +3,7 @@ title: Edinburgh
 flickr_set: "72157644879232239"
 group: Photos
 index: 3
+layout: photo/PhotosPage
 ---
 
 ## Edinburgh

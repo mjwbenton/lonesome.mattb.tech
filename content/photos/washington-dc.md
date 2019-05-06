@@ -3,6 +3,7 @@ title: Washington DC
 flickr_set: "72157669745227783"
 group: Photos
 index: 1
+layout: photo/PhotosPage
 ---
 
 ## Washington DC
