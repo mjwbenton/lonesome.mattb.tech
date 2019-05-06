@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { spacingUnit, altBackgroundColor } from "../style/style";
+import { doubleSpacingUnit, altBackgroundColor } from "../style/style";
 
 export default styled.div`
-  margin-bottom: ${spacingUnit};
+  margin-bottom: ${doubleSpacingUnit};
   border-top: 3px solid ${altBackgroundColor};
 `;
