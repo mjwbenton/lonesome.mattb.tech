@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import React from "react";
 import { spacingUnit } from "../style/style";
-import { maxWidthMixin } from "../global/MaxWidthWrapper";
+import { maxWidthMixin } from "../component/MaxWidthWrapper";
 
 const TextP = styled.p`
   ${maxWidthMixin}

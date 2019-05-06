@@ -2,7 +2,7 @@ import * as React from "react";
 import { graphql } from "gatsby";
 import { Playlist as PlaylistType } from "@mattb.tech/gatsby-transform-spotify-playlist";
 import Track from "./Track";
-import MaxWidthWrapper from "../global/MaxWidthWrapper";
+import MaxWidthWrapper from "../component/MaxWidthWrapper";
 import StripedList from "../component/StripedList";
 
 const Playlist: React.FunctionComponent<{

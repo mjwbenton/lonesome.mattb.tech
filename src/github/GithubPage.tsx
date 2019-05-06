@@ -7,7 +7,7 @@ import { Clock } from "react-feather";
 import MarkdownContent from "../markdown/MarkdownContent";
 import Infoline from "../component/Infoline";
 import ContentBlock from "../component/ContentBlock";
-import MaxWidthWrapper from "../global/MaxWidthWrapper";
+import MaxWidthWrapper from "../component/MaxWidthWrapper";
 
 const RepoName = styled.div`
   font-size: 1.1rem;

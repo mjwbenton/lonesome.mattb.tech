@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../global/Layout";
-import MaxWidthWrapper from "../global/MaxWidthWrapper";
+import MaxWidthWrapper from "../component/MaxWidthWrapper";
 import TwoRowText from "./TwoRowText";
 import StripedList, { StripeElement } from "./StripedList";
 import Infoline from "./Infoline";

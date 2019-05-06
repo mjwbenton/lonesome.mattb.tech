@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { spacingUnit } from "../style/style";
-import { maxWidthMixin } from "../global/MaxWidthWrapper";
+import { maxWidthMixin } from "../component/MaxWidthWrapper";
 
 export const ul = styled.ul`
   ${maxWidthMixin}

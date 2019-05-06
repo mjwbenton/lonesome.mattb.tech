@@ -1,5 +1,5 @@
 import React from "react";
-import MaxWidthWrapper from "../global/MaxWidthWrapper";
+import MaxWidthWrapper from "../component/MaxWidthWrapper";
 import Book, { BookType } from "./Book";
 
 export type RecentBooks = {

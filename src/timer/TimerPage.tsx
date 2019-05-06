@@ -6,7 +6,7 @@ import { Thermometer, Watch } from "react-feather";
 import { h2 as H2 } from "../markdown/tags";
 import Timer from "./Timer";
 import useCountdownTimer, { State } from "./useCountdownTimer";
-import { maxWidthTagFactory } from "../global/MaxWidthWrapper";
+import { maxWidthTagFactory } from "../component/MaxWidthWrapper";
 
 const MaxWidthTable = maxWidthTagFactory("table");
 
