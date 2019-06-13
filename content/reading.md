@@ -3,4 +3,6 @@ title: Reading
 layout: reading/ReadingPage
 ---
 
-Recent books I've read (from Goodreads)
+_**WORK IN PROGRESS**_
+
+Recent books I've read (from Goodreads).

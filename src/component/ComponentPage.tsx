@@ -9,6 +9,14 @@ import ContentBlock from "./ContentBlock";
 export default () => (
   <Layout>
     <MaxWidthWrapper>
+      <p>
+        <b>
+          Note: This is a work in progress set of components to simplify this
+          site.
+        </b>
+      </p>
+    </MaxWidthWrapper>
+    <MaxWidthWrapper>
       <StripedList>
         <StripeElement index={1}>
           <TwoRowText row1="Row One" row2="Row Two" />
