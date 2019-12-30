@@ -30,6 +30,7 @@ Resources:
         - blog.mattbenton.co.uk
         - lionsmane.co.uk
         - www.lionsmane.co.uk
+      ValidationMethod: DNS
 
   CloudFrontDistribution:
     Type: AWS::CloudFront::Distribution
