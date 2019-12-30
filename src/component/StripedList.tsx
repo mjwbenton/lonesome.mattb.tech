@@ -25,6 +25,7 @@ const Li = styled.li`
 
   * {
     margin-right: ${spacingUnit};
+    z-index: 1;
   }
 `;
 
