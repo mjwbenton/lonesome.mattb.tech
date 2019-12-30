@@ -38,24 +38,22 @@ const GithubPage: React.FunctionComponent<{ data: any }> = ({ data }) => (
   <Layout>
     <MarkdownContent htmlAst={data.markdownRemark.htmlAst} />
     <MaxWidthWrapper>
-      {data.api.github.repositories.edges.map((n: any) => (
-        <ContentBlock key={n.node.name}>
-          <RepoName>{n.node.name}</RepoName>
-          {n.node.description && (
-            <Description>{n.node.description}</Description>
-          )}
+      {data.api.githubRepositories.map((n: any) => (
+        <ContentBlock key={n.name}>
+          <RepoName>{n.name}</RepoName>
+          {n.description && <Description>{n.description}</Description>}
           <Timesline>
             <Created>
-              Created: <Clock size={14} /> {n.node.createdAt}
+              Created: <Clock size={14} /> {n.createdAt}
             </Created>
             <Updated>
-              Last Updated: <Clock size={14} /> {n.node.updatedAt}
+              Last Updated: <Clock size={14} /> {n.updatedAt}
             </Updated>
           </Timesline>
-          <Infoline externalLinkUrl={n.node.url} externalLinkText="Gh">
-            {n.node.licenseInfo ? n.node.licenseInfo.name : "UNLICENSED"}
+          <Infoline externalLinkUrl={n.url} externalLinkText="Gh">
+            {n.license || "UNLICENSED"}
             {", "}
-            {n.node.primaryLanguage ? n.node.primaryLanguage.name : "UNKNOWN"}
+            {n.primaryLanguage || "UNKNOWN"}
           </Infoline>
         </ContentBlock>
       ))}
@@ -69,34 +67,15 @@ export const pageQuery = graphql`
       htmlAst
     }
     api {
-      github {
-        repositories(
-          first: 100
-          privacy: PUBLIC
-          isFork: false
-          orderBy: { field: UPDATED_AT, direction: DESC }
-        ) {
-          edges {
-            node {
-              name
-              createdAt
-              description
-              licenseInfo {
-                name
-              }
-              primaryLanguage {
-                name
-              }
-              updatedAt
-              url
-              object(expression: "master:README.md") {
-                ... on Api_Blob {
-                  text
-                }
-              }
-            }
-          }
-        }
+      githubRepositories {
+        name
+        url
+        createdAt
+        updatedAt
+        description
+        license
+        primaryLanguage
+        readme
       }
     }
   }
