@@ -3,8 +3,7 @@ import { ApolloProvider } from "react-apollo-hooks";
 import ApolloClient from "apollo-boost";
 import fetch from "isomorphic-fetch";
 
-const ENDPOINT =
-  "https://dw0t56ddt6.execute-api.us-east-1.amazonaws.com/Prod/graphql";
+const ENDPOINT = "https://56j0phpsed.execute-api.us-east-1.amazonaws.com/";
 
 const client = new ApolloClient({
   uri: ENDPOINT,

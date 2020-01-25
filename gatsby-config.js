@@ -40,8 +40,7 @@ module.exports = {
       options: {
         typeName: "Api",
         fieldName: "api",
-        url:
-          "https://dw0t56ddt6.execute-api.us-east-1.amazonaws.com/Prod/graphql"
+        url: "https://56j0phpsed.execute-api.us-east-1.amazonaws.com/"
       }
     }
   ]
