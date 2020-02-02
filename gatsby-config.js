@@ -40,7 +40,7 @@ module.exports = {
       options: {
         typeName: "Api",
         fieldName: "api",
-        url: "https://56j0phpsed.execute-api.us-east-1.amazonaws.com/"
+        url: "https://api.mattb.tech"
       }
     }
   ]
