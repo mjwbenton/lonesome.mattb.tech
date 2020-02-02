@@ -26,7 +26,7 @@ export const pageQuery = graphql`
       htmlAst
     }
     api {
-      recentBooks(limit: 100) {
+      recentBooks(limit: 15) {
         title
         link
         rating
