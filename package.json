@@ -8,19 +8,24 @@
     "develop": "gatsby develop",
     "serve": "gatsby serve",
     "check": "tsc --noEmit && prettier --check '**/*'",
-    "update-files": "cf-update-files -f ./public -b mattb.tech -d E3V3XQQRI8U9K3 -p mattb.tech-deploy",
-    "create-stack": "cf-create-stack -s mattb-tech-website -p mattb.tech-deploy -f cloudformation.yaml",
-    "update-stack": "cf-deploy-stack -s mattb-tech-website -p mattb.tech-deploy -f cloudformation.yaml"
+    "deploy": "cdk deploy --profile mattb.tech-deploy --require-approval never",
+    "update-files": "cf-update-files -f ./public -b website-sitebucket397a1860-rmviuzqn6z7w -d E18X1ALN5P0G4S -p mattb.tech-deploy"
   },
   "author": "Matt Benton <m@mattb.tech>",
   "license": "UNLICENSED",
   "devDependencies": {
+    "@aws-cdk/aws-cloudfront": "^1.22.0",
+    "@aws-cdk/aws-route53-targets": "^1.22.0",
+    "@aws-cdk/aws-s3": "^1.22.0",
+    "@aws-cdk/core": "^1.22.0",
     "@types/dotenv": "^6.1.1",
     "@types/lodash.flatmap": "^4.5.6",
     "@types/react": "^16.8.14",
     "@types/react-helmet": "^5.0.8",
     "@types/styled-components": "^4.1.14",
+    "aws-cdk": "^1.22.0",
     "prettier": "^1.17.0",
+    "ts-node": "^8.6.2",
     "typescript": "^3.4.5"
   },
   "dependencies": {
@@ -53,7 +58,6 @@
     "remark": "^10.0.1",
     "remark-rehype": "^4.0.0",
     "styled-components": "^4.2.0",
-    "ts-node": "^8.1.0",
     "unified": "^7.1.0",
     "use-interval": "^1.1.0"
   }
