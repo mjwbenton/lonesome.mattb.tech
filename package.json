@@ -8,8 +8,7 @@
     "develop": "gatsby develop",
     "serve": "gatsby serve",
     "check": "tsc --noEmit && prettier --check '**/*'",
-    "deploy": "cdk deploy --profile mattb.tech-deploy --require-approval never",
-    "update-files": "cf-update-files -f ./public -b website-sitebucket397a1860-rmviuzqn6z7w -d E18X1ALN5P0G4S -p mattb.tech-deploy"
+    "deploy": "cdk deploy --profile mattb.tech-deploy --require-approval never"
   },
   "author": "Matt Benton <m@mattb.tech>",
   "license": "UNLICENSED",
@@ -17,6 +16,7 @@
     "@aws-cdk/aws-cloudfront": "^1.22.0",
     "@aws-cdk/aws-route53-targets": "^1.22.0",
     "@aws-cdk/aws-s3": "^1.22.0",
+    "@aws-cdk/aws-s3-deployment": "^1.22.0",
     "@aws-cdk/core": "^1.22.0",
     "@types/dotenv": "^6.1.1",
     "@types/lodash.flatmap": "^4.5.6",
