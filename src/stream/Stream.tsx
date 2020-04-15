@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Photo } from "@mattb.tech/gatsby-transform-flickr-set";
 import SinglePhoto from "../photo/Photo";
 import PhotosWrapper from "../photo/PhotosWrapper";
-import { useQuery } from "react-apollo-hooks";
+import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import P from "../markdown/P";
 
