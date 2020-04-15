@@ -8,7 +8,7 @@ layout: photo/PhotosPage
 
 ## Vertical Rome
 
-Went back to Rome almost 8 years after my [previous visit](/rome/).
+Went back to Rome almost 8 years after my [previous visit](/photos/rome.html).
 
 Looking at my photos from this trip it struck me that many of my favorite pictures were vertical — Rome's architecture and narrow streets lend themselves very well to the camera being held that way round.
 
