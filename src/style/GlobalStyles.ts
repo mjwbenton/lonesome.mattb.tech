@@ -43,4 +43,15 @@ export default createGlobalStyle`
     border-radius: 3px;
     padding: 1px 1px;
   }
+
+  blockquote {
+    padding: 0.5rem 0 0.5rem 2rem;
+
+  }
+
+  blockquote p {
+    padding-left: 1rem;
+    border-left: 3px solid ${fontColor};
+    font-size: 0.8rem;
+  }
 `;
