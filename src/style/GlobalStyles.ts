@@ -1,5 +1,10 @@
 import { createGlobalStyle } from "styled-components";
-import { fontColor, backgroundColor, fontStack } from "./style";
+import {
+  fontColor,
+  altBackgroundColor,
+  backgroundColor,
+  fontStack
+} from "./style";
 
 export default createGlobalStyle`
   html {
@@ -29,5 +34,13 @@ export default createGlobalStyle`
   
   a {
     text-decoration: none;
+  }
+
+  kbd {
+    border: 1px solid ${fontColor};
+    background-color: ${altBackgroundColor};
+    font-size: 0.8rem;
+    border-radius: 3px;
+    padding: 1px 1px;
   }
 `;
