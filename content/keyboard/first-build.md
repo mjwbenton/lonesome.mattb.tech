@@ -99,3 +99,9 @@ Plug the keyboard in whilst holding down "Space+b", then flash the firmware with
 ```bash
 $> make dz60:mjwbenton:dfu
 ```
+
+## 2020 Update
+
+_Update written 2020-08-02_
+
+This keyboard is still going strong as my daily driver, now with XDA Oblique keycaps. The latest version of the layout that I use is in [this commit](https://github.com/mjwbenton/qmk_firmware/commit/bfa373aabc0a9a1ffb651d5b34aa713abadffd90).
