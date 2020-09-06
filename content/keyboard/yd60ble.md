@@ -81,3 +81,7 @@ Device size = 32768 (0x8000); 31744 bytes remaining
 Uploading 31744 (0x7c00) bytes starting at 0 (0x0)
 0x07b80 ... 0x07c00
 ```
+
+### Update
+
+Since I built this board, the chattering issue with the Zilent's recurred, and eventually rendered the board unusable to me. I also found that I didn't use the bluetooth as much as I expected, and wanted to be able to unify my boards on using QMK firmware. As such I've replaced the innards with Gateron Silent Browns mounted on a DZ60 PCB, which is proving to be much more reliable.
