@@ -1,7 +1,7 @@
 ---
 title: "Keycaps: SA Vilebloom"
 group: Keyboards
-index: 5
+index: 6
 ---
 
 ## Keycaps: SA Vilebloom

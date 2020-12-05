@@ -1,7 +1,7 @@
 ---
 title: "Keyboards: First Build"
 group: Keyboards
-index: 2
+index: 3
 ---
 
 ## Keyboards: First Build

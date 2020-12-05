@@ -1,7 +1,7 @@
 ---
 title: "Keyboards: Niu Mini"
 group: Keyboards
-index: 1
+index: 2
 ---
 
 ![](flickr://50181498277)

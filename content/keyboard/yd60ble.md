@@ -1,7 +1,7 @@
 ---
 title: "Keyboards: YD60BLE"
 group: Keyboards
-index: 3
+index: 4
 ---
 
 ## Keyboards: YD60BLE
