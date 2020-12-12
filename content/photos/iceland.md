@@ -2,7 +2,7 @@
 title: Iceland
 flickr_set: "72157629510286023"
 group: Photos
-index: 7
+index: 8
 layout: photo/PhotosPage
 ---
 

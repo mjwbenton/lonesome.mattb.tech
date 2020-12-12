@@ -1,5 +1,8 @@
 ---
+title: Lockdown
 flickr_set: "72157717276744288"
+group: Photos
+index: 1
 layout: photo/PhotosPage
 ---
 
