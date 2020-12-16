@@ -7,12 +7,10 @@ export type RecentBooks = {
 };
 
 const RecentlyRead: React.FunctionComponent<RecentBooks> = ({
-  recentBooks
+  recentBooks,
 }) => (
   <MaxWidthWrapper>
-    {recentBooks.map(book => (
-      <Book book={book} />
-    ))}
+    {recentBooks && recentBooks.map((book) => <Book book={book} />)}
   </MaxWidthWrapper>
 );
 
