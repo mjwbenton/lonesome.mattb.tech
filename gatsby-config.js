@@ -7,11 +7,12 @@ module.exports = {
     navigationColumns: [
       ["Photos", "Code"],
       ["Keyboards", "Playlists"],
-      ["Reading"]
-    ]
+      ["Reading"],
+    ],
   },
   plugins: [
     `gatsby-plugin-typescript`,
+    `gatsby-plugin-postcss`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
     {
@@ -21,16 +22,16 @@ module.exports = {
           {
             resolve: `@mattb.tech/gatsby-remark-flickr`,
             options: {
-              sizes: largePicture
-            }
+              sizes: largePicture,
+            },
           },
-          `gatsby-remark-prismjs`
-        ]
-      }
+          `gatsby-remark-prismjs`,
+        ],
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
-      options: { path: `${__dirname}/content`, name: "markdown-pages" }
+      options: { path: `${__dirname}/content`, name: "markdown-pages" },
     },
     `@mattb.tech/gatsby-transform-flickr-set`,
     `@mattb.tech/gatsby-transform-spotify-playlist`,
@@ -40,8 +41,8 @@ module.exports = {
       options: {
         typeName: "Api",
         fieldName: "api",
-        url: "https://api.mattb.tech"
-      }
-    }
-  ]
+        url: "https://api.mattb.tech",
+      },
+    },
+  ],
 };
