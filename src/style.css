@@ -2,6 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-.external-link:after {
-    content: "→";
+@layer base {
+  html {
+    font-size: 20px;
+    @apply text-gray-800 bg-white font-body box-border;
+  }
+
+  kbd {
+    @apply p-1 text-sm bg-gray-200 border border-gray-800 border-solid rounded-sm;
+  }
+
+  blockquote {
+    @apply pt-2 pb-2 pl-8 pr-0;
+  }
+
+  blockquote p {
+    @apply pl-4 text-sm border-l-4 border-gray-800 border-solid;
+  }
+
+  ul {
+    @apply pl-4;
+  }
+
+  li {
+    @apply list-disc list-outside;
+  }
+}
+
+@layer components {
+    .external-link:after {
+        content: "→";
+    }
 }
