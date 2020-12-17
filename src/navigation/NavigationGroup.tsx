@@ -16,7 +16,7 @@ const expandAnimation = keyframes`
 
 const List = styled("ul")<{ open: boolean }>`
   overflow: hidden;
-  ${p =>
+  ${(p) =>
     p.open
       ? css`
           animation: ${expandAnimation} 1s linear;
@@ -34,6 +34,10 @@ const Item = styled.li`
 const NavLink = styled(Link)`
   font-style: italic;
   color: ${fontColor};
+  text-decoration: none;
+  :visited {
+    color: ${fontColor};
+  }
 `;
 
 const NavigationGroup: React.FunctionComponent<

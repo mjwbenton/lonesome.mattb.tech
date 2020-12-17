@@ -8,6 +8,7 @@ export default styled.a`
   color: ${fontColor};
   font-size: 1.25rem;
   font-weight: 700;
+  text-decoration: none;
 
   &:last-child {
     margin-bottom: 0;
