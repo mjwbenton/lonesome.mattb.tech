@@ -20,17 +20,23 @@
     @apply pl-4 text-sm border-l-4 border-gray-800 border-solid;
   }
 
-  ul {
-    @apply pl-4;
+  a {
+    @apply text-blue-700 underline visited:text-purple-700;
   }
 
-  li {
-    @apply list-disc list-outside;
-  }
 }
 
 @layer components {
-    .external-link:after {
-        content: "→";
-    }
+  .external-link:after {
+    content: "→";
+  }
+
+  .max-width-block {
+    @apply max-w-3xl mx-auto mt-0 mb-4;
+  }
+
+  .full-screen-block {
+    @apply max-w-full;
+    max-height: 90vw;
+  }
 }

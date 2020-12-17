@@ -1,18 +1,12 @@
-import styled from "styled-components";
 import React from "react";
-import { spacingUnit } from "../style/style";
-import { maxWidthMixin } from "../component/MaxWidthWrapper";
 
-const TextP = styled.p`
-  ${maxWidthMixin}
-  text-align: justify;
-`;
+function TextP(props: Omit<JSX.IntrinsicElements["p"], "className">) {
+  return <p {...props} className="text-justify max-width-block" />;
+}
 
-const ImgP = styled.p`
-  width: 100%;
-  text-align: center;
-  margin-bottom: ${spacingUnit};
-`;
+function ImgP(props: Omit<JSX.IntrinsicElements["p"], "className">) {
+  return <p {...props} className="max-w-full mb-4 text-center" />;
+}
 
 function hasImgChild(props: any): boolean {
   return (
