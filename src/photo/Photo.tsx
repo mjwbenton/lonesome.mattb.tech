@@ -1,9 +1,8 @@
 import * as React from "react";
-import styled from "styled-components";
 import { large as sizes } from "./sizes";
 import {
   PhotoSource,
-  Photo as PhotoType
+  Photo as PhotoType,
 } from "@mattb.tech/gatsby-transform-flickr-set";
 import Infoline from "../component/Infoline";
 import ContentBlock from "../component/ContentBlock";
@@ -14,33 +13,23 @@ function generateSrcSet(sources: PhotoSource[]): string {
     .join(", ");
 }
 
-const PhotoImg = styled.img`
-  display: block;
-  max-height: 90vh;
-  max-width: 100%;
-`;
-
-const InfolineTitle = styled.h3`
-  font-size: 0.75rem;
-  font-weight: 700;
-`;
-
 const Photo: React.FunctionComponent<PhotoType> = ({
   pageUrl,
   sources,
   mainSource,
-  title
+  title,
 }) => {
   return (
     <ContentBlock>
-      <PhotoImg
+      <img
         src={mainSource.url}
         srcSet={generateSrcSet(sources)}
         sizes={sizes}
         alt={`Image titled "${title}"`}
+        className="block full-screen-block"
       />
       <Infoline externalLinkUrl={pageUrl} externalLinkText="Fl">
-        <InfolineTitle>{title}</InfolineTitle>
+        <h3 className="text-xs font-bold">{title}</h3>
       </Infoline>
     </ContentBlock>
   );
