@@ -37,6 +37,6 @@
 
   .full-screen-block {
     @apply max-w-full;
-    max-height: 90vw;
+    max-height: 90vh;
   }
 }
