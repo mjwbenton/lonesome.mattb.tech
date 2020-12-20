@@ -1,9 +1,7 @@
-import styled from "styled-components";
-import { spacingUnit } from "../style/style";
+import React from "react";
 
-export default styled.div`
-  flex-basis: 0;
-  flex-grow: 1;
-  margin-left: ${spacingUnit};
-  margin-right: ${spacingUnit};
-`;
+export default function NavigationColumn(
+  props: Omit<JSX.IntrinsicElements["div"], "className">
+) {
+  return <div {...props} className="flex-1 mx-4" />;
+}
