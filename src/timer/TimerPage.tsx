@@ -1,29 +1,22 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import Layout from "../global/Layout";
-import { spacingUnit, altBackgroundColor } from "../style/style";
 import { Thermometer, Watch } from "react-feather";
 import { h2 as H2 } from "../markdown/tags";
 import Timer from "./Timer";
 import useCountdownTimer, { State } from "./useCountdownTimer";
 import MaxWidthWrapper from "../component/MaxWidthWrapper";
 
-const TimerHeader = styled.th`
-  padding: calc(${spacingUnit} / 2) ${spacingUnit} calc(${spacingUnit} / 2)
-    ${spacingUnit};
-`;
+function TimerHeader(props: Omit<JSX.IntrinsicElements["th"], "className">) {
+  return <th {...props} className="px-2 py-4" />;
+}
 
-const TimerData = styled.td`
-  text-align: right;
-  padding: calc(${spacingUnit} / 2) ${spacingUnit} calc(${spacingUnit} / 2)
-    ${spacingUnit};
-`;
+function TimerData(props: Omit<JSX.IntrinsicElements["td"], "className">) {
+  return <td {...props} className="px-2 py-4 text-right" />;
+}
 
-const TimerTableRow = styled.tr`
-  :nth-child(odd) {
-    background-color: ${altBackgroundColor};
-  }
-`;
+function TimerTableRow(props: Omit<JSX.IntrinsicElements["tr"], "className">) {
+  return <tr {...props} className="odd:bg-gray-100" />;
+}
 
 const timings = {
   fp100c: [
@@ -98,15 +91,15 @@ const TimerPage = () => {
               <tbody>
                 <TimerTableRow>
                   <TimerHeader>
-                    <Thermometer />
+                    <Thermometer className="inline-block" />
                     Temp (°C)
                   </TimerHeader>
                   <TimerHeader>
-                    <Thermometer />
+                    <Thermometer className="inline-block" />
                     Temp (°F)
                   </TimerHeader>
                   <TimerHeader>
-                    <Watch />
+                    <Watch className="inline-block" />
                     Dev Time (seconds)
                   </TimerHeader>
                   <TimerHeader />
