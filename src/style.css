@@ -40,8 +40,12 @@
     max-height: 90vh;
   }
 
+  .striped-list-element > * {
+    @apply z-10
+  }
+
   .striped-list-element > .striped-index {
-    @apply text-white;
+    @apply z-0 text-white;
   }
 
   .striped-list-element:nth-child(odd) > .striped-index {
