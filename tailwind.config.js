@@ -12,7 +12,7 @@ module.exports = {
   variants: {
     extend: {
       backgroundColor: ['odd'],
-      textColor: ['visited'],
+      textColor: ['visited', 'odd'],
     },
   },
   plugins: [],

@@ -39,4 +39,12 @@
     @apply max-w-full;
     max-height: 90vh;
   }
+
+  .striped-list-element > .striped-index {
+    @apply text-white;
+  }
+
+  .striped-list-element:nth-child(odd) > .striped-index {
+    @apply text-gray-100;
+  }
 }
