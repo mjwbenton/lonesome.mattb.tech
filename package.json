@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "My personal website.",
   "scripts": {
-    "clean": "rm -Rf .cache public",
+    "clean": "gatsby clean",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "serve": "gatsby serve",
