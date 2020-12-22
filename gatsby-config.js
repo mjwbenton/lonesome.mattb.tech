@@ -3,6 +3,7 @@ require("dotenv").config();
 const { largePicture } = require("./src/photo/sizes");
 
 module.exports = {
+  flags: { PRESERVE_WEBPACK_CACHE: true },
   siteMetadata: {
     navigationColumns: [
       ["Photos", "Code"],
