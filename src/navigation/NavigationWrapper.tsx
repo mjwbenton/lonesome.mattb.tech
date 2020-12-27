@@ -6,7 +6,7 @@ export default function NavigationWrapper(
   return (
     <div
       {...props}
-      className="flex flex-col flex-wrap justify-center p-4 text-center bg-gray-100 border-t border-gray-800 border-dotted sm:flex-row"
+      className="flex flex-col flex-wrap justify-center p-4 text-center bg-gray-100 border-t-4 border-green-500 sm:flex-row"
     />
   );
 }
