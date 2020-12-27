@@ -1,9 +1,12 @@
-import styled from "styled-components";
+import React from "react";
 
-export default styled.div`
-  width: 100%;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+export default function PhotosWrapper(
+  props: Omit<JSX.IntrinsicElements["div"], "className">
+) {
+  return (
+    <div
+      {...props}
+      className="flex flex-col items-center justify-center w-full"
+    />
+  );
+}

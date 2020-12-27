@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 20px;
+    @apply text-gray-800 bg-white font-body box-border;
+  }
+
+  kbd {
+    @apply p-1 text-sm bg-gray-200 border border-gray-800 border-solid rounded-sm;
+  }
+
+  blockquote {
+    @apply pt-2 pb-2 pl-8 pr-0;
+  }
+
+  blockquote p {
+    @apply pl-4 text-sm border-l-4 border-gray-800 border-solid;
+  }
+
+  a {
+    @apply text-blue-700 underline visited:text-purple-700;
+  }
+
+}
+
+@layer components {
+  .external-link:after {
+    content: "→";
+  }
+
+  .max-width-block {
+    @apply max-w-3xl mx-auto mt-0 mb-4;
+  }
+
+  .full-screen-block {
+    @apply max-w-full;
+    max-height: 90vh;
+  }
+
+  .striped-list-element > * {
+    @apply z-10
+  }
+
+  .striped-list-element > .striped-index {
+    @apply z-0 text-white;
+  }
+
+  .striped-list-element:nth-child(odd) > .striped-index {
+    @apply text-gray-100;
+  }
+}

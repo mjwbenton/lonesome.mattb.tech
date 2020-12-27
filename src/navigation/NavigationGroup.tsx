@@ -1,40 +1,7 @@
 import React from "react";
-import styled, { keyframes, css } from "styled-components";
-import { spacingUnit, fontColor } from "../style/style";
 import { Entry, Group } from "./navigationTypes";
 import { Link } from "gatsby";
 import NavigationHead from "./NavigationHead";
-
-const expandAnimation = keyframes`
-  from {
-    max-height: 0;
-  }
-  to {
-    max-height: 1000px;
-  }
-`;
-
-const List = styled("ul")<{ open: boolean }>`
-  overflow: hidden;
-  ${p =>
-    p.open
-      ? css`
-          animation: ${expandAnimation} 1s linear;
-        `
-      : css`
-          max-height: 0px;
-        `}
-`;
-
-const Item = styled.li`
-  list-style-type: none;
-  padding-bottom: ${spacingUnit};
-`;
-
-const NavLink = styled(Link)`
-  font-style: italic;
-  color: ${fontColor};
-`;
 
 const NavigationGroup: React.FunctionComponent<
   Group & {
@@ -44,13 +11,18 @@ const NavigationGroup: React.FunctionComponent<
 > = ({ title, entries, open, onToggle }) => (
   <div>
     <NavigationHead onClick={onToggle}>{title}</NavigationHead>
-    <List open={open}>
+    <ul className={`overflow-hidden ${open ? "" : "max-h-0"}`}>
       {entries.map((entry: Entry) => (
-        <Item key={entry.slug}>
-          <NavLink to={entry.slug}>{entry.title}</NavLink>
-        </Item>
+        <li className="pb-4" key={entry.slug}>
+          <Link
+            className="italic text-gray-800 no-underline visited:text-gray-800"
+            to={entry.slug}
+          >
+            {entry.title}
+          </Link>
+        </li>
       ))}
-    </List>
+    </ul>
   </div>
 );
 

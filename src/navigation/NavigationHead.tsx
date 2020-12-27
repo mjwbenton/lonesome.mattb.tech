@@ -1,15 +1,12 @@
-import styled from "styled-components";
-import { spacingUnit, fontColor } from "../style/style";
+import React from "react";
 
-export default styled.a`
-  display: block;
-  cursor: pointer;
-  margin-bottom: ${spacingUnit};
-  color: ${fontColor};
-  font-size: 1.25rem;
-  font-weight: 700;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-`;
+export default function NavigationHead(
+  props: Omit<JSX.IntrinsicElements["a"], "className">
+) {
+  return (
+    <a
+      {...props}
+      className="block mb-4 text-xl font-bold text-gray-800 no-underline cursor-pointer last:mb-0"
+    />
+  );
+}

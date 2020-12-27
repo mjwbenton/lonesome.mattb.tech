@@ -1,7 +1,9 @@
-import styled from "styled-components";
-import { doubleSpacingUnit, altBackgroundColor } from "../style/style";
+import React from "react";
 
-export default styled.div`
-  margin-bottom: ${doubleSpacingUnit};
-  border-top: 3px solid ${altBackgroundColor};
-`;
+const ContentBlock = (
+  props: Omit<JSX.IntrinsicElements["div"], "className">
+) => {
+  return <div {...props} className="mb-8 border-t-4 border-gray-200" />;
+};
+
+export default ContentBlock;

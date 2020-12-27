@@ -1,17 +1,10 @@
 import React from "react";
-import styled from "styled-components";
-import { spacingUnit, fontColor, fontStackHeading } from "../style/style";
 
-const LogoStyle = styled.a`
-  display: block;
-  margin-bottom: ${spacingUnit};
-  margin-top: ${spacingUnit};
-  color: ${fontColor};
-  font-family: ${fontStackHeading};
-  font-size: 2.75rem;
-  font-style: italic;
-  text-decoration: underline;
-  text-align: center;
-`;
-
-export default () => <LogoStyle href="/">mattb</LogoStyle>;
+export default () => (
+  <a
+    className="block my-4 text-5xl italic text-center text-gray-800 underline visited:text-gray-800 font-heading"
+    href="/"
+  >
+    mattb
+  </a>
+);

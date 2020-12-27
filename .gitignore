@@ -10,6 +10,8 @@ output
 !gatsby-config.js
 !gatsby-node.js
 !gatsby-browser.js
+!tailwind.config.js
+!postcss.config.js
 *.js.map
 *.zip
 public

@@ -1,9 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 import ContentBlock from "../component/ContentBlock";
 import Infoline from "../component/Infoline";
 import TwoRowText from "../component/TwoRowText";
-import { halfSpacingUnit, spacingUnit } from "../style/style";
 import { Star, Clock } from "react-feather";
 
 export type BookType = {
@@ -17,38 +15,24 @@ export type BookType = {
   read_at: string;
 };
 
-const Wrapper = styled.div`
-  display: flex;
-  margin-top: ${halfSpacingUnit};
-  margin-bottom: ${halfSpacingUnit};
-
-  > * + * {
-    margin: ${halfSpacingUnit};
-  }
-`;
-
-const Time = styled.div`
-  font-size: 0.75rem;
-`;
-
 const Book: React.FunctionComponent<{ book: BookType }> = ({ book }) => (
   <ContentBlock>
-    <Wrapper>
+    <div className="flex my-2 space-y-2">
       <img src={book.image} alt={`Cover of ${book.title}`} />
       <div>
         <TwoRowText row1={book.title} row2={book.authors.join(", ")} />
         {book.started_at && (
-          <Time>
+          <div className="text-xs">
             Started: <Clock size={14} /> {book.started_at}
-          </Time>
+          </div>
         )}
         {book.read_at && (
-          <Time>
+          <div className="text-xs">
             Finished: <Clock size={14} /> {book.read_at}
-          </Time>
+          </div>
         )}
       </div>
-    </Wrapper>
+    </div>
     <Infoline externalLinkUrl={book.link} externalLinkText="Gr">
       {book.read ? (
         <span>
