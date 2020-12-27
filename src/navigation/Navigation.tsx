@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { graphql, StaticQuery } from "gatsby";
+import { graphql, Link, StaticQuery } from "gatsby";
 import NavigationGroup from "./NavigationGroup";
-import NavigationSingle from "./NavigationSingle";
 import { Entry, Group } from "./navigationTypes";
 
 export const Navigation: React.FunctionComponent<{
@@ -22,7 +21,15 @@ export const Navigation: React.FunctionComponent<{
       {entries.map((groupOrEntry) => {
         if (groupOrEntry.type === "entry") {
           const entry = groupOrEntry as Entry;
-          return <NavigationSingle {...entry} key={entry.title} />;
+          return (
+            <Link
+              className="block text-xl font-bold"
+              to={entry.slug}
+              key={entry.title}
+            >
+              {entry.title}
+            </Link>
+          );
         } else {
           const group = groupOrEntry as Group;
           return (
