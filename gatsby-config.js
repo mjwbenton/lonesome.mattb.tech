@@ -1,6 +1,5 @@
 require("ts-node/register");
 require("dotenv").config();
-const { largePicture } = require("./src/photo/sizes");
 
 module.exports = {
   flags: { PRESERVE_WEBPACK_CACHE: true },
@@ -22,7 +21,11 @@ module.exports = {
           {
             resolve: `@mattb.tech/gatsby-remark-flickr`,
             options: {
-              sizes: largePicture,
+              /*
+               * See Photo.tsx for full explanation. We use tailwind breakpoints, but with an additional 2rem of padding. However, we have a max-width of 48rem (see styles.css), which kicks in at the 1024px breakpoint.
+               */
+              sizes:
+                "(min-width: 1024px) 45rem, (min-width: 768px) 728px (min-width: 640px) 600px, 100vw",
             },
           },
           `gatsby-remark-prismjs`,

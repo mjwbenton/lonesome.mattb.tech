@@ -5,6 +5,10 @@ type StyledIntrinsicProps<I extends keyof JSX.IntrinsicElements> = Omit<
   "className"
 >;
 
+export function p(props: StyledIntrinsicProps<"p">) {
+  return <p {...props} className="text-justify max-width-block" />;
+}
+
 export function ul(props: StyledIntrinsicProps<"ul">) {
   return <ul {...props} className="pl-4 max-width-block" />;
 }
@@ -14,7 +18,7 @@ export function li(props: StyledIntrinsicProps<"li">) {
 }
 
 export function img(props: StyledIntrinsicProps<"img">) {
-  return <img {...props} className="full-screen-block" />;
+  return <img {...props} className="w-full max-h-full" />;
 }
 
 export function pre(props: StyledIntrinsicProps<"pre">) {
