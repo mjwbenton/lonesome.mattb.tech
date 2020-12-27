@@ -33,6 +33,7 @@
     "@mattb.tech/gatsby-remark-flickr": "^1.0.0",
     "@mattb.tech/gatsby-transform-flickr-set": "^1.0.0",
     "@mattb.tech/gatsby-transform-spotify-playlist": "^1.0.0",
+    "@tailwindcss/typography": "^0.3.1",
     "@types/isomorphic-fetch": "0.0.35",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",

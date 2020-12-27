@@ -3,6 +3,6 @@ import renderAst from "./renderAst";
 
 const MarkdownContent: React.FunctionComponent<{ htmlAst: any }> = ({
   htmlAst,
-}) => <div>{renderAst(htmlAst)}</div>;
+}) => <div className="prose">{renderAst(htmlAst)}</div>;
 
 export default MarkdownContent;

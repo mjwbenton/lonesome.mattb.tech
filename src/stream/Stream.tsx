@@ -4,7 +4,6 @@ import SinglePhoto from "../photo/Photo";
 import PhotosWrapper from "../photo/PhotosWrapper";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
-import { p as P } from "../markdown/tags";
 
 const Stream = () => {
   const { data, error, loading } = useQuery<{ recentPhotos: Photo[] }>(gql`
@@ -27,10 +26,10 @@ const Stream = () => {
     }
   `);
   if (loading) {
-    return <P>Loading...</P>;
+    return <p>Loading...</p>;
   }
   if (error) {
-    return <P>{error.toString()}</P>;
+    return <p>{error.toString()}</p>;
   }
   return (
     <PhotosWrapper>

@@ -1,11 +1,13 @@
 import React from "react";
 import { Entry } from "./navigationTypes";
 import { Link } from "gatsby";
-import NavigationHead from "./NavigationHead";
-
-const NavigationHeadLink = props => <NavigationHead as={Link} {...props} />;
 
 const NavigationSingle: React.FunctionComponent<Entry> = ({ title, slug }) => (
-  <NavigationHeadLink to={slug}>{title}</NavigationHeadLink>
+  <Link
+    className="block text-xl font-bold text-gray-800 no-underline cursor-pointer visited:text-gray-800"
+    to={slug}
+  >
+    {title}
+  </Link>
 );
 export default NavigationSingle;

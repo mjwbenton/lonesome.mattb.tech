@@ -3,7 +3,6 @@ import { graphql, StaticQuery } from "gatsby";
 import NavigationGroup from "./NavigationGroup";
 import NavigationSingle from "./NavigationSingle";
 import { Entry, Group } from "./navigationTypes";
-import NavigationWrapper from "./NavigationWrapper";
 
 export const Navigation: React.FunctionComponent<{
   entries: Array<Group | Entry>;
@@ -19,7 +18,7 @@ export const Navigation: React.FunctionComponent<{
   });
 
   return (
-    <NavigationWrapper>
+    <nav className="p-4 text-center bg-gray-100 border-t-4 border-green-500 space-y-4">
       {entries.map((groupOrEntry) => {
         if (groupOrEntry.type === "entry") {
           const entry = groupOrEntry as Entry;
@@ -41,7 +40,7 @@ export const Navigation: React.FunctionComponent<{
           );
         }
       })}
-    </NavigationWrapper>
+    </nav>
   );
 };
 

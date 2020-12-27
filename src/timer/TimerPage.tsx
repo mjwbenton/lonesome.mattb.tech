@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../global/Layout";
 import { Thermometer, Watch } from "react-feather";
-import { h2 as H2 } from "../markdown/tags";
 import Timer from "./Timer";
 import useCountdownTimer, { State } from "./useCountdownTimer";
 import MaxWidthWrapper from "../component/MaxWidthWrapper";
@@ -85,7 +84,7 @@ const TimerPage = () => {
       <Timer {...{ minutes, seconds, state, startStop }} />
       {Object.keys(timings).map((film) => (
         <div key={film}>
-          <H2>{film}</H2>
+          <h2 className="text-lg font-bold">{film}</h2>
           <MaxWidthWrapper>
             <table>
               <tbody>

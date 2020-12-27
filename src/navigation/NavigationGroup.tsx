@@ -1,7 +1,6 @@
 import React from "react";
 import { Entry, Group } from "./navigationTypes";
 import { Link } from "gatsby";
-import NavigationHead from "./NavigationHead";
 
 const NavigationGroup: React.FunctionComponent<
   Group & {
@@ -10,16 +9,13 @@ const NavigationGroup: React.FunctionComponent<
   }
 > = ({ title, entries, open, onToggle }) => (
   <div>
-    <NavigationHead onClick={onToggle}>{title}</NavigationHead>
-    <ul className={`overflow-hidden ${open ? "" : "max-h-0"}`}>
+    <a className="block text-xl font-bold cursor-pointer" onClick={onToggle}>
+      {title}
+    </a>
+    <ul className={`overflow-hidden space-y-4 ${open ? "mt-4" : "max-h-0"}`}>
       {entries.map((entry: Entry) => (
-        <li className="pb-4" key={entry.slug}>
-          <Link
-            className="italic text-gray-800 no-underline visited:text-gray-800"
-            to={entry.slug}
-          >
-            {entry.title}
-          </Link>
+        <li key={entry.slug}>
+          <Link to={entry.slug}>{entry.title}</Link>
         </li>
       ))}
     </ul>

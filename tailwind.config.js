@@ -4,7 +4,6 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily: {
-      'body': ["fira-sans", "Arial", "sans-serif"],
       'heading': ["fira-sans-2", "Arial", "sans-serif"],
       'mono': ["Consolas", "Monaco", "Andale Mono", "Ubuntu Mono", "monospace"]
     }
@@ -15,5 +14,7 @@ module.exports = {
       textColor: ['visited', 'odd'],
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography')
+  ],
 }
