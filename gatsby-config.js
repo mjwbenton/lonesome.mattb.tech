@@ -4,11 +4,7 @@ require("dotenv").config();
 module.exports = {
   flags: { PRESERVE_WEBPACK_CACHE: true },
   siteMetadata: {
-    navigationColumns: [
-      ["Photos", "Code"],
-      ["Keyboards", "Playlists"],
-      ["Reading"],
-    ],
+    navigationOrder: ["Photos", "Keyboards", "Playlists", "Reading", "Code"],
   },
   plugins: [
     `gatsby-plugin-typescript`,

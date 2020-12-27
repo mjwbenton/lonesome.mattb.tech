@@ -1,5 +1,3 @@
-export type Column = Array<Group | Entry>;
-
 export type Group = {
   type: "group";
   title: string;
