@@ -5,7 +5,7 @@ import SinglePhoto from "./Photo";
 import PhotosWrapper from "./PhotosWrapper";
 
 const Photos: React.FunctionComponent<{ data: PhotoSetFragmentType }> = ({
-  data
+  data,
 }) => {
   if (
     !data.markdownRemark.childFlickrSet ||
@@ -15,8 +15,8 @@ const Photos: React.FunctionComponent<{ data: PhotoSetFragmentType }> = ({
   }
   return (
     <PhotosWrapper>
-      {data.markdownRemark.childFlickrSet.photos.map(p => (
-        <SinglePhoto {...p} key={p.pageUrl} />
+      {data.markdownRemark.childFlickrSet.photos.map((p, i) => (
+        <SinglePhoto {...p} key={p.pageUrl} lazyLoad={i > 1} />
       ))}
     </PhotosWrapper>
   );

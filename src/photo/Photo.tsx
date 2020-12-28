@@ -5,6 +5,7 @@ import {
 } from "@mattb.tech/gatsby-transform-flickr-set";
 import Infoline from "../component/Infoline";
 import ContentBlock from "../component/ContentBlock";
+import LazyLoad from "react-lazyload";
 
 /*
  * In our Layout we use the tailwind container component which limits our maximum width to the size of the tailwind breakpoints (https://tailwindcss.com/docs/responsive-design).
@@ -26,21 +27,31 @@ function generateSrcSet(sources: PhotoSource[]): string {
     .join(", ");
 }
 
-const Photo: React.FunctionComponent<PhotoType> = ({
+const Photo: React.FunctionComponent<PhotoType & { lazyLoad?: boolean }> = ({
   pageUrl,
   sources,
   mainSource,
   title,
+  lazyLoad,
 }) => {
+  const img = (
+    <img
+      src={mainSource.url}
+      srcSet={generateSrcSet(sources)}
+      sizes={SIZES}
+      alt={`Image titled "${title}"`}
+      className="block full-screen-block"
+    />
+  );
   return (
     <ContentBlock>
-      <img
-        src={mainSource.url}
-        srcSet={generateSrcSet(sources)}
-        sizes={SIZES}
-        alt={`Image titled "${title}"`}
-        className="block full-screen-block"
-      />
+      {lazyLoad ? (
+        <LazyLoad once offset={200} placeholder={<div className="h-64" />}>
+          {img}
+        </LazyLoad>
+      ) : (
+        img
+      )}
       <Infoline externalLinkUrl={pageUrl} externalLinkText="Fl">
         <h3 className="text-xs font-bold">{title}</h3>
       </Infoline>
