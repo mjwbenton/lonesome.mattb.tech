@@ -2,7 +2,7 @@ import React from "react";
 
 export default () => (
   <a
-    className="block my-8 text-5xl italic text-center text-green-500 underline visited:text-green-500 font-heading"
+    className="block w-full p-8 text-5xl italic text-center text-green-500 underline bg-gray-100 md:text-left font-heading"
     href="/"
   >
     mattb

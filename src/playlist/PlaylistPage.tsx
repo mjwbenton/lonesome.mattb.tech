@@ -13,7 +13,7 @@ type MarkdownRemarkFragmentType = {
 type DataFormat = MarkdownRemarkFragmentType & SpotifyPlaylistFragmentType;
 
 const MarkdownPage: React.FunctionComponent<{ data: DataFormat }> = ({
-  data
+  data,
 }) => (
   <Layout>
     <MarkdownContent htmlAst={data.markdownRemark.htmlAst} />

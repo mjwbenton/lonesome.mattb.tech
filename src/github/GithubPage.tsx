@@ -17,10 +17,12 @@ const GithubPage: React.FunctionComponent<{ data: any }> = ({ data }) => (
           {n.description && <p className="mb-4">{n.description}</p>}
           <div className="flex justify-between w-full mb-4 text-xs">
             <div className="text-left">
-              Created: <Clock size={14} /> {n.createdAt}
+              Created: <Clock className="inline-block" size={14} />{" "}
+              {n.createdAt}
             </div>
             <div className="text-right">
-              Last Updated: <Clock size={14} /> {n.updatedAt}
+              Last Updated: <Clock className="inline-block" size={14} />{" "}
+              {n.updatedAt}
             </div>
           </div>
           <Infoline externalLinkUrl={n.url} externalLinkText="Gh">

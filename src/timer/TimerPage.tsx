@@ -81,11 +81,11 @@ const TimerPage = () => {
   );
   return (
     <Layout>
-      <Timer {...{ minutes, seconds, state, startStop }} />
-      {Object.keys(timings).map((film) => (
-        <div key={film}>
-          <h2 className="text-lg font-bold">{film}</h2>
-          <MaxWidthWrapper>
+      <div className="max-w-3xl">
+        <Timer {...{ minutes, seconds, state, startStop }} />
+        {Object.keys(timings).map((film) => (
+          <div key={film}>
+            <h2 className="mt-8 mb-4 text-lg font-bold">{film}</h2>
             <table>
               <tbody>
                 <TimerTableRow>
@@ -125,9 +125,9 @@ const TimerPage = () => {
                 ))}
               </tbody>
             </table>
-          </MaxWidthWrapper>
-        </div>
-      ))}
+          </div>
+        ))}
+      </div>
     </Layout>
   );
 };

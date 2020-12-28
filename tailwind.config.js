@@ -2,7 +2,16 @@ module.exports = {
   purge: ['./src/**/*.tsx'],
   darkMode: false,
   theme: {
-    extend: {},
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            pre: false,
+            code: false
+          }
+        }
+      },
+    },
     fontFamily: {
       'heading': ["fira-sans-2", "Arial", "sans-serif"],
       'mono': ["Consolas", "Monaco", "Andale Mono", "Ubuntu Mono", "monospace"]
@@ -12,10 +21,11 @@ module.exports = {
     extend: {
       backgroundColor: ['odd'],
       textColor: ['visited', 'odd'],
-      borderWidth: ['last']
+      borderWidth: ['last'],
+      margin: ['first', 'last']
     },
   },
   plugins: [
-    require('@tailwindcss/typography')
+    require('@tailwindcss/typography'),
   ],
 }

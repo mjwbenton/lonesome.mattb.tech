@@ -2,18 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .max-h-90vh {
+    max-height: 90vh;
+  }
+}
+
 @layer components {
   .external-link:after {
     content: "→";
   }
 
   .max-width-block {
-    @apply max-w-3xl mx-auto mt-0 mb-4;
+    @apply max-w-3xl mt-0 mb-4;
   }
 
   .full-screen-block {
-    @apply max-w-full;
-    max-height: 90vh;
+    @apply max-w-full max-h-90vh;
   }
 
   .striped-list-element > * {

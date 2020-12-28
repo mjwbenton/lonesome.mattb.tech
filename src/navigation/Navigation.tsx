@@ -1,7 +1,24 @@
 import React, { useState } from "react";
 import { graphql, Link, StaticQuery } from "gatsby";
 import { Entry, Group } from "./navigationTypes";
-import NavigationSection from "./NavigationSection";
+
+function NavigationSection({
+  children,
+  hidden,
+}: {
+  children: any;
+  hidden?: boolean;
+}) {
+  return (
+    <div
+      className={`text-xl cursor-pointer font-bold text-center md:text-left md:border-r last:border-r-0 md:inline-block md:pr-4 md:pl-4 first:pl-0 last:pr-0 ${
+        hidden ? "hidden" : ""
+      }`}
+    >
+      {children}
+    </div>
+  );
+}
 
 export const Navigation: React.FunctionComponent<{
   entries: Array<Group | Entry>;
@@ -33,13 +50,11 @@ export const Navigation: React.FunctionComponent<{
   const openTitle = Object.keys(state).find((key) => state[key]);
 
   return (
-    <nav className="p-4 text-center bg-gray-100 border-t-4 border-green-500">
+    <nav className="p-4 bg-gray-100 border-t-4 border-green-500">
       {anyOpen ? (
         <div className="mb-4 md:hidden md:mb-0">
           <NavigationSection key="return" hidden={!anyOpen}>
-            <a className="text-xl font-bold cursor-pointer" onClick={reset}>
-              &larr; {openTitle}
-            </a>
+            <a onClick={reset}>{openTitle} &larr;</a>
           </NavigationSection>
         </div>
       ) : (
@@ -51,9 +66,7 @@ export const Navigation: React.FunctionComponent<{
             const entry = groupOrEntry as Entry;
             return (
               <NavigationSection key={entry.title} hidden={anyOpen}>
-                <Link className="text-xl font-bold" to={entry.slug}>
-                  {entry.title}
-                </Link>
+                <Link to={entry.slug}>{entry.title}</Link>
               </NavigationSection>
             );
           } else {
@@ -61,9 +74,7 @@ export const Navigation: React.FunctionComponent<{
             return (
               <NavigationSection key={group.title} hidden={anyOpen}>
                 <a
-                  className={`text-xl font-bold cursor-pointer ${
-                    state[group.title] ? "text-green-500" : ""
-                  }`}
+                  className={`${state[group.title] ? "text-green-500" : ""}`}
                   onClick={() => openGroup(group)}
                 >
                   {group.title}
@@ -80,7 +91,9 @@ export const Navigation: React.FunctionComponent<{
             <ul
               key={`${group.title}-menu`}
               className={`space-y-4 ${
-                state[group.title] ? "md:mt-4" : "hidden"
+                state[group.title]
+                  ? "md:m-4 md:mt-8 text-center md:text-left"
+                  : "hidden"
               }`}
             >
               {(group as Group).entries.map((entry) => (

@@ -27,9 +27,8 @@ const Timer = ({
   startStop: () => void;
 }) => {
   return (
-    <div className="mb-4 font-mono text-3xl text-center">
-      <CelebrateIfFinished state={state} />
-      <div className="inline-block p-4">
+    <div className="mb-4 font-mono text-3xl">
+      <div className="inline-block pr-4">
         {minutes} : {seconds}
       </div>
       <Play onClick={startStop} className="inline-block" />
