@@ -17,18 +17,18 @@ export type BookType = {
 
 const Book: React.FunctionComponent<{ book: BookType }> = ({ book }) => (
   <ContentBlock>
-    <div className="flex my-2 space-y-2">
-      <img src={book.image} alt={`Cover of ${book.title}`} />
-      <div>
+    <div className="flex">
+      <img className="mr-2" src={book.image} alt={`Cover of ${book.title}`} />
+      <div className="my-2 space-y-2">
         <TwoRowText row1={book.title} row2={book.authors.join(", ")} />
         {book.started_at && (
           <div className="text-xs">
-            Started: <Clock size={14} /> {book.started_at}
+            Started: <Clock className="inline" size={14} /> {book.started_at}
           </div>
         )}
         {book.read_at && (
           <div className="text-xs">
-            Finished: <Clock size={14} /> {book.read_at}
+            Finished: <Clock className="inline" size={14} /> {book.read_at}
           </div>
         )}
       </div>
@@ -36,7 +36,7 @@ const Book: React.FunctionComponent<{ book: BookType }> = ({ book }) => (
     <Infoline externalLinkUrl={book.link} externalLinkText="Gr">
       {book.read ? (
         <span>
-          Rating: <Star size={14} /> {book.rating}/5
+          Rating: <Star className="inline" size={14} /> {book.rating}/5
         </span>
       ) : (
         <span>Still reading</span>
