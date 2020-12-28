@@ -10,6 +10,7 @@ const Layout: React.FunctionComponent<{ children: any }> = ({ children }) => (
     <Logo />
     <Navigation />
     <div className="m-8">{children}</div>
+    <link rel="stylesheet" href="https://use.typekit.net/ukk8ctr.css" />
   </ApiProvider>
 );
 
