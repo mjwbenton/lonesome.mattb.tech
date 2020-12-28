@@ -13,7 +13,6 @@ module.exports = {
       },
     },
     fontFamily: {
-      'heading': ["fira-sans-2", "Arial", "sans-serif"],
       'mono': ["Consolas", "Monaco", "Andale Mono", "Ubuntu Mono", "monospace"]
     }
   },

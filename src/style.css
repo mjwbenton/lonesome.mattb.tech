@@ -6,6 +6,10 @@
   .max-h-90vh {
     max-height: 90vh;
   }
+
+  .underline-green-500 {
+    text-decoration-color: theme('colors.green.500')
+  }
 }
 
 @layer components {
