@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { graphql, Link, StaticQuery } from "gatsby";
-import NavigationGroup from "./NavigationGroup";
 import { Entry, Group } from "./navigationTypes";
+import NavigationSection from "./NavigationSection";
 
 export const Navigation: React.FunctionComponent<{
   entries: Array<Group | Entry>;
@@ -16,37 +16,81 @@ export const Navigation: React.FunctionComponent<{
       }, {});
   });
 
+  const openGroup = ({ title }) => {
+    const newState = {};
+    Object.keys(state).forEach((gN) => (newState[gN] = false));
+    newState[title] = !state[title];
+    setState(newState);
+  };
+
+  const reset = () => {
+    const newState = {};
+    Object.keys(state).forEach((gN) => (newState[gN] = false));
+    setState(newState);
+  };
+
+  const anyOpen = Object.keys(state).some((key) => state[key]);
+  const openTitle = Object.keys(state).find((key) => state[key]);
+
   return (
-    <nav className="p-4 text-center bg-gray-100 border-t-4 border-green-500 space-y-4">
-      {entries.map((groupOrEntry) => {
-        if (groupOrEntry.type === "entry") {
-          const entry = groupOrEntry as Entry;
-          return (
-            <Link
-              className="block text-xl font-bold"
-              to={entry.slug}
-              key={entry.title}
+    <nav className="p-4 text-center bg-gray-100 border-t-4 border-green-500">
+      {anyOpen ? (
+        <div className="mb-4 md:hidden md:mb-0">
+          <NavigationSection key="return" hidden={!anyOpen}>
+            <a className="text-xl font-bold cursor-pointer" onClick={reset}>
+              &larr; {openTitle}
+            </a>
+          </NavigationSection>
+        </div>
+      ) : (
+        ""
+      )}
+      <div className="space-y-4 md:space-y-0">
+        {entries.map((groupOrEntry) => {
+          if (groupOrEntry.type === "entry") {
+            const entry = groupOrEntry as Entry;
+            return (
+              <NavigationSection key={entry.title} hidden={anyOpen}>
+                <Link className="text-xl font-bold" to={entry.slug}>
+                  {entry.title}
+                </Link>
+              </NavigationSection>
+            );
+          } else {
+            const group = groupOrEntry as Group;
+            return (
+              <NavigationSection key={group.title} hidden={anyOpen}>
+                <a
+                  className={`text-xl font-bold cursor-pointer ${
+                    state[group.title] ? "text-green-500" : ""
+                  }`}
+                  onClick={() => openGroup(group)}
+                >
+                  {group.title}
+                </a>
+              </NavigationSection>
+            );
+          }
+        })}
+      </div>
+      <div>
+        {entries
+          .filter((groupOrEntry) => groupOrEntry.type === "group")
+          .map((group) => (
+            <ul
+              key={`${group.title}-menu`}
+              className={`space-y-4 ${
+                state[group.title] ? "md:mt-4" : "hidden"
+              }`}
             >
-              {entry.title}
-            </Link>
-          );
-        } else {
-          const group = groupOrEntry as Group;
-          return (
-            <NavigationGroup
-              {...group}
-              key={group.title}
-              open={state[group.title]}
-              onToggle={() => {
-                const newState = {};
-                Object.keys(state).forEach((gN) => (newState[gN] = false));
-                newState[group.title] = !state[group.title];
-                setState(newState);
-              }}
-            />
-          );
-        }
-      })}
+              {(group as Group).entries.map((entry) => (
+                <li key={entry.slug}>
+                  <Link to={entry.slug}>{entry.title}</Link>
+                </li>
+              ))}
+            </ul>
+          ))}
+      </div>
     </nav>
   );
 };

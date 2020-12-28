@@ -12,6 +12,7 @@ module.exports = {
     extend: {
       backgroundColor: ['odd'],
       textColor: ['visited', 'odd'],
+      borderWidth: ['last']
     },
   },
   plugins: [
