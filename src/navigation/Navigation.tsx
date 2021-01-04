@@ -11,7 +11,7 @@ function NavigationSection({
 }) {
   return (
     <div
-      className={`text-xl cursor-pointer font-bold text-center md:text-left md:border-r last:border-r-0 md:inline-block md:pr-4 md:pl-4 first:pl-0 last:pr-0 ${
+      className={`text-xl font-bold text-center md:text-left md:border-r last:border-r-0 md:inline-block md:pr-4 md:pl-4 first:pl-0 last:pr-0 ${
         hidden ? "hidden" : ""
       }`}
     >
@@ -54,7 +54,9 @@ export const Navigation: React.FunctionComponent<{
       {anyOpen ? (
         <div className="mb-4 md:hidden md:mb-0">
           <NavigationSection key="return" hidden={!anyOpen}>
-            <a onClick={reset}>{openTitle} &larr;</a>
+            <a className="cursor-pointer" onClick={reset}>
+              {openTitle} &larr;
+            </a>
           </NavigationSection>
         </div>
       ) : (
@@ -74,7 +76,9 @@ export const Navigation: React.FunctionComponent<{
             return (
               <NavigationSection key={group.title} hidden={anyOpen}>
                 <a
-                  className={`${state[group.title] ? "text-green-500" : ""}`}
+                  className={`cursor-pointer ${
+                    state[group.title] ? "text-green-500" : ""
+                  }`}
                   onClick={() => openGroup(group)}
                 >
                   {group.title}
