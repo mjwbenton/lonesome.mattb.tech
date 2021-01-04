@@ -9,7 +9,7 @@ const Layout: React.FunctionComponent<{ children: any }> = ({ children }) => (
     <HtmlHeader />
     <Logo />
     <Navigation />
-    <div className="m-8">{children}</div>
+    <div className="m-4 md:m-8">{children}</div>
   </ApiProvider>
 );
 
