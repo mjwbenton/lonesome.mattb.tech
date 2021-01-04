@@ -17,11 +17,7 @@ module.exports = {
           {
             resolve: `@mattb.tech/gatsby-remark-flickr`,
             options: {
-              /*
-               * See Photo.tsx for full explanation. We use tailwind breakpoints, but with an additional 2rem of padding. However, we have a max-width of 48rem (see styles.css), which kicks in at the 1024px breakpoint.
-               */
-              sizes:
-                "(min-width: 1024px) 45rem, (min-width: 768px) 728px (min-width: 640px) 600px, 100vw",
+              sizes: "100vw",
             },
           },
           `gatsby-remark-prismjs`,

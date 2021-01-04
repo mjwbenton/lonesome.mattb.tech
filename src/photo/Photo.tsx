@@ -8,17 +8,12 @@ import ContentBlock from "../component/ContentBlock";
 import LazyLoad from "react-lazyload";
 
 /*
- * In our Layout we use the tailwind container component which limits our maximum width to the size of the tailwind breakpoints (https://tailwindcss.com/docs/responsive-design).
- * We also add 1 rem padding to each side. We use 20px font-size, so subtract 40px from each value.
- * When we get smaller than 640px we just say that it will be as wide as the viewport (even though it will actually be slightly smaller due to padding)
+ * The images are the width of the viewport minus padding.
+ * See Layout.tsx for the padding at different breakpoints.
  */
 const SIZES = `
-  (min-width: 1536px) 1496px,
-  (min-width: 1280px) 1240px,
-  (min-width: 1024px) 984px,
-  (min-width: 768px) 728px,
-  (min-width: 640px) 600px,
-  100vw
+  (min-width: 768px) calc(100vw - 4rem),
+  calc(100vw - 2rem)
 `;
 
 function generateSrcSet(sources: PhotoSource[]): string {
