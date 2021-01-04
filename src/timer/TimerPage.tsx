@@ -81,7 +81,7 @@ const TimerPage = () => {
   );
   return (
     <Layout>
-      <div className="max-w-3xl">
+      <MaxWidthWrapper>
         <Timer {...{ minutes, seconds, state, startStop }} />
         {Object.keys(timings).map((film) => (
           <div key={film}>
@@ -127,7 +127,7 @@ const TimerPage = () => {
             </table>
           </div>
         ))}
-      </div>
+      </MaxWidthWrapper>
     </Layout>
   );
 };

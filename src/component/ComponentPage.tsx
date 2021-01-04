@@ -5,17 +5,18 @@ import TwoRowText from "./TwoRowText";
 import StripedList, { StripeElement } from "./StripedList";
 import Infoline from "./Infoline";
 import ContentBlock from "./ContentBlock";
+import Prose from "./Prose";
 
 export default () => (
   <Layout>
-    <MaxWidthWrapper>
+    <Prose>
       <p>
         <b>
           Note: This is a work in progress set of components to simplify this
           site.
         </b>
       </p>
-    </MaxWidthWrapper>
+    </Prose>
     <MaxWidthWrapper>
       <StripedList>
         <StripeElement index={1}>

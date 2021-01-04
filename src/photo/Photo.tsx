@@ -35,7 +35,7 @@ const Photo: React.FunctionComponent<PhotoType & { lazyLoad?: boolean }> = ({
       srcSet={generateSrcSet(sources)}
       sizes={SIZES}
       alt={`Image titled "${title}"`}
-      className="block full-screen-block"
+      className="block max-w-full max-h-95vh"
     />
   );
   return (

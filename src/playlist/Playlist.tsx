@@ -4,6 +4,7 @@ import { Playlist as PlaylistType } from "@mattb.tech/gatsby-transform-spotify-p
 import Track from "./Track";
 import MaxWidthWrapper from "../component/MaxWidthWrapper";
 import StripedList from "../component/StripedList";
+import Prose from "../component/Prose";
 
 const Playlist: React.FunctionComponent<{
   data: SpotifyPlaylistFragmentType;
@@ -16,14 +17,18 @@ const Playlist: React.FunctionComponent<{
     return null;
   }
   return (
-    <MaxWidthWrapper>
-      <a href={playlist.link}>View on Spotify</a>
-      <StripedList>
-        {playlist.tracks.map((t, i) => (
-          <Track track={t} index={i} key={i} />
-        ))}
-      </StripedList>
-    </MaxWidthWrapper>
+    <>
+      <Prose>
+        <a href={playlist.link}>View on Spotify</a>
+      </Prose>
+      <MaxWidthWrapper>
+        <StripedList>
+          {playlist.tracks.map((t, i) => (
+            <Track track={t} index={i} key={i} />
+          ))}
+        </StripedList>
+      </MaxWidthWrapper>
+    </>
   );
 };
 export default Playlist;

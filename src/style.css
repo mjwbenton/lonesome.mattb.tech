@@ -21,14 +21,6 @@
     content: "→";
   }
 
-  .max-width-block {
-    @apply mt-0 mb-4 max-w-65ch;
-  }
-
-  .full-screen-block {
-    @apply max-w-full max-h-95vh;
-  }
-
   .striped-list-element > * {
     @apply z-10
   }
