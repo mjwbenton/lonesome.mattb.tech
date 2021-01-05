@@ -1,5 +1,11 @@
 module.exports = {
-  purge: ['./src/**/*.tsx'],
+  purge: {
+    enabled: true,
+    content: ['./src/**/*.tsx'],
+    options: {
+      keyframes: true
+    }
+  },
   darkMode: false,
   theme: {
     extend: {
