@@ -39,7 +39,7 @@ const Photo: React.FunctionComponent<PhotoType & { lazyLoad?: boolean }> = ({
     />
   );
   return (
-    <ContentBlock>
+    <ContentBlock tabIndex={0}>
       {lazyLoad ? (
         <LazyLoad once offset={200} placeholder={<div className="h-64" />}>
           {img}
