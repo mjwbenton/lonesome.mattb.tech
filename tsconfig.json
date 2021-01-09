@@ -6,6 +6,7 @@
     "esModuleInterop": true,
     "jsx": "react",
     "jsxFactory": "React.createElement",
+    "jsxFragmentFactory": "React.Fragment",
     "strict": true,
     "noImplicitAny": false,
     "lib": ["esnext", "dom"],
