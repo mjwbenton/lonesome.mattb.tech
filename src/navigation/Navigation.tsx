@@ -74,6 +74,8 @@ export const Navigation: React.FunctionComponent<{
                       state[group.title] ? "text-green-500" : ""
                     }`}
                     onClick={() => openGroup(group)}
+                    aria-expanded={state[group.title] ? "true" : "false"}
+                    aria-controls={`${group.title}-menu`}
                   >
                     {group.title}
                   </Clickable>
@@ -91,6 +93,7 @@ export const Navigation: React.FunctionComponent<{
             <Composite
               {...subMenuComposite}
               key={`${group.title}-menu`}
+              id={`${group.title}-menu`}
               className={`space-y-4 ${
                 state[group.title]
                   ? "md:m-4 md:mt-8 text-center md:text-left"
