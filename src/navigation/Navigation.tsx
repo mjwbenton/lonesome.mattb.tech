@@ -1,28 +1,19 @@
 import React, { useState } from "react";
 import { graphql, Link, StaticQuery } from "gatsby";
 import { Entry, Group } from "./navigationTypes";
+import { Clickable, Composite, CompositeItem, useCompositeState } from "reakit";
 
-function NavigationSection({
-  children,
-  hidden,
-}: {
-  children: any;
-  hidden?: boolean;
-}) {
-  return (
-    <div
-      className={`text-xl font-bold text-center md:text-left md:border-r last:border-r-0 md:inline-block md:pr-4 md:pl-4 first:pl-0 last:pr-0 ${
-        hidden ? "hidden" : ""
-      }`}
-    >
-      {children}
-    </div>
-  );
+function navSectionClasses(hidden: boolean | undefined) {
+  return `block w-full cursor-pointer text-xl font-bold text-center md:text-left md:border-r last:border-r-0 md:w-auto md:inline-block md:pr-4 md:pl-4 first:pl-0 last:pr-0 ${
+    hidden ? "hidden" : ""
+  }`;
 }
 
 export const Navigation: React.FunctionComponent<{
   entries: Array<Group | Entry>;
 }> = ({ entries }) => {
+  const mainComposite = useCompositeState();
+
   const [state, setState] = useState(() => {
     return entries
       .filter((groupOrEntry) => groupOrEntry.type === "group")
@@ -51,63 +42,86 @@ export const Navigation: React.FunctionComponent<{
 
   return (
     <nav className="p-4 bg-gray-100 border-t-4 border-green-500">
-      {anyOpen ? (
-        <div className="mb-4 md:hidden md:mb-0">
-          <NavigationSection key="return" hidden={!anyOpen}>
-            <a className="cursor-pointer" onClick={reset}>
-              {openTitle} &larr;
-            </a>
-          </NavigationSection>
-        </div>
-      ) : (
-        ""
-      )}
-      <div className="space-y-4 md:space-y-0">
+      <Composite
+        {...mainComposite}
+        className="space-y-4 md:space-y-0"
+        aria-label="Main Navigation"
+      >
         {entries.map((groupOrEntry) => {
           if (groupOrEntry.type === "entry") {
             const entry = groupOrEntry as Entry;
             return (
-              <NavigationSection key={entry.title} hidden={anyOpen}>
-                <Link to={entry.slug}>{entry.title}</Link>
-              </NavigationSection>
+              <CompositeItem {...mainComposite} key={entry.title}>
+                {(props) => (
+                  <Link
+                    {...props}
+                    className={navSectionClasses(anyOpen)}
+                    to={entry.slug}
+                  >
+                    {entry.title}
+                  </Link>
+                )}
+              </CompositeItem>
             );
           } else {
             const group = groupOrEntry as Group;
             return (
-              <NavigationSection key={group.title} hidden={anyOpen}>
-                <a
-                  className={`cursor-pointer ${
-                    state[group.title] ? "text-green-500" : ""
-                  }`}
-                  onClick={() => openGroup(group)}
-                >
-                  {group.title}
-                </a>
-              </NavigationSection>
+              <CompositeItem {...mainComposite} key={group.title}>
+                {(props) => (
+                  <Clickable
+                    {...props}
+                    className={`${navSectionClasses(anyOpen)} ${
+                      state[group.title] ? "text-green-500" : ""
+                    }`}
+                    onClick={() => openGroup(group)}
+                  >
+                    {group.title}
+                  </Clickable>
+                )}
+              </CompositeItem>
             );
           }
         })}
-      </div>
-      <div>
-        {entries
-          .filter((groupOrEntry) => groupOrEntry.type === "group")
-          .map((group) => (
-            <ul
+      </Composite>
+      {entries
+        .filter((groupOrEntry) => groupOrEntry.type === "group")
+        .map((group) => {
+          const subMenuComposite = useCompositeState();
+          return (
+            <Composite
+              {...subMenuComposite}
               key={`${group.title}-menu`}
               className={`space-y-4 ${
                 state[group.title]
                   ? "md:m-4 md:mt-8 text-center md:text-left"
                   : "hidden"
               }`}
+              aria-label={`${group.title} Navigation`}
             >
+              <Clickable
+                onClick={reset}
+                className={`${navSectionClasses(!anyOpen)} md:hidden`}
+                key="reset"
+                aria-label={`Close ${openTitle}`}
+              >
+                {openTitle} &larr;
+              </Clickable>
               {(group as Group).entries.map((entry) => (
-                <li key={entry.slug}>
-                  <Link to={entry.slug}>{entry.title}</Link>
-                </li>
+                <CompositeItem {...subMenuComposite} key={entry.slug}>
+                  {(props) => (
+                    <Link
+                      {...props}
+                      to={entry.slug}
+                      className="block w-full text-center md:text-left"
+                    >
+                      {entry.title}
+                    </Link>
+                  )}
+                </CompositeItem>
               ))}
-            </ul>
-          ))}
-      </div>
+            </Composite>
+          );
+        })}
     </nav>
   );
 };
