@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  /* Override base outline styles into one consistent one */
+  *:focus, button:focus {
+    @apply outline-none ring-4 ring-purple-500 ring-opacity-100
+  }
+}
+
 @layer utilities {
   .max-h-95vh {
     max-height: 95vh;
