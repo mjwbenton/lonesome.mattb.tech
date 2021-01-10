@@ -57,6 +57,8 @@
     "isomorphic-fetch": "^3.0.0",
     "lodash.flatmap": "^4.5.0",
     "postcss": "^8.2.1",
+    "postcss-import": "^14.0.0",
+    "postcss-nesting": "^7.0.1",
     "prismjs": "^1.22.0",
     "react": "^17.0.1",
     "react-apollo-hooks": "^0.5.0",
