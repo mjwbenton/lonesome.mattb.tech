@@ -4,7 +4,7 @@ import { Entry, Group } from "./navigationTypes";
 import { Clickable, Composite, CompositeItem, useCompositeState } from "reakit";
 
 function navSectionClasses(hidden: boolean | undefined) {
-  return `block w-full cursor-pointer text-xl font-bold text-center md:text-left md:border-r last:border-r-0 md:w-auto md:inline-block md:pr-4 md:pl-4 first:pl-0 last:pr-0 ${
+  return `block w-full cursor-pointer text-xl font-bold text-center md:text-left md:border-r border-gray-dark last:border-r-0 md:w-auto md:inline-block md:pr-4 md:pl-4 first:pl-0 last:pr-0 ${
     hidden ? "hidden" : ""
   }`;
 }
@@ -41,7 +41,7 @@ export const Navigation: React.FunctionComponent<{
   const openTitle = Object.keys(state).find((key) => state[key]);
 
   return (
-    <nav className="p-4 bg-gray-100 border-t-4 border-green-500">
+    <nav className="p-4 border-t-4 border-accent bg-gray">
       <Composite
         {...mainComposite}
         className="space-y-4 md:space-y-0"
@@ -71,7 +71,7 @@ export const Navigation: React.FunctionComponent<{
                   <Clickable
                     {...props}
                     className={`${navSectionClasses(anyOpen)} ${
-                      state[group.title] ? "text-green-500" : ""
+                      state[group.title] ? "text-accent" : ""
                     }`}
                     onClick={() => openGroup(group)}
                     aria-expanded={state[group.title] ? "true" : "false"}

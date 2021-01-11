@@ -9,7 +9,7 @@
     max-width: 65ch;
   }
 
-  .underline-green-500 {
-    text-decoration-color: theme('colors.green.500')
+  .underline-accent {
+    text-decoration-color: theme('colors.accent.DEFAULT')
   }
 }

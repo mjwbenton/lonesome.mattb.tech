@@ -14,7 +14,7 @@ function TimerData(props: Omit<JSX.IntrinsicElements["td"], "className">) {
 }
 
 function TimerTableRow(props: Omit<JSX.IntrinsicElements["tr"], "className">) {
-  return <tr {...props} className="odd:bg-gray-100" />;
+  return <tr {...props} className="odd:bg-gray" />;
 }
 
 const timings = {
