@@ -1,31 +1,32 @@
 # mattb.tech
 
-My personal photography website.
+My personal website.
 
-## Usage
+## TODO
 
-### Generate and upload site
+- Cypress tests
+- Migrate to next
+- themeify other values?
 
-`$ npm run generate && npm run update-files`
+### TODO Post Next
 
-### Generate site from content
+- cache ttl for files
+- dark theme (use next-themes)
+- Set title for every page
+- Set meta description for every page
+- Lighthouse testing
 
-`$ npm run generate`
+## Testing List
 
-`$ npm run generate:pages`
-
-`$ npm run generate:css`
-
-### Serve site locally
-
-`$ npm run serve`
-
-### Run linting and diagnostics
-
-`$ npm run all`
-
-## AWS Setup
-
-`$ npm run create-stack`
-
-`$ npm run update-stack`
+- Page Types
+  - Playlist (e.g. http://localhost:8000/playlist/2018.html)
+  - Markdown (e.g. http://localhost:8000/keyboard/niu-mini.html)
+  - Code: Components (i.e. http://localhost:8000/code/components.html)
+  - Code: Github (i.e. http://localhost:8000/code/github.html)
+  - Reading (i.e. http://localhost:8000/reading.html)
+  - Photos (e.g. http://localhost:8000/photos/rome.html)
+  - Photos: Timers (i.e. http://localhost:8000/instant-timer.html)
+  - Photos: Stream (i.e. http://localhost:8000/stream.html)
+- Specific features
+  - Code display (e.g. http://localhost:8000/keyboard/first-build.html)
+  - Inline code display (e.g. http://localhost:8000/keyboard/yd60ble.html)
