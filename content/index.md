@@ -1,4 +1,5 @@
 ---
+title: Lockdown 2020
 flickr_set: "72157717276744288"
 layout: photo/PhotosPage
 ---

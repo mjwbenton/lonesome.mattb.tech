@@ -9,3 +9,7 @@ export type Entry = {
   title: string;
   slug: string;
 };
+
+export type NavigationProps = {
+  entries: Array<Group | Entry>;
+};

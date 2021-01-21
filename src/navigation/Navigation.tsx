@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { graphql, Link, StaticQuery } from "gatsby";
+import Link from "next/link";
 import { Entry, Group } from "./navigationTypes";
 import { Clickable, Composite, CompositeItem, useCompositeState } from "reakit";
 
@@ -53,12 +53,10 @@ export const Navigation: React.FunctionComponent<{
             return (
               <CompositeItem {...mainComposite} key={entry.title}>
                 {(props) => (
-                  <Link
-                    {...props}
-                    className={navSectionClasses(anyOpen)}
-                    to={entry.slug}
-                  >
-                    {entry.title}
+                  <Link href={entry.slug}>
+                    <a {...props} className={navSectionClasses(anyOpen)}>
+                      {entry.title}
+                    </a>
                   </Link>
                 )}
               </CompositeItem>
@@ -112,12 +110,13 @@ export const Navigation: React.FunctionComponent<{
               {(group as Group).entries.map((entry) => (
                 <CompositeItem {...subMenuComposite} key={entry.slug}>
                   {(props) => (
-                    <Link
-                      {...props}
-                      to={entry.slug}
-                      className="block w-full text-center md:text-left"
-                    >
-                      {entry.title}
+                    <Link href={entry.slug}>
+                      <a
+                        {...props}
+                        className="block w-full text-center md:text-left"
+                      >
+                        {entry.title}
+                      </a>
                     </Link>
                   )}
                 </CompositeItem>
@@ -129,100 +128,4 @@ export const Navigation: React.FunctionComponent<{
   );
 };
 
-function responseToEntries(data: DataType): Array<Group | Entry> {
-  const orderedNodes = data.allMarkdownRemark.edges
-    .map((edge) => edge.node)
-    .filter((node) => node.fields.slug)
-    .sort(
-      (a, b) =>
-        parseInt(a.frontmatter.index || "0") -
-        parseInt(b.frontmatter.index || "0")
-    );
-  const navigationOrder = data.site.siteMetadata.navigationOrder;
-  return navigationOrder.map((groupOrEntryName) => {
-    const groupNodes = orderedNodes.filter(
-      (node) => node.frontmatter.group == groupOrEntryName
-    );
-    const entryNode = orderedNodes.find(
-      (node) => node.frontmatter.title == groupOrEntryName
-    );
-    if (entryNode && groupNodes.length) {
-      throw new Error(
-        `Cannot have a group with the same name as an entry. Name: ${groupOrEntryName}`
-      );
-    }
-    if (entryNode) {
-      return {
-        type: "entry",
-        title: groupOrEntryName,
-        slug: entryNode.fields.slug!,
-      } as Entry;
-    } else {
-      return {
-        type: "group",
-        title: groupOrEntryName,
-        entries: groupNodes.map(
-          (node) =>
-            ({
-              type: "entry",
-              title: node.frontmatter.title!,
-              slug: node.fields.slug!,
-            } as Entry)
-        ),
-      } as Group;
-    }
-  });
-}
-
-type DataType = {
-  allMarkdownRemark: {
-    edges: Array<{
-      node: {
-        fields: {
-          slug?: string;
-        };
-        frontmatter: {
-          title?: string;
-          index?: string;
-          group?: string;
-        };
-      };
-    }>;
-  };
-  site: {
-    siteMetadata: {
-      navigationOrder: Array<string>;
-    };
-  };
-};
-
-export default () => (
-  <StaticQuery
-    query={graphql`
-      {
-        site {
-          siteMetadata {
-            navigationOrder
-          }
-        }
-        allMarkdownRemark {
-          edges {
-            node {
-              fields {
-                slug
-              }
-              frontmatter {
-                title
-                index
-                group
-              }
-            }
-          }
-        }
-      }
-    `}
-    render={(data: DataType) => (
-      <Navigation entries={responseToEntries(data)} />
-    )}
-  />
-);
+export default Navigation;

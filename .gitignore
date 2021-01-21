@@ -4,7 +4,7 @@ build
 node_modules
 output
 .sass-cache
-.env
+.env.local
 .idea
 *.js
 !gatsby-config.js
@@ -14,6 +14,5 @@ output
 !postcss.config.js
 *.js.map
 *.zip
-public
-.cache
 cdk.out
+.next

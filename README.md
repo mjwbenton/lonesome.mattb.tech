@@ -2,10 +2,37 @@
 
 My personal website.
 
+## Next TODO
+
+- Global features
+
+  - Navigation
+  - Api provider
+  - "Layout"
+  - Gatsby links
+  - next/head
+
+- Plugin pages
+
+  - Flickr pages
+  - Spotify pages
+  - Github page
+  - Reading page
+
+- Flickr remark plugin pages
+
+  - Keyboard pages
+
+- Client side only pages
+
+  - components
+  - stream
+
+- Known issues
+
 ## TODO
 
 - Cypress tests
-- Migrate to next
 - themeify other values?
 
 ### TODO Post Next
