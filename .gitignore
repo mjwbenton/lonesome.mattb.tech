@@ -12,6 +12,7 @@ output
 !gatsby-browser.js
 !tailwind.config.js
 !postcss.config.js
+!next.config.js
 *.js.map
 *.zip
 cdk.out
