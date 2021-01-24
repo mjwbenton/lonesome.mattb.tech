@@ -6,6 +6,7 @@ import unified from "unified";
 import markdown from "remark-parse";
 import remark2rehype from "remark-rehype";
 import html from "rehype-stringify";
+import globby from "globby";
 
 const readFile = promisify(fs.readFile);
 const readdir = promisify(fs.readdir);
@@ -42,26 +43,16 @@ export async function getPost(postPath: string[]): Promise<Post> {
   };
 }
 
-export async function listAllPostPaths(
-  currentPath: string = rootPath
-): Promise<Array<string[]>> {
-  const files = await readdir(currentPath);
+export async function listAllPosts(): Promise<Array<string[]>> {
+  const files = await globby(rootPath, { expandDirectories: true });
+  console.log(files);
   return (
-    await Promise.all(
-      files.map(async (file) => {
-        const newPath = path.join(currentPath, file);
-        const isDir = (await stat(newPath)).isDirectory();
-        if (isDir) {
-          return listAllPostPaths(newPath);
-        }
-        return [filePathToUrlPath(newPath)];
-      })
-    )
+    await Promise.all(files.map(async (file) => [filePathToUrlPath(file)]))
   ).flat();
 }
 
 export async function getAllPosts(): Promise<Array<Post>> {
-  const allPostPaths = await listAllPostPaths();
+  const allPostPaths = await listAllPosts();
   return Promise.all(allPostPaths.map((postPath) => getPost(postPath)));
 }
 

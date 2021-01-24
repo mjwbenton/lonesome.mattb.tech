@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
-import { getPost, listAllPostPaths } from "../src/posts";
 import withGlobalProps from "../src/global/withGlobalProps";
+import { getPost, listAllPosts } from "../src/posts";
 
 export default function Page({
   post,
@@ -20,7 +20,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await listAllPostPaths();
+  const posts = await listAllPosts();
   return {
     paths: posts.map((slug) => ({
       params: {
