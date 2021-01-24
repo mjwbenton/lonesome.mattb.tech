@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
-import getNavigationProps from "../src/navigation/getNavigationProps";
 import { getPost, listAllPostPaths } from "../src/posts";
+import withGlobalProps from "../src/global/withGlobalProps";
 
 export default function Page({
   post,
@@ -14,7 +14,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       post: await getPost(context.params.slug),
-      navigation: await getNavigationProps(),
+      ...(await withGlobalProps(context)),
     },
   };
 };

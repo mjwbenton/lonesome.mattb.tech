@@ -6,13 +6,14 @@ import Logo from "../src/global/Logo";
 import { Navigation } from "../src/navigation/Navigation";
 
 export default function MyApp({ Component, pageProps }) {
+  const { navigation, ...componentProps } = pageProps;
   return (
     <>
       <HtmlHeader />
       <Logo />
-      <Navigation {...pageProps.navigation} />
+      {navigation ? <Navigation {...navigation} /> : null}
       <main className="m-4 md:m-8">
-        <Component {...pageProps} />
+        <Component {...componentProps} />
       </main>
     </>
   );
