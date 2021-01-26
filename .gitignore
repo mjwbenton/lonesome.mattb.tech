@@ -13,6 +13,7 @@ output
 !tailwind.config.js
 !postcss.config.js
 !next.config.js
+!mdxPagePlugin.js
 *.js.map
 *.zip
 cdk.out

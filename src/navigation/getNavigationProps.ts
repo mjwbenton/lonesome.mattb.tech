@@ -1,4 +1,4 @@
-import { getAllPosts } from "../posts";
+import { getAllPageMeta } from "../pageMeta";
 import { Entry, Group, NavigationProps } from "./navigationTypes";
 
 const NAVIGATION_ORDER = [
@@ -10,7 +10,7 @@ const NAVIGATION_ORDER = [
 ];
 
 export default async function getNavigationProps(): Promise<NavigationProps> {
-  const allPosts = await getAllPosts();
+  const allPosts = await getAllPageMeta();
   const orderedPosts = allPosts.sort((a, b) => (a.index || 0) - (b.index || 0));
 
   const entries = NAVIGATION_ORDER.map((groupOrEntryName) => {

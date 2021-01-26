@@ -1,8 +1,10 @@
 import { GetStaticPropsContext } from "next";
 import getNavigationProps from "../navigation/getNavigationProps";
 
-export default async function withGlobalProps(_: GetStaticPropsContext) {
+export async function getStaticProps(_: GetStaticPropsContext) {
   return {
-    navigation: await getNavigationProps(),
+    props: {
+      navigation: await getNavigationProps(),
+    },
   };
 }

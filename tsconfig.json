@@ -9,29 +9,18 @@
     "jsxFragmentFactory": "React.Fragment",
     "strict": true,
     "noImplicitAny": false,
-    "lib": [
-      "esnext",
-      "dom"
-    ],
+    "lib": ["esnext", "dom"],
     "sourceMap": true,
     "noEmit": true,
-    "types": [
-      "node"
-    ],
+    "types": ["node"],
     "allowJs": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "baseUrl": "."
   },
-  "exclude": [
-    "node_modules",
-    "modules"
-  ],
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ]
+  "exclude": ["node_modules", "modules"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }
