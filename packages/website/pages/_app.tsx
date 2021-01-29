@@ -12,7 +12,7 @@ export default function MyApp({ Component, pageProps }) {
       <HtmlHeader />
       <Logo />
       {navigation ? <Navigation {...navigation} /> : null}
-      <main className="m-4 md:m-8">
+      <main className="m-4 md:m-8 prose">
         <Component {...componentProps} />
       </main>
     </>

@@ -1,10 +1,10 @@
-const u = require("unist-builder");
+import u from "unist-builder";
 //const visit = require("unist-util-visit");
 
 //const LAYOUT_KEY = "layout";
 
-module.exports = (options = {}) => {
-  return (tree, file) => {
+module.exports = () => {
+  return (tree) => {
     /*const frontmatter = file.data?.frontmatter ?? {};
     const nodes = Object.keys(frontmatter).flatMap((key) => {
       if (key === LAYOUT_KEY) {
@@ -16,7 +16,10 @@ module.exports = (options = {}) => {
         return [u("export", `export const ${key} = "${frontmatter[key]}"`)];
       }
     });*/
-    const getStaticPropsNode = u("export", `export { getStaticProps } from "src/global/getStaticProps"`);
+    const getStaticPropsNode = u(
+      "export",
+      `export { getStaticProps } from "src/global/getStaticProps"`
+    );
     tree.children = [getStaticPropsNode, ...tree.children];
   };
 };

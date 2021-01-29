@@ -1,0 +1,22 @@
+{
+  "name": "@mattb.tech/cdk",
+  "version": "1.0.0",
+  "main": "cdk/cdk.ts",
+  "author": "Matt Benton <m@mattb.tech>",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "@aws-cdk/aws-cloudfront": "^1.85.0",
+    "@aws-cdk/aws-route53-targets": "^1.85.0",
+    "@aws-cdk/aws-s3": "^1.85.0",
+    "@aws-cdk/aws-s3-deployment": "^1.85.0",
+    "@aws-cdk/core": "^1.85.0",
+    "aws-cdk": "^1.85.0",
+    "ts-node": "^9.1.1",
+    "prettier": "^2.2.1",
+    "typescript": "^4.1.3"
+  },
+  "scripts": {
+    "deploy": "cdk deploy --profile mattb.tech-deploy --require-approval never"
+  }
+}
