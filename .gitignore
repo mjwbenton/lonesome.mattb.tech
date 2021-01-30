@@ -11,3 +11,4 @@ dist
 *.zip
 cdk.out
 .next
+*.log
