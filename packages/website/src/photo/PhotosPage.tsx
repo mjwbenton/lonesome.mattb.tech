@@ -13,7 +13,7 @@ type MarkdownRemarkFragmentType = {
 type DataFormat = MarkdownRemarkFragmentType & PhotoSetFragmentType;
 
 const PhotosPage: React.FunctionComponent<{ data: DataFormat }> = ({
-  data
+  data,
 }) => (
   <Layout>
     <MarkdownContent htmlAst={data.markdownRemark.htmlAst} />

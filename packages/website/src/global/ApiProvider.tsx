@@ -26,11 +26,11 @@ const client = new ApolloClient({
         uri: ENDPOINT,
         credentials: "same-origin",
         fetch,
-        useGETForQueries: true
-      })
+        useGETForQueries: true,
+      }),
     ])
   ),
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 });
 
 export default ({ children }: { children: any }) => (

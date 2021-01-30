@@ -11,7 +11,7 @@ type DataFormat = {
 };
 
 const MarkdownPage: React.FunctionComponent<{ data: DataFormat }> = ({
-  data
+  data,
 }) => (
   <Layout>
     <MarkdownContent htmlAst={data.markdownRemark.htmlAst} />

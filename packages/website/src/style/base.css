@@ -2,7 +2,8 @@
 
 @layer base {
   /* Override base outline styles into one consistent one */
-  *:not(body):focus, button:focus {
-    @apply outline-none ring-4 ring-accent2 ring-opacity-100
+  *:not(body):focus,
+  button:focus {
+    @apply outline-none ring-4 ring-accent2 ring-opacity-100;
   }
 }

@@ -11,14 +11,14 @@ function secondsToMinutesAndSeconds(
   return {
     minutes: minutes < 10 ? `0${minutes}` : `${minutes}`,
     seconds:
-      partMinuteSeconds < 10 ? `0${partMinuteSeconds}` : `${partMinuteSeconds}`
+      partMinuteSeconds < 10 ? `0${partMinuteSeconds}` : `${partMinuteSeconds}`,
   };
 }
 
 export enum State {
   READY,
   RUNNING,
-  FINISHED
+  FINISHED,
 }
 
 export default function useCountdownTimer(
@@ -57,6 +57,6 @@ export default function useCountdownTimer(
   return {
     ...secondsToMinutesAndSeconds(remaining),
     state,
-    startStop: () => setRunning(!running)
+    startStop: () => setRunning(!running),
   };
 }

@@ -5,7 +5,7 @@ import {
   CloudFrontAllowedMethods,
   OriginProtocolPolicy,
   ViewerCertificate,
-  ViewerProtocolPolicy
+  ViewerProtocolPolicy,
 } from "@aws-cdk/aws-cloudfront";
 import { ARecord, IHostedZone, RecordTarget } from "@aws-cdk/aws-route53";
 import { CloudFrontTarget } from "@aws-cdk/aws-route53-targets";
@@ -30,14 +30,14 @@ export default class WebsiteRedirect extends Construct {
       accessControl: BucketAccessControl.PUBLIC_READ,
       websiteRedirect: {
         hostName: redirectTo,
-        protocol: RedirectProtocol.HTTPS
-      }
+        protocol: RedirectProtocol.HTTPS,
+      },
     });
 
     const certificate = new DnsValidatedCertificate(this, "Certificate", {
       domainName,
       subjectAlternativeNames: alternateNames,
-      hostedZone
+      hostedZone,
     });
 
     const redirectDistribution = new CloudFrontWebDistribution(
@@ -53,20 +53,20 @@ export default class WebsiteRedirect extends Construct {
                 compress: true,
                 allowedMethods: CloudFrontAllowedMethods.GET_HEAD,
                 forwardedValues: {
-                  queryString: false
-                }
-              }
+                  queryString: false,
+                },
+              },
             ],
             customOriginSource: {
               domainName: redirectBucket.bucketWebsiteDomainName,
-              originProtocolPolicy: OriginProtocolPolicy.HTTP_ONLY
-            }
-          }
+              originProtocolPolicy: OriginProtocolPolicy.HTTP_ONLY,
+            },
+          },
         ],
         viewerCertificate: ViewerCertificate.fromAcmCertificate(certificate, {
-          aliases: [domainName, ...alternateNames]
+          aliases: [domainName, ...alternateNames],
         }),
-        viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS
+        viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
       }
     );
 
@@ -77,7 +77,7 @@ export default class WebsiteRedirect extends Construct {
         ttl: Duration.minutes(5),
         target: RecordTarget.fromAlias(
           new CloudFrontTarget(redirectDistribution)
-        )
+        ),
       });
     });
   }

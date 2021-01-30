@@ -10,6 +10,6 @@
   }
 
   .underline-accent {
-    text-decoration-color: theme('colors.accent.DEFAULT')
+    text-decoration-color: theme("colors.accent.DEFAULT");
   }
 }

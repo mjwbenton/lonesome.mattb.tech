@@ -17,20 +17,20 @@ const REDIRECT_DOMAIN_NAMES = [
     hostedZone: "mattb.tech",
     hostedZoneId: "Z2GPSB1CDK86DH",
     domainName: "www.mattb.tech",
-    alternateNames: []
+    alternateNames: [],
   },
   {
     hostedZone: "mattbenton.co.uk",
     hostedZoneId: "Z37GS1FXPT1S5S",
     domainName: "mattbenton.co.uk",
-    alternateNames: ["www.mattbenton.co.uk", "blog.mattbenton.co.uk"]
+    alternateNames: ["www.mattbenton.co.uk", "blog.mattbenton.co.uk"],
   },
   {
     hostedZone: "lionsmane.co.uk",
     hostedZoneId: "ZNKR9NWXWS7UU",
     domainName: "lionsmane.co.uk",
-    alternateNames: ["www.lionsmane.co.uk"]
-  }
+    alternateNames: ["www.lionsmane.co.uk"],
+  },
 ];
 
 export class MattbTechWebsite extends cdk.Stack {
@@ -42,19 +42,19 @@ export class MattbTechWebsite extends cdk.Stack {
       "HostedZone",
       {
         hostedZoneId: HOSTED_ZONE_ID,
-        zoneName: ZONE_NAME
+        zoneName: ZONE_NAME,
       }
     );
 
     const siteBucket = new s3.Bucket(this, "SiteBucket", {
       accessControl: s3.BucketAccessControl.PUBLIC_READ,
       websiteIndexDocument: "index.html",
-      publicReadAccess: true
+      publicReadAccess: true,
     });
 
     const certificate = new acm.DnsValidatedCertificate(this, "Certificate", {
       domainName: DOMAIN_NAME,
-      hostedZone: mainHostedZone
+      hostedZone: mainHostedZone,
     });
 
     const distribution = new cloudfront.CloudFrontWebDistribution(
@@ -70,30 +70,30 @@ export class MattbTechWebsite extends cdk.Stack {
                 compress: true,
                 allowedMethods: cloudfront.CloudFrontAllowedMethods.GET_HEAD,
                 forwardedValues: {
-                  queryString: false
-                }
-              }
+                  queryString: false,
+                },
+              },
             ],
             customOriginSource: {
               domainName: siteBucket.bucketWebsiteDomainName,
-              originProtocolPolicy: cloudfront.OriginProtocolPolicy.HTTP_ONLY
-            }
-          }
+              originProtocolPolicy: cloudfront.OriginProtocolPolicy.HTTP_ONLY,
+            },
+          },
         ],
         viewerCertificate: cloudfront.ViewerCertificate.fromAcmCertificate(
           certificate,
           {
-            aliases: [DOMAIN_NAME]
+            aliases: [DOMAIN_NAME],
           }
         ),
-        viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS
+        viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
       }
     );
 
     new s3deploy.BucketDeployment(this, "DeploySite", {
       sources: [s3deploy.Source.asset(path.join(__dirname, "../public"))],
       destinationBucket: siteBucket,
-      distribution
+      distribution,
     });
 
     new route53.ARecord(this, "DomainRecord", {
@@ -102,7 +102,7 @@ export class MattbTechWebsite extends cdk.Stack {
       ttl: cdk.Duration.minutes(5),
       target: route53.RecordTarget.fromAlias(
         new route53targets.CloudFrontTarget(distribution)
-      )
+      ),
     });
 
     REDIRECT_DOMAIN_NAMES.forEach(
@@ -116,9 +116,9 @@ export class MattbTechWebsite extends cdk.Stack {
             `HostedZone${hostedZone}`,
             {
               hostedZoneId,
-              zoneName: hostedZone
+              zoneName: hostedZone,
             }
-          )
+          ),
         });
       }
     );
