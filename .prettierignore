@@ -15,3 +15,4 @@ public
 .prettierignore
 .DS_Store
 .vscode
+.next

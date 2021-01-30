@@ -1,3 +1,3 @@
 #!/bin/sh
-prettier --check '**/*'
+prettier --check '**/*' -u --ignore-path ../../.prettierignore
 tsc --noEmit

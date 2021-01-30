@@ -20,6 +20,7 @@
     "deploy": "cdk deploy --profile mattb.tech-deploy --require-approval never",
     "build": "../../scripts/build.sh",
     "check": "../../scripts/check.sh",
-    "clean": "../../scripts/clean.sh"
+    "clean": "../../scripts/clean.sh",
+    "fix": "../../scripts/fix.sh"
   }
 }
