@@ -1,0 +1,18 @@
+{
+  "name": "@mattb.tech/remark-flickr",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "author": "Matt Benton <m@mattb.tech>",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "build": "../../scripts/build.sh",
+    "check": "../../scripts/check.sh",
+    "clean": "../../scripts/clean.sh",
+    "fix": "../../scripts/fix.sh"
+  },
+  "devDependencies": {
+    "prettier": "^2.2.1",
+    "typescript": "^4.1.3"
+  }
+}
