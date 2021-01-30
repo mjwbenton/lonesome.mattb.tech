@@ -5,12 +5,15 @@
   "author": "Matt Benton <m@mattb.tech>",
   "main": "./dist/index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "../../scripts/build.sh",
+    "check": "../../scripts/check.sh",
+    "clean": "../../scripts/clean.sh"
   },
   "devDependencies": {
     "typescript": "^4.1.3"
   },
   "dependencies": {
+    "prettier": "^2.2.1",
     "unist-builder": "^2.0.3"
   }
 }

@@ -7,8 +7,8 @@
     "build": "next build && next export",
     "dev": "next dev",
     "start": "next start",
-    "check": "tsc --noEmit && prettier --check '**/*'",
-    "deploy": "cdk deploy --profile mattb.tech-deploy --require-approval never"
+    "check": "../../scripts/check.sh",
+    "clean": "../../scripts/clean.sh"
   },
   "author": "Matt Benton <m@mattb.tech>",
   "license": "UNLICENSED",

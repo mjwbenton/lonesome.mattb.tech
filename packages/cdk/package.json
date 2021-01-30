@@ -17,6 +17,9 @@
     "typescript": "^4.1.3"
   },
   "scripts": {
-    "deploy": "cdk deploy --profile mattb.tech-deploy --require-approval never"
+    "deploy": "cdk deploy --profile mattb.tech-deploy --require-approval never",
+    "build": "../../scripts/build.sh",
+    "check": "../../scripts/check.sh",
+    "clean": "../../scripts/clean.sh"
   }
 }
