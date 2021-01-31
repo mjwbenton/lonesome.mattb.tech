@@ -24,7 +24,7 @@ const client = new ApolloClient({
       }),
       new HttpLink({
         uri: ENDPOINT,
-        credentials: "same-origin",
+        credentials: "omit",
         fetch,
         useGETForQueries: true,
       }),
