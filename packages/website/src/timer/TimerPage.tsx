@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Layout from "../global/Layout";
 import { Thermometer, Watch } from "react-feather";
 import Timer from "./Timer";
 import useCountdownTimer, { State } from "./useCountdownTimer";
@@ -80,55 +79,53 @@ const TimerPage = () => {
     timerDuration
   );
   return (
-    <Layout>
-      <MaxWidthWrapper>
-        <Timer {...{ minutes, seconds, state, startStop }} />
-        {Object.keys(timings).map((film) => (
-          <div key={film}>
-            <h2 className="mt-8 mb-4 text-lg font-bold">{film}</h2>
-            <table>
-              <tbody>
-                <TimerTableRow>
-                  <TimerHeader>
-                    <Thermometer className="inline-block" />
-                    Temp (°C)
-                  </TimerHeader>
-                  <TimerHeader>
-                    <Thermometer className="inline-block" />
-                    Temp (°F)
-                  </TimerHeader>
-                  <TimerHeader>
-                    <Watch className="inline-block" />
-                    Dev Time (seconds)
-                  </TimerHeader>
-                  <TimerHeader />
+    <MaxWidthWrapper>
+      <Timer {...{ minutes, seconds, state, startStop }} />
+      {Object.keys(timings).map((film) => (
+        <div key={film}>
+          <h2 className="mt-8 mb-4 text-lg font-bold">{film}</h2>
+          <table>
+            <tbody>
+              <TimerTableRow>
+                <TimerHeader>
+                  <Thermometer className="inline-block" />
+                  Temp (°C)
+                </TimerHeader>
+                <TimerHeader>
+                  <Thermometer className="inline-block" />
+                  Temp (°F)
+                </TimerHeader>
+                <TimerHeader>
+                  <Watch className="inline-block" />
+                  Dev Time (seconds)
+                </TimerHeader>
+                <TimerHeader />
+              </TimerTableRow>
+              {timings[film].map(({ c, f, t }) => (
+                <TimerTableRow key={c}>
+                  <TimerData>{c}</TimerData>
+                  <TimerData>{f}</TimerData>
+                  <TimerData>{t}</TimerData>
+                  <TimerData>
+                    <a
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        state !== State.RUNNING && setTimerDuration(t);
+                      }}
+                    >
+                      <Watch
+                        color={state !== State.RUNNING ? "black" : "grey"}
+                      />
+                    </a>
+                  </TimerData>
                 </TimerTableRow>
-                {timings[film].map(({ c, f, t }) => (
-                  <TimerTableRow key={c}>
-                    <TimerData>{c}</TimerData>
-                    <TimerData>{f}</TimerData>
-                    <TimerData>{t}</TimerData>
-                    <TimerData>
-                      <a
-                        href="#"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          state !== State.RUNNING && setTimerDuration(t);
-                        }}
-                      >
-                        <Watch
-                          color={state !== State.RUNNING ? "black" : "grey"}
-                        />
-                      </a>
-                    </TimerData>
-                  </TimerTableRow>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ))}
-      </MaxWidthWrapper>
-    </Layout>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ))}
+    </MaxWidthWrapper>
   );
 };
 
