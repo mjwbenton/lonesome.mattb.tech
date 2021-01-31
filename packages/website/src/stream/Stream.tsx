@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Photo } from "@mattb.tech/gatsby-transform-flickr-set";
+import React from "react";
 import SinglePhoto from "../photo/Photo";
 import PhotosWrapper from "../photo/PhotosWrapper";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 
 const Stream = () => {
-  const { data, error, loading } = useQuery<{ recentPhotos: Photo[] }>(gql`
+  const { data, error, loading } = useQuery<{ recentPhotos }>(gql`
     {
       recentPhotos {
         id
