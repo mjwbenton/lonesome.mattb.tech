@@ -1,6 +1,47 @@
 ---
 title: "Components"
-layout: component/ComponentPage
 group: Code
 index: 2
 ---
+
+## Components
+
+**Note: This is a work in progress set of components to simplify this site.**
+
+import MaxWidthWrapper from "component/MaxWidthWrapper";
+import TwoRowText from "component/TwoRowText";
+import StripedList, { StripeElement } from "component/StripedList";
+import Infoline from "component/Infoline";
+import ContentBlock from "component/ContentBlock";
+
+<MaxWidthWrapper>
+  <StripedList>
+    <StripeElement index={1}>
+      <TwoRowText row1="Row One" row2="Row Two" />
+    </StripeElement>
+    <StripeElement index={2}>
+      <TwoRowText row1="Row One" row2="Row Two" />
+      <p>
+        Also here is some other text
+        <br /> <br /> This text makes it taller <br /> <br /> Yeah it does
+      </p>
+    </StripeElement>
+    <StripeElement index={3}>
+      <TwoRowText row1="Row One" row2="Row Two" />
+    </StripeElement>
+  </StripedList>
+</MaxWidthWrapper>
+<MaxWidthWrapper>
+  <ContentBlock>
+    <div>This is a block component</div>
+    <Infoline externalLinkUrl="#" externalLinkText="ab">
+      Testing
+    </Infoline>
+  </ContentBlock>
+  <ContentBlock>
+    <div>This is another block component</div>
+    <Infoline externalLinkUrl="#" externalLinkText="ab">
+      Testing
+    </Infoline>
+  </ContentBlock>
+</MaxWidthWrapper>
