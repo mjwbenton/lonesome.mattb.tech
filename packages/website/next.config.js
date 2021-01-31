@@ -9,7 +9,7 @@ const withMDX = require("@next/mdx")({
     remarkPlugins: [
       detectFrontmatter,
       [extractFrontmatter, { name: "frontmatter", yaml, throws: true }],
-      [mdxDataFetching, { basePath: "src/", globalPropsProviders: ["navigation/navigationPropsProvider"] }],
+      [mdxDataFetching, { globalPropsProviders: ["navigation/navigationPropsProvider"] }],
       [remarkFlickr, { sizes: "100vw" }]
     ],
   },
