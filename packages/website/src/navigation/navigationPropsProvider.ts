@@ -9,7 +9,7 @@ const NAVIGATION_ORDER = [
   "Code",
 ];
 
-export default async function getNavigationProps(): Promise<NavigationProps> {
+async function getNavigationProps(): Promise<NavigationProps> {
   const allPosts = await getAllPageMeta();
   const orderedPosts = allPosts.sort((a, b) => (a.index || 0) - (b.index || 0));
 
@@ -48,4 +48,12 @@ export default async function getNavigationProps(): Promise<NavigationProps> {
   });
 
   return { entries };
+}
+
+export default async function navigationPropsProvider(): Promise<{
+  navigation: NavigationProps;
+}> {
+  return {
+    navigation: await getNavigationProps(),
+  };
 }
