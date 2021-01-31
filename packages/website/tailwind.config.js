@@ -3,7 +3,7 @@ const colors = require("tailwindcss/colors");
 module.exports = {
   purge: {
     enabled: true,
-    content: ['./src/**/*.tsx'],
+    content: ['./src/**/*.tsx', './pages/**/*.{tsx,mdx}'],
     options: {
       keyframes: true
     }
