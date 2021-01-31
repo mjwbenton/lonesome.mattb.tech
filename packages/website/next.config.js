@@ -1,7 +1,7 @@
 const detectFrontmatter = require("remark-frontmatter");
 const extractFrontmatter = require("remark-extract-frontmatter");
 const yaml = require("yaml").parse;
-const mdxPagePlugin = require("@mattb.tech/mdx-data-fetching");
+const mdxDataFetching = require("@mattb.tech/mdx-data-fetching");
 const remarkFlickr = require("@mattb.tech/remark-flickr");
 
 const withMDX = require("@next/mdx")({
@@ -9,7 +9,7 @@ const withMDX = require("@next/mdx")({
     remarkPlugins: [
       detectFrontmatter,
       [extractFrontmatter, { name: "frontmatter", yaml, throws: true }],
-      mdxPagePlugin,
+      mdxDataFetching,
       [remarkFlickr, { sizes: "100vw" }]
     ],
   },
