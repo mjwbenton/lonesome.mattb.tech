@@ -26,6 +26,7 @@
     "@mattb.tech/cloudformation-scripts": "^2.0.1",
     "@mattb.tech/gatsby-remark-flickr": "^1.0.1",
     "@mattb.tech/mdx-data-fetching": "1.0.0",
+    "@mattb.tech/mdx-tailwind-typography": "1.0.0",
     "@mattb.tech/remark-flickr": "1.0.0",
     "@mdx-js/loader": "^1.6.22",
     "@next/mdx": "^10.0.5",

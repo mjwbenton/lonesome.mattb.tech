@@ -3,6 +3,7 @@ const extractFrontmatter = require("remark-extract-frontmatter");
 const yaml = require("yaml").parse;
 const mdxDataFetching = require("@mattb.tech/mdx-data-fetching");
 const remarkFlickr = require("@mattb.tech/remark-flickr");
+const mdxTailwindTypography = require("@mattb.tech/mdx-tailwind-typography");
 
 const withMDX = require("@next/mdx")({
   options: {
@@ -12,6 +13,9 @@ const withMDX = require("@next/mdx")({
       [mdxDataFetching, { globalPropsProviders: ["navigation/navigationPropsProvider"] }],
       [remarkFlickr, { sizes: "100vw" }]
     ],
+    rehypePlugins: [
+      [mdxTailwindTypography, { additionalClasses: "mb-8" }]
+    ]
   },
 });
 module.exports = withMDX({
