@@ -4,6 +4,7 @@ const yaml = require("yaml").parse;
 const mdxDataFetching = require("@mattb.tech/mdx-data-fetching");
 const remarkFlickr = require("@mattb.tech/remark-flickr");
 const mdxTailwindTypography = require("@mattb.tech/mdx-tailwind-typography");
+const rehypePrism = require("@mapbox/rehype-prism");
 
 const withMDX = require("@next/mdx")({
   options: {
@@ -14,7 +15,8 @@ const withMDX = require("@next/mdx")({
       [remarkFlickr, { sizes: "100vw" }]
     ],
     rehypePlugins: [
-      [mdxTailwindTypography, { additionalClasses: "mb-8" }]
+      [mdxTailwindTypography, { additionalClasses: "mb-8" }],
+      rehypePrism
     ]
   },
 });
