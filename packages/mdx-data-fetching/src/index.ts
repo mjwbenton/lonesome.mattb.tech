@@ -1,26 +1,23 @@
 import { Plugin } from "unified";
 import u from "unist-builder";
 
-const PROPS_PROVIDERS = "propsProviders";
+const DATA_PROVIDERS = "dataProviders";
 
 const mdxDataFetching: Plugin<
-  [{ basePath?: string; globalPropsProviders?: string[] }]
-> = ({ basePath = "", globalPropsProviders = [] }) => {
+  [{ basePath?: string; globalDataProviders?: string[] }]
+> = ({ basePath = "", globalDataProviders = [] }) => {
   return (tree, file) => {
     const frontmatter = (file.data as any)?.frontmatter ?? {};
-    const frontmatterPropsProviders: Array<string> =
-      frontmatter[PROPS_PROVIDERS] ?? [];
-    const propsProviders = [
-      ...globalPropsProviders,
-      ...frontmatterPropsProviders,
-    ];
+    const frontmatterDataProviders: Array<string> =
+      frontmatter[DATA_PROVIDERS] ?? [];
+    const dataProviders = [...globalDataProviders, ...frontmatterDataProviders];
 
-    if (propsProviders.length === 0) {
+    if (dataProviders.length === 0) {
       return;
     }
 
-    const importNodes = propsProviders.flatMap((provider, i) => {
-      return u("import", `import p${i} from "${basePath}${provider}"`);
+    const importNodes = dataProviders.flatMap((provider, i) => {
+      return u("import", `import _dp${i} from "${basePath}${provider}"`);
     });
 
     const exportFrontmatterNode = u(
@@ -28,9 +25,9 @@ const mdxDataFetching: Plugin<
       `export const frontmatter = ${JSON.stringify(frontmatter)}`
     );
 
-    const calls = propsProviders
+    const calls = dataProviders
       .map((_, i) => {
-        return `...(await p${i}(frontmatter)),`;
+        return `...(await _dp${i}(frontmatter)),`;
       })
       .join("\n");
 
