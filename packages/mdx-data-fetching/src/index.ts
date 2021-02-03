@@ -27,7 +27,7 @@ const mdxDataFetching: Plugin<
       .map((_, i) => {
         return `...(await p${i}()),`;
       })
-      .join("/n");
+      .join("\n");
 
     const getStaticPropsNode = u(
       "export",
