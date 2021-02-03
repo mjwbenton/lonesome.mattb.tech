@@ -23,9 +23,14 @@ const mdxDataFetching: Plugin<
       return u("import", `import p${i} from "${basePath}${provider}"`);
     });
 
+    const exportFrontmatterNode = u(
+      "export",
+      `export const frontmatter = ${JSON.stringify(frontmatter)}`
+    );
+
     const calls = propsProviders
       .map((_, i) => {
-        return `...(await p${i}()),`;
+        return `...(await p${i}(frontmatter)),`;
       })
       .join("\n");
 
@@ -43,6 +48,7 @@ const mdxDataFetching: Plugin<
 
     tree.children = [
       ...importNodes,
+      exportFrontmatterNode,
       getStaticPropsNode,
       ...(tree.children as Array<unknown>),
     ];
