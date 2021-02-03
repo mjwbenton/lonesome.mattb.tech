@@ -1,17 +1,15 @@
+import ContentBlock from "component/ContentBlock";
+import Infoline from "component/Infoline";
+import MaxWidthWrapper from "component/MaxWidthWrapper";
+import { usePageData } from "global/pageData";
 import React from "react";
-import { graphql } from "gatsby";
-import Layout from "../global/Layout";
 import { Clock } from "react-feather";
-import MarkdownContent from "../markdown/MarkdownContent";
-import Infoline from "../component/Infoline";
-import ContentBlock from "../component/ContentBlock";
-import MaxWidthWrapper from "../component/MaxWidthWrapper";
 
-const GithubPage: React.FunctionComponent<{ data: any }> = ({ data }) => (
-  <Layout>
-    <MarkdownContent htmlAst={data.markdownRemark.htmlAst} />
+export default function Repositories() {
+  const { githubRepositories } = usePageData();
+  return (
     <MaxWidthWrapper>
-      {data.api.githubRepositories.map((n: any) => (
+      {githubRepositories.map((n: any) => (
         <ContentBlock key={n.name}>
           <div className="text-lg font-bold">{n.name}</div>
           {n.description && <p className="mb-4">{n.description}</p>}
@@ -33,27 +31,5 @@ const GithubPage: React.FunctionComponent<{ data: any }> = ({ data }) => (
         </ContentBlock>
       ))}
     </MaxWidthWrapper>
-  </Layout>
-);
-
-export const pageQuery = graphql`
-  query($path: String!) {
-    markdownRemark(fields: { slug: { eq: $path } }) {
-      htmlAst
-    }
-    api {
-      githubRepositories {
-        name
-        url
-        createdAt
-        updatedAt
-        description
-        license
-        primaryLanguage
-        readme
-      }
-    }
-  }
-`;
-
-export default GithubPage;
+  );
+}
