@@ -2,7 +2,7 @@
 .vscode
 build
 node_modules
-output
+out
 dist
 .env.local
 *.js
