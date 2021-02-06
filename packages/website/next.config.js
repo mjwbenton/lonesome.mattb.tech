@@ -21,9 +21,5 @@ const withMDX = require("@next/mdx")({
   },
 });
 module.exports = withMDX({
-  pageExtensions: ["tsx", "mdx"],
-  i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
-  },
+  pageExtensions: ["tsx", "mdx"]
 });
