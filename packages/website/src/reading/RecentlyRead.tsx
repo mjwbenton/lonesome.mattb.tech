@@ -11,7 +11,8 @@ const RecentlyRead: React.FunctionComponent<RecentBooks> = () => {
   const { recentBooks } = usePageData();
   return (
     <MaxWidthWrapper>
-      {recentBooks && recentBooks.map((book) => <Book book={book} />)}
+      {recentBooks &&
+        recentBooks.map((book, i) => <Book book={book} key={i} />)}
     </MaxWidthWrapper>
   );
 };
