@@ -1,33 +1,21 @@
 import fetch from "isomorphic-fetch";
-import { ApolloClient } from "apollo-client";
-import { InMemoryCache } from "apollo-cache-inmemory";
-import { createPersistedQueryLink } from "apollo-link-persisted-queries";
-import { HttpLink } from "apollo-link-http";
-import { onError } from "apollo-link-error";
-import { ApolloLink } from "apollo-link";
+import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
+import { createPersistedQueryLink } from "@apollo/client/link/persisted-queries";
+import { sha256 } from "crypto-hash";
 
 const ENDPOINT = "https://api.mattb.tech/";
 
+const httpLink = new HttpLink({
+  uri: ENDPOINT,
+  credentials: "omit",
+  fetch,
+  useGETForQueries: true,
+});
+
+const persistedQueryLink = createPersistedQueryLink({ sha256 });
+
 const client = new ApolloClient({
-  link: createPersistedQueryLink().concat(
-    ApolloLink.from([
-      onError(({ graphQLErrors, networkError }) => {
-        if (graphQLErrors)
-          graphQLErrors.forEach(({ message, locations, path }) =>
-            console.log(
-              `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-            )
-          );
-        if (networkError) console.log(`[Network error]: ${networkError}`);
-      }),
-      new HttpLink({
-        uri: ENDPOINT,
-        credentials: "omit",
-        fetch,
-        useGETForQueries: true,
-      }),
-    ])
-  ),
+  link: persistedQueryLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 

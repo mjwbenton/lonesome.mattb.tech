@@ -1,11 +1,11 @@
 import React from "react";
 import SinglePhoto from "../photo/Photo";
 import PhotosWrapper from "../photo/PhotosWrapper";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
 
 const Stream = () => {
-  const { data, error, loading } = useQuery<{ recentPhotos }>(gql`
+  const { data, error, loading } = useQuery<{ recentPhotos: any }>(gql`
     {
       recentPhotos {
         id
