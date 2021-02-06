@@ -24,8 +24,6 @@
   },
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
-    "@mattb.tech/cloudformation-scripts": "^2.0.1",
-    "@mattb.tech/gatsby-remark-flickr": "^1.0.1",
     "@mattb.tech/mdx-data-fetching": "1.0.0",
     "@mattb.tech/mdx-tailwind-typography": "1.0.0",
     "@mattb.tech/remark-flickr": "1.0.0",
