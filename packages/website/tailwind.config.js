@@ -5,7 +5,8 @@ module.exports = {
     enabled: true,
     content: ['./src/**/*.tsx', './pages/**/*.{tsx,mdx}'],
     options: {
-      keyframes: true
+      keyframes: true,
+      safelist: ["prose"]
     }
   },
   darkMode: false,
