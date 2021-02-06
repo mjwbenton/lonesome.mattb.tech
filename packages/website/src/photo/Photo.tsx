@@ -1,8 +1,4 @@
 import * as React from "react";
-import {
-  PhotoSource,
-  Photo as PhotoType,
-} from "@mattb.tech/gatsby-transform-flickr-set";
 import Infoline from "../component/Infoline";
 import ContentBlock from "../component/ContentBlock";
 import LazyLoad from "react-lazyload";
@@ -16,13 +12,13 @@ const SIZES = `
   calc(100vw - 2rem)
 `;
 
-function generateSrcSet(sources: PhotoSource[]): string {
+function generateSrcSet(sources): string {
   return sources
-    .map((source: PhotoSource) => [source.url, " ", source.width, "w"].join(""))
+    .map((source) => [source.url, " ", source.width, "w"].join(""))
     .join(", ");
 }
 
-const Photo: React.FunctionComponent<PhotoType & { lazyLoad?: boolean }> = ({
+const Photo: React.FunctionComponent<any> = ({
   pageUrl,
   sources,
   mainSource,

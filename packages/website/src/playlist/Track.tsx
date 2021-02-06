@@ -1,11 +1,10 @@
 import React from "react";
-import { Track as TrackType } from "@mattb.tech/gatsby-transform-spotify-playlist";
 import { StripeElement } from "../component/StripedList";
 import TwoRowText from "../component/TwoRowText";
 
 const IMAGE_SIZE = "64";
 
-const Track: React.FunctionComponent<{ track: TrackType; index: number }> = ({
+const Track: React.FunctionComponent<{ track: any; index: number }> = ({
   track,
   index,
 }) => (
