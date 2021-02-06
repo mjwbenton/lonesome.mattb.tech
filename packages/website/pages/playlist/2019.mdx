@@ -1,11 +1,15 @@
 ---
 title: 2019 Playlist
-spotifyPlaylist: 3YyjRIrMUua3aOPxmuizmk
+playlistId: 3YyjRIrMUua3aOPxmuizmk
 group: Playlists
 index: 5
-layout: playlist/PlaylistPage
+dataProviders:
+ - playlist/playlistDataProvider
 ---
+import Playlist from "playlist/Playlist";
 
 ## 2019 Playlist
 
 A selection of tracks from albums that I first listened to in 2019.
+
+<Playlist />
