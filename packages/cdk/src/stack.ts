@@ -6,6 +6,8 @@ import * as route53targets from "@aws-cdk/aws-route53-targets";
 import * as cloudfront from "@aws-cdk/aws-cloudfront";
 import * as acm from "@aws-cdk/aws-certificatemanager";
 import * as s3deploy from "@aws-cdk/aws-s3-deployment";
+import * as lambda from "@aws-cdk/aws-lambda";
+import * as origins from "@aws-cdk/aws-cloudfront-origins";
 import WebsiteRedirect from "./WebsiteRedirect";
 
 const ZONE_NAME = "mattb.tech";
@@ -57,41 +59,31 @@ export class MattbTechWebsite extends cdk.Stack {
       hostedZone: mainHostedZone,
     });
 
-    const distribution = new cloudfront.CloudFrontWebDistribution(
-      this,
-      "Distribution",
-      {
-        originConfigs: [
+    const routerLambda = new lambda.Function(this, "RouterFunction", {
+      runtime: lambda.Runtime.NODEJS_12_X,
+      handler: "dist/index.handler",
+      code: lambda.Code.fromAsset(path.join(__dirname, "../../edge-router")),
+    });
+
+    const distribution = new cloudfront.Distribution(this, "Distribution", {
+      defaultBehavior: {
+        origin: new origins.S3Origin(siteBucket),
+        viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+        edgeLambdas: [
           {
-            behaviors: [
-              {
-                isDefaultBehavior: true,
-                defaultTtl: cdk.Duration.minutes(5),
-                compress: true,
-                allowedMethods: cloudfront.CloudFrontAllowedMethods.GET_HEAD,
-                forwardedValues: {
-                  queryString: false,
-                },
-              },
-            ],
-            customOriginSource: {
-              domainName: siteBucket.bucketWebsiteDomainName,
-              originProtocolPolicy: cloudfront.OriginProtocolPolicy.HTTP_ONLY,
-            },
+            functionVersion: routerLambda.currentVersion,
+            eventType: cloudfront.LambdaEdgeEventType.ORIGIN_REQUEST,
           },
         ],
-        viewerCertificate: cloudfront.ViewerCertificate.fromAcmCertificate(
-          certificate,
-          {
-            aliases: [DOMAIN_NAME],
-          }
-        ),
-        viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-      }
-    );
+      },
+      domainNames: [DOMAIN_NAME],
+      certificate,
+    });
 
     new s3deploy.BucketDeployment(this, "DeploySite", {
-      sources: [s3deploy.Source.asset(path.join(__dirname, "../public"))],
+      sources: [
+        s3deploy.Source.asset(path.join(__dirname, "../../website/out")),
+      ],
       destinationBucket: siteBucket,
       distribution,
     });

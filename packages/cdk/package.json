@@ -22,5 +22,9 @@
     "check": "../../scripts/check.sh",
     "clean": "../../scripts/clean.sh",
     "fix": "../../scripts/fix.sh"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-cloudfront-origins": "^1.88.0",
+    "@aws-cdk/aws-lambda": "^1.88.0"
   }
 }

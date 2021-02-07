@@ -156,6 +156,17 @@
     "@aws-cdk/cx-api" "1.88.0"
     constructs "^3.2.0"
 
+"@aws-cdk/aws-cloudfront-origins@^1.88.0":
+  version "1.88.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-cloudfront-origins/-/aws-cloudfront-origins-1.88.0.tgz#ec193a2a3c9210e3819fcb86dd0565befc4db471"
+  integrity sha512-6U5MXNtsftHkgVxqHLMnMUB6uznYNwetZAAU5nfYSPSLfS+S9JMIGzMmYlSYLUaT20PQz7ChkmVAId1zzP+nuw==
+  dependencies:
+    "@aws-cdk/aws-cloudfront" "1.88.0"
+    "@aws-cdk/aws-elasticloadbalancingv2" "1.88.0"
+    "@aws-cdk/aws-s3" "1.88.0"
+    "@aws-cdk/core" "1.88.0"
+    constructs "^3.2.0"
+
 "@aws-cdk/aws-cloudfront@1.88.0", "@aws-cdk/aws-cloudfront@^1.85.0":
   version "1.88.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-cloudfront/-/aws-cloudfront-1.88.0.tgz#7df5034bb6dbd135c690ea173edad515aeda4e90"
@@ -311,7 +322,7 @@
     "@aws-cdk/cx-api" "1.88.0"
     constructs "^3.2.0"
 
-"@aws-cdk/aws-lambda@1.88.0":
+"@aws-cdk/aws-lambda@1.88.0", "@aws-cdk/aws-lambda@^1.88.0":
   version "1.88.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-lambda/-/aws-lambda-1.88.0.tgz#e9f7945a20415c6459742e67b44b2939aa8cf18e"
   integrity sha512-1ESJV5IO4na92uhNw1b5vqpIyZJf91ceKmKFCHmmI/lYNdjVzgnjog0/+zI7AHaj3yObEEImPyuuGWmed2/+kQ==
