@@ -1,0 +1,19 @@
+{
+  "name": "@mattb.tech/edge-router",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "author": "Matt Benton <m@mattb.tech>",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "../../scripts/build.sh",
+    "check": "../../scripts/check.sh",
+    "clean": "../../scripts/clean.sh",
+    "fix": "../../scripts/fix.sh"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.71",
+    "prettier": "^2.2.1",
+    "typescript": "^4.1.3"
+  },
+  "dependencies": {}
+}
