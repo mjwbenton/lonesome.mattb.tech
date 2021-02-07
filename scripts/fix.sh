@@ -1,2 +1,2 @@
 #!/bin/sh
-prettier --write '**/*' -u --ignore-path ../../.prettierignore
+prettier --write '**/*' -u --ignore-path ../../.gitignore

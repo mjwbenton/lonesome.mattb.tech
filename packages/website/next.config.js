@@ -11,15 +11,18 @@ const withMDX = require("@next/mdx")({
     remarkPlugins: [
       detectFrontmatter,
       [extractFrontmatter, { name: "frontmatter", yaml, throws: true }],
-      [mdxDataFetching, { globalDataProviders: ["navigation/navigationPropsProvider"] }],
-      [remarkFlickr, { sizes: "100vw" }]
+      [
+        mdxDataFetching,
+        { globalDataProviders: ["navigation/navigationPropsProvider"] },
+      ],
+      [remarkFlickr, { sizes: "100vw" }],
     ],
     rehypePlugins: [
       [mdxTailwindTypography, { additionalClasses: "mb-8" }],
-      rehypePrism
-    ]
+      rehypePrism,
+    ],
   },
 });
 module.exports = withMDX({
-  pageExtensions: ["tsx", "mdx"]
+  pageExtensions: ["tsx", "mdx"],
 });

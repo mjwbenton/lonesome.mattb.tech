@@ -1,3 +1,3 @@
 #!/bin/sh
-prettier --check '**/*' -u --ignore-path ../../.prettierignore
+prettier --check '**/*' -u --ignore-path ../../.gitignore
 tsc --noEmit
