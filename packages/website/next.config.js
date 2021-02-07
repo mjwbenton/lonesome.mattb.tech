@@ -6,6 +6,9 @@ const remarkFlickr = require("@mattb.tech/remark-flickr");
 const mdxTailwindTypography = require("@mattb.tech/mdx-tailwind-typography");
 const rehypePrism = require("@mapbox/rehype-prism");
 
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
 const withMDX = require("@next/mdx")({
   options: {
     remarkPlugins: [
@@ -23,7 +26,9 @@ const withMDX = require("@next/mdx")({
     ],
   },
 });
-module.exports = withMDX({
-  pageExtensions: ["tsx", "mdx"],
-  reactStrictMode: true,
-});
+module.exports = withBundleAnalyzer(
+  withMDX({
+    pageExtensions: ["tsx", "mdx"],
+    reactStrictMode: true,
+  })
+);
