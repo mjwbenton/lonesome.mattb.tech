@@ -21,7 +21,7 @@ const withMDX = require("@next/mdx")({
       [remarkFlickr, { sizes: "100vw" }],
     ],
     rehypePlugins: [
-      [mdxTailwindTypography, { additionalClasses: "mb-8" }],
+      [mdxTailwindTypography, { additionalClasses: "dark:prose-dark mb-8" }],
       rehypePrism,
     ],
   },

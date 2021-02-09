@@ -13,7 +13,7 @@ function TimerData(props: Omit<JSX.IntrinsicElements["td"], "className">) {
 }
 
 function TimerTableRow(props: Omit<JSX.IntrinsicElements["tr"], "className">) {
-  return <tr {...props} className="odd:bg-gray" />;
+  return <tr {...props} className="odd:bg-light-1 dark:odd:bg-dark-1" />;
 }
 
 const timings = {
@@ -115,7 +115,11 @@ const TimerPage = () => {
                       }}
                     >
                       <Watch
-                        color={state !== State.RUNNING ? "black" : "grey"}
+                        className={
+                          state !== State.RUNNING
+                            ? "text-dark dark:text-light-1"
+                            : "text-dark-2 dark:text-grey-400"
+                        }
                       />
                     </a>
                   </TimerData>

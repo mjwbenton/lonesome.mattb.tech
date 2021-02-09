@@ -4,7 +4,7 @@ import { Entry, Group } from "./navigationTypes";
 import { Clickable, Composite, CompositeItem, useCompositeState } from "reakit";
 
 function navSectionClasses(hidden: boolean | undefined) {
-  return `block w-full cursor-pointer text-xl font-bold text-center md:text-left md:border-r border-gray-dark last:border-r-0 md:w-auto md:inline-block md:pr-4 md:pl-4 first:pl-0 last:pr-0 ${
+  return `block w-full cursor-pointer text-xl font-bold text-center md:text-left md:w-auto md:inline-block md:pr-4 md:pl-4 first:pl-0 last:pr-0 ${
     hidden ? "hidden" : ""
   }`;
 }
@@ -41,10 +41,10 @@ export const Navigation: React.FunctionComponent<{
   const openTitle = Object.keys(state).find((key) => state[key]);
 
   return (
-    <nav className="p-4 border-t-4 border-accent bg-gray">
+    <nav className="p-4 border-t-4 bg-light-1 border-accent-light dark:border-accent-dark dark:bg-dark-1">
       <Composite
         {...mainComposite}
-        className="space-y-4 md:space-y-0"
+        className="space-y-4 md:space-y-0 md:divide-x divide-light-2 dark:divide-gray-700"
         aria-label="Main Navigation"
       >
         {entries.map((groupOrEntry) => {
@@ -69,7 +69,9 @@ export const Navigation: React.FunctionComponent<{
                   <Clickable
                     {...props}
                     className={`${navSectionClasses(anyOpen)} ${
-                      state[group.title] ? "text-accent" : ""
+                      state[group.title]
+                        ? "text-accent-light-1 dark:text-accent-dark-1"
+                        : ""
                     }`}
                     onClick={() => openGroup(group)}
                     aria-expanded={state[group.title] ? "true" : "false"}

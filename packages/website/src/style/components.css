@@ -11,21 +11,35 @@
     }
 
     & > .striped-index {
-      @apply z-0 text-white;
+      @apply z-0 text-light;
+    }
+    
+    &:nth-child(odd) > .striped-index {
+      @apply text-light-1;
+    }
+  }
+
+  .dark .striped-list-element {
+    & > .striped-index {
+      @apply text-dark;
     }
 
     &:nth-child(odd) > .striped-index {
-      @apply text-gray;
+      @apply text-dark-1;
     }
   }
 
   .prose img {
-    @apply border-r-4 border-accent2 max-h-95vh;
+    @apply border-r-4 border-accent-dark max-h-95vh;
     margin-left: calc(theme("spacing.4") * -1);
     max-width: 100vw;
 
     @screen md {
       margin-left: calc(theme("spacing.8") * -1);
     }
+  }
+
+  .dark\:prose-dark img {
+    @apply border-accent-light
   }
 }
