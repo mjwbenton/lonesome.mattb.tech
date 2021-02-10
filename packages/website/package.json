@@ -4,7 +4,7 @@
   "private": "true",
   "description": "My personal website.",
   "scripts": {
-    "build": "next build && next export",
+    "build": "rm -Rf out .next && next build && next export",
     "analyze": "ANALYZE=true next build",
     "dev": "next dev",
     "start": "next start",
