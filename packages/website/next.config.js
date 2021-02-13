@@ -16,7 +16,12 @@ const withMDX = require("@next/mdx")({
       [extractFrontmatter, { name: "frontmatter", yaml, throws: true }],
       [
         mdxDataFetching,
-        { globalDataProviders: ["navigation/navigationPropsProvider"] },
+        {
+          globalDataProviders: [
+            "navigation/navigationPropsProvider",
+            "global/frontmatterDataProvider",
+          ],
+        },
       ],
       [remarkFlickr, { sizes: "100vw" }],
     ],
