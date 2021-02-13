@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "react-feather";
+import { Button } from "reakit";
 
 export default function ThemeChanger() {
   const [mounted, setMounted] = useState(false);
@@ -11,21 +12,24 @@ export default function ThemeChanger() {
 
   if (!mounted) return null;
 
+  const isDark = theme === "dark";
+
+  const toggleTheme = () => {
+    if (isDark) {
+      setTheme("light");
+    } else {
+      setTheme("dark");
+    }
+  };
+
   return (
-    <div
-      role="presentation"
-      className="md:static absolute right-0 top-0 p-12 text-light-2 dark:text-dark-2"
+    <Button
+      className="absolute top-0 right-0 p-12 md:static text-light-2 dark:text-dark-2"
+      onClick={() => toggleTheme()}
+      aria-pressed={isDark}
+      aria-label="Dark Mode"
     >
-      {theme === "dark" ? (
-        <button onClick={() => setTheme("light")}>
-          <Sun />
-        </button>
-      ) : null}
-      {theme === "light" ? (
-        <button onClick={() => setTheme("dark")}>
-          <Moon />
-        </button>
-      ) : null}
-    </div>
+      {isDark ? <Sun /> : <Moon />}
+    </Button>
   );
 }
