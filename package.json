@@ -8,5 +8,11 @@
   "private": true,
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "scripts": {
+    "build": "yarn workspaces run build",
+    "start": "yarn workspace @mattb.tech/website run start",
+    "site-test": "yarn workspace @mattb.tech/cypress-tests site-test && yarn workspace @mattb.tech/website-audits run audit",
+    "deploy": "yarn workspace @mattb.tech/cdk run deploy"
+  }
 }
