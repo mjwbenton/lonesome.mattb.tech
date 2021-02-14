@@ -11,7 +11,9 @@
     "clean": "../../scripts/clean.sh",
     "fix": "../../scripts/fix.sh",
     "start": "cypress open",
-    "test": "cypress run"
+    "start:localhost": "CYPRESS_BASE_URL='http://localhost:3000' cypress open",
+    "test": "cypress run",
+    "test:localhost": "CYPRESS_BASE_URL='http://localhost:3000' cypress run"
   },
   "devDependencies": {
     "cypress": "^6.4.0",
