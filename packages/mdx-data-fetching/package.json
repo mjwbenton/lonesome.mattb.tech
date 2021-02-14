@@ -11,8 +11,8 @@
     "fix": "../../scripts/fix.sh"
   },
   "devDependencies": {
-    "typescript": "^4.1.3",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "typescript": "^4.1.3"
   },
   "dependencies": {
     "unist-builder": "^2.0.3"

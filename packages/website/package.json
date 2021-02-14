@@ -1,8 +1,8 @@
 {
   "name": "@mattb.tech/website",
   "version": "1.0.0",
-  "private": "true",
   "description": "My personal website.",
+  "private": true,
   "scripts": {
     "build": "rm -Rf out .next && next build && next export",
     "analyze": "ANALYZE=true next build",

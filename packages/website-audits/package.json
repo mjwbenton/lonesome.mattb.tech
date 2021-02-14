@@ -8,9 +8,8 @@
     "pa11y-ci": "^2.4.0"
   },
   "scripts": {
-    "audit": "npm run lighthouse && npm run pa11y",
+    "site-test": "npm run lighthouse && npm run pa11y",
     "lighthouse": "lhci autorun",
-    "pa11y": "pa11y-ci --config pa11y.js",
-    "build": "echo 'nothing to do'"
+    "pa11y": "pa11y-ci --config pa11y.js"
   }
 }

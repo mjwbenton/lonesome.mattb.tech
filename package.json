@@ -10,9 +10,9 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "yarn workspaces run build",
+    "build": "yarn workspaces foreach -v run build",
     "start": "yarn workspace @mattb.tech/website run start",
-    "site-test": "yarn workspace @mattb.tech/cypress-tests site-test && yarn workspace @mattb.tech/website-audits run audit",
+    "site-test": "yarn workspaces foreach -v run site-test",
     "deploy": "yarn workspace @mattb.tech/cdk run deploy"
   }
 }

@@ -16,6 +16,5 @@ My personal website.
 - Set Cache ttl for files
 - Set meta description for every page
 - Types for GraphQL queries
-- Upgrade yarn to 2
 - Fix lighthouse issues
 - Fix pa11y issues
