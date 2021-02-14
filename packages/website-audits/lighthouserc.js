@@ -4,7 +4,6 @@ module.exports = {
   ci: {
     collect: {
       url: urls,
-      startServerCommand: "yarn workspace @mattb.tech/website start",
     },
     assert: {
       preset: "lighthouse:no-pwa",
