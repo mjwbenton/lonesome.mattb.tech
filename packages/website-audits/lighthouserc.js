@@ -1,7 +1,9 @@
+const urls = require("./urls");
+
 module.exports = {
   ci: {
     collect: {
-      url: ["http://localhost:3001"],
+      url: urls,
       startServerCommand: "yarn workspace @mattb.tech/website start",
     },
     assert: {
