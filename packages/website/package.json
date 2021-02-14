@@ -4,17 +4,22 @@
   "description": "My personal website.",
   "private": true,
   "scripts": {
-    "build": "rm -Rf out .next && next build && next export",
+    "build": "npm run codegen && rm -Rf out .next && next build && next export",
     "analyze": "ANALYZE=true next build",
     "dev": "next dev",
     "start": "next start -p 3001",
     "check": "../../scripts/check.sh",
     "clean": "../../scripts/clean.sh",
-    "fix": "../../scripts/fix.sh"
+    "fix": "../../scripts/fix.sh",
+    "codegen": "graphql-codegen --config codegen.yml"
   },
   "author": "Matt Benton <m@mattb.tech>",
   "license": "UNLICENSED",
   "devDependencies": {
+    "@graphql-codegen/cli": "1.20.1",
+    "@graphql-codegen/typescript": "1.21.0",
+    "@graphql-codegen/typescript-operations": "1.17.14",
+    "@graphql-codegen/typescript-react-apollo": "2.2.1",
     "@mapbox/rehype-prism": "^0.5.0",
     "@mattb.tech/babel-plugin-mdx-get-static-props": "1.0.0",
     "@next/bundle-analyzer": "^10.0.6",

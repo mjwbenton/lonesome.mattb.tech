@@ -1,0 +1,14 @@
+overwrite: true
+schema: "https://api.mattb.tech"
+documents: "src/**/*.ts"
+generates:
+  src/generated/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+    config:
+      avoidOptionals: true
+      immutableTypes: true
+      preResolveTypes: true
+      onlyOperationTypes: true
+      skipTypename: true
