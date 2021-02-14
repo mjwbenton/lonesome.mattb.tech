@@ -1,0 +1,13 @@
+{
+  "name": "@mattb.tech/website-audits",
+  "version": "1.0.0",
+  "author": "Matt Benton <m@mattb.tech>",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@lhci/cli": "^0.7.0"
+  },
+  "scripts": {
+    "audit": "lhci autorun",
+    "build": "echo 'nothing to do'"
+  }
+}

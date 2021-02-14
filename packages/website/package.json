@@ -7,7 +7,7 @@
     "build": "rm -Rf out .next && next build && next export",
     "analyze": "ANALYZE=true next build",
     "dev": "next dev",
-    "start": "next start",
+    "start": "next start -p 3001",
     "check": "../../scripts/check.sh",
     "clean": "../../scripts/clean.sh",
     "fix": "../../scripts/fix.sh"
