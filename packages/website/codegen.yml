@@ -1,6 +1,6 @@
 overwrite: true
 schema: "https://api.mattb.tech"
-documents: "src/**/*.ts"
+documents: "src/**/*.{ts,tsx}"
 generates:
   src/generated/graphql.tsx:
     plugins:
