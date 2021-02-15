@@ -1,24 +1,14 @@
 import client from "../global/client";
 import gql from "graphql-tag";
+import { fragment } from "./Photo";
 
 const QUERY = gql`
   query PhotoSet($photosetId: ID!) {
     photoSet(photosetId: $photosetId) {
-      id
-      pageUrl
-      title
-      mainSource {
-        url
-        width
-        height
-      }
-      sources {
-        url
-        width
-        height
-      }
+      ...Photo
     }
   }
+  ${fragment}
 `;
 
 export default async function photoSetDataProvider({ photosetId }) {

@@ -8,9 +8,12 @@ import { Clock } from "react-feather";
 
 export default function Repositories() {
   const { githubRepositories }: GithubRepositoriesQuery = usePageData();
+  if (!githubRepositories) {
+    return null;
+  }
   return (
     <MaxWidthWrapper>
-      {githubRepositories?.map((n: any) => (
+      {githubRepositories.map((n: any) => (
         <ContentBlock key={n.name}>
           <div className="text-lg font-bold">{n.name}</div>
           {n.description && <p className="mb-4">{n.description}</p>}

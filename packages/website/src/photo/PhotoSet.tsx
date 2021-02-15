@@ -6,10 +6,13 @@ import PhotosWrapper from "./PhotosWrapper";
 
 const Photos = () => {
   const { photoSet }: PhotoSetQuery = usePageData();
+  if (!photoSet) {
+    return null;
+  }
   return (
     <PhotosWrapper>
-      {photoSet?.map((p, i) => (
-        <SinglePhoto {...p} key={p?.pageUrl} lazyLoad={i > 1} />
+      {photoSet.map((p, i) => (
+        <SinglePhoto {...p} key={p.pageUrl} lazyLoad={i > 1} />
       ))}
     </PhotosWrapper>
   );

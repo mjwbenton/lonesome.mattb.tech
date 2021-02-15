@@ -4,16 +4,16 @@ import Infoline from "../component/Infoline";
 import TwoRowText from "../component/TwoRowText";
 import { Star, Clock } from "react-feather";
 
-export type BookType = {
-  title: string;
-  link: string;
-  rating: number | null;
-  image: string;
-  authors: Array<string>;
-  read: boolean;
-  started_at: string;
-  read_at: string;
-};
+interface BookType {
+  readonly title: string;
+  readonly link: string;
+  readonly rating: number | null;
+  readonly image: string;
+  readonly authors: ReadonlyArray<string>;
+  readonly read: boolean;
+  readonly started_at: string | null;
+  readonly read_at: string | null;
+}
 
 const Book: React.FunctionComponent<{ book: BookType }> = ({ book }) => (
   <ContentBlock>
@@ -36,7 +36,7 @@ const Book: React.FunctionComponent<{ book: BookType }> = ({ book }) => (
     <Infoline externalLinkUrl={book.link} externalLinkText="Gr">
       {book.read ? (
         <span>
-          Rating: <Star className="inline" size={14} /> {book.rating}/5
+          Rating: <Star className="inline" size={14} /> {book!.rating}/5
         </span>
       ) : (
         <span>Still reading</span>

@@ -2,6 +2,8 @@ import * as React from "react";
 import Infoline from "../component/Infoline";
 import ContentBlock from "../component/ContentBlock";
 import LazyLoad from "react-lazyload";
+import gql from "graphql-tag";
+import { PhotoFragment } from "generated/graphql";
 
 /*
  * The images are the width of the viewport minus padding.
@@ -12,19 +14,33 @@ const SIZES = `
   calc(100vw - 2rem)
 `;
 
-function generateSrcSet(sources): string {
+function generateSrcSet(sources: PhotoFragment["sources"]): string {
   return sources
     .map((source) => [source.url, " ", source.width, "w"].join(""))
     .join(", ");
 }
 
-const Photo: React.FunctionComponent<any> = ({
-  pageUrl,
-  sources,
-  mainSource,
-  title,
-  lazyLoad,
-}) => {
+export const fragment = gql`
+  fragment Photo on Photo {
+    id
+    pageUrl
+    title
+    mainSource {
+      url
+      width
+      height
+    }
+    sources {
+      url
+      width
+      height
+    }
+  }
+`;
+
+const Photo: React.FunctionComponent<
+  PhotoFragment & { lazyLoad?: boolean }
+> = ({ pageUrl, sources, mainSource, title, lazyLoad }) => {
   const img = (
     <img
       src={mainSource.url}

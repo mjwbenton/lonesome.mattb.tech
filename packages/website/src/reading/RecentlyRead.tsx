@@ -12,7 +12,7 @@ const RecentlyRead: React.FunctionComponent = () => {
   return (
     <MaxWidthWrapper>
       {recentBooks.map((book, i) =>
-        book ? <Book book={book as any} key={i} /> : null
+        book ? <Book book={book} key={i} /> : null
       )}
     </MaxWidthWrapper>
   );
