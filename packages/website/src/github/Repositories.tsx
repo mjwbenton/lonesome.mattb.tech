@@ -1,15 +1,16 @@
 import ContentBlock from "component/ContentBlock";
 import Infoline from "component/Infoline";
 import MaxWidthWrapper from "component/MaxWidthWrapper";
+import { GithubRepositoriesQuery } from "generated/graphql";
 import { usePageData } from "global/pageData";
 import React from "react";
 import { Clock } from "react-feather";
 
 export default function Repositories() {
-  const { githubRepositories } = usePageData();
+  const { githubRepositories }: GithubRepositoriesQuery = usePageData();
   return (
     <MaxWidthWrapper>
-      {githubRepositories.map((n: any) => (
+      {githubRepositories?.map((n: any) => (
         <ContentBlock key={n.name}>
           <div className="text-lg font-bold">{n.name}</div>
           {n.description && <p className="mb-4">{n.description}</p>}

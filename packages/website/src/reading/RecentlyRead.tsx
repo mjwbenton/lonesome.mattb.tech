@@ -1,18 +1,19 @@
+import { RecentBooksQuery } from "generated/graphql";
 import { usePageData } from "global/pageData";
 import React from "react";
 import MaxWidthWrapper from "../component/MaxWidthWrapper";
-import Book, { BookType } from "./Book";
+import Book from "./Book";
 
-export type RecentBooks = {
-  recentBooks: Array<BookType>;
-};
-
-const RecentlyRead: React.FunctionComponent<RecentBooks> = () => {
-  const { recentBooks } = usePageData();
+const RecentlyRead: React.FunctionComponent = () => {
+  const { recentBooks }: RecentBooksQuery = usePageData();
+  if (!recentBooks) {
+    return null;
+  }
   return (
     <MaxWidthWrapper>
-      {recentBooks &&
-        recentBooks.map((book, i) => <Book book={book} key={i} />)}
+      {recentBooks.map((book, i) =>
+        book ? <Book book={book as any} key={i} /> : null
+      )}
     </MaxWidthWrapper>
   );
 };

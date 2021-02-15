@@ -3,9 +3,10 @@ import Track from "./Track";
 import MaxWidthWrapper from "../component/MaxWidthWrapper";
 import StripedList from "../component/StripedList";
 import { usePageData } from "global/pageData";
+import { PlaylistQuery } from "generated/graphql";
 
 const Playlist: React.FunctionComponent = () => {
-  const { playlist } = usePageData();
+  const { playlist }: PlaylistQuery = usePageData();
   if (!playlist) {
     return null;
   }

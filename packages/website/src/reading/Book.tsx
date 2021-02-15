@@ -7,7 +7,7 @@ import { Star, Clock } from "react-feather";
 export type BookType = {
   title: string;
   link: string;
-  rating: number;
+  rating: number | null;
   image: string;
   authors: Array<string>;
   read: boolean;

@@ -3,27 +3,30 @@ import SinglePhoto from "../photo/Photo";
 import PhotosWrapper from "../photo/PhotosWrapper";
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
+import { RecentPhotosQuery } from "generated/graphql";
 
-const Stream = () => {
-  const { data, error, loading } = useQuery<{ recentPhotos: any }>(gql`
-    {
-      recentPhotos {
-        id
-        pageUrl
-        title
-        mainSource {
-          url
-          height
-          width
-        }
-        sources {
-          url
-          height
-          width
-        }
+const QUERY = gql`
+  query RecentPhotos {
+    recentPhotos {
+      id
+      pageUrl
+      title
+      mainSource {
+        url
+        height
+        width
+      }
+      sources {
+        url
+        height
+        width
       }
     }
-  `);
+  }
+`;
+
+const Stream = () => {
+  const { data, error, loading } = useQuery<RecentPhotosQuery>(QUERY);
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -32,9 +35,9 @@ const Stream = () => {
   }
   return (
     <PhotosWrapper>
-      {data!.recentPhotos.map((p) => (
-        <div key={p.pageUrl}>
-          <SinglePhoto {...p} key={p.pageUrl} />
+      {data!.recentPhotos?.map((p) => (
+        <div key={p?.pageUrl}>
+          <SinglePhoto {...p} key={p?.pageUrl} />
         </div>
       ))}
     </PhotosWrapper>
