@@ -15,7 +15,7 @@ export default function Repositories() {
     <MaxWidthWrapper>
       {githubRepositories.map((n: any) => (
         <ContentBlock key={n.name}>
-          <div className="text-lg font-bold">{n.name}</div>
+          <h2 className="text-lg font-bold">{n.name}</h2>
           {n.description && <p className="mb-4">{n.description}</p>}
           <div className="flex justify-between w-full mb-4 text-xs">
             <div className="text-left">

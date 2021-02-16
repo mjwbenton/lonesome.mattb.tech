@@ -13,6 +13,7 @@ const Track: React.FunctionComponent<{ track: any; index: number }> = ({
       height={IMAGE_SIZE}
       width={IMAGE_SIZE}
       src={track.album.images[2].url}
+      alt={`Album art for ${track.album.name}`}
     />
     <TwoRowText
       row1={track.name}
