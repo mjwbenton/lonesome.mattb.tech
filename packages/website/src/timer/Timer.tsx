@@ -1,11 +1,12 @@
 import React from "react";
 import { Play, Gift, Bell } from "react-feather";
+import { Button } from "reakit";
 import { State } from "./useCountdownTimer";
 
 const CelebrateIfFinished = ({ state }: { state: State }) => {
   if (state === State.FINISHED) {
     return (
-      <span>
+      <span data-testid="timer-celebration">
         <Gift className="inline-block" />
         <Bell className="inline-block" />
       </span>
@@ -28,10 +29,21 @@ const Timer = ({
 }) => {
   return (
     <div className="mb-4 font-mono text-3xl">
-      <div className="inline-block pr-4">
+      <div
+        className="inline-block pr-4"
+        data-testid="timer-clock"
+        aria-live="polite"
+      >
         {minutes} : {seconds}
       </div>
-      <Play onClick={startStop} className="inline-block" />
+      <Button
+        className="inline-block"
+        onClick={startStop}
+        aria-label="Start timer"
+        data-testid="timer-start-button"
+      >
+        <Play />
+      </Button>
       <CelebrateIfFinished state={state} />
     </div>
   );

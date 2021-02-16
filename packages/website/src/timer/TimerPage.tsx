@@ -3,6 +3,7 @@ import { Thermometer, Watch } from "react-feather";
 import Timer from "./Timer";
 import useCountdownTimer, { State } from "./useCountdownTimer";
 import MaxWidthWrapper from "../component/MaxWidthWrapper";
+import { Button } from "reakit";
 
 function TimerHeader(props: Omit<JSX.IntrinsicElements["th"], "className">) {
   return <th {...props} className="px-2 py-4" />;
@@ -107,12 +108,12 @@ const TimerPage = () => {
                   <TimerData>{f}</TimerData>
                   <TimerData>{t}</TimerData>
                   <TimerData>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
+                    <Button
+                      aria-label="Set time"
+                      onClick={() => {
                         state !== State.RUNNING && setTimerDuration(t);
                       }}
+                      data-testid={`timer-set-${t}`}
                     >
                       <Watch
                         className={
@@ -121,7 +122,7 @@ const TimerPage = () => {
                             : "text-dark-2 dark:text-grey-400"
                         }
                       />
-                    </a>
+                    </Button>
                   </TimerData>
                 </TimerTableRow>
               ))}
