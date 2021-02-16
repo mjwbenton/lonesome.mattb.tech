@@ -39,8 +39,8 @@
     }
   }
 
-  .dark\:prose-dark img {
-    @apply border-accent-light
+  .dark .dark\:prose-dark img {
+    @apply border-accent-light;
   }
 
   /* Override prismjs background color to ensure its accessible */
