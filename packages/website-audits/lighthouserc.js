@@ -4,6 +4,9 @@ module.exports = {
   ci: {
     collect: {
       url: urls,
+      settings: {
+        useThrottling: false,
+      },
     },
     assert: {
       preset: "lighthouse:no-pwa",
