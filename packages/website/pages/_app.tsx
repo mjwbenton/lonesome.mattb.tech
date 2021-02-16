@@ -21,11 +21,13 @@ export default function MyApp({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <ThemeProvider attribute="class">
-        <div role="presentation" className="flex">
-          <Logo />
-          <ThemeChanger />
-        </div>
-        {navigation ? <Navigation {...navigation} /> : null}
+        <header>
+          <div role="presentation" className="flex">
+            <Logo />
+            <ThemeChanger />
+          </div>
+          {navigation ? <Navigation {...navigation} /> : null}
+        </header>
         <main className="m-4 md:m-8">
           <PageDataProvider value={componentProps}>
             <Component {...componentProps} />
