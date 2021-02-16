@@ -1,3 +1,3 @@
 export default function ErrorPage({ statusCode }) {
-  return <div>Error {statusCode}</div>;
+  return <h1>Error {statusCode}</h1>;
 }

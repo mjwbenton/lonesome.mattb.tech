@@ -1,3 +1,3 @@
 export default function FourOhFour() {
-  return <div>Error 404</div>;
+  return <h1>Error 404</h1>;
 }
