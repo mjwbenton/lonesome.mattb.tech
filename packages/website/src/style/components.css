@@ -13,7 +13,7 @@
     & > .striped-index {
       @apply z-0 text-light;
     }
-    
+
     &:nth-child(odd) > .striped-index {
       @apply text-light-1;
     }
@@ -41,5 +41,11 @@
 
   .dark\:prose-dark img {
     @apply border-accent-light
+  }
+
+  /* Override prismjs background color to ensure its accessible */
+  /* purgecss ignore */
+  .prose pre[class*="language-"] {
+    background-color: #101010;
   }
 }

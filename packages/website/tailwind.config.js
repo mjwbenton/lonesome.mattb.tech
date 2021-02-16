@@ -14,9 +14,12 @@ module.exports = {
       typography: (theme) => ({
         DEFAULT: {
           css: {
+            // Let prismjs handle code styling
             pre: false,
             code: false,
+            // Not using the lead feature
             '[class~="lead"]': false,
+            // Colors override
             color: theme("colors.dark.2"),
             a: {
               color: theme("colors.dark.DEFAULT"),
