@@ -27,9 +27,9 @@ const Stream = () => {
   }
   return (
     <PhotosWrapper>
-      {data!.recentPhotos.map((p) => (
+      {data!.recentPhotos.map((p, i) => (
         <div key={p?.pageUrl}>
-          <SinglePhoto {...p} key={p.pageUrl} />
+          <SinglePhoto {...p} key={p.pageUrl} lazyLoad={i > 1} />
         </div>
       ))}
     </PhotosWrapper>
