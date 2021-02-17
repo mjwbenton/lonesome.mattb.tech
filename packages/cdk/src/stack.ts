@@ -14,6 +14,8 @@ const ZONE_NAME = "mattb.tech";
 const DOMAIN_NAME = "mattb.tech";
 const HOSTED_ZONE_ID = "Z2GPSB1CDK86DH";
 
+const OUT_PATH = path.join(__dirname, "../../website/out");
+
 const REDIRECT_DOMAIN_NAMES = [
   {
     hostedZone: "mattb.tech",
@@ -48,11 +50,8 @@ export class MattbTechWebsite extends cdk.Stack {
       }
     );
 
-    const siteBucket = new s3.Bucket(this, "SiteBucket", {
-      accessControl: s3.BucketAccessControl.PUBLIC_READ,
-      websiteIndexDocument: "index.html",
-      publicReadAccess: true,
-    });
+    const pagesBucket = new s3.Bucket(this, "PagesBucket");
+    const assetsBucket = new s3.Bucket(this, "AssetsBucket");
 
     const certificate = new acm.DnsValidatedCertificate(this, "Certificate", {
       domainName: DOMAIN_NAME,
@@ -67,7 +66,7 @@ export class MattbTechWebsite extends cdk.Stack {
 
     const distribution = new cloudfront.Distribution(this, "Distribution", {
       defaultBehavior: {
-        origin: new origins.S3Origin(siteBucket),
+        origin: new origins.S3Origin(pagesBucket),
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
         edgeLambdas: [
           {
@@ -79,13 +78,35 @@ export class MattbTechWebsite extends cdk.Stack {
       domainNames: [DOMAIN_NAME],
       certificate,
     });
+    distribution.addBehavior("_next/*", new origins.S3Origin(assetsBucket));
 
-    new s3deploy.BucketDeployment(this, "DeploySite", {
+    const pagesDeploy = new s3deploy.BucketDeployment(this, "DeployPages", {
       sources: [
-        s3deploy.Source.asset(path.join(__dirname, "../../website/out")),
+        s3deploy.Source.asset(OUT_PATH, {
+          exclude: ["_next"],
+        }),
       ],
-      destinationBucket: siteBucket,
+      destinationBucket: pagesBucket,
+      cacheControl: [
+        s3deploy.CacheControl.fromString(
+          "max-age=0,no-cache,no-store,must-revalidate"
+        ),
+      ],
       distribution,
+    });
+
+    const assetsDeploy = new s3deploy.BucketDeployment(this, "DeployAssets", {
+      sources: [
+        s3deploy.Source.asset(OUT_PATH, {
+          exclude: ["*.html"],
+        }),
+      ],
+      destinationBucket: assetsBucket,
+      cacheControl: [
+        s3deploy.CacheControl.fromString("max-age=31536000,public,immutable"),
+      ],
+      distribution,
+      prune: false,
     });
 
     new route53.ARecord(this, "DomainRecord", {

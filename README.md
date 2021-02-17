@@ -12,6 +12,5 @@ My personal website.
 ## TODO
 
 - Should I be setting a baseId in Reakit stuff? (getting error about SSR not matching client side)
-- Set Cache ttl for files
 - Set meta description for every page
 - Fix lighthouse issues
