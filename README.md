@@ -1,6 +1,6 @@
-# mattb.tech
+# lonesome-media.mattb.tech
 
-My personal website.
+My personal website where I can share things without using social media.
 
 ## Development Process
 

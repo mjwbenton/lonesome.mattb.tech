@@ -11,7 +11,7 @@ import * as origins from "@aws-cdk/aws-cloudfront-origins";
 import WebsiteRedirect from "./WebsiteRedirect";
 
 const ZONE_NAME = "mattb.tech";
-const DOMAIN_NAME = "mattb.tech";
+const DOMAIN_NAME = "lonesome-media.mattb.tech";
 const HOSTED_ZONE_ID = "Z2GPSB1CDK86DH";
 
 const OUT_PATH = path.join(__dirname, "../../website/out");
