@@ -1,4 +1,4 @@
-# @mattb.tech/edge-router
+# @mattb.tech/lonesome-edge-router
 
 Lambda@Edge function that handles re-routing requests so that my next.js static website works as expected.
 

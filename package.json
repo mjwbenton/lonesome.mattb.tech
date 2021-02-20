@@ -1,8 +1,8 @@
 {
-  "name": "@mattb.tech/monorepo",
+  "name": "@mattb.tech/lonesome-monorepo",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:mjwbenton/mattb.tech.git",
+  "repository": "git@github.com:mjwbenton/lonesome-media.mattb.tech.git",
   "author": "Matthew Benton <m@mattb.tech>",
   "license": "UNLICENSED",
   "private": true,

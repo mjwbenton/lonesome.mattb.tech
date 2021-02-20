@@ -1,7 +1,7 @@
 {
-  "name": "@mattb.tech/website",
+  "name": "@mattb.tech/lonesome-website",
   "version": "1.0.0",
-  "description": "My personal website.",
+  "description": "Personal website where I can share things without using social media.",
   "private": true,
   "scripts": {
     "build": "npm run codegen && rm -Rf out .next && next build && next export",
