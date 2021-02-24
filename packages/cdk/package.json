@@ -1,5 +1,5 @@
 {
-  "name": "@mattb.tech/cdk",
+  "name": "@mattb.tech/lonesome-cdk",
   "version": "1.0.0",
   "main": "cdk/cdk.ts",
   "author": "Matt Benton <m@mattb.tech>",
