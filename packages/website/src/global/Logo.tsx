@@ -6,7 +6,7 @@ const Logo = () => (
     tabIndex={-1}
     href="/"
   >
-    &nbsp;mattb&nbsp;
+    &nbsp;lonesome&nbsp;&nbsp;media&nbsp;
   </a>
 );
 

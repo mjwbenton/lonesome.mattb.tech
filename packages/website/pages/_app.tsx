@@ -12,8 +12,8 @@ import ThemeChanger from "global/ThemeChanger";
 export default function MyApp({ Component, pageProps }) {
   const { navigation, frontmatter, ...componentProps } = pageProps;
   const title = frontmatter?.title
-    ? `${frontmatter!.title} - lonesome.mattb.tech`
-    : "lonesome.mattb.tech";
+    ? `${frontmatter!.title} - lonesome media`
+    : "lonesome media";
   return (
     <ApiProvider>
       <Head>
