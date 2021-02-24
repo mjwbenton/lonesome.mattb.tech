@@ -1,5 +1,5 @@
 import * as cdk from "@aws-cdk/core";
-import { MattbTechWebsite } from "./stack";
+import { LonesomeWebsite } from "./stack";
 
 const app = new cdk.App();
-new MattbTechWebsite(app, "Website");
+new LonesomeWebsite(app, "LonesomeWebsite");

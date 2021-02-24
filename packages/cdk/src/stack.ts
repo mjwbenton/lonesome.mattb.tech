@@ -15,7 +15,7 @@ const HOSTED_ZONE_ID = "Z2GPSB1CDK86DH";
 
 const OUT_PATH = path.join(__dirname, "../../website/out");
 
-export class MattbTechWebsite extends cdk.Stack {
+export class LonesomeWebsite extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
