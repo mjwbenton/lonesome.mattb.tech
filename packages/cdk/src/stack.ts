@@ -8,34 +8,12 @@ import * as acm from "@aws-cdk/aws-certificatemanager";
 import * as s3deploy from "@aws-cdk/aws-s3-deployment";
 import * as lambda from "@aws-cdk/aws-lambda";
 import * as origins from "@aws-cdk/aws-cloudfront-origins";
-import WebsiteRedirect from "./WebsiteRedirect";
 
 const ZONE_NAME = "mattb.tech";
-const DOMAIN_NAME = "lonesome-media.mattb.tech";
+const DOMAIN_NAME = "lonesome.mattb.tech";
 const HOSTED_ZONE_ID = "Z2GPSB1CDK86DH";
 
 const OUT_PATH = path.join(__dirname, "../../website/out");
-
-const REDIRECT_DOMAIN_NAMES = [
-  {
-    hostedZone: "mattb.tech",
-    hostedZoneId: "Z2GPSB1CDK86DH",
-    domainName: "www.mattb.tech",
-    alternateNames: [],
-  },
-  {
-    hostedZone: "mattbenton.co.uk",
-    hostedZoneId: "Z37GS1FXPT1S5S",
-    domainName: "mattbenton.co.uk",
-    alternateNames: ["www.mattbenton.co.uk", "blog.mattbenton.co.uk"],
-  },
-  {
-    hostedZone: "lionsmane.co.uk",
-    hostedZoneId: "ZNKR9NWXWS7UU",
-    domainName: "lionsmane.co.uk",
-    alternateNames: ["www.lionsmane.co.uk"],
-  },
-];
 
 export class MattbTechWebsite extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
@@ -80,7 +58,7 @@ export class MattbTechWebsite extends cdk.Stack {
     });
     distribution.addBehavior("_next/*", new origins.S3Origin(assetsBucket));
 
-    const pagesDeploy = new s3deploy.BucketDeployment(this, "DeployPages", {
+    new s3deploy.BucketDeployment(this, "DeployPages", {
       sources: [
         s3deploy.Source.asset(OUT_PATH, {
           exclude: ["_next"],
@@ -95,7 +73,7 @@ export class MattbTechWebsite extends cdk.Stack {
       distribution,
     });
 
-    const assetsDeploy = new s3deploy.BucketDeployment(this, "DeployAssets", {
+    new s3deploy.BucketDeployment(this, "DeployAssets", {
       sources: [
         s3deploy.Source.asset(OUT_PATH, {
           exclude: ["*.html"],
@@ -117,23 +95,5 @@ export class MattbTechWebsite extends cdk.Stack {
         new route53targets.CloudFrontTarget(distribution)
       ),
     });
-
-    REDIRECT_DOMAIN_NAMES.forEach(
-      ({ hostedZone, hostedZoneId, domainName, alternateNames }) => {
-        new WebsiteRedirect(this, `RedirectFor${domainName}`, {
-          redirectTo: DOMAIN_NAME,
-          domainName: domainName,
-          alternateNames: alternateNames,
-          hostedZone: route53.HostedZone.fromHostedZoneAttributes(
-            this,
-            `HostedZone${hostedZone}`,
-            {
-              hostedZoneId,
-              zoneName: hostedZone,
-            }
-          ),
-        });
-      }
-    );
   }
 }
