@@ -24,7 +24,7 @@ export default function ThemeChanger() {
 
   return (
     <Button
-      className="absolute top-0 right-0 p-12 md:static text-light-2 dark:text-dark-2"
+      className="absolute right-0 bottom-0 py-11 px-4 md:static text-light-2 dark:text-dark-2"
       onClick={() => toggleTheme()}
       aria-pressed={isDark}
       aria-label="Dark Mode"

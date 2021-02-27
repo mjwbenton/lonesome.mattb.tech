@@ -22,13 +22,11 @@ export default function MyApp({ Component, pageProps }) {
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <ThemeProvider attribute="class">
-        <header>
-          <div role="presentation" className="flex">
-            <Logo />
-            <ThemeChanger />
-          </div>
-          {navigation ? <Navigation {...navigation} /> : null}
+        <header className="flex relative">
+          <Logo />
+          <ThemeChanger />
         </header>
+        {navigation ? <Navigation {...navigation} /> : null}
         <main className="m-4 md:m-8">
           <PageDataProvider value={componentProps}>
             <Component {...componentProps} />
