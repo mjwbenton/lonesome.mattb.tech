@@ -10,21 +10,21 @@
       @apply z-10;
     }
 
-    & > .striped-index {
+    & .striped-index {
       @apply z-0 text-light;
     }
 
-    &:nth-child(odd) > .striped-index {
+    &:nth-child(odd) .striped-index {
       @apply text-light-1;
     }
   }
 
   .dark .striped-list-element {
-    & > .striped-index {
+    & .striped-index {
       @apply text-dark;
     }
 
-    &:nth-child(odd) > .striped-index {
+    &:nth-child(odd) .striped-index {
       @apply text-dark-1;
     }
   }

@@ -8,26 +8,37 @@ const readFile = promisify(fs.readFile);
 
 const rootPath = path.join(process.cwd(), "pages");
 
-interface PageMeta {
+export interface PageMeta {
   readonly title: string;
   readonly slug: string;
-  readonly layout: string | null;
   readonly group: string | null;
   readonly index: number | null;
+  readonly createdOn: string | null;
+  readonly description: string | null;
   readonly data: any;
 }
 
 export async function getPageMeta(pagePath: string): Promise<PageMeta> {
   const rawContent = (await readFile(path.join(rootPath, pagePath))).toString();
   const { data } = matter(rawContent);
-  const { layout, slug, group, index, title, ...rest } = data;
+  const {
+    layout,
+    slug,
+    group,
+    index,
+    title,
+    createdOn,
+    description,
+    ...rest
+  } = data;
 
   return {
     title,
     slug: pagePath.replace(".mdx", "").replace("index", ""),
-    layout: layout ?? null,
     group: group ?? null,
     index: index ? parseInt(index) : null,
+    description: description ?? null,
+    createdOn: createdOn ?? null,
     data: { ...rest },
   };
 }
