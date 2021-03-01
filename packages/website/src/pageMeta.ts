@@ -24,7 +24,6 @@ export async function getPageMeta(pagePath: string): Promise<PageMeta> {
   const rawContent = (await readFile(path.join(rootPath, pagePath))).toString();
   const { data } = matter(rawContent);
   const {
-    layout,
     slug,
     group,
     index,
