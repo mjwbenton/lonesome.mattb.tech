@@ -4,7 +4,7 @@ import { compareDesc, formatISO } from "date-fns";
 export interface Page {
   readonly createdOn: string | null;
   readonly updatedOn: string | null;
-  readonly description: string | null;
+  readonly description: string;
   readonly title: string;
   readonly slug: string;
 }

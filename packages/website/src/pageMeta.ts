@@ -12,11 +12,11 @@ const rootPath = path.join(process.cwd(), "pages");
 export interface PageMeta {
   readonly title: string;
   readonly slug: string;
+  readonly description: string;
   readonly group: string | null;
   readonly index: number | null;
   readonly createdOn: Date | null;
   readonly updatedOn: Date | null;
-  readonly description: string | null;
   readonly data: any;
 }
 
