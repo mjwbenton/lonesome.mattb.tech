@@ -24,7 +24,6 @@ export async function getPageMeta(pagePath: string): Promise<PageMeta> {
   const rawContent = (await readFile(path.join(rootPath, pagePath))).toString();
   const { data } = matter(rawContent);
   const {
-    slug,
     group,
     index,
     title,
@@ -33,6 +32,14 @@ export async function getPageMeta(pagePath: string): Promise<PageMeta> {
     description,
     ...rest
   } = data;
+
+  if (!(title && description)) {
+    throw new Error(
+      `Page missing required field title or description: ${JSON.stringify(
+        data
+      )}`
+    );
+  }
 
   return {
     title,
@@ -47,9 +54,9 @@ export async function getPageMeta(pagePath: string): Promise<PageMeta> {
 }
 
 export async function listAllPages(): Promise<Array<string>> {
-  return (await globby(rootPath, { expandDirectories: true })).map((page) =>
-    "/".concat(path.relative(rootPath, page))
-  );
+  return (await globby(rootPath, { expandDirectories: true }))
+    .map((page) => "/".concat(path.relative(rootPath, page)))
+    .filter((page) => page.endsWith(".mdx"));
 }
 
 export async function getAllPageMeta(): Promise<Array<PageMeta>> {

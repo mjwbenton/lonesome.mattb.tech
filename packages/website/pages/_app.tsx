@@ -11,13 +11,10 @@ import ThemeChanger from "global/ThemeChanger";
 
 export default function MyApp({ Component, pageProps }) {
   const { navigation, frontmatter, ...componentProps } = pageProps;
-  const title = frontmatter?.title
-    ? `${frontmatter!.title} - lonesome media`
-    : "lonesome media";
   return (
     <ApiProvider>
       <Head>
-        <title>{title}</title>
+        <title>{frontmatter.title} - lonesome media</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
