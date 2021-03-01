@@ -12,6 +12,7 @@ const Track: React.FunctionComponent<{ track: any; index: number }> = ({
     <img
       height={IMAGE_SIZE}
       width={IMAGE_SIZE}
+      className="w-16 h-16"
       src={track.album.images[2].url}
       alt={`Album art for ${track.album.name}`}
     />

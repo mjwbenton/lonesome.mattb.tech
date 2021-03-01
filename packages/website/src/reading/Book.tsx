@@ -18,7 +18,11 @@ interface BookType {
 const Book: React.FunctionComponent<{ book: BookType }> = ({ book }) => (
   <ContentBlock>
     <div className="flex">
-      <img className="mr-2" src={book.image} alt={`Cover of ${book.title}`} />
+      <img
+        className="mr-2 object-cover"
+        src={book.image}
+        alt={`Cover of ${book.title}`}
+      />
       <div className="my-2 space-y-2">
         <TwoRowText row1={book.title} row2={book.authors.join(", ")} />
         {book.started_at && (
