@@ -13,7 +13,7 @@ const QUERY = gql`
 
 export default async function photoSetDataProvider({ photosetId }) {
   if (!photosetId) {
-    throw new Error("Must provide photosetId in frontmatter");
+    throw new Error("Must provide photosetId");
   }
   const result = await client.query({
     query: QUERY,

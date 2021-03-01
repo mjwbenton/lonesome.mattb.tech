@@ -27,7 +27,7 @@ const QUERY = gql`
 
 export default async function recentBooksDataProvider({ playlistId }) {
   if (!playlistId) {
-    throw new Error("Must provide playlistId in frontmatter");
+    throw new Error("Must provide playlistId");
   }
   const result = await client.query({
     query: QUERY,

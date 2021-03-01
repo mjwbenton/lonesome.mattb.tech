@@ -10,11 +10,11 @@ import { ThemeProvider } from "next-themes";
 import ThemeChanger from "global/ThemeChanger";
 
 export default function MyApp({ Component, pageProps }) {
-  const { navigation, frontmatter, ...componentProps } = pageProps;
+  const { navigation, pageMeta, ...componentProps } = pageProps;
   return (
     <ApiProvider>
       <Head>
-        <title>{frontmatter.title} - lonesome media</title>
+        <title>{pageMeta.title} - lonesome media</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>

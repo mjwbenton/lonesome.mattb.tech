@@ -19,7 +19,7 @@ const withMDX = require("@next/mdx")({
         {
           globalDataProviders: [
             "navigation/navigationPropsProvider",
-            "global/frontmatterDataProvider",
+            "global/pageMetaDataProvider",
           ],
         },
       ],
