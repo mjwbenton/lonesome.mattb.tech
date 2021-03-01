@@ -8,14 +8,29 @@ import ApiProvider from "../src/global/ApiProvider";
 import { PageDataProvider } from "global/pageData";
 import { ThemeProvider } from "next-themes";
 import ThemeChanger from "global/ThemeChanger";
+import { NavigationProps } from "navigation/navigationTypes";
+import { PageMeta } from "pageMeta";
 
 export default function MyApp({ Component, pageProps }) {
-  const { navigation, pageMeta, ...componentProps } = pageProps;
+  const {
+    navigation,
+    pageMeta,
+    ...componentProps
+  }: {
+    navigation: NavigationProps;
+    pageMeta?: PageMeta;
+    componentProps: unknown;
+  } = pageProps;
+  const title = pageMeta?.title
+    ? `${pageMeta.title} - lonesome media`
+    : "lonesome media";
   return (
     <ApiProvider>
       <Head>
-        <title>{pageMeta.title} - lonesome media</title>
-        <meta name="description" content={pageMeta.description} />
+        <title>{title}</title>
+        {pageMeta?.description ? (
+          <meta name="description" content={pageMeta.description} />
+        ) : null}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
