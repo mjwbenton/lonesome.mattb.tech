@@ -3,6 +3,7 @@ import fs from "fs";
 import { promisify } from "util";
 import matter from "gray-matter";
 import globby from "globby";
+import { parseISO } from "date-fns";
 
 const readFile = promisify(fs.readFile);
 
@@ -13,7 +14,8 @@ export interface PageMeta {
   readonly slug: string;
   readonly group: string | null;
   readonly index: number | null;
-  readonly createdOn: string | null;
+  readonly createdOn: Date | null;
+  readonly updatedOn: Date | null;
   readonly description: string | null;
   readonly data: any;
 }
@@ -28,6 +30,7 @@ export async function getPageMeta(pagePath: string): Promise<PageMeta> {
     index,
     title,
     createdOn,
+    updatedOn,
     description,
     ...rest
   } = data;
@@ -38,7 +41,8 @@ export async function getPageMeta(pagePath: string): Promise<PageMeta> {
     group: group ?? null,
     index: index ? parseInt(index) : null,
     description: description ?? null,
-    createdOn: createdOn ?? null,
+    createdOn: createdOn ? parseISO(createdOn) : null,
+    updatedOn: updatedOn ? parseISO(updatedOn) : null,
     data: { ...rest },
   };
 }
