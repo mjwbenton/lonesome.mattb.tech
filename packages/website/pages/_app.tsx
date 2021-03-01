@@ -15,6 +15,7 @@ export default function MyApp({ Component, pageProps }) {
     <ApiProvider>
       <Head>
         <title>{pageMeta.title} - lonesome media</title>
+        <meta name="description" content={pageMeta.description} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
