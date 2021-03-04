@@ -1,5 +1,5 @@
 import React from "react";
-import { fragment } from "../photo/Photo";
+import { fragment } from "./Photo";
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
 import { RecentPhotosQuery } from "generated/graphql";
