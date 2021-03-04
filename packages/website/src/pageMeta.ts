@@ -13,11 +13,11 @@ export interface PageMeta {
   readonly title: string;
   readonly slug: string;
   readonly description: string;
-  readonly group: string | null;
-  readonly index: number | null;
-  readonly createdOn: Date | null;
-  readonly updatedOn: Date | null;
-  readonly data: any;
+  readonly group?: string;
+  readonly index?: number;
+  readonly createdOn?: Date;
+  readonly updatedOn?: Date;
+  readonly data?: any;
 }
 
 export async function getPageMeta(pagePath: string): Promise<PageMeta> {
@@ -45,10 +45,10 @@ export async function getPageMeta(pagePath: string): Promise<PageMeta> {
     title,
     slug: pagePath.replace(".mdx", "").replace("index", ""),
     group: group ?? null,
-    index: index ? parseInt(index) : null,
+    index: index ? parseInt(index) : undefined,
     description: description ?? null,
-    createdOn: createdOn ? parseISO(createdOn) : null,
-    updatedOn: updatedOn ? parseISO(updatedOn) : null,
+    createdOn: createdOn ? parseISO(createdOn) : undefined,
+    updatedOn: updatedOn ? parseISO(updatedOn) : undefined,
     data: { ...rest },
   };
 }

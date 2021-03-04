@@ -15,9 +15,7 @@ export default async function recentPagesDataProvider(): Promise<{
   const allPageMeta = await getAllPageMeta();
   return {
     recentPages: allPageMeta
-      .filter(
-        ({ createdOn, updatedOn }) => createdOn !== null || updatedOn !== null
-      )
+      .filter(({ createdOn, updatedOn }) => createdOn || updatedOn)
       .sort((a, b) => {
         const aDate = a.updatedOn ?? a.createdOn;
         const bDate = b.updatedOn ?? b.createdOn;
