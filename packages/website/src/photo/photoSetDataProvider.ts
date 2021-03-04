@@ -3,7 +3,7 @@ import gql from "graphql-tag";
 import { fragment } from "./Photo";
 import { PhotoSetQuery } from "generated/graphql";
 
-const QUERY = gql`
+export const QUERY = gql`
   query PhotoSet($photosetId: ID!) {
     photoSet(photosetId: $photosetId) {
       ...Photo
