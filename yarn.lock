@@ -2434,18 +2434,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@mattb.tech/flickr-api@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "@mattb.tech/flickr-api@npm:1.1.1"
-  dependencies:
-    "@types/request-promise": ^4.1.42
-    request: ^2.88.0
-    request-promise: ^4.2.2
-    typescript: ^3.2.1
-  checksum: d4b1958c07d0fda915068670dcf5e92948a2ab3600d7968deea3159bbe83c64f9493ca17fc46291bfb09f1b77a4fc0aa6bc607a362f1c3c6d3758108ed41ab7b
-  languageName: node
-  linkType: hard
-
 "@mattb.tech/lonesome-cdk@workspace:packages/cdk":
   version: 0.0.0-use.local
   resolution: "@mattb.tech/lonesome-cdk@workspace:packages/cdk"
@@ -2579,10 +2567,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@mattb.tech/remark-flickr@workspace:packages/remark-flickr"
   dependencies:
-    "@mattb.tech/flickr-api": ^1.1.1
     "@types/escape-html": ^1.0.0
     "@types/mdast": ^3.0.3
     "@types/unist": ^2.0.3
+    axios: ^0.21.1
     escape-html: ^1.0.3
     prettier: ^2.2.1
     typescript: ^4.1.3
@@ -2839,20 +2827,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/bluebird@npm:*":
-  version: 3.5.33
-  resolution: "@types/bluebird@npm:3.5.33"
-  checksum: 45f7adeec6e656501f5b2127d5cc1538d3ae497d06bfa00d8d7f51eb2aa482267b3b4868ac1c75fc84acfad86d2c0d4de8af535cf725156f222d679df9694aff
-  languageName: node
-  linkType: hard
-
-"@types/caseless@npm:*":
-  version: 0.12.2
-  resolution: "@types/caseless@npm:0.12.2"
-  checksum: 492343e49987f92550c10efe9052f7307ced5d9c3acf7796cda206909b369746e4fcf3bdb061eed6b27dd03482bb6e3b6ec856aa30c4f565893dc18cc8341027
-  languageName: node
-  linkType: hard
-
 "@types/dotenv@npm:^8.2.0":
   version: 8.2.0
   resolution: "@types/dotenv@npm:8.2.0"
@@ -3008,28 +2982,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/request-promise@npm:^4.1.42":
-  version: 4.1.47
-  resolution: "@types/request-promise@npm:4.1.47"
-  dependencies:
-    "@types/bluebird": "*"
-    "@types/request": "*"
-  checksum: 46734f27c7bebbcd4c5cc752159e3e6c36b7d66b161f6748dcccfb0c95402130b34853e6d1e8825d14a70c35b69fcd7971c9a6af339576011a37192e985c221b
-  languageName: node
-  linkType: hard
-
-"@types/request@npm:*":
-  version: 2.48.5
-  resolution: "@types/request@npm:2.48.5"
-  dependencies:
-    "@types/caseless": "*"
-    "@types/node": "*"
-    "@types/tough-cookie": "*"
-    form-data: ^2.5.0
-  checksum: 74f1a250cab068aec594cede9e57508e0b63d46110dd5d62611f087a4c0e9b524884b1d76f128e5ee86d3d91a40587986d85567b567653cd3e30873686ab195d
-  languageName: node
-  linkType: hard
-
 "@types/responselike@npm:^1.0.0":
   version: 1.0.0
   resolution: "@types/responselike@npm:1.0.0"
@@ -3050,13 +3002,6 @@ __metadata:
   version: 2.3.2
   resolution: "@types/sizzle@npm:2.3.2"
   checksum: 447a1c3f39f0e47ffdbccd1df58d63e8b67dc001f44f26f43ac8243db7834a3d956cebc8abe9272ecbdccfc8f4ec0ae74b811ccdad5b6cddaf8f0968513d618a
-  languageName: node
-  linkType: hard
-
-"@types/tough-cookie@npm:*":
-  version: 4.0.0
-  resolution: "@types/tough-cookie@npm:4.0.0"
-  checksum: 5a0cccc6d073b84dbb48d603e692b55ac30cea1653a7fc813e97a3bcaa9edd97c703c15727378d632e416a90178e6da657151eba8175cbb201a9a98de22ac3a8
   languageName: node
   linkType: hard
 
@@ -3957,6 +3902,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"axios@npm:^0.21.1":
+  version: 0.21.1
+  resolution: "axios@npm:0.21.1"
+  dependencies:
+    follow-redirects: ^1.10.0
+  checksum: 864fb7b5d077d236737f10adca53bf451a93f35a15271f56fba8da07265a02d26b7d881b935a6697dc6adb0549ea3e56d2eecb403edaa3bb78f6479901c10f69
+  languageName: node
+  linkType: hard
+
 "babel-plugin-apply-mdx-type-prop@npm:1.6.22":
   version: 1.6.22
   resolution: "babel-plugin-apply-mdx-type-prop@npm:1.6.22"
@@ -4142,7 +4096,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bluebird@npm:^3.5.0, bluebird@npm:^3.5.5, bluebird@npm:^3.7.2":
+"bluebird@npm:^3.5.5, bluebird@npm:^3.7.2":
   version: 3.7.2
   resolution: "bluebird@npm:3.7.2"
   checksum: 4f2288662f3d4eadbb82d4daa4a7d7976a28fa3c7eb4102c9b4033b03e5be4574ba123ac52a7c103cde4cb7b2d2afc1dbe41817ca15a29ff21ecd258d0286047
@@ -7017,6 +6971,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"follow-redirects@npm:^1.10.0":
+  version: 1.13.3
+  resolution: "follow-redirects@npm:1.13.3"
+  peerDependenciesMeta:
+    debug:
+      optional: true
+  checksum: 9ad74c3b66ad5c32d8c009a2afb4e5c1b9e5dbe1f631419296c21f8e4f9976ed2c52f9a676c4acdd1d7f41a8f17a03dfaa3704993b25b5965eb11bc9dc9a8ef5
+  languageName: node
+  linkType: hard
+
 "for-in@npm:^1.0.2":
   version: 1.0.2
   resolution: "for-in@npm:1.0.2"
@@ -7031,7 +6995,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"form-data@npm:^2.3.2, form-data@npm:^2.5.0":
+"form-data@npm:^2.3.2":
   version: 2.5.1
   resolution: "form-data@npm:2.5.1"
   dependencies:
@@ -12468,31 +12432,6 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"request-promise-core@npm:1.1.4":
-  version: 1.1.4
-  resolution: "request-promise-core@npm:1.1.4"
-  dependencies:
-    lodash: ^4.17.19
-  peerDependencies:
-    request: ^2.34
-  checksum: 7c9c90bf00158f6669e7167425cd113edadaca44b5aebc7c6a7969d9f50d93bfae8275038bdf6389b4e94f1cacacca7e5830d28701692818bdfba353eeb2ddfd
-  languageName: node
-  linkType: hard
-
-"request-promise@npm:^4.2.2":
-  version: 4.2.6
-  resolution: "request-promise@npm:4.2.6"
-  dependencies:
-    bluebird: ^3.5.0
-    request-promise-core: 1.1.4
-    stealthy-require: ^1.1.1
-    tough-cookie: ^2.3.3
-  peerDependencies:
-    request: ^2.34
-  checksum: 6a715e7817dd11a77ac2a1eaa334a3fb5616436be1a2ffe07f605711a1cd6bf87149aa6173dfda8897f81e399b86f98ed088c594fa1a726958777fcb4a26a991
-  languageName: node
-  linkType: hard
-
 "request@npm:^2.88.0, request@npm:^2.88.2":
   version: 2.88.2
   resolution: "request@npm:2.88.2"
@@ -13332,13 +13271,6 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"stealthy-require@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "stealthy-require@npm:1.1.1"
-  checksum: f24a9bc613817dea37afcbf64578f2ba0195916d906ebdaa1c1d5b8e9d51fd462cbf4c61ae04217babd0cf662e6c0115fd972dffa8e62a7f6f44f3109fb4c796
-  languageName: node
-  linkType: hard
-
 "stream-browserify@npm:3.0.0":
   version: 3.0.0
   resolution: "stream-browserify@npm:3.0.0"
@@ -13983,7 +13915,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"tough-cookie@npm:^2.3.3, tough-cookie@npm:~2.5.0":
+"tough-cookie@npm:~2.5.0":
   version: 2.5.0
   resolution: "tough-cookie@npm:2.5.0"
   dependencies:
@@ -14195,16 +14127,6 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-typescript@^3.2.1:
-  version: 3.9.7
-  resolution: "typescript@npm:3.9.7"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 10848a9c35fd8c70a8792b8bd9485317534bcd58768793d3b7d9c7486e9fd30cf345f83fa2a324e0bf6088bc8a4d8d061d58fda38b18c2ff187cf01fbbff6267
-  languageName: node
-  linkType: hard
-
 typescript@^4.1.3:
   version: 4.1.3
   resolution: "typescript@npm:4.1.3"
@@ -14222,16 +14144,6 @@ typescript@^4.1.5:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 29157c84426ac94ce97aac836264f303a26bd9fb30865650229e3406a36ca2e89735ef4b8878075ba1b95fa4d3ff9810057b64888700c28e20b4034a6db4da83
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@^3.2.1#builtin<compat/typescript>":
-  version: 3.9.7
-  resolution: "typescript@patch:typescript@npm%3A3.9.7#builtin<compat/typescript>::version=3.9.7&hash=cc6730"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: f0d3d9c987860c7c458229ab6dd7e3d322405db36b70abccba610b5efd9f9451e4e67a3fc7983c0d3741033c1f1a8d7aa859a1510caa8f20fad762fc39648bfa
   languageName: node
   linkType: hard
 

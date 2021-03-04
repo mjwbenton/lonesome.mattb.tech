@@ -1,6 +1,6 @@
 import escape from "escape-html";
-import { getPhoto, Photo, PhotoSource } from "@mattb.tech/flickr-api";
 import u from "unist-builder";
+import axios from "axios";
 import visit from "unist-util-visit";
 import map from "unist-util-map";
 import { Image } from "mdast";
@@ -8,6 +8,36 @@ import { Node } from "unist";
 import { Plugin } from "unified";
 
 const FLICKR_PROTOCOL = "flickr://";
+
+const GRAPHQL_ENDPOINT = "https://api.mattb.tech";
+
+const QUERY = `
+  query RemarkFlickr($photoId: ID!) {
+    photo(photoId: $photoId) {
+      id
+      title
+      mainSource {
+        url
+      }
+      sources {
+        url
+        width
+      }
+    }
+  }
+`;
+
+interface Photo {
+  id: string;
+  title: string;
+  mainSource: {
+    url: string;
+  };
+  sources: {
+    url: string;
+    width: number;
+  }[];
+}
 
 function isImageNode(node: Node): node is Image {
   return node.type === "image";
@@ -21,10 +51,27 @@ function flickrPhotoIdForNode(node: Image): string {
   return node.url.replace(FLICKR_PROTOCOL, "");
 }
 
-function generateSrcSet(sources: PhotoSource[]): string {
+function generateSrcSet(sources: { url: string; width: number }[]): string {
   return sources
-    .map((source: PhotoSource) => [source.url, " ", source.width, "w"].join(""))
+    .map((source) => [source.url, " ", source.width, "w"].join(""))
     .join(", ");
+}
+
+async function getPhoto(photoId: string) {
+  const result = await axios.post(
+    GRAPHQL_ENDPOINT,
+    {
+      query: QUERY,
+      variables: {
+        photoId,
+      },
+    },
+    { headers: { "Content-Type": "application/json" } }
+  );
+  if (result.data.errors) {
+    throw new Error(`GraphQL error fetching photoId "${photoId}"`);
+  }
+  return result.data.data.photo;
 }
 
 const remarkFlickr: Plugin<[{ sizes?: string }]> = ({ sizes } = {}) => {
@@ -37,7 +84,7 @@ const remarkFlickr: Plugin<[{ sizes?: string }]> = ({ sizes } = {}) => {
     });
     const imageIds = flickrImageNodes.map(flickrPhotoIdForNode);
     const flickrResponses = await Promise.all(
-      imageIds.map((imageId) => getPhoto(process.env.FLICKR_API_KEY!, imageId))
+      imageIds.map((imageId) => getPhoto(imageId))
     );
     const responsesById = flickrResponses.reduce<{ [imageId: string]: Photo }>(
       (acc, cur) => {
