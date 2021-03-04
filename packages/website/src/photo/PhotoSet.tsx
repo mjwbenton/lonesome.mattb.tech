@@ -1,20 +1,13 @@
 import { PhotoSetQuery } from "generated/graphql";
 import { usePageData } from "global/pageData";
 import * as React from "react";
-import SinglePhoto from "./Photo";
-import PhotosWrapper from "./PhotosWrapper";
+import Photos from "./Photos";
 
-const Photos = () => {
+const PhotoSet = () => {
   const { photoSet }: PhotoSetQuery = usePageData();
   if (!photoSet) {
     return null;
   }
-  return (
-    <PhotosWrapper>
-      {photoSet.map((p, i) => (
-        <SinglePhoto {...p} key={p.pageUrl} lazyLoad={i > 1} />
-      ))}
-    </PhotosWrapper>
-  );
+  return <Photos photos={photoSet} />;
 };
-export default Photos;
+export default PhotoSet;

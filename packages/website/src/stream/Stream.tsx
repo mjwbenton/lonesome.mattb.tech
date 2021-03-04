@@ -1,9 +1,9 @@
 import React from "react";
-import SinglePhoto, { fragment } from "../photo/Photo";
-import PhotosWrapper from "../photo/PhotosWrapper";
+import { fragment } from "../photo/Photo";
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
 import { RecentPhotosQuery } from "generated/graphql";
+import Photos from "photo/Photos";
 
 const QUERY = gql`
   query RecentPhotos {
@@ -25,15 +25,7 @@ const Stream = () => {
   if (!data!.recentPhotos) {
     return <p>Error: No recent photos</p>;
   }
-  return (
-    <PhotosWrapper>
-      {data!.recentPhotos.map((p, i) => (
-        <div key={p?.pageUrl}>
-          <SinglePhoto {...p} key={p.pageUrl} lazyLoad={i > 1} />
-        </div>
-      ))}
-    </PhotosWrapper>
-  );
+  return <Photos photos={data!.recentPhotos} />;
 };
 
 export default Stream;
