@@ -28,8 +28,15 @@ export class LonesomeWebsite extends cdk.Stack {
       }
     );
 
-    const pagesBucket = new s3.Bucket(this, "PagesBucket");
-    const assetsBucket = new s3.Bucket(this, "AssetsBucket");
+    const pagesBucket = new s3.Bucket(this, "PagesBucket", {
+      websiteIndexDocument: "index.html",
+      websiteErrorDocument: "404.html",
+      publicReadAccess: true,
+    });
+    const assetsBucket = new s3.Bucket(this, "AssetsBucket", {
+      websiteIndexDocument: "index.html",
+      publicReadAccess: true,
+    });
 
     const certificate = new acm.DnsValidatedCertificate(this, "Certificate", {
       domainName: DOMAIN_NAME,
