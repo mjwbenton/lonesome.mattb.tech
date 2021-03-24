@@ -101,10 +101,15 @@ const remarkFlickr: Plugin<[{ sizes?: string }]> = ({ sizes } = {}) => {
         const srcsetAttr = `srcset="${generateSrcSet(response.sources)}"`;
         const altAttr = `alt="${escape(node.alt || response.title)}"`;
         const sizesAttr = sizes ? `sizes="${sizes}"` : "";
-        return u(
-          "html",
-          `<img ${srcAttr} ${srcsetAttr} ${altAttr} ${sizesAttr} />`
-        );
+        const imgHtml = `<img ${srcAttr} ${srcsetAttr} ${altAttr} ${sizesAttr} />`;
+        if (node.title) {
+          return u(
+            "html",
+            `<figure>${imgHtml}<figcaption>${node.title}</figcaption></figure>`
+          );
+        } else {
+          return u("html", imgHtml);
+        }
       }
       return node;
     });
