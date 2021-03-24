@@ -1,137 +1,121 @@
 ---
 title: Gear
+description: "Log of all the photography gear I have owned."
 group: Photos
 index: 99
+createdOn: "2021-03-23"
 ---
 
-TODO: Continue from https://www.flickr.com/photos/z-two/41762146715/in/dateposted-public/
+import SubdivisionHeading from "component/SubdivisionHeading";
+import { Camera as CameraIcon, Aperture as LensIcon } from "react-feather";
 
-* TODO: Missing lenses on 2015 trip
-* TODO: Missing lenses on 2016 trip
-* TODO: Missing lenses on 2016 Olympic trip
-* TODO: Missing lenses on almost every Bronica SQA set
-* TODO: And more missing lenses, make a page to help me find and tag them
-* TODO: Missing lots of tags on Iceland trip No. 2 (and rest of trip, Paris etc.)
-* TODO: All early M10 photos that are untagged must have been Zeiss?
+export function TextWithIcon({ icon, name }) {
+  const Icon = icon;
+  return (
+    <>
+      <Icon size={14} className="inline-block -mt-0.5 mr-1 ml-0.5" />
+      <em className="italic font-semibold">{name}</em>
+    </>
+  );
+}
 
-## Gear
+export function Camera({ name }) {
+  return <TextWithIcon icon={CameraIcon} name={name} />;
+}
 
-This post is to catalog the history of gear that I have owned. I initially became enthused with photography when I was mildly jealous of a digtal Canon compact camera that my sister had bought. It took AA batteries and drained them in a matter of minutes. My own first camera was a Fuji FinePix F30. My first "serious" camera, which at the time I would have thought of as completely synonymous with being a DSLR, was a Pentax K-m. Wanting cheaper lenses led me to older manual focus Pentax K mount lenses, and those in turn led me to the Pentax MX 35mm film SLR. Everything else just follows from there.
+export function Lens({ name }) {
+  return <TextWithIcon icon={LensIcon} name={name} />;
+}
 
-## FinePix
+# Gear
 
-* Set of photos
+This post is to catalog the history of gear that I have owned. I initially became enthused with photography when I was mildly jealous of a digtal Canon compact camera that my sister had bought. It took AA batteries and drained them in a matter of minutes. My own first camera was a <Camera name="Fuji FinePix F30" />. My first "serious" camera, which at the time I would have thought of as completely synonymous with being a DSLR, was a <Camera name="Pentax K-m" />. Wanting cheaper lenses led me to older manual focus Pentax K mount lenses, and those in turn led me to the <Camera name="Pentax MX" /> 35mm film SLR. Everything else just follows from there.
 
-## The Pentax Era
+<SubdivisionHeading>2006</SubdivisionHeading>
 
-* Set of photos with kit lenses: https://www.flickr.com/photos/tags/smcpentaxda50200mmf456ed and https://www.flickr.com/photos/tags/smcpentaxda1855mmf3556al
-* Introduce the 50mm f1.7: https://www.flickr.com/photos/tags/smcpentaxm50mmf17 and https://www.flickr.com/photos/tags/pentaxm11750mm
-    * pretty safe to assume all photos that aren't tagged with a lens on pentax were taken with this
-* Sigma Super-Wide II 24mm f2.8 for K mount: https://www.flickr.com/photos/tags/sigmasuperwideii12824mm
-* Takumar 135mm f2.5: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=takumar125135mm&user_id=83914470%40N00&view_all=1
-* Pentax MX: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=pentaxmx&user_id=83914470%40N00&view_all=1
-* Got given K1000 and 50mm f2: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=pentaxk1000&user_id=83914470%40N00&view_all=1
-* Also added an ME Super: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=pentaxmesuper&user_id=83914470%40N00&view_all=1
-* Cosina 20mm: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=cosina20mmf38&user_id=83914470%40N00&view_all=1
-* 40mm f2.8: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=pentaxm40mmf28&user_id=83914470%40N00&view_all=1
+### My First Camera
 
-## Canon
+My first camera was a <Camera name="Fuji FinePix F30" />.
 
-* Canon 40D: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=canon40d&user_id=83914470%40N00&view_all=1
-* Apparently I owned a kit-lens style zoom made by Sigma. Can't imagine that lasted long!
-* Sigma 30mm f1.4: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=sigma30mmf14exdchsm&user_id=83914470%40N00&view_all=1
-* Canon 50mm f1.8 II: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=canonef50mmf18ii&user_id=83914470%40N00&view_all=1
-* Canon 70-200: Not for me
+I'd done lots of online research reading reviews. I think I learned a lot of the basics of photography before I'd picked up the camera just be reading about it. ISO/Aperture/Shutter speed etc.
 
-## 35mm oddness and one-roll-wonders
+Looking back at it, it took nice pictures for what it was. Technology has come a long way though - these are clearly worse in many ways than an phone from 10 years later.
 
-* Olympus Trip: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=olympustrip35&user_id=83914470%40N00&view_all=1
-* Olympus 35 ECR: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=olympus35ecr&user_id=83914470%40N00&view_all=1
-* Action Sampler: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=actionsampler&user_id=83914470%40N00&view_all=1
-* Canon EOS 300: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=canoneos300&user_id=83914470%40N00&view_all=1
-* Kodak Pop: https://www.flickr.com/search/?sort=interestingness-desc&safe_search=1&text=kodakpop&view_all=1 (there are literally four photos tagged this on all of flickr, all mine!)
-* 2015: Olympus XA https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=olympusxa&user_id=83914470%40N00&view_all=1
+![](flickr://2431148222 "I've taken this exact same shot from Clifton Suspension Bridge many times, but this was the first time. Fuji FinePix F30.")
 
-## Instant Asides
+[Photos tagged with <Camera name="Fuji FinePix F30" />](/photos/tag?tag=Fujifilm%20FinePix%20F30)
 
-* Fuji Instax Wide: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=fujiinstaxwide&user_id=83914470%40N00&view_all=1
-* Polaroid Land Camera ??? (doesn't look like I tagged it properly, was it 340?). Best tag: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=instant&user_id=83914470%40N00&view_all=1 and https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=polaroid&user_id=83914470%40N00&view_all=1
-    * Oh actually: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=polaroidlandcamera340&user_id=83914470%40N00&view_all=1
-* 2014 Mamiya Universal Press: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=mamiyauniversalpress&user_id=83914470%40N00&view_all=1
-    * Never even shot any normal film in it!
+<SubdivisionHeading>2009</SubdivisionHeading>
 
-## Medium Format
+### The Pentax Era
 
-* Yashicamat 124G: (maybe merged with other Yashicamats? https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=yashicamat&user_id=83914470%40N00&view_all=1)
-  * Apparently I borrowed one of these off a guy called Matt Kay that I don't remember? Time passes eh! (see https://www.flickr.com/photos/z-two/5320110217/in/dateposted-public/)
-  * Pretty sure there was also one called an "EM" or "LM" TODO: Look into it
-  * Alice with the Yashica Mat: https://www.flickr.com/photos/z-two/5521905641/in/dateposted-public/
-  * J with a different Yashica Mat?: https://www.flickr.com/photos/z-two/9531717510/
-* Rolleiflex 3.5E: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=rolleiflex35e&user_id=83914470%40N00&view_all=1
-* Bronica ETRSi (owned by Photosoc): https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=bronicaetrsi&user_id=83914470%40N00&view_all=1
-* Bronica SQA (still own!): https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=bronicasqa&user_id=83914470%40N00&view_all=1
-* Bronica 80mm (there must be more than this tag!): https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=bronica80mmf28zenzanonps&user_id=83914470%40N00&view_all=1
-* Doesn't look like I tagged the other Bronica lenses or any of the lenses in Iceland! NOR SEATTLE 2013 trip, nor Berlin 2012 trip, nor Europe 2013
-* Bronica 150mm (of course there will be more than this tag): https://www.flickr.com/search/?user_id=83914470%40N00&sort=interestingness-desc&safe_search=1&text=bronicazenzanons150mmf35&advanced=1&view_all=1 also some additional mistags: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=squarebronicazenzanons150mmf35&user_id=83914470%40N00&view_all=1
-* Bronica 40mm (of course there will be more than this tag): https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=bronicazenzanons40mmf4&user_id=83914470%40N00&view_all=1 
-* Mamiya 645E + 80mm f1.9!: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=mamiya645e&user_id=83914470%40N00&view_all=1
-    * Magic, but too big to fit into any bag!!
-* 2013 - 1 roll wonder Wirgin 6x9 folding camera from the 1930s: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=1930scamera&user_id=83914470%40N00&view_all=1
-* 2013 - Rolleiflex 2.8C. Love them, but they break!: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=rolleiflex28c&user_id=83914470%40N00&view_all=1
-* 2014 - Fuji GF670: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=gf670&user_id=83914470%40N00&view_all=1
+I wanted to get a "proper camera". At the time this meant a DSLR. I was already into the idea of small though, something that would stick with me, bar a few mistakes here and there. The <Camera name="Pentax K-m" /> was one of the smallest DSLRs available at the time, and I remember being really bought into the idea of the in-body image stablization.
 
-## Back to Digital
+[Photos tagged with <Camera name="Pentax K-m" />](/photos/tag?tag=Pentax%20K-m)
 
-* Panasonic Lumix GF-1: Photostream wise I got it just after the Rolleiflex 3.5E: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=panasoniclumixgf1&user_id=83914470%40N00&view_all=1
-* Panasonic 14mm f2.5: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=panasonic14mmf25&user_id=83914470%40N00&view_all=1
-* Panasonic 20mm f1.7: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=panasonic20mmf17&user_id=83914470%40N00&view_all=1
+I had a couple of not-great kit lenses that came as part of the set.
 
-* 2012: I bought a Fuji X100 (the original one): https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=x100&user_id=83914470%40N00&view_all=1
-    * I remember at the time it basically felt like it could shoot in darkness
+- [Photos tagged with <Lens name="smc Pentax-DA 18-55mm f3.5-5.6 AL" />](/photos/tag?tag=smc%20Pentax-DA%2018-55mm%20f3.5-5.6%20AL)
+- [Photos tagged with <Lens name="smc Pentax-DA 50-200mm f4-5.6 ED" />](/photos/tag?tag=smc%20Pentax-DA%2050-200mm%20f4-5.6%20ED)
 
-## Rangefinders, Leica and other Leica M Mount
+I gained some understanding somewhere along the line that prime lenses would be sharper than zoom lenses. I'm not sure about today, but at the time, this was as true as anything. I didn't have much money to spend, but there were tons of quick prime lenses for Pentax K mount on eBay for < £30. I bought a <Lens name="smc Pentax-M 50mm f1.7" /> for somewhere around that figure, and I took 95%+ of my photos from then on using that lens. It didn't have auto-focus, which didn't bother me one bit (dispite me missing focus quite a lot given the limited help I got from the K-m body), and with the crop factor, it was the equivilant of a slightly awkward 75mm. But the pictures were sharper, and taking pictures was infinitely more fun.
 
-* Borrowed a Bessa R3M: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=voigtlanderbessar3m&user_id=83914470%40N00&view_all=1
-* Also borrowed the 35mm f2 Biogon, which I would go on to buy my own of: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=zeiss35mmf2biogonzm&user_id=83914470%40N00&view_all=1
+[Photos tagged with <Lens name="smc Pentax-M 50mm f1.7" />](/photos/tag?tag=smc%20Pentax-M%2050mm%20f1.7)
 
-* Purchased an Minolta CLE: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=minoltacle&user_id=83914470%40N00&view_all=1
-* Voigtlander Nokton 40mm f1.4 SC: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=voigtlandernokton40mmf14sc&user_id=83914470%40N00&view_all=1
-* Sold I guess because I wanted to standardize on 35mm rather than 40. Decision I regret really.
-* Me with the Minolta CLE: https://www.flickr.com/photos/z-two/14278842673/in/dateposted-public/
+![](flickr://4316875728 "Having a fast prime brought on a lot of gig photography. Pentax K-m / Pentax 50mm f1.7")
 
-* 2103 I took a roll of photos with a Bessa R2A: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=voigtlanderbessar2a&user_id=83914470%40N00&view_all=1
-    * I don't remember where it came from? Borrowed?
+I bought some other lenses. They got used, but not exactly a lot in comparison to the nifty-fifty.
 
-* 2013 I got the Voitlander 15mm. 
-    * Incorrectly tagged initially: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=15mm&user_id=83914470%40N00&view_all=1
-    * Later correctly: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=voigtlandersuperwideheliar15mmf45&user_id=83914470%40N00&view_all=1
+- [Photos tagged with <Lens name="Sigma Super-Wide II 24mm f2.8" />](/photos/tag?tag=Sigma%20Super-Wide%20II%201:2.8%2024mm)
+- [Photos tagged with <Lens name="Takumar 135mm f2.5" />](/photos/tag?tag=Takumar%201:2.5%20135mm)
 
-* 2014 I bought a Sony Alpha 7 with the intention of only ever using M-mount lenses on it: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=sonyalpha7&user_id=83914470%40N00&view_all=1
+![](flickr://5213167608 "Photo with the Sigma 28mm from Westonbirt Arboretum.")
 
-* 2014 90mm Elmar-C: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=elmar90mmf4&user_id=83914470%40N00&view_all=1
+Just before the end of the year, I bought a film SLR for K mount, the <Camera name="Pentax MX" />. This is the camera that took my interest in photography another level. Playing around with film in 2009 had become a pretty niche interest. I shot my first roll of film visiting a friend studying a year abroad in Gratz alongside another friend.
 
-* 2015 I buy the 35mm f2 Biogon: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=zeiss35mmf2biogonzm&user_id=83914470%40N00&view_all=1
-* 2015 I buy the Zeiss Ikon: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=zeissikon&user_id=83914470%40N00&view_all=1
+![](flickr://4203651313 "A picture of me and my friends from that first roll. Pentax MX / Pentax 50mm f1.7.")
 
-* 2016 I rented an M-E (the M9 one) to see how I liked it: https://www.flickr.com/search/?user_id=83914470%40N00&sort=date-taken-desc&safe_search=1&view_all=1&tags=leicame
+[Photos tagged with <Camera name="Pentax MX" />](/photos/tag?tag=pentaxmx)
 
-* 2016 Bought an M9 a couple of months later: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=leicam9&user_id=83914470%40N00&view_all=1
+![](flickr://4292016554 "My first film camera.")
 
-* 2017 M9 got corrosion, so I bought an X100t to tide me over: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=x100t&user_id=83914470%40N00&view_all=1
+<SubdivisionHeading>2010</SubdivisionHeading>
 
-* 2018 I gave up waiting and bought an M10: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=leicam10&user_id=83914470%40N00&view_all=1
+### Pentax Continued
 
-* 2018 wanted a 50mm, so bought the 7artisans 50mm f1.1 on a whim. Didn't hugely enjoy it, but it took me years to get round to selling it: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=7artisans50mm11&user_id=83914470%40N00&view_all=1
+After hearing about my ventures into film, my Uncle passed his old film SLR onto me, which just so happened to be another Pentax, a <Camera name="Pentax K1000" /> with a <Lens name="smc Pentax-M 50mm f2" />. I barely touched the lens given I had the f1.7 version, and I'm pretty sure I ended up giving it to my sister at some point.
 
-* 2018 later I bought the Summicron 50mm to replace the 7artisans one, having got a good deal on it as a used boxed copy from a Leica store. Traded in the M9, which had just been returned to me, for it: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=leica50mmsummicron&user_id=83914470%40N00&view_all=1
-    * Not sure when I got it, but I definitely had it by July
-    * Zeiss Ikon photos in rome will be with this lens
+[Photos tagged with <Camera name="Pentax K1000" />](/photos/tag?tag=Pentax%20K1000)
 
-* 2020 Feb bought the Super-Elmar-M 21mm: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=leica21mmsuperelmarmf34&user_id=83914470%40N00&view_all=1
+I didn't stop at 2 film SLRs. I added a <Camera name="Pentax ME Super" /> to the collection as it had aperture priority, which appealed to me over the fully manual process of shooting with the MX or K1000.
 
-* 2020 May bought the M9M: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=leicam9m&user_id=83914470%40N00&view_all=1 and https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=leicammonochrom&user_id=83914470%40N00&view_all=1
+It's interesting how my interest in automation has changed over time. I feel quite firmly now that I want control over all of the things that are going to make the photo look like I want it to, and as little of anything else as possible. That means to me that aperture priority, with an exposure compensation dial trumps fully manual, as the vast majority time the shutter speed isn't really an important part of the end image as long as its exposed correctly.
 
-* 2020 September bought the Elmarit-M 90mm: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=leica90mmelmaritmf28&user_id=83914470%40N00&view_all=1
-    * Added 6-bit encoding myself slightly later
+[Photos tagged with <Camera name="Pentax ME Super" />](/photos/tag?tag=Pentax%20ME%20Super)
 
-* 2021 January bought the Summicron-M 35mm: https://www.flickr.com/search/?sort=date-taken-desc&safe_search=1&tags=leica35mmsummicron&user_id=83914470%40N00&view_all=1
+I added a couple more lenses as well. First ultra-wide <Lens name="Cosina 20mm f3.8 MC" /> />, which I appear to have barely touched, and by most accounts is not a great lens. Second, and more interestingly, the <Lens name="smc Pentax-M 40mm f2.8" /> which is a tiny pancake lens.
+
+- [Photos tagged with <Lens name="Cosina 20mm f3.8 MC" />](/photos/tag?tag=Cosina%2020mm)
+- [Photos tagged with <Lens name="smc Pentax-M 40mm f2.8" />](/photos/tag?tag=Pentax-M%2040mm%20f2.8)
+
+![](flickr://5499845675 "I used the Pentax ME Super + 40mm Pancake combination on a trip to Rome. The slides still look great to me now.")
+
+![](flickr://4871058919 "My friend Niall with Pentaxs. Pentax MX / 50mm f1.7")
+
+### Canon Digital
+
+While I continued on the Pentax front for film cameras, I'd fallen out with the <Camera name="Pentax K-m" />. In many respects it just wasn't very good, and I didn't have the right lenses given the crop factor! I remember bidding on this big batch load of Canon lenses alongside a <Camera name="Canon 40D" /> on ebay in the middle of a Computer Science lab at University. My student maintainace loan had come through, and I blew a huge chunk of it on this knowing I could sell most of the lenses and make a profit even when keeping the 40D.
+
+According to the EXIF data on the photos, I'd bought the camera off a guy called "Robert Olejnik" — apparently I never did a factory reset.
+
+I sold all the lenses that came with the body with the exception of a <Lens name="Canon EF 50mm f1.8 II" />. Shortly afterwards I added a <Lens name="Sigma 30mm f/1.4 EX DC HSM" />. I have really fond memories of the Sigma; 30mm is finally a sensible normal focal length on a body with a crop factor.
+
+![](flickr://4527341245 "The Sigma 30mm with its hood as a hat")
+
+- [Photos tagged with <Camera name="Canon 40D" />](/photos/tag?tag=Canon%2040D)
+- [Photos tagged with <Lens name="Canon EF 50mm f1.8 II" />](/photos/tag?tag=Canon%20EF%2050mm%20f1.8%20II)
+- [Photos tagged with <Lens name="Sigma 30mm f1.4 EX DC HSM" />](/photos/tag?tag=Sigma%2030mm%20f1.4%20EX%20DC%20HSM)
+
+## To Be Continued...
+
+_I am still to write about the middle of 2010 onwards_
