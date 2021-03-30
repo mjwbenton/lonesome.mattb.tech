@@ -9,7 +9,7 @@
     "dev": "next dev",
     "start": "next start -p 3001",
     "check": "../../scripts/check.sh",
-    "clean": "../../scripts/clean.sh",
+    "clean": "../../scripts/clean.sh && rm -Rf out .next",
     "fix": "../../scripts/fix.sh",
     "codegen": "graphql-codegen --config codegen.yml"
   },
