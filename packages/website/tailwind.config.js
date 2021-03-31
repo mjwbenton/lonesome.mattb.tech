@@ -156,6 +156,7 @@ module.exports = {
     "backgroundColor",
     "borderColor",
     "borderWidth",
+    "borderRadius",
     "cursor",
     "display",
     "divideColor",
