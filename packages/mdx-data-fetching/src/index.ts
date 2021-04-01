@@ -39,7 +39,6 @@ const mdxDataFetching: Plugin<
             ${calls}
           }
         }
-        return globalGetStaticProps()
       }`
     );
 
