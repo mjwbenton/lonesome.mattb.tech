@@ -1,13 +1,16 @@
 import gql from "graphql-tag";
-import { Context } from "global/contextBuilder";
+import { DataProvider } from "@mattb.tech/data-fetching";
+import { PlaylistQuery } from "generated/graphql";
 
 const QUERY = gql`
   query Playlist($playlistId: ID!) {
     playlist(playlistId: $playlistId) {
+      id
       name
       description
       link
       tracks {
+        id
         name
         artists {
           name
@@ -25,16 +28,18 @@ const QUERY = gql`
   }
 `;
 
-export default async function recentBooksDataProvider(
-  { playlistId },
-  { client }: Context
-) {
+const recentBooksDataProvider: DataProvider<
+  { playlistId: string },
+  PlaylistQuery
+> = async ({ playlistId }, { client }) => {
   if (!playlistId) {
     throw new Error("Must provide playlistId");
   }
-  const result = await client.query({
+  const result = await client.query<PlaylistQuery>({
     query: QUERY,
     variables: { playlistId },
   });
   return result.data;
-}
+};
+
+export default recentBooksDataProvider;

@@ -1,9 +1,11 @@
 import gql from "graphql-tag";
-import { Context } from "global/contextBuilder";
+import { DataProvider } from "@mattb.tech/data-fetching";
+import { RecentBooksQuery } from "generated/graphql";
 
 const QUERY = gql`
   query RecentBooks {
     recentBooks(perPage: 15) {
+      id
       title
       link
       rating
@@ -16,12 +18,14 @@ const QUERY = gql`
   }
 `;
 
-export default async function recentBooksDataProvider(
+const recentBooksDataProvider: DataProvider<never, RecentBooksQuery> = async (
   _: never,
-  { client }: Context
-) {
-  const result = await client.query({
+  { client }
+) => {
+  const result = await client.query<RecentBooksQuery>({
     query: QUERY,
   });
   return result.data;
-}
+};
+
+export default recentBooksDataProvider;

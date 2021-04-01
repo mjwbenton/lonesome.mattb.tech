@@ -1,5 +1,5 @@
 import { PhotoSetQuery } from "generated/graphql";
-import { usePageData } from "global/pageData";
+import { usePageData } from "@mattb.tech/data-fetching";
 import * as React from "react";
 import Photos from "./Photos";
 

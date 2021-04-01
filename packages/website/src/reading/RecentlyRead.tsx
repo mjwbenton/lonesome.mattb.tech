@@ -1,5 +1,5 @@
 import { RecentBooksQuery } from "generated/graphql";
-import { usePageData } from "global/pageData";
+import { usePageData } from "@mattb.tech/data-fetching";
 import React from "react";
 import MaxWidthWrapper from "../component/MaxWidthWrapper";
 import Book from "./Book";

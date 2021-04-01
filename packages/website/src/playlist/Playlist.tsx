@@ -2,7 +2,7 @@ import * as React from "react";
 import Track from "./Track";
 import MaxWidthWrapper from "../component/MaxWidthWrapper";
 import StripedList from "../component/StripedList";
-import { usePageData } from "global/pageData";
+import { usePageData } from "@mattb.tech/data-fetching";
 import { PlaylistQuery } from "generated/graphql";
 
 const Playlist: React.FunctionComponent = () => {

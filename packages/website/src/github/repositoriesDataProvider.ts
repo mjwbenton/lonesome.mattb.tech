@@ -1,5 +1,6 @@
 import gql from "graphql-tag";
-import { Context } from "global/contextBuilder";
+import { DataProvider } from "@mattb.tech/data-fetching";
+import { useQuery } from "@apollo/client";
 
 const QUERY = gql`
   query GithubRepositories($first: Int!, $after: ID) {
@@ -8,6 +9,7 @@ const QUERY = gql`
       hasNextPage
       nextPageCursor
       items {
+        id
         name
         url
         createdAt
@@ -15,21 +17,41 @@ const QUERY = gql`
         description
         license
         primaryLanguage
-        readme
       }
     }
   }
 `;
 
-export default async function repositoriesDataProvider(
+const repositoriesDataProvider: DataProvider<never> = async (
   _: never,
-  { client }: Context
-) {
+  { client }
+) => {
   const result = await client.query({
     query: QUERY,
     variables: {
-      first: 20,
+      first: 10,
     },
   });
   return result.data;
+};
+
+export default repositoriesDataProvider;
+
+export function useGithubRepositories() {
+  const { data, loading, fetchMore } = useQuery(QUERY, {
+    variables: { first: 10 },
+    fetchPolicy: "cache-and-network",
+    nextFetchPolicy: "cache-first",
+    notifyOnNetworkStatusChange: true,
+  });
+  const {
+    githubRepositories: { items, total, hasNextPage, nextPageCursor },
+  } = data;
+  return {
+    items,
+    total,
+    hasNextPage,
+    loadNextPage: () => fetchMore({ variables: { after: nextPageCursor } }),
+    loadingNextPage: loading,
+  };
 }

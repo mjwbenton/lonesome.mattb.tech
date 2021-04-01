@@ -1,14 +1,19 @@
+import Button from "component/Button";
 import ContentBlock from "component/ContentBlock";
 import Infoline from "component/Infoline";
 import MaxWidthWrapper from "component/MaxWidthWrapper";
-import { usePageData } from "global/pageData";
 import React from "react";
 import { Clock } from "react-feather";
+import { useGithubRepositories } from "./repositoriesDataProvider";
 
 export default function Repositories() {
   const {
-    githubRepositories: { items, total },
-  } = usePageData();
+    items,
+    total,
+    hasNextPage,
+    loadNextPage,
+    loadingNextPage,
+  } = useGithubRepositories();
   if (!items) {
     return null;
   }
@@ -38,6 +43,11 @@ export default function Repositories() {
           </Infoline>
         </ContentBlock>
       ))}
+      {hasNextPage ? (
+        <Button disabled={loadingNextPage} onClick={loadNextPage}>
+          Load More
+        </Button>
+      ) : null}
     </MaxWidthWrapper>
   );
 }

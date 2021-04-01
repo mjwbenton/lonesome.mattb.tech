@@ -1,7 +1,7 @@
 import MaxWithWrapper from "component/MaxWidthWrapper";
 import StripedList, { StripeElement } from "component/StripedList";
 import TwoRowText from "component/TwoRowText";
-import { usePageData } from "global/pageData";
+import { usePageData } from "@mattb.tech/data-fetching";
 import React from "react";
 import { Clock } from "react-feather";
 import { Page } from "./recentPagesDataProvider";
