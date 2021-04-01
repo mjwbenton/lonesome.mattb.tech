@@ -147,6 +147,7 @@ module.exports = {
       textColor: ["visited", "odd"],
       margin: ["first", "last"],
       typography: ["dark"],
+      opacity: ["disabled"],
     },
   },
   plugins: [require("@tailwindcss/typography")],
