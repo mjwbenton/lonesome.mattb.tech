@@ -4,47 +4,52 @@ import u from "unist-builder";
 const DATA_PROVIDERS = "dataProviders";
 
 const mdxDataFetching: Plugin<
-  [{ basePath?: string; globalDataProviders?: string[] }]
-> = ({ basePath = "", globalDataProviders = [] }) => {
+  [
+    {
+      globalDataProviders?: string[];
+      contextBuilder?: string;
+      afterRun?: string;
+    }
+  ]
+> = ({ globalDataProviders = [], contextBuilder, afterRun }) => {
   return (tree, file) => {
-    const frontmatter = (file.data as any)?.frontmatter ?? {};
-    const frontmatterDataProviders: Array<string> =
-      frontmatter[DATA_PROVIDERS] ?? [];
-    const dataProviders = [...globalDataProviders, ...frontmatterDataProviders];
+    const pageMeta = (file.data as any)?.pageMeta ?? {};
+    const dataProviders = [
+      ...globalDataProviders,
+      ...(pageMeta[DATA_PROVIDERS] ?? []),
+    ];
 
     if (dataProviders.length === 0) {
       return;
     }
 
-    const importNodes = dataProviders.flatMap((provider, i) => {
-      return u("import", `import _dp${i} from "${basePath}${provider}"`);
-    });
-
-    const exportFrontmatterNode = u(
-      "export",
-      `export const frontmatter = ${JSON.stringify(frontmatter)}`
-    );
-
-    const calls = dataProviders
-      .map((_, i) => {
-        return `...(await _dp${i}(frontmatter)),`;
-      })
-      .join("\n");
+    const importNodes = [
+      ...(contextBuilder
+        ? [u("import", `import contextBuild from "${contextBuilder}"`)]
+        : []),
+      ...(afterRun ? [u("import", `import afterRun from "${afterRun}"`)] : []),
+      ...dataProviders.flatMap((provider, i) =>
+        u("import", `import _dp${i} from "${provider}"`)
+      ),
+    ];
 
     const getStaticPropsNode = u(
       "export",
       `export const getStaticProps = async () => {
-        return {
+        const pageMeta = ${JSON.stringify(pageMeta)};
+        const context = contextBuild(pageMeta);
+        return afterRun({
           props: {
-            ${calls}
+            ${dataProviders
+              .map((_, i) => `...(await _dp${i}(pageMeta, context)),`)
+              .join("\n")}
           }
-        }
+        }, context);
       }`
     );
 
     tree.children = [
       ...importNodes,
-      exportFrontmatterNode,
       getStaticPropsNode,
       ...(tree.children as Array<unknown>),
     ];

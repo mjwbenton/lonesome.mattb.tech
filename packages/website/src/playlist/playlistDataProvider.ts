@@ -1,5 +1,5 @@
-import client from "../global/client";
 import gql from "graphql-tag";
+import { Context } from "global/contextBuilder";
 
 const QUERY = gql`
   query Playlist($playlistId: ID!) {
@@ -25,7 +25,10 @@ const QUERY = gql`
   }
 `;
 
-export default async function recentBooksDataProvider({ playlistId }) {
+export default async function recentBooksDataProvider(
+  { playlistId },
+  { client }: Context
+) {
   if (!playlistId) {
     throw new Error("Must provide playlistId");
   }

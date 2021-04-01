@@ -1,7 +1,7 @@
-import client from "../global/client";
 import gql from "graphql-tag";
 import { fragment } from "./Photo";
 import { PhotoSetQuery } from "generated/graphql";
+import { Context } from "global/contextBuilder";
 
 export const QUERY = gql`
   query PhotoSet($photosetId: ID!) {
@@ -12,9 +12,10 @@ export const QUERY = gql`
   ${fragment}
 `;
 
-export default async function photoSetDataProvider({
-  photosetId,
-}): Promise<PhotoSetQuery> {
+export default async function photoSetDataProvider(
+  { photosetId },
+  { client }: Context
+): Promise<PhotoSetQuery> {
   if (!photosetId) {
     throw new Error("Must provide photosetId");
   }

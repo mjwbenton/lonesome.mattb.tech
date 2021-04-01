@@ -1,5 +1,5 @@
-import client from "../global/client";
 import gql from "graphql-tag";
+import { Context } from "global/contextBuilder";
 
 const QUERY = gql`
   query GithubRepositories($first: Int!, $after: ID) {
@@ -8,20 +8,23 @@ const QUERY = gql`
       hasNextPage
       nextPageCursor
       items {
-      name
-      url
-      createdAt
-      updatedAt
-      description
-      license
-      primaryLanguage
-      readme
+        name
+        url
+        createdAt
+        updatedAt
+        description
+        license
+        primaryLanguage
+        readme
+      }
     }
-  }
   }
 `;
 
-export default async function repositoriesDataProvider() {
+export default async function repositoriesDataProvider(
+  _: never,
+  { client }: Context
+) {
   const result = await client.query({
     query: QUERY,
     variables: {

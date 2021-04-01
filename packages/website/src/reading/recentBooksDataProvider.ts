@@ -1,5 +1,5 @@
-import client from "../global/client";
 import gql from "graphql-tag";
+import { Context } from "global/contextBuilder";
 
 const QUERY = gql`
   query RecentBooks {
@@ -16,7 +16,10 @@ const QUERY = gql`
   }
 `;
 
-export default async function recentBooksDataProvider() {
+export default async function recentBooksDataProvider(
+  _: never,
+  { client }: Context
+) {
   const result = await client.query({
     query: QUERY,
   });
