@@ -1,8 +1,10 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "target": "esnext",
     "noEmit": true,
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "jsx": "preserve"
   },
   "exclude": ["node_modules"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
