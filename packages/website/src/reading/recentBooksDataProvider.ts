@@ -3,7 +3,7 @@ import gql from "graphql-tag";
 
 const QUERY = gql`
   query RecentBooks {
-    recentBooks(limit: 15) {
+    recentBooks(perPage: 15) {
       title
       link
       rating
