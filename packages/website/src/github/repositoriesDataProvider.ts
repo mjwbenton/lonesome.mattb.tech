@@ -3,8 +3,8 @@ import { DataProvider } from "@mattb.tech/data-fetching";
 import { useQuery } from "@apollo/client";
 
 const QUERY = gql`
-  query GithubRepositories($first: Int!, $after: ID) {
-    githubRepositories(first: $first, after: $after) {
+  query GithubRepositories($after: ID) {
+    githubRepositories(first: 10, after: $after) {
       total
       hasNextPage
       nextPageCursor
@@ -22,24 +22,19 @@ const QUERY = gql`
   }
 `;
 
-const repositoriesDataProvider: DataProvider<never> = async (
+const repositoriesDataProvider: DataProvider<never, void> = async (
   _: never,
   { client }
 ) => {
-  const result = await client.query({
+  await client.query({
     query: QUERY,
-    variables: {
-      first: 10,
-    },
   });
-  return result.data;
 };
 
 export default repositoriesDataProvider;
 
 export function useGithubRepositories() {
   const { data, loading, fetchMore } = useQuery(QUERY, {
-    variables: { first: 10 },
     fetchPolicy: "cache-and-network",
     nextFetchPolicy: "cache-first",
     notifyOnNetworkStatusChange: true,
