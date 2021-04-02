@@ -177,6 +177,7 @@ module.exports = {
     "maxWidth",
     "objectFit",
     "outline",
+    "opacity",
     "overflow",
     "padding",
     "position",
