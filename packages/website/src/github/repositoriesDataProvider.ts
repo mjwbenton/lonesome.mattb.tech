@@ -52,6 +52,6 @@ export function useGithubRepositories() {
     total,
     hasNextPage,
     loadNextPage: () => fetchMore({ variables: { after: nextPageCursor } }),
-    loadingNextPage: loading,
+    loading,
   };
 }

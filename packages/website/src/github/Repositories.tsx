@@ -12,7 +12,7 @@ export default function Repositories() {
     total,
     hasNextPage,
     loadNextPage,
-    loadingNextPage,
+    loading,
   } = useGithubRepositories();
   if (!items) {
     return null;
@@ -44,7 +44,7 @@ export default function Repositories() {
         </ContentBlock>
       ))}
       {hasNextPage ? (
-        <Button disabled={loadingNextPage} onClick={loadNextPage}>
+        <Button disabled={loading} onClick={loadNextPage}>
           Load More
         </Button>
       ) : null}
