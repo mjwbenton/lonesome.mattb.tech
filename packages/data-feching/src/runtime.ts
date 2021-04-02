@@ -15,12 +15,7 @@ export default async function runtime(
   const results = await Promise.all(
     dataProviders.map((dp) => dp(pageMeta, context))
   );
-  const props = results.reduce((acc, cur) => {
-    return {
-      ...acc,
-      ...cur,
-    };
-  }, {});
+  const props = results.reduce((acc, cur) => Object.assign(acc, cur ?? {}), {});
   return {
     props: {
       ...props,
