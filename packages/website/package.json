@@ -30,8 +30,8 @@
     "typescript": "^4.1.3"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.8",
-    "@mattb.tech/mdx-data-fetching": "1.0.0",
+    "@apollo/client": "^3.3.13",
+    "@mattb.tech/data-fetching": "1.0.0",
     "@mattb.tech/mdx-tailwind-typography": "1.0.0",
     "@mattb.tech/remark-flickr": "1.0.0",
     "@mdx-js/loader": "^1.6.22",

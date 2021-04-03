@@ -1,5 +1,5 @@
 {
-  "name": "@mattb.tech/mdx-data-fetching",
+  "name": "@mattb.tech/data-fetching",
   "version": "1.0.0",
   "license": "UNLICENSED",
   "author": "Matt Benton <m@mattb.tech>",
@@ -11,10 +11,17 @@
     "fix": "../../scripts/fix.sh"
   },
   "devDependencies": {
+    "@types/crypto-hash": "^1",
     "prettier": "^2.2.1",
-    "typescript": "^4.1.3"
+    "typescript": "^4.1.3",
+    "unified": "^9.2.1"
   },
   "dependencies": {
+    "@apollo/client": "^3.3.13",
+    "@types/isomorphic-fetch": "0.0.35",
+    "crypto-hash": "^1.3.0",
+    "deepmerge": "^4.2.2",
+    "isomorphic-fetch": "^3.0.0",
     "unist-builder": "^2.0.3"
   }
 }

@@ -4,8 +4,7 @@ import React from "react";
 import Head from "next/head";
 import Logo from "../src/global/Logo";
 import { Navigation } from "../src/navigation/Navigation";
-import ApiProvider from "../src/global/ApiProvider";
-import { PageDataProvider } from "global/pageData";
+import { DataFetchingProvider } from "@mattb.tech/data-fetching";
 import { ThemeProvider } from "next-themes";
 import ThemeChanger from "global/ThemeChanger";
 import { NavigationProps } from "navigation/navigationTypes";
@@ -15,17 +14,15 @@ export default function MyApp({ Component, pageProps }) {
   const {
     navigation,
     pageMeta,
-    ...componentProps
   }: {
     navigation: NavigationProps;
     pageMeta?: PageMeta;
-    componentProps: unknown;
   } = pageProps;
   const title = pageMeta?.title
     ? `${pageMeta.title} - lonesome media`
     : "lonesome media";
   return (
-    <ApiProvider>
+    <>
       <Head>
         <title>{title}</title>
         {pageMeta?.description ? (
@@ -41,11 +38,11 @@ export default function MyApp({ Component, pageProps }) {
         </header>
         {navigation ? <Navigation {...navigation} /> : null}
         <main className="m-4 md:m-8">
-          <PageDataProvider value={componentProps}>
-            <Component {...componentProps} />
-          </PageDataProvider>
+          <DataFetchingProvider pageProps={pageProps}>
+            <Component />
+          </DataFetchingProvider>
         </main>
       </ThemeProvider>
-    </ApiProvider>
+    </>
   );
 }

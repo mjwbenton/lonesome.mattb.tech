@@ -1,20 +1,25 @@
-import client from "../global/client";
 import gql from "graphql-tag";
 import { fragment } from "./Photo";
-import { PhotoSetQuery } from "generated/graphql";
+import { PhotoFragment, PhotoSetQuery } from "generated/graphql";
+import { DataProvider } from "@mattb.tech/data-fetching";
 
 export const QUERY = gql`
   query PhotoSet($photosetId: ID!) {
-    photoSet(photosetId: $photosetId) {
-      ...Photo
+    page: photoSet(photosetId: $photosetId, first: 100) {
+      hasNextPage
+      nextPageCursor
+      items {
+        ...Photo
+      }
     }
   }
   ${fragment}
 `;
 
-export default async function photoSetDataProvider({
-  photosetId,
-}): Promise<PhotoSetQuery> {
+const photoSetDataProvider: DataProvider<
+  { photosetId: string },
+  { photoSet: readonly PhotoFragment[] }
+> = async ({ photosetId }, { client }) => {
   if (!photosetId) {
     throw new Error("Must provide photosetId");
   }
@@ -22,5 +27,13 @@ export default async function photoSetDataProvider({
     query: QUERY,
     variables: { photosetId },
   });
-  return result.data;
-}
+  const { items, hasNextPage } = result.data.page;
+  if (hasNextPage) {
+    throw new Error(`Too many photos in set ${photosetId}`);
+  }
+  return {
+    photoSet: items,
+  };
+};
+
+export default photoSetDataProvider;
