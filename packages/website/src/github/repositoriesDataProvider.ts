@@ -1,10 +1,11 @@
 import gql from "graphql-tag";
 import { DataProvider } from "@mattb.tech/data-fetching";
 import { useQuery } from "@apollo/client";
+import { GithubRepositoriesQuery } from "generated/graphql";
 
 const QUERY = gql`
   query GithubRepositories($after: ID) {
-    githubRepositories(first: 10, after: $after) {
+    page: githubRepositories(first: 10, after: $after) {
       total
       hasNextPage
       nextPageCursor
@@ -34,19 +35,5 @@ const repositoriesDataProvider: DataProvider<never, void> = async (
 export default repositoriesDataProvider;
 
 export function useGithubRepositories() {
-  const { data, loading, fetchMore } = useQuery(QUERY, {
-    fetchPolicy: "cache-and-network",
-    nextFetchPolicy: "cache-first",
-    notifyOnNetworkStatusChange: true,
-  });
-  const {
-    githubRepositories: { items, total, hasNextPage, nextPageCursor },
-  } = data;
-  return {
-    items,
-    total,
-    hasNextPage,
-    loadNextPage: () => fetchMore({ variables: { after: nextPageCursor } }),
-    loading,
-  };
+  return useQuery<GithubRepositoriesQuery>(QUERY);
 }

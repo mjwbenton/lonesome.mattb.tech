@@ -4,28 +4,39 @@ import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
 import { RecentPhotosQuery } from "generated/graphql";
 import Photos from "photo/Photos";
+import LoadMoreButton from "global/LoadMoreButton";
+import Loading from "component/Loading";
+import ErrorDisplay from "component/ErrorDisplay";
 
 const QUERY = gql`
-  query RecentPhotos {
-    recentPhotos {
-      ...Photo
+  query RecentPhotos($after: ID) {
+    page: recentPhotos(first: 20, after: $after) {
+      items {
+        ...Photo
+      }
+      hasNextPage
+      nextPageCursor
     }
   }
   ${fragment}
 `;
 
 const Stream = () => {
-  const { data, error, loading } = useQuery<RecentPhotosQuery>(QUERY);
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  const { data, error, loading, fetchMore } = useQuery<RecentPhotosQuery>(
+    QUERY
+  );
   if (error) {
-    return <p>{error.toString()}</p>;
+    return <ErrorDisplay error={error} />;
   }
-  if (!data!.recentPhotos) {
-    return <p>Error: No recent photos</p>;
+  if (!data) {
+    return <Loading />;
   }
-  return <Photos photos={data!.recentPhotos} />;
+  return (
+    <>
+      <Photos photos={data.page.items} />
+      <LoadMoreButton data={data} loading={loading} fetchMore={fetchMore} />
+    </>
+  );
 };
 
 export default Stream;

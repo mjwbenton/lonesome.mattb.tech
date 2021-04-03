@@ -20,9 +20,9 @@ const LINK = createPersistedQueryLink({ sha256 }).concat(
   })
 );
 
-function concatPagination() {
+function concatPagination(keyArgs: false | string[] = false) {
   return {
-    keyArgs: false as const,
+    keyArgs,
     merge: (existing, incoming) => {
       if (!existing) {
         return incoming;
@@ -47,6 +47,10 @@ const CACHE_CONFIGURATION = {
     Query: {
       fields: {
         githubRepositories: concatPagination(),
+        recentBooks: concatPagination(),
+        recentPhotos: concatPagination(),
+        photoSet: concatPagination(["photosetId"]),
+        photosWithTag: concatPagination(["tag"]),
       },
     },
   },
@@ -58,6 +62,13 @@ function createClient() {
   return new ApolloClient({
     link: LINK,
     cache: new InMemoryCache(CACHE_CONFIGURATION),
+    defaultOptions: {
+      watchQuery: {
+        fetchPolicy: "cache-and-network",
+        nextFetchPolicy: "cache-first",
+        notifyOnNetworkStatusChange: true,
+      },
+    },
   });
 }
 

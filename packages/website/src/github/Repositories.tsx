@@ -1,28 +1,28 @@
 import Button from "component/Button";
 import ContentBlock from "component/ContentBlock";
+import ErrorDisplay from "component/ErrorDisplay";
 import Infoline from "component/Infoline";
+import Loading from "component/Loading";
 import MaxWidthWrapper from "component/MaxWidthWrapper";
+import LoadMoreButton from "global/LoadMoreButton";
 import React from "react";
 import { Clock } from "react-feather";
 import { useGithubRepositories } from "./repositoriesDataProvider";
 
 export default function Repositories() {
-  const {
-    items,
-    total,
-    hasNextPage,
-    loadNextPage,
-    loading,
-  } = useGithubRepositories();
-  if (!items) {
-    return null;
+  const { data, loading, error, fetchMore } = useGithubRepositories();
+  if (error) {
+    return <ErrorDisplay error={error} />;
+  }
+  if (!data?.page) {
+    return <Loading />;
   }
   return (
     <MaxWidthWrapper>
       <p className="mb-8">
-        <b>{total}</b> total repositories
+        <b>{data.page.total}</b> total repositories
       </p>
-      {items.map((n: any) => (
+      {data.page.items.map((n) => (
         <ContentBlock key={n.name}>
           <h2 className="text-lg font-bold">{n.name}</h2>
           {n.description && <p className="mb-4">{n.description}</p>}
@@ -43,11 +43,7 @@ export default function Repositories() {
           </Infoline>
         </ContentBlock>
       ))}
-      {hasNextPage ? (
-        <Button disabled={loading} onClick={loadNextPage}>
-          Load More
-        </Button>
-      ) : null}
+      <LoadMoreButton data={data} fetchMore={fetchMore} loading={loading} />
     </MaxWidthWrapper>
   );
 }
