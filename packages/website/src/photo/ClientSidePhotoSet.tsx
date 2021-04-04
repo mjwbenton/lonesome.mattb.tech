@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import Loading from "component/Loading";
 import ErrorDisplay from "component/ErrorDisplay";
 import LoadMoreButton from "global/LoadMoreButton";
+import Message from "component/Message";
 
 const ClientSidePhotoSet = () => {
   const router = useRouter();
@@ -19,6 +20,9 @@ const ClientSidePhotoSet = () => {
   }
   if (!data) {
     return <Loading />;
+  }
+  if (data.page === null) {
+    return <Message>No photoset with id {photosetId}</Message>;
   }
   return (
     <>
