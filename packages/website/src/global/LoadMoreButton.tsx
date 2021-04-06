@@ -21,6 +21,7 @@ export default function LoadMoreButton({
   return data.page.hasNextPage ? (
     <Button
       disabled={loading}
+      data-testid="load-more-button"
       onClick={() => {
         fetchMore({
           variables: {
