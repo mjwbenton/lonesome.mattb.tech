@@ -9,9 +9,7 @@ import ErrorDisplay from "component/ErrorDisplay";
 import LoadMoreButton from "global/LoadMoreButton";
 import Message from "component/Message";
 
-const ClientSidePhotoSet = () => {
-  const router = useRouter();
-  const photosetId = router.query.id;
+const LoadPhotosFromSet = ({ photosetId }: { photosetId: string }) => {
   const { data, error, fetchMore, loading } = useQuery<PhotoSetQuery>(QUERY, {
     variables: { photosetId },
   });
@@ -30,5 +28,11 @@ const ClientSidePhotoSet = () => {
       <LoadMoreButton data={data} fetchMore={fetchMore} loading={loading} />
     </>
   );
+};
+
+const ClientSidePhotoSet = () => {
+  const router = useRouter();
+  const photosetId = router.query.id as string | undefined;
+  return photosetId ? <LoadPhotosFromSet photosetId={photosetId} /> : null;
 };
 export default ClientSidePhotoSet;

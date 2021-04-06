@@ -21,7 +21,7 @@ const QUERY = gql`
   ${fragment}
 `;
 
-const ClientSidePhotosWithTag = ({ tag }: { tag: string }) => {
+const LoadPhotosWithTag = ({ tag }: { tag: string }) => {
   const { data, error, loading, fetchMore } = useQuery<PhotosWithTagQuery>(
     QUERY,
     {
@@ -41,8 +41,11 @@ const ClientSidePhotosWithTag = ({ tag }: { tag: string }) => {
     </>
   );
 };
-export default () => {
+
+const ClientSidePhotosWithTag = () => {
   const router = useRouter();
   const tag = router.query.tag as string | undefined;
-  return tag ? <ClientSidePhotosWithTag tag={tag} /> : null;
+  return tag ? <LoadPhotosWithTag tag={tag} /> : null;
 };
+
+export default ClientSidePhotosWithTag;
