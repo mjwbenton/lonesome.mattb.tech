@@ -9,6 +9,7 @@ import { ThemeProvider } from "next-themes";
 import ThemeChanger from "global/ThemeChanger";
 import { NavigationProps } from "navigation/navigationTypes";
 import { PageMeta } from "pageMeta";
+import { Provider as ReakitProvider } from "reakit";
 
 export default function MyApp({ Component, pageProps }) {
   const {
@@ -31,18 +32,20 @@ export default function MyApp({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
-      <ThemeProvider attribute="class">
-        <header className="flex relative">
-          <Logo />
-          <ThemeChanger />
-        </header>
-        {navigation ? <Navigation {...navigation} /> : null}
-        <main className="m-4 md:m-8">
-          <DataFetchingProvider pageProps={pageProps}>
-            <Component />
-          </DataFetchingProvider>
-        </main>
-      </ThemeProvider>
+      <ReakitProvider>
+        <ThemeProvider attribute="class">
+          <header className="flex relative">
+            <Logo />
+            <ThemeChanger />
+          </header>
+          {navigation ? <Navigation {...navigation} /> : null}
+          <main className="m-4 md:m-8">
+            <DataFetchingProvider pageProps={pageProps}>
+              <Component />
+            </DataFetchingProvider>
+          </main>
+        </ThemeProvider>
+      </ReakitProvider>
     </>
   );
 }
