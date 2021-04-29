@@ -47,7 +47,7 @@ const CACHE_CONFIGURATION = {
     Query: {
       fields: {
         githubRepositories: concatPagination(),
-        recentBooks: concatPagination(),
+        recentGoodreadsBooks: concatPagination(),
         recentPhotos: concatPagination(),
         photoSet: concatPagination(["photosetId"]),
         photosWithTag: concatPagination(["tag"]),
