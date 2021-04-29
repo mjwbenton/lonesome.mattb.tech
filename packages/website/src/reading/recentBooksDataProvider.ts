@@ -5,7 +5,7 @@ import { useQuery } from "@apollo/client";
 
 const QUERY = gql`
   query RecentBooks($after: ID) {
-    recentBooks(first: 15, after: $after) {
+    recentBooks: recentGoodreadsBooks(first: 15, after: $after) {
       total
       hasNextPage
       nextPageCursor
