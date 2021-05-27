@@ -1,0 +1,29 @@
+---
+title: "Keyboards: Rama Kara"
+group: Keyboards
+index: 1
+createdOn: "2021-05-27"
+description: "Notes on the build of my Rama Kara keyboard."
+---
+
+# Rama Kara
+
+![](flickr://51154422707)
+
+Always wanted to try a HHKB layout, and buy into a premium group buy to get a keyboard, rather than buy all the pieces from KBDFans. _Rama Kara_ presented an opportunity to do both. I really wanted to do this board right, so I planned out using my _SA DreamEater_ keycaps, and bought switches that I knew I'd love, _ZealPC Zealios 67g_.
+
+Given that I was ordering from ZealPC already I bought their screw-in stabilizers. This was my first time using screw in stabilizers, and my first time not just using the cheapest ones I could find. They do make a difference! With a little lubrication they fit well, they stay in, the keys are stable and quiet. On top of that, they actually fit the space bar from my SA keycaps, which the cheap stabilizers I'd used before did not (see [SA Vilebloom](/keyboard/sa-vilebloom))
+
+![](flickr://51155878094 "Everything that came in the Rama Kara box.")
+
+![](flickr://51156200705 "Partially assembled.")
+
+![](flickr://51155878829 "The keyboard put together.")
+
+Getting used to a new layout is hard. Apparently the bottom row stagger makes no difference to me (all my other boards have a 2u left shift), but having no arrow cluster is actually really hard for programming for me. I'm sure its always been bad practice, but I use the arrow cluster loads, even as a vim user, without even thinking about it. I've gone through several iterations and now most prominently use the <kbd>Fn</kbd> key next to the right shift to engage a layer where <kbd>w</kbd>, <kbd>a</kbd>, <kbd>s</kbd> and <kbd>d</kbd> is an arrow cluster. If I keep going I think I can get used to this one.
+
+## QMK Firmware
+
+As with all my boards, I've created my layout using _QMK_. The commit containing the layout for my _Rama Kara_ is [here](https://github.com/mjwbenton/qmk_firmware/commit/21217a02fd3d806ecf6b29acd979e5089011e0e6).
+
+To install on the _Rama Kara_, you'll need to hold <kbd>Esc</kbd> when plugging the keyboard in, and then flash as I detailed in my [first build log](/keyboard/first-build).
