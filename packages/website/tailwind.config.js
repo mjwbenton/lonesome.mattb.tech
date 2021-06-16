@@ -138,7 +138,19 @@ module.exports = {
       },
     },
     fontFamily: {
-      mono: ["Consolas", "Monaco", "Andale Mono", "Ubuntu Mono", "monospace"],
+      mono: [
+        "JetBrains Mono",
+        "ui-monospace",
+        "Menlo",
+        "Monaco",
+        "Consolas",
+        "monospace",
+      ],
+    },
+    fontWeight: {
+      thin: 100,
+      normal: 300,
+      bold: 500,
     },
   },
   variants: {

@@ -15,8 +15,13 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head />
-        <body>
+        <Head>
+          <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,500;1,100;1,300&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
+        <body className="font-mono font-normal">
           <Main />
           <NextScript />
         </body>

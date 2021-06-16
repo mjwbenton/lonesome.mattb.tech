@@ -1,6 +1,11 @@
 @import "tailwindcss/base";
 
 @layer base {
+  /* Set base font-size */
+  :root {
+    font-size: 14px;
+  }
+
   /* Override base outline styles into one consistent one */
   *:not(body):focus {
     @apply outline-none ring-4 ring-accent-dark ring-opacity-100;
@@ -17,4 +22,5 @@
   .dark {
     @apply text-light bg-dark;
   }
+
 }
