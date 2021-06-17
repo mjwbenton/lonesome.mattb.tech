@@ -4,7 +4,7 @@ import { Entry, Group } from "./navigationTypes";
 import { Clickable, Composite, CompositeItem, useCompositeState } from "reakit";
 
 function navSectionClasses(hidden: boolean | undefined) {
-  return `block w-full cursor-pointer text-xl font-bold text-center md:text-left md:w-auto md:inline-block md:pr-4 md:pl-4 first:pl-0 last:pr-0 ${
+  return `block w-full cursor-pointer text-lg text-center font-normal md:text-left md:w-auto md:inline-block md:pr-4 md:pl-4 first:pl-0 last:pr-0 ${
     hidden ? "hidden" : ""
   }`;
 }
