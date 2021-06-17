@@ -9,7 +9,7 @@ const plugin: Plugin<
       globalDataProviders?: string[];
     }
   ]
-> = ({ globalDataProviders = [] }) => {
+> = ({ globalDataProviders = [] } = {}) => {
   return (tree, file) => {
     const pageMeta = (file.data as any)?.pageMeta ?? {};
     const dataProviders = [
