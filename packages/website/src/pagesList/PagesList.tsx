@@ -4,15 +4,22 @@ import TwoRowText from "component/TwoRowText";
 import { usePageData } from "@mattb.tech/data-fetching";
 import React from "react";
 import { Clock } from "react-feather";
-import { Page } from "./recentPagesDataProvider";
 
-export default function RecentPages() {
-  const { recentPages } = usePageData();
+export interface Page {
+  readonly createdOn: string | null;
+  readonly updatedOn: string | null;
+  readonly description: string;
+  readonly title: string;
+  readonly slug: string;
+}
+
+export default function PagesList() {
+  const { pagesList } = usePageData();
 
   return (
     <MaxWithWrapper>
       <StripedList>
-        {recentPages.map(
+        {pagesList.map(
           (
             { slug, description, title, createdOn, updatedOn }: Page,
             index: number
@@ -37,8 +44,11 @@ function PageDate({
   updatedOn: string | null;
   createdOn: string | null;
 }) {
-  const label = updatedOn ? "Updated" : "Created";
   const date = updatedOn ?? createdOn;
+  if (!date) {
+    return null;
+  }
+  const label = updatedOn ? "Updated" : "Created";
   return (
     <div className="mt-2 text-xs">
       {label}: <Clock className="inline -mt-0.5" size={11} /> {date}
