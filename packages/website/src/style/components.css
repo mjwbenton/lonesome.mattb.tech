@@ -6,6 +6,12 @@
   }
 
   .striped-list-element {
+    min-height: 6rem;
+
+    & > a {
+      min-height: 6rem;
+    }
+
     & * {
       @apply z-10;
     }
