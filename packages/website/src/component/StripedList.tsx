@@ -23,7 +23,7 @@ export function StripeElement({
   const content = (
     <>
       {children}
-      <span className="absolute top-0 left-0 w-full pr-3 -mt-5 text-right striped-index text-9xl">
+      <span className="absolute top-0 left-0 w-full pr-3 -mt-3 text-right striped-index text-9xl">
         {index}
       </span>
     </>
