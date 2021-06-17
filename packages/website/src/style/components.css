@@ -6,7 +6,7 @@
   }
 
   .striped-list-element {
-    & > * {
+    & * {
       @apply z-10;
     }
 
