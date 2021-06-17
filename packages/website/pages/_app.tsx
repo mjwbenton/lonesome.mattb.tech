@@ -3,20 +3,17 @@ import "prismjs/themes/prism-okaidia.css";
 import React from "react";
 import Head from "next/head";
 import Logo from "../src/global/Logo";
-import { Navigation } from "../src/navigation/Navigation";
+import Navigation from "global/Navigation";
 import { DataFetchingProvider } from "@mattb.tech/data-fetching";
 import { ThemeProvider } from "next-themes";
 import ThemeChanger from "global/ThemeChanger";
-import { NavigationProps } from "navigation/navigationTypes";
 import { PageMeta } from "pageMeta";
 import { Provider as ReakitProvider } from "reakit";
 
 export default function MyApp({ Component, pageProps }) {
   const {
-    navigation,
     pageMeta,
   }: {
-    navigation: NavigationProps;
     pageMeta?: PageMeta;
   } = pageProps;
   const title = pageMeta?.title
@@ -38,7 +35,7 @@ export default function MyApp({ Component, pageProps }) {
             <Logo />
             <ThemeChanger />
           </header>
-          {navigation ? <Navigation {...navigation} /> : null}
+          <Navigation />
           <main className="m-4 md:m-8">
             <DataFetchingProvider pageProps={pageProps}>
               <Component />

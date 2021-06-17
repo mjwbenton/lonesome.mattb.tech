@@ -14,12 +14,7 @@ const withMDX = require("@next/mdx")({
     remarkPlugins: [
       detectFrontmatter,
       [extractFrontmatter, { name: "pageMeta", yaml, throws: true }],
-      [
-        mdxDataFetching,
-        {
-          globalDataProviders: ["navigation/navigationPropsProvider"],
-        },
-      ],
+      mdxDataFetching,
       [remarkFlickr, { sizes: "100vw" }],
     ],
     rehypePlugins: [
