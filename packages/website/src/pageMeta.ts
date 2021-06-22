@@ -14,7 +14,6 @@ export interface PageMeta {
   readonly slug: string;
   readonly description: string;
   readonly group?: string;
-  readonly index?: number;
   readonly createdOn?: Date;
   readonly updatedOn?: Date;
   readonly data?: any;
@@ -23,15 +22,7 @@ export interface PageMeta {
 export async function getPageMeta(pagePath: string): Promise<PageMeta> {
   const rawContent = (await readFile(path.join(rootPath, pagePath))).toString();
   const { data } = matter(rawContent);
-  const {
-    group,
-    index,
-    title,
-    createdOn,
-    updatedOn,
-    description,
-    ...rest
-  } = data;
+  const { group, title, createdOn, updatedOn, description, ...rest } = data;
 
   if (!(title && description)) {
     throw new Error(
@@ -45,7 +36,6 @@ export async function getPageMeta(pagePath: string): Promise<PageMeta> {
     title,
     slug: pagePath.replace(".mdx", "").replace("index", ""),
     group: group ?? null,
-    index: index ? parseInt(index) : undefined,
     description: description ?? null,
     createdOn: createdOn ? parseISO(createdOn) : undefined,
     updatedOn: updatedOn ? parseISO(updatedOn) : undefined,
