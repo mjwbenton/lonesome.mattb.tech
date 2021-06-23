@@ -13,7 +13,11 @@ export interface Page {
   readonly slug: string;
 }
 
-export default function PagesList() {
+export default function PagesList({
+  withIndex = false,
+}: {
+  withIndex?: boolean;
+}) {
   const { pagesList } = usePageData();
 
   return (
@@ -24,7 +28,11 @@ export default function PagesList() {
             { slug, description, title, createdOn, updatedOn }: Page,
             index: number
           ) => (
-            <StripeElement key={slug} index={index} href={slug}>
+            <StripeElement
+              key={slug}
+              index={withIndex ? index + 1 : undefined}
+              href={slug}
+            >
               <div>
                 <TwoRowText row1={title} row2={description ?? ""} />
                 <PageDate createdOn={createdOn} updatedOn={updatedOn} />

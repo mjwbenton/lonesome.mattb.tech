@@ -17,15 +17,17 @@ export function StripeElement({
   href,
 }: {
   children: React.ReactNode;
-  index: number;
+  index?: number;
   href?: string;
 }) {
   const content = (
     <>
       {children}
-      <span className="absolute top-0 left-0 w-full pr-3 -mt-3 text-right striped-index text-9xl">
-        {index}
-      </span>
+      {index ? (
+        <span className="absolute top-0 left-0 w-full pr-3 -mt-3 text-right striped-index text-9xl">
+          {index}
+        </span>
+      ) : null}
     </>
   );
   if (href) {

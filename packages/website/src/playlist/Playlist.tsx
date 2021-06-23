@@ -14,7 +14,7 @@ const Playlist: React.FunctionComponent = () => {
     <MaxWidthWrapper>
       <StripedList>
         {playlist.tracks.map((t, i) => (
-          <Track track={t} index={i} key={i} />
+          <Track track={t} index={i + 1} key={i} />
         ))}
       </StripedList>
     </MaxWidthWrapper>
