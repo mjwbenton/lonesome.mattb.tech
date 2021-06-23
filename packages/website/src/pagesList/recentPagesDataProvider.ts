@@ -12,6 +12,11 @@ export default async function recentPagesDataProvider(): Promise<{
       .filter(({ createdOn, updatedOn }) => createdOn || updatedOn)
       .sort(sortDate)
       .slice(0, 5)
+      .map(({ title, group, ...rest }) => ({
+        title: group ? `${group}: ${title}` : title,
+        group,
+        ...rest,
+      }))
       .map(toDisplayPage),
   };
 }
