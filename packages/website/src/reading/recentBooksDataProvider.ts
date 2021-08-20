@@ -5,22 +5,33 @@ import { useQuery } from "@apollo/client";
 
 const QUERY = gql`
   query RecentBooks($after: ID) {
-    recentBooks: recentGoodreadsBooks(first: 15, after: $after) {
+    recentBooks: books(first: 15, after: $after) {
       total
       hasNextPage
       nextPageCursor
       items {
-        id
-        title
-        link
-        rating
-        image
-        authors
-        read
-        started_at
-        read_at
+        ...Book
       }
     }
+  }
+
+  fragment Book on Book {
+    id
+    title
+    image {
+      url
+      width
+      height
+    }
+    author
+    shelf {
+      id
+      name
+    }
+    addedAt
+    movedAt
+    notes
+    rating
   }
 `;
 
