@@ -49,6 +49,7 @@ const CACHE_CONFIGURATION = {
         githubRepositories: concatPagination(),
         recentGoodreadsBooks: concatPagination(),
         books: concatPagination(),
+        videoGames: concatPagination(),
         recentPhotos: concatPagination(),
         photoSet: concatPagination(["photosetId"]),
         photosWithTag: concatPagination(["tag"]),

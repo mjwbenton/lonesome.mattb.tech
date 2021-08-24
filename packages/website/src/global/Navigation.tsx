@@ -5,6 +5,7 @@ const LINKS = [
   { slug: "/keyboard", display: "Keyboards" },
   { slug: "/playlist", display: "Playlists" },
   { slug: "/reading", display: "Reading" },
+  { slug: "/playing", display: "Playing" },
   { slug: "/code", display: "Code" },
 ];
 
