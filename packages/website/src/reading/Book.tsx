@@ -2,6 +2,7 @@ import React from "react";
 import ContentBlock from "../component/ContentBlock";
 import Infoline from "../component/Infoline";
 import TwoRowText from "../component/TwoRowText";
+import Date from "../component/Date";
 import { Star, Clock } from "react-feather";
 import { BookFragment } from "../generated/graphql";
 
@@ -21,12 +22,14 @@ const Book: React.FunctionComponent<{ book: BookFragment }> = ({ book }) => (
         <TwoRowText row1={book.title} row2={book.author} />
         {book.addedAt ? (
           <div className="text-xs">
-            Started: <Clock className="inline" size={14} /> {book.addedAt}
+            Started: <Clock className="inline" size={14} />{" "}
+            <Date>{book.addedAt}</Date>
           </div>
         ) : null}
         {book.shelf.id === READ_SHELF_ID ? (
           <div className="text-xs">
-            Finished: <Clock className="inline" size={14} /> {book.movedAt}
+            Finished: <Clock className="inline" size={14} />{" "}
+            <Date>{book.movedAt}</Date>
           </div>
         ) : null}
         {book.notes ? <div className="text-xs">{book.notes}</div> : null}
