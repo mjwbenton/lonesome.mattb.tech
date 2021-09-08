@@ -6,6 +6,7 @@ const LINKS = [
   { slug: "/playlist", display: "Playlists" },
   { slug: "/reading", display: "Reading" },
   { slug: "/playing", display: "Playing" },
+  { slug: "/watching", display: "Watching" },
   { slug: "/code", display: "Code" },
 ];
 
