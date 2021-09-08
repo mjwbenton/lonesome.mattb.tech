@@ -50,6 +50,7 @@ const CACHE_CONFIGURATION = {
         recentGoodreadsBooks: concatPagination(),
         books: concatPagination(),
         videoGames: concatPagination(),
+        movies: concatPagination(),
         recentPhotos: concatPagination(),
         photoSet: concatPagination(["photosetId"]),
         photosWithTag: concatPagination(["tag"]),
