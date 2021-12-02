@@ -1,0 +1,123 @@
+import React from "react";
+import ContentBlock from "../component/ContentBlock";
+import Infoline from "../component/Infoline";
+import TwoRowText from "../component/TwoRowText";
+import Date from "../component/Date";
+import { Star, Clock } from "react-feather";
+import { MovieFragment, TvSeriesFragment } from "../generated/graphql";
+import { parseISO, isSameDay } from "date-fns";
+
+type WatchingItem = Pick<
+  MovieFragment,
+  "image" | "title" | "rating" | "releaseYear" | "shelf"
+>;
+
+const WatchingImage = ({
+  image,
+  title,
+}: Pick<WatchingItem, "image" | "title">) =>
+  image ? (
+    <img
+      className="mr-2 object-cover"
+      src={image.url}
+      alt={`Poster for ${title}`}
+    />
+  ) : null;
+
+const WatchingInfoline = ({
+  rating,
+  shelf,
+}: Pick<WatchingItem, "rating" | "shelf">) => (
+  <Infoline>
+    <span>
+      <>{shelf.name} </>
+      {rating ? (
+        <>
+          <Star className="inline" size={14} /> {rating}/10
+        </>
+      ) : null}
+    </span>
+  </Infoline>
+);
+
+const Watching = ({
+  image,
+  title,
+  rating,
+  type,
+  shelf,
+  releaseYear,
+  children,
+}: WatchingItem & { type: string; children: React.ReactNode }) => (
+  <ContentBlock>
+    <div className="flex">
+      <WatchingImage image={image} title={title} />
+      <div className="my-2 space-y-2">
+        <TwoRowText row1={title} row2={`${type}, ${releaseYear}`} />
+        {children}
+      </div>
+    </div>
+    <WatchingInfoline shelf={shelf} rating={rating} />
+  </ContentBlock>
+);
+
+export const Movie: React.FunctionComponent<{ movie: MovieFragment }> = ({
+  movie,
+}) => (
+  <Watching {...movie} type="Movie">
+    <div className="text-xs">
+      <Clock className="inline" size={14} /> <Date>{movie.movedAt}</Date>
+    </div>
+    {movie.notes ? <div className="text-xs">{movie.notes}</div> : null}
+  </Watching>
+);
+
+export const TvSeries: React.FunctionComponent<{
+  tvSeries: TvSeriesFragment;
+}> = ({ tvSeries }) => (
+  <Watching {...tvSeries} type="TV Series">
+    {tvSeries.seasons?.length === 0 ? (
+      <>
+        <div className="text-xs">
+          Started: <Clock className="inline" size={14} />{" "}
+          <Date>{tvSeries.addedAt}</Date>
+        </div>
+        <div className="text-xs">
+          {tvSeries.shelf.name}: <Clock className="inline" size={14} />{" "}
+          <Date>{tvSeries.movedAt}</Date>
+        </div>
+      </>
+    ) : null}
+    {tvSeries.seasons?.length > 0
+      ? tvSeries.seasons.map((season) => (
+          <div className="text-xs space-y-1">
+            <div>
+              Season {season.seasonNumber}
+              {season.seasonTitle ? `/ ${season.seasonTitle} ` : null}
+            </div>
+            <div className="ml-4">
+              {season.shelf.name}{" "}
+              {season.rating ? (
+                <>
+                  <Star className="inline" size={14} /> {season.rating}/10
+                </>
+              ) : null}{" "}
+            </div>
+            <div className="ml-4">
+              <Clock className="inline" size={14} />{" "}
+              <Date>{season.addedAt}</Date>{" "}
+              {!isSameDay(
+                parseISO(season.addedAt),
+                parseISO(season.movedAt)
+              ) ? (
+                <>
+                  — <Date>{season.movedAt}</Date>{" "}
+                </>
+              ) : null}
+            </div>
+          </div>
+        ))
+      : null}
+    {tvSeries.notes ? <div className="text-xs">{tvSeries.notes}</div> : null}
+  </Watching>
+);
