@@ -4,8 +4,8 @@
   "author": "Matt Benton <m@mattb.tech>",
   "license": "UNLICENSED",
   "devDependencies": {
-    "@lhci/cli": "^0.7.0",
-    "pa11y-ci": "^2.4.0"
+    "@lhci/cli": "^0.8.2",
+    "pa11y-ci": "^2.4.2"
   },
   "scripts": {
     "site-test": "npm run pa11y && npm run lighthouse",

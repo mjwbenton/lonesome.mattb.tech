@@ -11,8 +11,8 @@
     "fix": "../../scripts/fix.sh"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.71",
-    "prettier": "^2.2.1",
-    "typescript": "^4.1.3"
+    "@types/aws-lambda": "^8.10.85",
+    "prettier": "^2.5.1",
+    "typescript": "^4.5.2"
   }
 }

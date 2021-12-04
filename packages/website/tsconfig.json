@@ -4,8 +4,15 @@
     "target": "esnext",
     "noEmit": true,
     "baseUrl": "./src",
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "incremental": true
   },
-  "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
 }
