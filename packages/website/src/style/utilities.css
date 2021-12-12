@@ -9,14 +9,12 @@
     max-width: 65ch;
   }
 
-  @variants dark {
-      .underline-accent-light {
-        text-decoration-color: theme("colors.accent-light.DEFAULT");
-      }
+  .underline-accent-light {
+    text-decoration-color: theme("colors.accent-light.DEFAULT");
+  }
 
-      .underline-accent-dark {
-        text-decoration-color: theme("colors.accent-dark.DEFAULT");
-      }
+  .underline-accent-dark {
+    text-decoration-color: theme("colors.accent-dark.DEFAULT");
   }
 
 }
