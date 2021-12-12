@@ -1,13 +1,16 @@
 import path from "path";
-import * as cdk from "@aws-cdk/core";
-import * as s3 from "@aws-cdk/aws-s3";
-import * as route53 from "@aws-cdk/aws-route53";
-import * as route53targets from "@aws-cdk/aws-route53-targets";
-import * as cloudfront from "@aws-cdk/aws-cloudfront";
-import * as acm from "@aws-cdk/aws-certificatemanager";
-import * as s3deploy from "@aws-cdk/aws-s3-deployment";
-import * as lambda from "@aws-cdk/aws-lambda";
-import * as origins from "@aws-cdk/aws-cloudfront-origins";
+import * as cdk from "aws-cdk-lib";
+import {
+  aws_s3 as s3,
+  aws_route53 as route53,
+  aws_route53_targets as route53targets,
+  aws_cloudfront as cloudfront,
+  aws_certificatemanager as acm,
+  aws_s3_deployment as s3deploy,
+  aws_lambda as lambda,
+} from "aws-cdk-lib";
+import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
+import { Construct } from "constructs";
 
 const ZONE_NAME = "mattb.tech";
 const DOMAIN_NAME = "lonesome.mattb.tech";
@@ -16,7 +19,7 @@ const HOSTED_ZONE_ID = "Z2GPSB1CDK86DH";
 const OUT_PATH = path.join(__dirname, "../../website/out");
 
 export class LonesomeWebsite extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
     const mainHostedZone = route53.HostedZone.fromHostedZoneAttributes(

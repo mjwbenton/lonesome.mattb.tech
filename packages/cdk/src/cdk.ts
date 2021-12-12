@@ -1,4 +1,4 @@
-import * as cdk from "@aws-cdk/core";
+import * as cdk from "aws-cdk-lib";
 import { LonesomeWebsite } from "./stack";
 
 const app = new cdk.App();
