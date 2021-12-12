@@ -19,7 +19,7 @@ const LoadPhotosFromSet = ({ photosetId }: { photosetId: string }) => {
   if (!data) {
     return <Loading />;
   }
-  if (data.page === null) {
+  if (data.page == null) {
     return <Message>No photoset with id {photosetId}</Message>;
   }
   return (

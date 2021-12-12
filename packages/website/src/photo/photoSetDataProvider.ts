@@ -27,7 +27,7 @@ const photoSetDataProvider: DataProvider<
     query: QUERY,
     variables: { photosetId },
   });
-  if (result.data.page === null) {
+  if (result.data.page == null) {
     throw new Error(`No photoset with id ${photosetId}`);
   }
   const { items, hasNextPage } = result.data.page;

@@ -3,7 +3,13 @@ import Button from "component/Button";
 import React from "react";
 
 type Data = {
-  page: { hasNextPage: boolean; nextPageCursor: string | null } | null;
+  page:
+    | {
+        hasNextPage: boolean;
+        nextPageCursor: string | null | undefined;
+      }
+    | null
+    | undefined;
 };
 
 export default function LoadMoreButton({
