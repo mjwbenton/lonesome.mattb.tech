@@ -1908,7 +1908,7 @@ __metadata:
     "@mattb.tech/mdx-tailwind-typography": 1.0.0
     "@mattb.tech/remark-flickr": 1.0.0
     "@mdx-js/loader": ^1.6.22
-    "@next/bundle-analyzer": ^10.2.3
+    "@next/bundle-analyzer": ^12.0.7
     "@next/mdx": ^12.0.7
     "@tailwindcss/typography": ^0.5.0
     "@types/dotenv": ^8.2.0
@@ -2056,12 +2056,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/bundle-analyzer@npm:^10.2.3":
-  version: 10.2.3
-  resolution: "@next/bundle-analyzer@npm:10.2.3"
+"@next/bundle-analyzer@npm:^12.0.7":
+  version: 12.0.7
+  resolution: "@next/bundle-analyzer@npm:12.0.7"
   dependencies:
     webpack-bundle-analyzer: 4.3.0
-  checksum: 1b2fb40e60699c70f99db502e394aa67972f944a617222383629a6b78947bd716d487e51a9e42e7d145470b436354aa29c4ddb4ca1449c931c1ad9efa21c3d4b
+  checksum: 4d08449adc8ed21e22f8a93db150d51194d26b7bf5cd1d21875514929c6ba7150a15024c6168e2ac50b54e9ea9ac49db3e99be9b961d3e90dda6645396e0e31c
   languageName: node
   linkType: hard
 
