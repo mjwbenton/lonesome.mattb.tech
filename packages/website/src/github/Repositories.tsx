@@ -3,7 +3,7 @@ import ContentBlock from "component/ContentBlock";
 import ErrorDisplay from "component/ErrorDisplay";
 import Infoline from "component/Infoline";
 import Loading from "component/Loading";
-import MaxWidthWrapper from "component/MaxWidthWrapper";
+import EmbeddedWrapper from "component/EmbeddedWrapper";
 import LoadMoreButton from "global/LoadMoreButton";
 import React from "react";
 import { Clock } from "react-feather";
@@ -18,7 +18,7 @@ export default function Repositories() {
     return <Loading />;
   }
   return (
-    <MaxWidthWrapper>
+    <EmbeddedWrapper>
       <p className="mb-8">
         <b>{data.page.total}</b> total repositories
       </p>
@@ -44,6 +44,6 @@ export default function Repositories() {
         </ContentBlock>
       ))}
       <LoadMoreButton data={data} fetchMore={fetchMore} loading={loading} />
-    </MaxWidthWrapper>
+    </EmbeddedWrapper>
   );
 }

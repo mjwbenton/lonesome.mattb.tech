@@ -8,7 +8,7 @@ description: "This page demonstrates the reusable components that the pages of t
 
 This page demonstrates the reusable components that the pages of this site are built from.
 
-import MaxWidthWrapper from "component/MaxWidthWrapper";
+import EmbeddedWrapper from "component/EmbeddedWrapper";
 import TwoRowText from "component/TwoRowText";
 import StripedList, { StripeElement } from "component/StripedList";
 import Infoline from "component/Infoline";
@@ -17,7 +17,7 @@ import SubdivisionHeading from "component/SubdivisionHeading";
 import Button from "component/Button";
 
 <SubdivisionHeading>Striped Lists</SubdivisionHeading>
-<MaxWidthWrapper>
+<EmbeddedWrapper>
   <StripedList>
     <StripeElement index={1}>
       <TwoRowText row1="Row One" row2="Row Two" />
@@ -33,9 +33,9 @@ import Button from "component/Button";
       <TwoRowText row1="Row One" row2="Row Two" />
     </StripeElement>
   </StripedList>
-</MaxWidthWrapper>
+</EmbeddedWrapper>
 <SubdivisionHeading>Content Blocks</SubdivisionHeading>
-<MaxWidthWrapper>
+<EmbeddedWrapper>
   <ContentBlock>
     <div>This is a block component</div>
     <Infoline externalLinkUrl="#" externalLinkText="ab">
@@ -48,8 +48,8 @@ import Button from "component/Button";
       Testing
     </Infoline>
   </ContentBlock>
-</MaxWidthWrapper>
+</EmbeddedWrapper>
 <SubdivisionHeading>Buttons</SubdivisionHeading>
-<MaxWidthWrapper>
+<EmbeddedWrapper>
   <Button>Test</Button>
-</MaxWidthWrapper>
+</EmbeddedWrapper>

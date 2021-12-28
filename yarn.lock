@@ -1906,7 +1906,6 @@ __metadata:
     "@mapbox/rehype-prism": ^0.8.0
     "@mattb.tech/babel-plugin-mdx-get-static-props": 1.0.0
     "@mattb.tech/data-fetching": 1.0.0
-    "@mattb.tech/mdx-tailwind-typography": 1.0.0
     "@mattb.tech/remark-flickr": 1.0.0
     "@mdx-js/loader": ^1.6.22
     "@next/bundle-analyzer": ^12.0.7
@@ -1953,19 +1952,6 @@ __metadata:
     use-interval: ^1.4.0
     webpack: ^4.46.0
     yaml: ^1.10.2
-  languageName: unknown
-  linkType: soft
-
-"@mattb.tech/mdx-tailwind-typography@1.0.0, @mattb.tech/mdx-tailwind-typography@workspace:packages/mdx-tailwind-typography":
-  version: 0.0.0-use.local
-  resolution: "@mattb.tech/mdx-tailwind-typography@workspace:packages/mdx-tailwind-typography"
-  dependencies:
-    "@types/hast": ^2.3.4
-    "@types/unist": ^2.0.6
-    hastscript: ^6.0.0
-    prettier: ^2.5.1
-    typescript: ^4.5.3
-    unified: ^9.2.2
   languageName: unknown
   linkType: soft
 
@@ -2346,15 +2332,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/hast@npm:^2.3.4":
-  version: 2.3.4
-  resolution: "@types/hast@npm:2.3.4"
-  dependencies:
-    "@types/unist": "*"
-  checksum: fff47998f4c11e21a7454b58673f70478740ecdafd95aaf50b70a3daa7da9cdc57315545bf9c039613732c40b7b0e9e49d11d03fe9a4304721cdc3b29a88141e
-  languageName: node
-  linkType: hard
-
 "@types/isomorphic-fetch@npm:0.0.35":
   version: 0.0.35
   resolution: "@types/isomorphic-fetch@npm:0.0.35"
@@ -2534,13 +2511,6 @@ __metadata:
   version: 2.0.3
   resolution: "@types/unist@npm:2.0.3"
   checksum: 4427306b094561da28164e7e5250c4e6b382cb8eac40bf7e6bb0ff1e6e00c13e47aaf32e4a08fc8ba54602d07f79a39fb9ba304cc9dc886b1e3caf824649edbd
-  languageName: node
-  linkType: hard
-
-"@types/unist@npm:^2.0.6":
-  version: 2.0.6
-  resolution: "@types/unist@npm:2.0.6"
-  checksum: 25cb860ff10dde48b54622d58b23e66214211a61c84c0f15f88d38b61aa1b53d4d46e42b557924a93178c501c166aa37e28d7f6d994aba13d24685326272d5db
   languageName: node
   linkType: hard
 

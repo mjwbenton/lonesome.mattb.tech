@@ -1,4 +1,4 @@
-import MaxWithWrapper from "component/MaxWidthWrapper";
+import EmbeddedWrapper from "component/EmbeddedWrapper";
 import StripedList, { StripeElement } from "component/StripedList";
 import TwoRowText from "component/TwoRowText";
 import { usePageData } from "@mattb.tech/data-fetching";
@@ -21,7 +21,7 @@ export default function PagesList({
   const { pagesList } = usePageData();
 
   return (
-    <MaxWithWrapper>
+    <EmbeddedWrapper>
       <StripedList>
         {pagesList.map(
           (
@@ -41,7 +41,7 @@ export default function PagesList({
           )
         )}
       </StripedList>
-    </MaxWithWrapper>
+    </EmbeddedWrapper>
   );
 }
 

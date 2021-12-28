@@ -2,7 +2,6 @@ const colors = require("tailwindcss/colors");
 
 module.exports = {
   content: ["./src/**/*.tsx", "./pages/**/*.{tsx,mdx}"],
-  safelist: ["prose", "dark:prose-dark"],
   darkMode: "class",
   theme: {
     extend: {
@@ -14,98 +13,32 @@ module.exports = {
             code: false,
             // Not using the lead feature
             '[class~="lead"]': false,
-            // Colors override
-            color: theme("colors.dark.2"),
-            a: {
-              color: theme("colors.dark.DEFAULT"),
-            },
-            strong: {
-              color: theme("colors.dark.DEFAULT"),
-            },
-            "ol > li::before": {
-              color: theme("colors.dark.3"),
-            },
-            "ul > li::before": {
-              backgroundColor: theme("colors.dark.3"),
-            },
-            hr: {
-              borderColor: theme("colors.dark.2"),
-            },
-            blockquote: {
-              color: theme("colors.dark.3"),
-              borderLeftColor: theme("colors.dark.3"),
-            },
-            h1: {
-              color: theme("colors.dark.DEFAULT"),
-            },
-            h2: {
-              color: theme("colors.dark.DEFAULT"),
-            },
-            h3: {
-              color: theme("colors.dark.DEFAULT"),
-            },
-            h4: {
-              color: theme("colors.dark.DEFAULT"),
-            },
-            "figure figcaption": {
-              color: theme("colors.dark.3"),
-            },
-            thead: {
-              color: theme("colors.dark.DEFAULT"),
-              borderBottomColor: theme("colors.dark.3"),
-            },
-            "tbody tr": {
-              borderBottomColor: theme("colors.dark.3"),
-            },
+            // Override colours
+            "--tw-prose-body": theme("colours.dark.2"),
+            "--tw-prose-heading": theme("colors.dark.DEFAULT"),
+            "--tw-prose-links": theme("colors.dark.DEFAULT"),
+            "--tw-prose-bold": theme("colors.dark.DEFAULT"),
+            "--tw-prose-counters": theme("colors.dark.3"),
+            "--tw-prose-bullets": theme("colors.dark.3"),
+            "--tw-prose-hr": theme("colors.dark.2"),
+            "--tw-prose-quotes": theme("colors.dark.3"),
+            "--tw-prose-quote-borders": theme("colors.dark.3"),
+            "--tw-prose-captions": theme("colors.dark.3"),
+            "--tw-prose-th-borders": theme("colors.dark.3"),
+            "--tw-prose-td-borders": theme("colors.dark.3"),
+            "--tw-prose-invert-body": theme("colours.light.2"),
+            "--tw-prose-invert-heading": theme("colors.light.DEFAULT"),
+            "--tw-prose-invert-links": theme("colors.light.DEFAULT"),
+            "--tw-prose-invert-bold": theme("colors.light.DEFAULT"),
+            "--tw-prose-invert-counters": theme("colors.light.3"),
+            "--tw-prose-invert-bullets": theme("colors.light.3"),
+            "--tw-prose-invert-hr": theme("colors.light.2"),
+            "--tw-prose-invert-quotes": theme("colors.light.3"),
+            "--tw-prose-invert-quote-borders": theme("colors.light.3"),
+            "--tw-prose-invert-captions": theme("colors.light.3"),
+            "--tw-prose-invert-th-borders": theme("colors.light.3"),
+            "--tw-prose-invert-td-borders": theme("colors.light.3"),
           },
-        },
-        dark: {
-          css: [
-            {
-              color: theme("colors.light.2"),
-              a: {
-                color: theme("colors.light.DEFAULT"),
-              },
-              strong: {
-                color: theme("colors.light.DEFAULT"),
-              },
-              "ol > li::before": {
-                color: theme("colors.light.3"),
-              },
-              "ul > li::before": {
-                backgroundColor: theme("colors.light.3"),
-              },
-              hr: {
-                borderColor: theme("colors.light.2"),
-              },
-              blockquote: {
-                color: theme("colors.light.3"),
-                borderLeftColor: theme("colors.light.3"),
-              },
-              h1: {
-                color: theme("colors.light.DEFAULT"),
-              },
-              h2: {
-                color: theme("colors.light.DEFAULT"),
-              },
-              h3: {
-                color: theme("colors.light.DEFAULT"),
-              },
-              h4: {
-                color: theme("colors.light.DEFAULT"),
-              },
-              "figure figcaption": {
-                color: theme("colors.light.3"),
-              },
-              thead: {
-                color: theme("colors.light.DEFAULT"),
-                borderBottomColor: theme("colors.light.3"),
-              },
-              "tbody tr": {
-                borderBottomColor: theme("colors.light.3"),
-              },
-            },
-          ],
         },
       }),
     },

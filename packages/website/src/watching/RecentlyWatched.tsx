@@ -1,5 +1,5 @@
 import React from "react";
-import MaxWidthWrapper from "../component/MaxWidthWrapper";
+import EmbeddedWrapper from "../component/EmbeddedWrapper";
 import { Movie, TvSeries } from "./display";
 import { useWatching } from "./watchingDataProvider";
 import Button from "component/Button";
@@ -11,7 +11,7 @@ const RecentlyWatched: React.FunctionComponent = () => {
     return null;
   }
   return (
-    <MaxWidthWrapper>
+    <EmbeddedWrapper>
       {items.map((item, i) =>
         item?.__typename === "Movie" ? (
           <Movie movie={item} key={item.id} />
@@ -24,7 +24,7 @@ const RecentlyWatched: React.FunctionComponent = () => {
           Load More
         </Button>
       ) : null}
-    </MaxWidthWrapper>
+    </EmbeddedWrapper>
   );
 };
 

@@ -36,7 +36,7 @@ export default function MyApp({ Component, pageProps }) {
             <ThemeChanger />
           </header>
           <Navigation />
-          <main className="m-4 md:m-8">
+          <main className="prose dark:prose-invert m-4 md:m-8">
             <DataFetchingProvider pageProps={pageProps}>
               <Component />
             </DataFetchingProvider>

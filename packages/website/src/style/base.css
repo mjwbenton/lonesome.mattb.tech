@@ -22,5 +22,4 @@
   .dark {
     @apply text-light bg-dark;
   }
-
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Thermometer, Watch } from "react-feather";
 import Timer from "./Timer";
 import useCountdownTimer, { State } from "./useCountdownTimer";
-import MaxWidthWrapper from "../component/MaxWidthWrapper";
+import EmbeddedWrapper from "../component/EmbeddedWrapper";
 import { Button } from "reakit";
 
 function TimerHeader(props: Omit<JSX.IntrinsicElements["th"], "className">) {
@@ -76,11 +76,10 @@ const timings = {
 
 const TimerPage = () => {
   const [timerDuration, setTimerDuration] = useState(0);
-  const { minutes, seconds, state, startStop } = useCountdownTimer(
-    timerDuration
-  );
+  const { minutes, seconds, state, startStop } =
+    useCountdownTimer(timerDuration);
   return (
-    <MaxWidthWrapper>
+    <EmbeddedWrapper>
       <Timer {...{ minutes, seconds, state, startStop }} />
       {Object.keys(timings).map((film) => (
         <div key={film}>
@@ -130,7 +129,7 @@ const TimerPage = () => {
           </table>
         </div>
       ))}
-    </MaxWidthWrapper>
+    </EmbeddedWrapper>
   );
 };
 

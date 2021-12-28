@@ -1,6 +1,6 @@
 import * as React from "react";
 import Track from "./Track";
-import MaxWidthWrapper from "../component/MaxWidthWrapper";
+import EmbeddedWrapper from "../component/EmbeddedWrapper";
 import StripedList from "../component/StripedList";
 import { usePageData } from "@mattb.tech/data-fetching";
 import { PlaylistQuery } from "generated/graphql";
@@ -11,13 +11,13 @@ const Playlist: React.FunctionComponent = () => {
     return null;
   }
   return (
-    <MaxWidthWrapper>
+    <EmbeddedWrapper>
       <StripedList>
         {playlist.tracks.map((t, i) => (
           <Track track={t} index={i + 1} key={i} />
         ))}
       </StripedList>
-    </MaxWidthWrapper>
+    </EmbeddedWrapper>
   );
 };
 export default Playlist;
