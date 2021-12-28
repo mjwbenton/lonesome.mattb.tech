@@ -8,6 +8,7 @@ import {
 import { createPersistedQueryLink } from "@apollo/client/link/persisted-queries";
 import { sha256 } from "crypto-hash";
 import deepmerge from "deepmerge";
+import { parseISO, compareDesc } from "date-fns";
 
 const ENDPOINT = "https://api.mattb.tech/";
 
@@ -20,7 +21,12 @@ const LINK = createPersistedQueryLink({ sha256 }).concat(
   })
 );
 
-function concatPagination(keyArgs: false | string[] = false) {
+type SortFunction<TItem> = (a: TItem, b: TItem) => number;
+
+function concatPagination<TItem = any>(
+  keyArgs: false | string[] = false,
+  sort?: SortFunction<TItem>
+) {
   return {
     keyArgs,
     merge: (existing, incoming) => {
@@ -33,14 +39,23 @@ function concatPagination(keyArgs: false | string[] = false) {
       const existingItems = existing.items.filter(
         ({ __ref }) => !incomingIds.has(__ref)
       );
+      const items = [...existingItems, ...incoming.items];
+      if (sort) {
+        items.sort(sort);
+      }
       return {
         ...existing,
         ...incoming,
-        items: [...existingItems, ...incoming.items],
+        items,
       };
     },
   };
 }
+
+type WithMovedAt = { movedAt: string };
+
+const movedAtSort: SortFunction<WithMovedAt> = (a, b) =>
+  compareDesc(parseISO(a.movedAt), parseISO(b.movedAt));
 
 const CACHE_CONFIGURATION = {
   typePolicies: {
@@ -48,12 +63,12 @@ const CACHE_CONFIGURATION = {
       fields: {
         githubRepositories: concatPagination(),
         recentGoodreadsBooks: concatPagination(),
-        books: concatPagination(),
-        videoGames: concatPagination(),
-        movies: concatPagination(),
-        watching: concatPagination(),
-        tvSeries: concatPagination(),
-        tvSeasons: concatPagination(),
+        books: concatPagination<WithMovedAt>(false, movedAtSort),
+        videoGames: concatPagination<WithMovedAt>(false, movedAtSort),
+        movies: concatPagination<WithMovedAt>(false, movedAtSort),
+        watching: concatPagination<WithMovedAt>(false, movedAtSort),
+        tvSeries: concatPagination<WithMovedAt>(false, movedAtSort),
+        tvSeasons: concatPagination<WithMovedAt>(false, movedAtSort),
         recentPhotos: concatPagination(),
         photoSet: concatPagination(["photosetId"]),
         photosWithTag: concatPagination(["tag"]),
