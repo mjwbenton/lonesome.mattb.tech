@@ -23,5 +23,8 @@ module.exports = withBundleAnalyzer(
   withMDX({
     pageExtensions: ["tsx", "mdx"],
     reactStrictMode: true,
+    eslint: {
+      dirs: ["pages", "src"],
+    },
   })
 );

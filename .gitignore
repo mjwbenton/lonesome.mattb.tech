@@ -8,3 +8,4 @@ out
 yarn-error.log
 .yarn
 generated
+tsconfig.tsbuildinfo
