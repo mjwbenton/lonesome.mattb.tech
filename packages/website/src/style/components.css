@@ -20,7 +20,7 @@
       @apply z-0 text-light;
     }
 
-    :nth-child(odd) .striped-index {
+    &:nth-child(odd) .striped-index {
       @apply text-light-1;
     }
   }
@@ -30,7 +30,7 @@
       @apply text-dark;
     }
 
-    :nth-child(odd) .striped-index {
+    &:nth-child(odd) .striped-index {
       @apply text-dark-1;
     }
   }
