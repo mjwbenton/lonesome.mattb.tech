@@ -90,7 +90,7 @@ export const TvSeries: React.FunctionComponent<{
     ) : null}
     {tvSeries.seasons?.length > 0
       ? tvSeries.seasons.map((season) => (
-          <div className="text-xs space-y-1">
+          <div key={season.seasonNumber} className="text-xs space-y-1">
             <div>
               Season {season.seasonNumber}
               {season.seasonTitle ? `/ ${season.seasonTitle} ` : null}
