@@ -22,9 +22,8 @@ const QUERY = gql`
 `;
 
 const Stream = () => {
-  const { data, error, loading, fetchMore } = useQuery<RecentPhotosQuery>(
-    QUERY
-  );
+  const { data, error, loading, fetchMore } =
+    useQuery<RecentPhotosQuery>(QUERY);
   if (error) {
     return <ErrorDisplay error={error} />;
   }

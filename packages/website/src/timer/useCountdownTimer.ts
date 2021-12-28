@@ -3,9 +3,10 @@ import useInterval from "use-interval";
 
 const SECOND = 1000;
 
-function secondsToMinutesAndSeconds(
-  seconds: number
-): { minutes: string; seconds: string } {
+function secondsToMinutesAndSeconds(seconds: number): {
+  minutes: string;
+  seconds: string;
+} {
   const minutes = Math.floor(seconds / 60);
   const partMinuteSeconds = seconds - minutes * 60;
   return {
@@ -21,9 +22,7 @@ export enum State {
   FINISHED,
 }
 
-export default function useCountdownTimer(
-  duration: number
-): {
+export default function useCountdownTimer(duration: number): {
   minutes: string;
   seconds: string;
   state: State;

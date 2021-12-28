@@ -16,5 +16,4 @@
   .underline-accent-dark {
     text-decoration-color: theme("colors.accent-dark.DEFAULT");
   }
-
 }
