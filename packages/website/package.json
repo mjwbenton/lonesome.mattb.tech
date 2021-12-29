@@ -21,7 +21,6 @@
     "@graphql-codegen/typescript-operations": "2.2.1",
     "@graphql-codegen/typescript-react-apollo": "3.2.2",
     "@mapbox/rehype-prism": "^0.8.0",
-    "@mattb.tech/babel-plugin-mdx-get-static-props": "1.0.0",
     "@next/bundle-analyzer": "^12.0.7",
     "@types/dotenv": "^8.2.0",
     "@types/lodash.flatmap": "^4.5.6",
