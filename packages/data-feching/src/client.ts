@@ -4,11 +4,15 @@ import {
   InMemoryCache,
   HttpLink,
   NormalizedCacheObject,
+  InMemoryCacheConfig,
+  TypePolicy,
+  Reference,
 } from "@apollo/client";
 import { createPersistedQueryLink } from "@apollo/client/link/persisted-queries";
 import { sha256 } from "crypto-hash";
 import deepmerge from "deepmerge";
 import { parseISO, compareDesc } from "date-fns";
+import { ReadFieldFunction } from "@apollo/client/cache/core/types/common";
 
 const ENDPOINT = "https://api.mattb.tech/";
 
@@ -21,15 +25,17 @@ const LINK = createPersistedQueryLink({ sha256 }).concat(
   })
 );
 
-type SortFunction<TItem> = (a: TItem, b: TItem) => number;
+type SortFunction = (
+  readField: ReadFieldFunction
+) => (a: Reference, b: Reference) => number;
 
-function concatPagination<TItem = any>(
-  keyArgs: false | string[] = false,
-  sort?: SortFunction<TItem>
-) {
+function concatPagination(
+  keyFields: false | string[] = false,
+  sort?: SortFunction
+): TypePolicy {
   return {
-    keyArgs,
-    merge: (existing, incoming) => {
+    keyFields,
+    merge: (existing, incoming, { readField }) => {
       if (!existing) {
         return incoming;
       }
@@ -39,9 +45,9 @@ function concatPagination<TItem = any>(
       const existingItems = existing.items.filter(
         ({ __ref }) => !incomingIds.has(__ref)
       );
-      const items = [...existingItems, ...incoming.items];
+      const items: Array<Reference> = [...existingItems, ...incoming.items];
       if (sort) {
-        items.sort(sort);
+        items.sort(sort(readField));
       }
       return {
         ...existing,
@@ -54,21 +60,24 @@ function concatPagination<TItem = any>(
 
 type WithMovedAt = { movedAt: string };
 
-const movedAtSort: SortFunction<WithMovedAt> = (a, b) =>
-  compareDesc(parseISO(a.movedAt), parseISO(b.movedAt));
+const movedAtSort: SortFunction = (readField) => (a, b) =>
+  compareDesc(
+    parseISO(readField("movedAt", a) ?? ""),
+    parseISO(readField("movedAt", b) ?? "")
+  );
 
-const CACHE_CONFIGURATION = {
+const CACHE_CONFIGURATION: InMemoryCacheConfig = {
   typePolicies: {
     Query: {
       fields: {
         githubRepositories: concatPagination(),
         recentGoodreadsBooks: concatPagination(),
-        books: concatPagination<WithMovedAt>(false, movedAtSort),
-        videoGames: concatPagination<WithMovedAt>(false, movedAtSort),
-        movies: concatPagination<WithMovedAt>(false, movedAtSort),
-        watching: concatPagination<WithMovedAt>(false, movedAtSort),
-        tvSeries: concatPagination<WithMovedAt>(false, movedAtSort),
-        tvSeasons: concatPagination<WithMovedAt>(false, movedAtSort),
+        books: concatPagination(false, movedAtSort),
+        videoGames: concatPagination(false, movedAtSort),
+        movies: concatPagination(false, movedAtSort),
+        watching: concatPagination(false, movedAtSort),
+        tvSeries: concatPagination(false, movedAtSort),
+        tvSeasons: concatPagination(false, movedAtSort),
         recentPhotos: concatPagination(),
         photoSet: concatPagination(["photosetId"]),
         photosWithTag: concatPagination(["tag"]),
