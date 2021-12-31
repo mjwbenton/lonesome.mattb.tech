@@ -5,8 +5,8 @@ import {
   HttpLink,
   NormalizedCacheObject,
   InMemoryCacheConfig,
-  TypePolicy,
   Reference,
+  FieldPolicy,
 } from "@apollo/client";
 import { createPersistedQueryLink } from "@apollo/client/link/persisted-queries";
 import { sha256 } from "crypto-hash";
@@ -30,11 +30,11 @@ type SortFunction = (
 ) => (a: Reference, b: Reference) => number;
 
 function concatPagination(
-  keyFields: false | string[] = false,
+  keyArgs: false | string[] = false,
   sort?: SortFunction
-): TypePolicy {
+): FieldPolicy {
   return {
-    keyFields,
+    keyArgs,
     merge: (existing, incoming, { readField }) => {
       if (!existing) {
         return incoming;
