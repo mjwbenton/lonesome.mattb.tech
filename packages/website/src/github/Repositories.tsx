@@ -2,12 +2,12 @@ import Button from "component/Button";
 import ContentBlock from "component/ContentBlock";
 import ErrorDisplay from "component/ErrorDisplay";
 import Infoline from "component/Infoline";
-import Loading from "component/Loading";
 import EmbeddedWrapper from "component/EmbeddedWrapper";
 import LoadMoreButton from "global/LoadMoreButton";
 import React from "react";
 import { Clock } from "react-feather";
 import { useGithubRepositories } from "./repositoriesDataProvider";
+import Spinner from "component/Spinner";
 
 export default function Repositories() {
   const { data, loading, error, fetchMore } = useGithubRepositories();
@@ -15,7 +15,7 @@ export default function Repositories() {
     return <ErrorDisplay error={error} />;
   }
   if (!data?.page) {
-    return <Loading />;
+    return <Spinner />;
   }
   return (
     <EmbeddedWrapper>

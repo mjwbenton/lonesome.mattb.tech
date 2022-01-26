@@ -5,8 +5,8 @@ import gql from "graphql-tag";
 import { RecentPhotosQuery } from "generated/graphql";
 import Photos from "photo/Photos";
 import LoadMoreButton from "global/LoadMoreButton";
-import Loading from "component/Loading";
 import ErrorDisplay from "component/ErrorDisplay";
+import Spinner from "component/Spinner";
 
 const QUERY = gql`
   query RecentPhotos($after: ID) {
@@ -28,7 +28,7 @@ const Stream = () => {
     return <ErrorDisplay error={error} />;
   }
   if (!data) {
-    return <Loading />;
+    return <Spinner />;
   }
   return (
     <>

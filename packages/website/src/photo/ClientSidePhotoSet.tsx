@@ -4,10 +4,10 @@ import Photos from "./Photos";
 import { QUERY } from "photo/photoSetDataProvider";
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import Loading from "component/Loading";
 import ErrorDisplay from "component/ErrorDisplay";
 import LoadMoreButton from "global/LoadMoreButton";
 import Message from "component/Message";
+import Spinner from "component/Spinner";
 
 const LoadPhotosFromSet = ({ photosetId }: { photosetId: string }) => {
   const { data, error, fetchMore, loading } = useQuery<PhotoSetQuery>(QUERY, {
@@ -17,7 +17,7 @@ const LoadPhotosFromSet = ({ photosetId }: { photosetId: string }) => {
     return <ErrorDisplay error={error} />;
   }
   if (!data) {
-    return <Loading />;
+    return <Spinner />;
   }
   if (data.page == null) {
     return <Message>No photoset with id {photosetId}</Message>;

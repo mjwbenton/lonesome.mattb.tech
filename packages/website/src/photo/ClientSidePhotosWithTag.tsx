@@ -4,9 +4,9 @@ import Photos from "./Photos";
 import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { fragment } from "./Photo";
-import Loading from "component/Loading";
 import ErrorDisplay from "component/ErrorDisplay";
 import LoadMoreButton from "global/LoadMoreButton";
+import Spinner from "component/Spinner";
 
 const QUERY = gql`
   query PhotosWithTag($tag: ID!, $after: ID) {
@@ -32,7 +32,7 @@ const LoadPhotosWithTag = ({ tag }: { tag: string }) => {
     return <ErrorDisplay error={error} />;
   }
   if (!data) {
-    return <Loading />;
+    return <Spinner />;
   }
   return (
     <>
