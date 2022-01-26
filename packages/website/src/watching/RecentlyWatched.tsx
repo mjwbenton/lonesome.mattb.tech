@@ -3,7 +3,7 @@ import EmbeddedWrapper from "../component/EmbeddedWrapper";
 import { Movie, TvSeries } from "./display";
 import { useWatching } from "./watchingDataProvider";
 import Button from "component/Button";
-import { MovieFragment, TvSeriesFragment } from "generated/graphql";
+import { TopRightSpinner } from "component/Spinner";
 
 const RecentlyWatched: React.FunctionComponent = () => {
   const { items, hasNextPage, loadNextPage, loading } = useWatching();
@@ -12,6 +12,7 @@ const RecentlyWatched: React.FunctionComponent = () => {
   }
   return (
     <EmbeddedWrapper>
+      <TopRightSpinner show={loading} />
       {items.map((item, i) =>
         item?.__typename === "Movie" ? (
           <Movie movie={item} key={item.id} />

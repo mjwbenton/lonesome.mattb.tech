@@ -80,6 +80,9 @@ module.exports = {
       normal: 300,
       bold: 500,
     },
+    animation: {
+      "spin-slow": "spin 3s linear infinite",
+    },
   },
   plugins: [require("@tailwindcss/typography")],
 };
