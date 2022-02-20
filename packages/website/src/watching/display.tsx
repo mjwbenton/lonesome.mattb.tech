@@ -18,7 +18,7 @@ const WatchingImage = ({
 }: Pick<WatchingItem, "image" | "title">) =>
   image ? (
     <img
-      className="mr-2 object-cover"
+      className="mr-2 object-contain"
       src={image.url}
       alt={`Poster for ${title}`}
     />
