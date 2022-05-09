@@ -2,7 +2,10 @@ import React from "react";
 import { fragment } from "./Photo";
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
-import { RecentPhotosQuery } from "generated/graphql";
+import {
+  RecentPhotosQuery,
+  RecentPhotosQueryVariables,
+} from "generated/graphql";
 import Photos from "photo/Photos";
 import LoadMoreButton from "global/LoadMoreButton";
 import ErrorDisplay from "component/ErrorDisplay";
@@ -22,8 +25,10 @@ const QUERY = gql`
 `;
 
 const Stream = () => {
-  const { data, error, loading, fetchMore } =
-    useQuery<RecentPhotosQuery>(QUERY);
+  const { data, error, loading, fetchMore } = useQuery<
+    RecentPhotosQuery,
+    RecentPhotosQueryVariables
+  >(QUERY);
   if (error) {
     return <ErrorDisplay error={error} />;
   }

@@ -1,4 +1,3 @@
-import { ObservableQueryFields } from "@apollo/client";
 import Button from "component/Button";
 import React from "react";
 
@@ -19,7 +18,9 @@ export default function LoadMoreButton({
 }: {
   data: Data | undefined;
   loading: boolean;
-  fetchMore: ObservableQueryFields<Data, { after: string }>["fetchMore"];
+  fetchMore: (options: {
+    variables: { after: string | null | undefined };
+  }) => void;
 }) {
   if (!data?.page) {
     return null;

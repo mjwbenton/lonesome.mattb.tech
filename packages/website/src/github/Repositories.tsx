@@ -1,4 +1,3 @@
-import Button from "component/Button";
 import ContentBlock from "component/ContentBlock";
 import ErrorDisplay from "component/ErrorDisplay";
 import Infoline from "component/Infoline";

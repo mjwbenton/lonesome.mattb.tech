@@ -1,4 +1,7 @@
-import { PhotosWithTagQuery } from "generated/graphql";
+import {
+  PhotosWithTagQuery,
+  PhotosWithTagQueryVariables,
+} from "generated/graphql";
 import * as React from "react";
 import Photos from "./Photos";
 import { gql, useQuery } from "@apollo/client";
@@ -22,12 +25,12 @@ const QUERY = gql`
 `;
 
 const LoadPhotosWithTag = ({ tag }: { tag: string }) => {
-  const { data, error, loading, fetchMore } = useQuery<PhotosWithTagQuery>(
-    QUERY,
-    {
-      variables: { tag },
-    }
-  );
+  const { data, error, loading, fetchMore } = useQuery<
+    PhotosWithTagQuery,
+    PhotosWithTagQueryVariables
+  >(QUERY, {
+    variables: { tag, after: null },
+  });
   if (error) {
     return <ErrorDisplay error={error} />;
   }

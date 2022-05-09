@@ -1,4 +1,4 @@
-import { PhotoSetQuery } from "generated/graphql";
+import { PhotoSetQuery, PhotoSetQueryVariables } from "generated/graphql";
 import * as React from "react";
 import Photos from "./Photos";
 import { QUERY } from "photo/photoSetDataProvider";
@@ -10,7 +10,10 @@ import Message from "component/Message";
 import Spinner from "component/Spinner";
 
 const LoadPhotosFromSet = ({ photosetId }: { photosetId: string }) => {
-  const { data, error, fetchMore, loading } = useQuery<PhotoSetQuery>(QUERY, {
+  const { data, error, fetchMore, loading } = useQuery<
+    PhotoSetQuery,
+    PhotoSetQueryVariables
+  >(QUERY, {
     variables: { photosetId },
   });
   if (error) {
