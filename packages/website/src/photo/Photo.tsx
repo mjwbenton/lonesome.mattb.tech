@@ -5,14 +5,7 @@ import LazyLoad from "react-lazyload";
 import gql from "graphql-tag";
 import { PhotoFragment } from "generated/graphql";
 
-/*
- * The images are the width of the viewport minus padding.
- * See Layout.tsx for the padding at different breakpoints.
- */
-const SIZES = `
-  (min-width: 768px) calc(100vw - 4rem),
-  calc(100vw - 2rem)
-`;
+const SIZES = `100vw`;
 
 function generateSrcSet(sources: PhotoFragment["sources"]): string {
   return sources
@@ -51,7 +44,7 @@ const Photo: React.FunctionComponent<
     />
   );
   return (
-    <ContentBlock data-testid="photo-content-block" tabIndex={0}>
+    <div data-testid="photo-content-block" tabIndex={0}>
       {lazyLoad ? (
         <LazyLoad once offset={200} placeholder={<div className="h-64" />}>
           {img}
@@ -62,7 +55,7 @@ const Photo: React.FunctionComponent<
       <Infoline externalLinkUrl={pageUrl} externalLinkText="Fl">
         <h2 className="text-xs font-bold">{title}</h2>
       </Infoline>
-    </ContentBlock>
+    </div>
   );
 };
 export default Photo;

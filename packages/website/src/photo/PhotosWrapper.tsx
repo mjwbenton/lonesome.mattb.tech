@@ -6,7 +6,7 @@ export default function PhotosWrapper(
   return (
     <div
       {...props}
-      className="not-prose flex flex-col items-start w-screen -ml-4 md:-ml-8 pl-4 md:pl-8"
+      className="not-prose flex flex-col items-start w-screen -ml-4 md:-ml-8 space-y-16 mt-16 mb-16"
     />
   );
 }
