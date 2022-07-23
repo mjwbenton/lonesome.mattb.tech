@@ -2795,6 +2795,7 @@ __metadata:
     "@tailwindcss/typography": ^0.5.0
     "@types/dotenv": ^8.2.0
     "@types/isomorphic-fetch": 0.0.35
+    "@types/lodash.chunk": ^4.2.7
     "@types/lodash.flatmap": ^4.5.6
     "@types/react": ^17.0.37
     "@types/react-lazyload": ^3.1.1
@@ -2808,6 +2809,7 @@ __metadata:
     graphql-tag: ^2.12.6
     gray-matter: ^4.0.3
     isomorphic-fetch: ^3.0.0
+    lodash.chunk: ^4.2.0
     lodash.flatmap: ^4.5.0
     next: ^12.1.0
     next-plugin-preval: ^1.2.4
@@ -3274,6 +3276,15 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: e009a2bfb50e90ca9b7c6e8f648f8464067271fd99116f881073fa6fa76dc8d0133181dd65e6614d5fb1220d671d67b0124aef7d97dc02d7e342ab143a47779d
+  languageName: node
+  linkType: hard
+
+"@types/lodash.chunk@npm:^4.2.7":
+  version: 4.2.7
+  resolution: "@types/lodash.chunk@npm:4.2.7"
+  dependencies:
+    "@types/lodash": "*"
+  checksum: 09df5ca00d8866776038bf94658d30b4ea84bffe5f81c14c01568bcb6be692bf59f6ea093de2bb0afbb3f8e54ae96ebd97595f2838ab59b77865427ca77d391e
   languageName: node
   linkType: hard
 
@@ -10563,6 +10574,13 @@ __metadata:
   version: 4.4.0
   resolution: "lodash.castarray@npm:4.4.0"
   checksum: fca8c7047e0ae2738b0b2503fb00157ae0ff6d8a1b716f87ed715b22560e09de438c75b65e01a7e44ceb41c5b31dce2eb576e46db04beb9c699c498e03cbd00f
+  languageName: node
+  linkType: hard
+
+"lodash.chunk@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "lodash.chunk@npm:4.2.0"
+  checksum: 6286c6d06814fbeda502164015c42ef53a9194e6ebaac52ec2b41e83344aefe7bc3d94fdfec525adcd2c66cefdf05dc333b6a1128e4de739797342315c17cbc7
   languageName: node
   linkType: hard
 

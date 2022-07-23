@@ -1,13 +1,13 @@
 import { PhotoFragment } from "generated/graphql";
 import { usePageData } from "@mattb.tech/data-fetching";
 import * as React from "react";
-import Photos from "./Photos";
+import Photos, { PhotosLayout } from "./Photos";
 
-const PhotoSet = () => {
+const PhotoSet = ({ layout }: { layout: PhotosLayout }) => {
   const { photoSet }: { photoSet: readonly PhotoFragment[] } = usePageData();
   if (!photoSet) {
     return null;
   }
-  return <Photos photos={photoSet} />;
+  return <Photos photos={photoSet} layout={layout} />;
 };
 export default PhotoSet;

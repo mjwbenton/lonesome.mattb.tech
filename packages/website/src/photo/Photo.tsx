@@ -1,11 +1,46 @@
 import * as React from "react";
 import Infoline from "../component/Infoline";
-import ContentBlock from "../component/ContentBlock";
 import LazyLoad from "react-lazyload";
 import gql from "graphql-tag";
 import { PhotoFragment } from "generated/graphql";
 
-const SIZES = `100vw`;
+const DEFAULT_SIZES = `100vw`;
+
+const Photo: React.FunctionComponent<
+  PhotoFragment & { lazyLoad?: boolean; sizes?: string }
+> = ({
+  pageUrl,
+  sources,
+  mainSource,
+  title,
+  lazyLoad,
+  sizes = DEFAULT_SIZES,
+}) => {
+  const img = (
+    <img
+      src={mainSource.url}
+      srcSet={generateSrcSet(sources)}
+      sizes={sizes}
+      alt={`Image titled "${title}"`}
+      className="block max-w-full max-h-95vh"
+    />
+  );
+  return (
+    <div data-testid="photo-content-block" tabIndex={0}>
+      {lazyLoad ? (
+        <LazyLoad once offset={200} placeholder={<div className="h-64" />}>
+          {img}
+        </LazyLoad>
+      ) : (
+        img
+      )}
+      <Infoline externalLinkUrl={pageUrl} externalLinkText="Fl">
+        <h2 className="text-xs font-bold">{title}</h2>
+      </Infoline>
+    </div>
+  );
+};
+export default Photo;
 
 function generateSrcSet(sources: PhotoFragment["sources"]): string {
   return sources
@@ -30,32 +65,3 @@ export const fragment = gql`
     }
   }
 `;
-
-const Photo: React.FunctionComponent<
-  PhotoFragment & { lazyLoad?: boolean }
-> = ({ pageUrl, sources, mainSource, title, lazyLoad }) => {
-  const img = (
-    <img
-      src={mainSource.url}
-      srcSet={generateSrcSet(sources)}
-      sizes={SIZES}
-      alt={`Image titled "${title}"`}
-      className="block max-w-full max-h-95vh"
-    />
-  );
-  return (
-    <div data-testid="photo-content-block" tabIndex={0}>
-      {lazyLoad ? (
-        <LazyLoad once offset={200} placeholder={<div className="h-64" />}>
-          {img}
-        </LazyLoad>
-      ) : (
-        img
-      )}
-      <Infoline externalLinkUrl={pageUrl} externalLinkText="Fl">
-        <h2 className="text-xs font-bold">{title}</h2>
-      </Infoline>
-    </div>
-  );
-};
-export default Photo;
