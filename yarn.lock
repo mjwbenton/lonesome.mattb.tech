@@ -2792,6 +2792,7 @@ __metadata:
     "@mdx-js/loader": ^1.6.22
     "@next/bundle-analyzer": ^12.0.7
     "@next/mdx": ^12.0.7
+    "@tailwindcss/line-clamp": ^0.4.0
     "@tailwindcss/typography": ^0.5.0
     "@types/dotenv": ^8.2.0
     "@types/isomorphic-fetch": 0.0.35
@@ -3137,6 +3138,15 @@ __metadata:
   dependencies:
     defer-to-connect: ^1.0.1
   checksum: 4d9158061c5f397c57b4988cde33a163244e4f02df16364f103971957a32886beb104d6180902cbe8b38cb940e234d9f98a4e486200deca621923f62f50a06fe
+  languageName: node
+  linkType: hard
+
+"@tailwindcss/line-clamp@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "@tailwindcss/line-clamp@npm:0.4.0"
+  peerDependencies:
+    tailwindcss: ">=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1"
+  checksum: 71ba25a4a18323496a7af34e55871121b8459530b0e5696c4173fd65a76162675619f1d1158a8a32e1ace2069333949bef6f1061b17f49fef98dc2291a979dcd
   languageName: node
   linkType: hard
 
