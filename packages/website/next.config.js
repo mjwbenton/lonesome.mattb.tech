@@ -5,6 +5,7 @@ const { plugin: mdxDataFetching } = require("@mattb.tech/data-fetching");
 const remarkFlickr = require("@mattb.tech/remark-flickr");
 const rehypePrism = require("@mapbox/rehype-prism");
 
+const withNextPluginPreval = require("next-plugin-preval/config")();
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
@@ -19,12 +20,14 @@ const withMDX = require("@next/mdx")({
     rehypePlugins: [rehypePrism],
   },
 });
-module.exports = withBundleAnalyzer(
-  withMDX({
-    pageExtensions: ["tsx", "mdx"],
-    reactStrictMode: true,
-    eslint: {
-      dirs: ["pages", "src"],
-    },
-  })
+module.exports = withNextPluginPreval(
+  withBundleAnalyzer(
+    withMDX({
+      pageExtensions: ["tsx", "mdx"],
+      reactStrictMode: true,
+      eslint: {
+        dirs: ["pages", "src"],
+      },
+    })
+  )
 );
