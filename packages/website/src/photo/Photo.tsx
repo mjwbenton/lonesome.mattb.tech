@@ -35,7 +35,7 @@ const Photo: React.FunctionComponent<
         img
       )}
       <Infoline externalLinkUrl={pageUrl} externalLinkText="Fl">
-        <h2 className="text-xs font-bold">{title}</h2>
+        <h2 className="text-xs font-bold line-clamp-1">{title}</h2>
       </Infoline>
     </div>
   );
