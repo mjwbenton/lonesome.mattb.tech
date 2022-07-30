@@ -1,0 +1,11 @@
+{
+  "references": [
+    { "path": "./packages/cdk" },
+    { "path": "./packages/cypress-tests" },
+    { "path": "./packages/data-feching" },
+    { "path": "./packages/edge-router" },
+    { "path": "./packages/remark-flickr" },
+    { "path": "./packages/website" }
+  ],
+  "files": []
+}
