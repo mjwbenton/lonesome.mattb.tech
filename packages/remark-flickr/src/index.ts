@@ -1,8 +1,8 @@
 import escape from "escape-html";
-import u from "unist-builder";
-import axios from "axios";
-import visit from "unist-util-visit";
-import map from "unist-util-map";
+import { u } from "unist-builder";
+import fetch from "node-fetch";
+import { visit } from "unist-util-visit";
+import { map } from "unist-util-map";
 import { Image } from "mdast";
 import { Node } from "unist";
 import { Plugin } from "unified";
@@ -58,26 +58,27 @@ function generateSrcSet(sources: { url: string; width: number }[]): string {
 }
 
 async function getPhoto(photoId: string) {
-  const result = await axios.post(
-    GRAPHQL_ENDPOINT,
-    {
+  const response = await fetch(GRAPHQL_ENDPOINT, {
+    method: "POST",
+    body: JSON.stringify({
       query: QUERY,
       variables: {
         photoId,
       },
-    },
-    { headers: { "Content-Type": "application/json" } }
-  );
-  if (result.data.errors) {
+    }),
+    headers: { "Content-Type": "application/json" },
+  });
+  const result = (await response.json()) as any;
+  if (result.errors) {
     throw new Error(`GraphQL error fetching photoId "${photoId}"`);
   }
-  return result.data.data.photo;
+  return result.data.photo;
 }
 
-const remarkFlickr: Plugin<[{ sizes?: string }]> = ({ sizes } = {}) => {
+export const plugin: Plugin<[{ sizes?: string }]> = ({ sizes } = {}) => {
   return async (tree: Node) => {
     const flickrImageNodes: Array<Image> = [];
-    visit<Image>(tree, "image", (node: Image) => {
+    visit(tree, "image", (node: Image) => {
       if (isFlickrPhoto(node)) {
         flickrImageNodes.push(node);
       }
@@ -115,5 +116,3 @@ const remarkFlickr: Plugin<[{ sizes?: string }]> = ({ sizes } = {}) => {
     });
   };
 };
-
-module.exports = remarkFlickr;

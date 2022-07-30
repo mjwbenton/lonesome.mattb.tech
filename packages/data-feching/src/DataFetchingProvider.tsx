@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from "react";
-import { ApolloProvider } from "@apollo/client";
-import { getClient } from "./client";
+import { ApolloProvider } from "@apollo/client/react/index.js";
+import { getClient } from "./client.js";
 
 const PageDataContext = React.createContext<any>({});
 

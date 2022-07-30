@@ -1,5 +1,6 @@
 {
   "name": "@mattb.tech/data-fetching",
+  "type": "module",
   "version": "1.0.0",
   "license": "UNLICENSED",
   "author": "Matt Benton <m@mattb.tech>",
@@ -13,15 +14,15 @@
   "devDependencies": {
     "prettier": "^2.5.1",
     "typescript": "^4.7.4",
-    "unified": "^9.2.2"
+    "unified": "^10.1.2"
   },
   "dependencies": {
-    "@apollo/client": "^3.5.6",
+    "@apollo/client": "^3.6.9",
     "@types/isomorphic-fetch": "0.0.35",
     "crypto-hash": "^1.3.0",
     "date-fns": "^2.27.0",
     "deepmerge": "^4.2.2",
     "isomorphic-fetch": "^3.0.0",
-    "unist-builder": "^2.0.3"
+    "unist-builder": "^3.0.0"
   }
 }

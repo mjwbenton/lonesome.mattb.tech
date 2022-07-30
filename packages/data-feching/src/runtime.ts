@@ -1,9 +1,11 @@
-import { getClient } from "./client";
+import { getClient } from "./client.js";
+import { ApolloClient } from "@apollo/client/core/index.js";
+import { NormalizedCacheObject } from "@apollo/client/cache/inmemory/types.js";
 
 export interface DataProvider<PageMeta = unknown, Result = any> {
   (
     pageMeta: PageMeta,
-    context: { client: ReturnType<typeof getClient> }
+    context: { client: ApolloClient<NormalizedCacheObject> }
   ): Promise<Result>;
 }
 

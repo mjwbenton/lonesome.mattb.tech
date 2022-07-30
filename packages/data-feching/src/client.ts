@@ -2,17 +2,17 @@ import fetch from "isomorphic-fetch";
 import {
   ApolloClient,
   InMemoryCache,
-  HttpLink,
-  NormalizedCacheObject,
   InMemoryCacheConfig,
   Reference,
   FieldPolicy,
-} from "@apollo/client";
-import { createPersistedQueryLink } from "@apollo/client/link/persisted-queries";
+} from "@apollo/client/core/index.js";
+import { HttpLink } from "@apollo/client/link/http/index.js";
+import { NormalizedCacheObject } from "@apollo/client/cache/inmemory/types.js";
+import { createPersistedQueryLink } from "@apollo/client/link/persisted-queries/index.js";
 import { sha256 } from "crypto-hash";
 import deepmerge from "deepmerge";
 import { parseISO, compareDesc } from "date-fns";
-import { ReadFieldFunction } from "@apollo/client/cache/core/types/common";
+import { ReadFieldFunction } from "@apollo/client/cache/core/types/common.js";
 
 const ENDPOINT = "https://api.mattb.tech/";
 
@@ -102,7 +102,9 @@ function createClient() {
   });
 }
 
-export function getClient(pageCache?: NormalizedCacheObject) {
+export function getClient(
+  pageCache?: NormalizedCacheObject
+): ApolloClient<NormalizedCacheObject> {
   const client = typeof window === "undefined" ? createClient() : CLIENT_SIDE;
   if (pageCache) {
     client.cache.restore(

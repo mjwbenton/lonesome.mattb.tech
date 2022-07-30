@@ -1,5 +1,5 @@
 import { Plugin } from "unified";
-import u from "unist-builder";
+import { u } from "unist-builder";
 
 const DATA_PROVIDERS = "dataProviders";
 
@@ -40,11 +40,11 @@ const plugin: Plugin<
       }`
     );
 
-    tree.children = [
+    (tree as any).children = [
       importRuntimeNode,
       ...importDataProviderNodes,
       getStaticPropsNode,
-      ...(tree.children as Array<unknown>),
+      ...(tree as any).children,
     ];
   };
 };

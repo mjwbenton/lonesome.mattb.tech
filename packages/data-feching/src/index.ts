@@ -1,4 +1,4 @@
-export { usePageData, DataFetchingProvider } from "./DataFetchingProvider";
-export { default as runtime } from "./runtime";
-export type { DataProvider } from "./runtime";
-export { default as plugin } from "./plugin";
+export { usePageData, DataFetchingProvider } from "./DataFetchingProvider.js";
+export { default as runtime } from "./runtime.js";
+export type { DataProvider } from "./runtime.js";
+export { default as plugin } from "./plugin.js";
