@@ -4,9 +4,9 @@ import tailwindConfig from "../../tailwind.config.js";
 import { Config } from "tailwindcss";
 
 export default preval(
-  removeUndefined(resolveConfig(tailwindConfig).theme) as Required<
-    Required<Config>["theme"]
-  >
+  removeUndefined(
+    resolveConfig(tailwindConfig as unknown as Config).theme
+  ) as Required<Required<Config>["theme"]>
 );
 
 function removeUndefined(obj) {
