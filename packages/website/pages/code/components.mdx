@@ -16,6 +16,7 @@ import ContentBlock from "component/ContentBlock";
 import SubdivisionHeading from "component/SubdivisionHeading";
 import Button from "component/Button";
 import Spinner, { TopRightSpinner } from "component/Spinner";
+import Tile, { Wall } from "component/Tile";
 
 <SubdivisionHeading>Spinner</SubdivisionHeading>
 <EmbeddedWrapper>
@@ -64,4 +65,11 @@ import Spinner, { TopRightSpinner } from "component/Spinner";
 <SubdivisionHeading>Buttons</SubdivisionHeading>
 <EmbeddedWrapper>
   <Button>Test</Button>
+</EmbeddedWrapper>
+<SubdivisionHeading>Tiles</SubdivisionHeading>
+<EmbeddedWrapper>
+  <Wall>
+    <Tile>Tile 1</Tile>
+    <Tile>Tile 2</Tile>
+  </Wall>
 </EmbeddedWrapper>
