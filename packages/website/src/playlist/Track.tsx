@@ -1,13 +1,15 @@
+import gql from "graphql-tag";
 import React from "react";
 import { StripeElement } from "../component/StripedList";
 import TwoRowText from "../component/TwoRowText";
+import { TrackFragment } from "generated/graphql";
 
 const IMAGE_SIZE = "64";
 
-const Track: React.FunctionComponent<{ track: any; index: number }> = ({
-  track,
-  index,
-}) => (
+const Track: React.FunctionComponent<{
+  track: TrackFragment;
+  index: number;
+}> = ({ track, index }) => (
   <StripeElement index={index}>
     <img
       height={IMAGE_SIZE}
@@ -23,3 +25,21 @@ const Track: React.FunctionComponent<{ track: any; index: number }> = ({
   </StripeElement>
 );
 export default Track;
+
+export const fragment = gql`
+  fragment Track on Track {
+    id
+    name
+    artists {
+      name
+    }
+    album {
+      name
+      images {
+        url
+        width
+        height
+      }
+    }
+  }
+`;

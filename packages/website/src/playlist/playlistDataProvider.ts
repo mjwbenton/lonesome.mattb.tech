@@ -1,6 +1,7 @@
 import gql from "graphql-tag";
 import { DataProvider } from "@mattb.tech/data-fetching";
 import { PlaylistQuery } from "generated/graphql";
+import { fragment } from "./Track";
 
 const QUERY = gql`
   query Playlist($playlistId: ID!) {
@@ -10,25 +11,14 @@ const QUERY = gql`
       description
       link
       tracks {
-        id
-        name
-        artists {
-          name
-        }
-        album {
-          name
-          images {
-            url
-            width
-            height
-          }
-        }
+        ...Track
       }
     }
   }
+  ${fragment}
 `;
 
-const recentBooksDataProvider: DataProvider<
+const playlistDataProvider: DataProvider<
   { playlistId: string },
   PlaylistQuery
 > = async ({ playlistId }, { client }) => {
@@ -42,4 +32,4 @@ const recentBooksDataProvider: DataProvider<
   return result.data;
 };
 
-export default recentBooksDataProvider;
+export default playlistDataProvider;

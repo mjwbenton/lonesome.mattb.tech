@@ -14,7 +14,7 @@ const Playlist: React.FunctionComponent = () => {
     <EmbeddedWrapper>
       <StripedList>
         {playlist.tracks.map((t, i) => (
-          <Track track={t} index={i + 1} key={i} />
+          <Track track={t} index={i + 1} key={t.id} />
         ))}
       </StripedList>
     </EmbeddedWrapper>
