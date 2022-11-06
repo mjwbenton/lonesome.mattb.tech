@@ -47,7 +47,7 @@ export class LonesomeWebsite extends cdk.Stack {
     });
 
     const routerLambda = new lambda.Function(this, "RouterFunction", {
-      runtime: lambda.Runtime.NODEJS_12_X,
+      runtime: lambda.Runtime.NODEJS_16_X,
       handler: "dist/index.handler",
       code: lambda.Code.fromAsset(path.join(__dirname, "../../edge-router")),
     });
