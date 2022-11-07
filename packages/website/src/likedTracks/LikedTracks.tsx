@@ -1,4 +1,5 @@
 import EmbeddedWrapper from "component/EmbeddedWrapper";
+import { TopRightSpinner } from "component/Spinner";
 import StripedList from "component/StripedList";
 import Tile, { Wall } from "component/Tile";
 import Track from "playlist/Track";
@@ -13,6 +14,7 @@ export default function LikedTracks() {
 
   return (
     <EmbeddedWrapper>
+      <TopRightSpinner show={loading} />
       <StripedList>
         {likedTracks?.map((t, i) => (
           <Track track={t} index={i + 1} key={t.id} />
