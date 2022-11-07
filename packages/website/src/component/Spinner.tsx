@@ -1,6 +1,15 @@
-export default function Spinner({ className }: { className?: string }) {
+export default function Spinner({
+  className,
+  show = true,
+}: {
+  className?: string;
+  show?: boolean;
+}) {
+  const opacityClasses = show
+    ? "opacity-100"
+    : "transition-opacity duration-300 ease-in-out delay-300 opacity-0";
   return (
-    <div className={className}>
+    <div className={`${className} ${opacityClasses}`}>
       <div role="presentation" className="relative w-8 h-8 animate-spin-slow">
         <Circle className="rotate-[0deg]" />
         <Circle className="rotate-[15deg]" />
@@ -20,11 +29,14 @@ export default function Spinner({ className }: { className?: string }) {
 }
 
 export function TopRightSpinner({ show = true }: { show?: boolean }) {
-  return show ? (
+  return (
     <div className="relative h-0 w-full">
-      <Spinner className="absolute top-[-12px] right-[-12px] z-10" />
+      <Spinner
+        show={show}
+        className="absolute top-[-12px] right-[-12px] z-10"
+      />
     </div>
-  ) : null;
+  );
 }
 
 function Circle({ className }) {

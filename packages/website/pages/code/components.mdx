@@ -17,10 +17,21 @@ import SubdivisionHeading from "component/SubdivisionHeading";
 import Button from "component/Button";
 import Spinner, { TopRightSpinner } from "component/Spinner";
 import Tile, { Wall } from "component/Tile";
+import { useState } from "react";
+
+export function SpinnerWithButton() {
+  const [show, setShow] = useState(true);
+  return (
+    <div className="space-y-4">
+      <Spinner show={show} />
+      <Button onClick={() => setShow(!show)}>Show Hide</Button>
+    </div>
+  );
+}
 
 <SubdivisionHeading>Spinner</SubdivisionHeading>
 <EmbeddedWrapper>
-  <Spinner />
+  <SpinnerWithButton />
 </EmbeddedWrapper>
 <SubdivisionHeading>Striped Lists</SubdivisionHeading>
 <EmbeddedWrapper>
