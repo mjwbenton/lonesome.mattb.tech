@@ -1,7 +1,6 @@
 import EmbeddedWrapper from "component/EmbeddedWrapper";
 import { TopRightSpinner } from "component/Spinner";
 import StripedList from "component/StripedList";
-import Tile, { Wall } from "component/Tile";
 import Track from "playlist/Track";
 import { useLikedTracks } from "./likedTracksDataProvider";
 
