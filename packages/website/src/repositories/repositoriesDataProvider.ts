@@ -2,13 +2,13 @@ import gql from "graphql-tag";
 import { DataProvider } from "@mattb.tech/data-fetching";
 import { useQuery } from "@apollo/client";
 import {
-  GithubRepositoriesQuery,
-  GithubRepositoriesQueryVariables,
+  RepositoriesQuery,
+  RepositoriesQueryVariables,
 } from "generated/graphql";
 
 const QUERY = gql`
-  query GithubRepositories($after: ID) {
-    page: githubRepositories(first: 10, after: $after) {
+  query Repositories($after: ID) {
+    page: repositories(first: 10, after: $after) {
       total
       hasNextPage
       nextPageCursor
@@ -37,8 +37,6 @@ const repositoriesDataProvider: DataProvider<never, void> = async (
 
 export default repositoriesDataProvider;
 
-export function useGithubRepositories() {
-  return useQuery<GithubRepositoriesQuery, GithubRepositoriesQueryVariables>(
-    QUERY
-  );
+export function useRepositories() {
+  return useQuery<RepositoriesQuery, RepositoriesQueryVariables>(QUERY);
 }

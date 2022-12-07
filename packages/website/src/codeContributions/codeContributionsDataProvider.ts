@@ -5,7 +5,7 @@ import { useQuery } from "@apollo/client";
 
 const QUERY = gql`
   query CodeContributions {
-    githubContributions {
+    commitStats {
       commits
       repositoriesCommittedTo
     }
@@ -32,6 +32,6 @@ export function useCodeContributions() {
   });
   return {
     loading,
-    codeContributions: data?.githubContributions,
+    codeContributions: data?.commitStats,
   };
 }

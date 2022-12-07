@@ -5,11 +5,11 @@ import EmbeddedWrapper from "component/EmbeddedWrapper";
 import LoadMoreButton from "global/LoadMoreButton";
 import React from "react";
 import { Clock } from "react-feather";
-import { useGithubRepositories } from "./repositoriesDataProvider";
+import { useRepositories } from "./repositoriesDataProvider";
 import Spinner from "component/Spinner";
 
 export default function Repositories() {
-  const { data, loading, error, fetchMore } = useGithubRepositories();
+  const { data, loading, error, fetchMore } = useRepositories();
   if (error) {
     return <ErrorDisplay error={error} />;
   }
