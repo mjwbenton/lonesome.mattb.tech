@@ -8,6 +8,7 @@ const LINKS = [
   { slug: "/playing", display: "Playing" },
   { slug: "/watching", display: "Watching" },
   { slug: "/code", display: "Code" },
+  { slug: "/year", display: "Years" },
 ];
 
 export default function Navigation() {
