@@ -3,22 +3,23 @@ import { getAllPageMeta } from "pageMeta";
 import { Page } from "./PagesList";
 import sortDate from "./sortDate";
 import toDisplayPage from "./toDisplayPage";
+import getYear from "date-fns/getYear";
 import hasDate from "./hasDate";
 import appendGroupToTitle from "./appendGroupToTitle";
 
-const recentPagesDataProvider: DataProvider<
-  never,
+const pagesInYearDataProvider: DataProvider<
+  { filterYear: number },
   { pagesList: Page[] }
-> = async () => {
+> = async ({ filterYear }) => {
   const allPageMeta = await getAllPageMeta();
   return {
     pagesList: allPageMeta
-      .filter(hasDate)
+      .filter(({ createdOn }) => createdOn && getYear(createdOn) === filterYear)
       .sort(sortDate)
-      .slice(0, 5)
+      .reverse()
       .map(appendGroupToTitle)
       .map(toDisplayPage),
   };
 };
 
-export default recentPagesDataProvider;
+export default pagesInYearDataProvider;

@@ -5,21 +5,30 @@ createdOn: "2022-12-28"
 group: Years
 dataProviders:
   - yearReview/yearReviewDataProvider
+  - pagesList/pagesInyearDataProvider
 startDate: "2022-01-01T00:00:00Z"
 endDate: "2022-12-31T23:59:59Z"
+filterYear: 2022
 ---
 
 import EmbeddedWrapper from "component/EmbeddedWrapper";
+import PagesList from "pagesList/PagesList";
 import Tile, { Wall } from "component/Tile";
 import CountTiles from "yearReview/CountTiles";
 
 # Year in review – 2022
+
+## Year by Numbers
 
 <EmbeddedWrapper>
   <Wall>
     <CountTiles />
   </Wall>
 </EmbeddedWrapper>
+
+## Pages Created in 2022
+
+<PagesList withIndex={true} />
 
 ## TODO
 
