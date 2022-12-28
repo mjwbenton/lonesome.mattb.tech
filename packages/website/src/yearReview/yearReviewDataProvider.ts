@@ -121,12 +121,15 @@ export type YearCounts = {
 };
 
 const yearReviewDataProvider: DataProvider<
-  { startDate: string; endDate: string },
+  { filterYear: number },
   YearCounts
-> = async (variables, { client }) => {
+> = async ({ filterYear }, { client }) => {
   const result = await client.query<CountsBetweenDatesQuery>({
     query: QUERY,
-    variables,
+    variables: {
+      startDate: `${filterYear}-01-01T00:00:00Z`,
+      endDate: `${filterYear}-12-31T23:59:59Z`,
+    },
   });
   return {
     books: {
