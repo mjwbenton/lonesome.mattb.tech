@@ -12,28 +12,91 @@ filterYear: 2022
 import EmbeddedWrapper from "component/EmbeddedWrapper";
 import PagesList from "pagesList/PagesList";
 import Tile, { Wall } from "component/Tile";
+import Icon from "component/Icon";
 import CountTiles from "yearReview/CountTiles";
+import {
+  RiPlaneLine,
+  RiTrainLine,
+  RiKnifeLine,
+  RiMap2Line,
+  RiMusic2Line,
+  RiArticleLine,
+  RiDropLine,
+} from "react-icons/ri";
+import { usePageData } from "@mattb.tech/data-fetching";
+
+export function PageCount() {
+  const { pagesList } = usePageData();
+  return (
+    <Tile>
+      <Icon component={RiArticleLine} />
+      Created <strong>{pagesList.length}</strong> pages
+    </Tile>
+  );
+}
 
 # Year in review – 2022
 
-## Year by Numbers
-
 <EmbeddedWrapper>
   <Wall>
+    <Tile>
+      <Icon component={RiMap2Line} />
+      Taken <strong>4</strong> trips
+    </Tile>
+    <Tile>
+      <Icon component={RiMusic2Line} />
+      Seen <strong>2</strong> gigs
+    </Tile>
+    <Tile>
+      <Icon component={RiKnifeLine} />
+      Eaten at <strong>17</strong> restaurants
+    </Tile>
+    <PageCount />
     <CountTiles />
+    <Tile>
+      <Icon component={RiDropLine} />
+      Swam <strong>25km</strong> across <strong>25</strong> swims
+    </Tile>
+    <Tile>TODO: Commits</Tile>
   </Wall>
 </EmbeddedWrapper>
+
+## Trips
+
+- <Icon component={RiPlaneLine} />
+  Barcelona (April)
+- <Icon component={RiTrainLine} />
+  Northumberland (June)
+- <Icon component={RiTrainLine} />
+  St Ives (July)
+- <Icon component={RiPlaneLine} />
+  Santorini (September)
+
+## Gigs
+
+- Lucy Dacus @ The Marble Factory
+- Japanese Breakfast @ The Marble Factory
+
+## Restaurants
+
+- Flour & Ash
+- Pony Bistro
+- Aguaribay (Barcelona)
+- Bianchis
+- Clifton Lido
+- Little Hollows
+- The Jolly Fisherman (Craster)
+- Lord Crewe Hotel (Bamburgh)
+- Porthminster Beach Cafe (St Ives)
+- Cellar Bistro (St Ives)
+- Porthmeor Beach Cafe (St Ives)
+- Pasta Loco
+- Bertha's Pizza
+- Yafo
+- Souk Kitchen
+- Pasta Ripiena
+- COR
 
 ## Pages Created in 2022
 
 <PagesList withIndex={true} />
-
-## TODO
-
-- Music playlist link
-- Number of swims and distance?
-- Restaurant reservations list
-- Trips (and by what travel method?)
-- Gigs
-- List of all pages modified on lonesome this year
-- Code commits to github
