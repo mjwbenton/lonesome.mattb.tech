@@ -3,7 +3,11 @@ import { DataProvider } from "@mattb.tech/data-fetching";
 import { CountsBetweenDatesQuery } from "generated/graphql";
 
 const QUERY = gql`
-  query CountsBetweenDates($startDate: DateTime, $endDate: DateTime) {
+  query CountsBetweenDates($startDate: DateTime!, $endDate: DateTime!) {
+    commitStats(startDate: $startDate, endDate: $endDate) {
+      commits
+      repositoriesCommittedTo
+    }
     books(
       first: 0
       startDate: $startDate
@@ -118,6 +122,10 @@ export type YearCounts = {
     finished: number;
     gaveUp: number;
   };
+  commitStats: {
+    commits: number;
+    repositoriesCommittedTo: number;
+  };
 };
 
 const yearReviewDataProvider: DataProvider<
@@ -132,6 +140,7 @@ const yearReviewDataProvider: DataProvider<
     },
   });
   return {
+    commitStats: result.data.commitStats,
     books: {
       started: result.data.books.total,
       finished: result.data.readBooks?.items.total ?? 0,

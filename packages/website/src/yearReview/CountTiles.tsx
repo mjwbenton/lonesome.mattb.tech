@@ -6,16 +6,29 @@ import {
   RiGamepadLine,
   RiFilmLine,
   RiBookLine,
+  RiArticleLine,
+  RiGitCommitLine,
 } from "react-icons/ri";
-import { IconBaseProps } from "react-icons";
 import React from "react";
 import Icon from "component/Icon";
+import { PageMeta } from "pageMeta";
 
 export default function CountTiles() {
-  const { movies, books, tvSeasons, videoGames }: YearCounts = usePageData();
+  const {
+    movies,
+    books,
+    tvSeasons,
+    videoGames,
+    pagesList,
+    commitStats,
+  }: YearCounts & { pagesList: PageMeta[] } = usePageData();
 
   return (
     <>
+      <Tile>
+        <Icon component={RiArticleLine} />
+        Created <strong>{pagesList.length}</strong> pages
+      </Tile>
       <Tile>
         <Icon component={RiFilmLine} />
         Watched <strong>{movies.watched}</strong> movies
@@ -40,6 +53,11 @@ export default function CountTiles() {
         <span className="text-xs">
           Started {tvSeasons.started}, gave up on {tvSeasons.gaveUp}.
         </span>
+      </Tile>
+      <Tile>
+        <Icon component={RiGitCommitLine} />
+        Committed <strong>{commitStats.commits}</strong> times to{" "}
+        <strong>{commitStats.repositoriesCommittedTo}</strong> repositories
       </Tile>
     </>
   );
