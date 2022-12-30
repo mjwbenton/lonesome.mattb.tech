@@ -32,8 +32,6 @@ export function useCodeContributions() {
   const { data, loading } = useQuery<CodeContributionsQuery>(QUERY, {
     variables: buildVariables(),
     fetchPolicy: "cache-and-network",
-    nextFetchPolicy: "cache-first",
-    notifyOnNetworkStatusChange: true,
   });
   return {
     loading,

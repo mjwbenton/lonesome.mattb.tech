@@ -81,8 +81,6 @@ export default watchingDataProvider;
 export function useWatching() {
   const { data, loading, fetchMore } = useQuery<WatchingQuery>(QUERY, {
     fetchPolicy: "cache-and-network",
-    nextFetchPolicy: "cache-first",
-    notifyOnNetworkStatusChange: true,
   });
   const { items, total, hasNextPage, nextPageCursor } = data!.watching!;
   return {

@@ -52,8 +52,6 @@ export default recentGamesDataProvider;
 export function useRecentGames() {
   const { data, loading, fetchMore } = useQuery<RecentGamesQuery>(QUERY, {
     fetchPolicy: "cache-and-network",
-    nextFetchPolicy: "cache-first",
-    notifyOnNetworkStatusChange: true,
   });
   const { items, total, hasNextPage, nextPageCursor } = data!.recentGames!;
   return {

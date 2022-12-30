@@ -28,8 +28,6 @@ export default likedTracksDataProvider;
 export function useLikedTracks() {
   const { data, loading } = useQuery<LikedTracksQuery>(QUERY, {
     fetchPolicy: "cache-and-network",
-    nextFetchPolicy: "cache-first",
-    notifyOnNetworkStatusChange: true,
   });
   return {
     loading,

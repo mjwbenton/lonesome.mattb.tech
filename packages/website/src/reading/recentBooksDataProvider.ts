@@ -50,8 +50,6 @@ export default recentBooksDataProvider;
 export function useRecentBooks() {
   const { data, loading, fetchMore } = useQuery<RecentBooksQuery>(QUERY, {
     fetchPolicy: "cache-and-network",
-    nextFetchPolicy: "cache-first",
-    notifyOnNetworkStatusChange: true,
   });
   const { items, total, hasNextPage, nextPageCursor } = data!.recentBooks!;
   return {

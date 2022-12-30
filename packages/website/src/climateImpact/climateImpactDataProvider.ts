@@ -27,8 +27,6 @@ export default climateImpactDataProvider;
 export function useClimateImpact() {
   const { data, loading } = useQuery<ClimateImpactQuery>(QUERY, {
     fetchPolicy: "cache-and-network",
-    nextFetchPolicy: "cache-first",
-    notifyOnNetworkStatusChange: true,
   });
   return {
     loading,
