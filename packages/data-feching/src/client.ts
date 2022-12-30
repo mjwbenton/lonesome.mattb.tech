@@ -92,13 +92,6 @@ function createClient() {
   return new ApolloClient({
     link: LINK,
     cache: new InMemoryCache(CACHE_CONFIGURATION),
-    defaultOptions: {
-      watchQuery: {
-        fetchPolicy: "cache-and-network",
-        nextFetchPolicy: "cache-first",
-        notifyOnNetworkStatusChange: true,
-      },
-    },
   });
 }
 
