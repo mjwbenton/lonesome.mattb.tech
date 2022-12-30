@@ -33,7 +33,7 @@
     "typescript": "^4.8.2"
   },
   "dependencies": {
-    "@apollo/client": "^3.6.9",
+    "@apollo/client": "^3.7.3",
     "@mattb.tech/data-fetching": "1.0.0",
     "@mattb.tech/remark-flickr": "1.0.0",
     "@mdx-js/loader": "^1.6.22",
