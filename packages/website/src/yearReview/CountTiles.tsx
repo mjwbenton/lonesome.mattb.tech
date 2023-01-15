@@ -8,6 +8,8 @@ import {
   RiBookLine,
   RiArticleLine,
   RiGitCommitLine,
+  RiDropLine,
+  RiWalkLine,
 } from "react-icons/ri";
 import React from "react";
 import Icon from "component/Icon";
@@ -21,6 +23,7 @@ export default function CountTiles() {
     videoGames,
     pagesList,
     commitStats,
+    activity,
   }: YearCounts & { pagesList: PageMeta[] } = usePageData();
 
   return (
@@ -28,6 +31,14 @@ export default function CountTiles() {
       <Tile>
         <Icon component={RiArticleLine} />
         Created <strong>{pagesList.length}</strong> pages
+      </Tile>
+      <Tile>
+        <Icon component={RiWalkLine} />
+        Walked <strong>{activity.walkingRunningDistance}km</strong>
+      </Tile>
+      <Tile>
+        <Icon component={RiDropLine} />
+        Swam <strong>{activity.swimmingDistance}km</strong>
       </Tile>
       <Tile>
         <Icon component={RiFilmLine} />
