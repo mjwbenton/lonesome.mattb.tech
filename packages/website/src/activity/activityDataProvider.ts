@@ -6,6 +6,7 @@ import startOfYear from "date-fns/startOfYear";
 import { ActivityQuery } from "generated/graphql";
 import subDays from "date-fns/subDays";
 import { subYears } from "date-fns";
+import formatPercentageChange from "util/formatPercentageChange";
 
 const baseDate = subDays(new Date(), 1);
 
@@ -76,24 +77,24 @@ function transformData(data: ActivityQuery) {
   return {
     year: {
       walkingRunningKm: formatKm(data.thisYear.walkingRunningDistance.km),
-      walkingRunningPercentageChange: percentageChange(
+      walkingRunningPercentageChange: formatPercentageChange(
         data.thisYear.walkingRunningDistance.km,
         data.lastYear.walkingRunningDistance.km
       ),
       swimmingDistanceKm: formatKm(data.thisYear.swimmingDistance.km),
-      swimmingDistancePercentageChange: percentageChange(
+      swimmingDistancePercentageChange: formatPercentageChange(
         data.thisYear.swimmingDistance.km,
         data.lastYear.swimmingDistance.km
       ),
     },
     trailing30: {
       walkingRunningKm: formatKm(data.trailing30Days.walkingRunningDistance.km),
-      walkingRunningPercentageChange: percentageChange(
+      walkingRunningPercentageChange: formatPercentageChange(
         data.trailing30Days.walkingRunningDistance.km,
         data.lastYearTrailing30Days.walkingRunningDistance.km
       ),
       swimmingDistanceKm: formatKm(data.trailing30Days.swimmingDistance.km),
-      swimmingDistancePercentageChange: percentageChange(
+      swimmingDistancePercentageChange: formatPercentageChange(
         data.trailing30Days.swimmingDistance.km,
         data.lastYearTrailing30Days.swimmingDistance.km
       ),
@@ -103,17 +104,6 @@ function transformData(data: ActivityQuery) {
 
 function formatKm(value: number): string {
   return `${value.toFixed(2)}km`;
-}
-
-function percentageChange(newValue: number, oldValue: number): string {
-  if (oldValue === 0) {
-    return "↑ infinite%";
-  }
-  const percentage = ((newValue - oldValue) / oldValue) * 100;
-  if (percentage < 0) {
-    return `↓ ${(percentage * -1).toFixed(1)}%`;
-  }
-  return `↑ ${percentage.toFixed(1)}%`;
 }
 
 function buildVariables() {

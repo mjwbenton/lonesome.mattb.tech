@@ -14,12 +14,24 @@ export default function CodeContributions() {
       <Wall>
         <Tile>
           <Icon component={RiGitCommitLine} />
-          <strong>{codeContributions?.commits}</strong> Commits
+          <strong>{codeContributions?.trailing30.commits}</strong> commits
+          across {codeContributions?.trailing30.repositories} repositories in
+          the last 30 days
+          <br />
+          <span className="text-xs">
+            {codeContributions?.trailing30.percentageChange} change on the same
+            time last year
+          </span>
         </Tile>
         <Tile>
-          <Icon component={RiGitRepositoryLine} />
-          <strong>{codeContributions?.repositoriesCommittedTo}</strong>{" "}
-          repositories committed to
+          <Icon component={RiGitCommitLine} />
+          <strong>{codeContributions?.year.commits}</strong> commits across{" "}
+          {codeContributions?.year.repositories} repositories so far this year
+          <br />
+          <span className="text-xs">
+            {codeContributions?.year.percentageChange} change on the same time
+            last year
+          </span>
         </Tile>
       </Wall>
     </EmbeddedWrapper>
