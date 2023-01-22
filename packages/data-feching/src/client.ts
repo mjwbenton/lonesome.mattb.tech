@@ -58,13 +58,20 @@ function concatPagination(
   };
 }
 
-type WithMovedAt = { movedAt: string };
-
 const movedAtSort: SortFunction = (readField) => (a, b) =>
   compareDesc(
     parseISO(readField("movedAt", a) ?? ""),
     parseISO(readField("movedAt", b) ?? "")
   );
+
+function cacheByAlias(): FieldPolicy {
+  return {
+    keyArgs: (args, context) => {
+      const aliasOrUndefined = context?.field?.alias?.value;
+      return `activity(${aliasOrUndefined ?? JSON.stringify(args)});`;
+    },
+  };
+}
 
 const CACHE_CONFIGURATION: InMemoryCacheConfig = {
   typePolicies: {
@@ -81,6 +88,11 @@ const CACHE_CONFIGURATION: InMemoryCacheConfig = {
         recentPhotos: concatPagination(),
         photoSet: concatPagination(["photosetId"]),
         photosWithTag: concatPagination(["tag"]),
+        /* These fields are queried by date. This means that the arguments change each day thus invalidating the cache.
+         * Instead we put the name of the alias used to query them in as the cache key, which means that the cache can still
+         * be used while updated data is fetched*/
+        activity: cacheByAlias(),
+        commitStats: cacheByAlias(),
       },
     },
   },

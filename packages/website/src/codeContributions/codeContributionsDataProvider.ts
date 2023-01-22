@@ -8,7 +8,7 @@ import endOfYear from "date-fns/endOfYear";
 
 const QUERY = gql`
   query CodeContributions($startDate: DateTime!, $endDate: DateTime!) {
-    commitStats(startDate: $startDate, endDate: $endDate) {
+    thisYearsCommits: commitStats(startDate: $startDate, endDate: $endDate) {
       commits
       repositoriesCommittedTo
     }
@@ -35,7 +35,7 @@ export function useCodeContributions() {
   });
   return {
     loading,
-    codeContributions: data?.commitStats,
+    codeContributions: data?.thisYearsCommits,
   };
 }
 
