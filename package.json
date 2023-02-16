@@ -15,6 +15,7 @@
     "dev": "yarn workspace @mattb.tech/lonesome-website run dev",
     "site-test": "yarn workspaces foreach -v run site-test",
     "deploy": "yarn workspace @mattb.tech/lonesome-cdk run deploy",
+    "bootstrap-ci": "yarn workspace @mattb.tech/lonesome-cdk run bootstrap-ci",
     "clean": "yarn workspaces foreach -v run clean",
     "check": "yarn workspaces foreach -v run check",
     "fix": "yarn workspaces foreach -v run fix"

@@ -6,15 +6,16 @@
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {
-    "aws-cdk": "^2.40.0",
-    "aws-cdk-lib": "^2.40.0",
-    "constructs": "^10.1.95",
+    "aws-cdk": "^2.65.0",
+    "aws-cdk-lib": "^2.65.0",
+    "constructs": "^10.1.252",
     "prettier": "^2.7.1",
     "ts-node": "^9.1.1",
     "typescript": "^4.8.2"
   },
   "scripts": {
-    "deploy": "cdk deploy --profile cdk-deploy --require-approval never",
+    "deploy": "cdk deploy LonesomeWebsite --profile cdk-deploy --require-approval never",
+    "bootstrap-ci": "cdk deploy LonesomeCi --profile cdk-deploy --require-approval never ",
     "build": "../../scripts/build.sh",
     "check": "../../scripts/check.sh",
     "clean": "../../scripts/clean.sh",
