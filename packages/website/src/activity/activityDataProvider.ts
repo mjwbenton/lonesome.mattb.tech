@@ -6,7 +6,7 @@ import startOfYear from "date-fns/startOfYear";
 import { ActivityQuery } from "generated/graphql";
 import subDays from "date-fns/subDays";
 import { subYears } from "date-fns";
-import formatPercentageChange from "util/formatPercentageChange";
+import formatPercentageChange from "utils/formatPercentageChange";
 
 const baseDate = subDays(new Date(), 1);
 

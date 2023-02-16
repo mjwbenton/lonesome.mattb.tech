@@ -6,7 +6,7 @@ import formatISO from "date-fns/formatISO";
 import startOfYear from "date-fns/startOfYear";
 import subDays from "date-fns/subDays";
 import subYears from "date-fns/subYears";
-import formatPercentageChange from "util/formatPercentageChange";
+import formatPercentageChange from "utils/formatPercentageChange";
 
 const QUERY = gql`
   query CodeContributions(
