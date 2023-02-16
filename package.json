@@ -19,5 +19,6 @@
     "clean": "yarn workspaces foreach -v run clean",
     "check": "yarn workspaces foreach -v run check",
     "fix": "yarn workspaces foreach -v run fix"
-  }
+  },
+  "packageManager": "yarn@3.2.0"
 }

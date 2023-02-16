@@ -1,0 +1,29 @@
+name: Deploy
+on:
+  push:
+    branches: [master]
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v1
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::858777967843:role/LonesomeCi-GitHubActionsRole4F1BBA26-1W840M8N02102
+          aws-region: us-east-1
+
+      - run: corepack enable
+      - run: yarn set version 3.2.0
+      - run: yarn plugin import workspace-tools
+      - run: yarn install --frozen-lockfile
+      - run: yarn build
+      - run: yarn deploy
