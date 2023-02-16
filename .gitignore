@@ -5,7 +5,12 @@ cdk.out
 dist
 node_modules
 out
-yarn-error.log
-.yarn
 generated
 tsconfig.tsbuildinfo
+yarn-error.log
+.yarn
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

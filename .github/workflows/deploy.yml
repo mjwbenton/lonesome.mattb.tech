@@ -21,9 +21,6 @@ jobs:
           role-to-assume: arn:aws:iam::858777967843:role/LonesomeCi-GitHubActionsRole4F1BBA26-1W840M8N02102
           aws-region: us-east-1
 
-      - run: corepack enable
-      - run: yarn set version 3.2.0
-      - run: yarn plugin import workspace-tools
       - run: yarn install --frozen-lockfile
       - run: yarn build
       - run: yarn deploy
