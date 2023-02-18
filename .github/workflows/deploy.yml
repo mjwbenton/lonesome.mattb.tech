@@ -15,7 +15,7 @@ jobs:
         with:
           node-version: "18"
 
-      - uses: aws-actions/configure-aws-credentials@v1
+      - uses: aws-actions/configure-aws-credentials@v1-node16
         with:
           role-to-assume: arn:aws:iam::858777967843:role/LonesomeCi-GitHubActionsRole4F1BBA26-1W840M8N02102
           aws-region: us-east-1
