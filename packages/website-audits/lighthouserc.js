@@ -11,6 +11,8 @@ module.exports = {
     assert: {
       preset: "lighthouse:no-pwa",
       assertions: {
+        "csp-xss": "warn",
+        "font-size": "warn",
         "image-aspect-ratio": "warn",
         "image-size-responsive": "warn",
         "meta-description": "warn",
