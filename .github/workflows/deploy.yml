@@ -6,7 +6,7 @@ permissions:
   id-token: write
   contents: read
 jobs:
-  deploy-and-test:
+  deploy:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -24,4 +24,21 @@ jobs:
       - run: yarn build
       - run: yarn check
       - run: yarn deploy
-      - run: yarn site-test
+  cypress-tests:
+    needs: deploy
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cypress-io/github-action@v5
+        with:
+          project: packages/cypress-tests
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: packages/cypress-tests/cypress/screenshots
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: cypress-videos
+          path: packages/cypress-tests/cypress/videos
