@@ -23,7 +23,7 @@ jobs:
 
       - run: yarn install --frozen-lockfile
       - run: yarn build
-      - run: yarn check
+      - run: yarn run check
       - run: yarn deploy
   cypress-tests:
     needs: deploy
