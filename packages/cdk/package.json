@@ -16,7 +16,6 @@
   "scripts": {
     "deploy": "cdk deploy LonesomeWebsite --require-approval never",
     "deploy:local": "cdk deploy LonesomeWebsite --profile cdk-deploy --require-approval never",
-    "bootstrap-ci": "cdk deploy LonesomeCi --profile cdk-deploy --require-approval never ",
     "build": "../../scripts/build.sh",
     "check": "../../scripts/check.sh",
     "clean": "../../scripts/clean.sh",

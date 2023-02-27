@@ -18,7 +18,7 @@ jobs:
 
       - uses: aws-actions/configure-aws-credentials@v1-node16
         with:
-          role-to-assume: arn:aws:iam::858777967843:role/LonesomeCi-GitHubActionsRole4F1BBA26-1W840M8N02102
+          role-to-assume: arn:aws:iam::858777967843:role/github-actions-cdk
           aws-region: us-east-1
 
       - run: yarn install --frozen-lockfile
