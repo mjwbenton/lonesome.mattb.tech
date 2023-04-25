@@ -77,6 +77,6 @@
     "unist-util-visit": "^4.1.1",
     "use-interval": "^1.4.0",
     "webpack": "^4.46.0",
-    "yaml": "^1.10.2"
+    "yaml": "^2.2.2"
   }
 }
