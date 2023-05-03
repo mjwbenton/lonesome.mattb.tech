@@ -5,6 +5,7 @@ on:
 permissions:
   id-token: write
   contents: read
+concurrency: production
 jobs:
   deploy:
     runs-on: ubuntu-20.04
