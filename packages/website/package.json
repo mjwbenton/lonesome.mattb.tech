@@ -76,6 +76,7 @@
     "unist-builder": "^3.0.0",
     "unist-util-visit": "^4.1.1",
     "use-interval": "^1.4.0",
+    "victory": "^36.6.8",
     "webpack": "^4.46.0",
     "yaml": "^2.2.2"
   }
