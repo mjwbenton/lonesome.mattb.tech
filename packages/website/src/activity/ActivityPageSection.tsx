@@ -1,7 +1,8 @@
 import EmbeddedWrapper from "component/EmbeddedWrapper";
 import { TopRightSpinner } from "component/Spinner";
 import { Wall } from "component/Tile";
-import { ActivityAccumulationChart, ActivityBarChart } from "./ActivityChart";
+import ActivityBarChart from "./ActivityBarChart";
+import ActivityAccumulationChart from "./ActivityAccumulationChart";
 import { useActivityPage } from "./activityPageDataProvider";
 import ActivityTile from "./ActivityTile";
 
