@@ -7,23 +7,55 @@ import {
   VictoryTooltip,
   VictoryVoronoiContainer,
 } from "victory";
-import theme from "style/theme.preval";
-
-const FONT_FAMILY = Object.values(theme.fontFamily["mono"])
-  .map((font) => `'${font}'`)
-  .join(", ");
-const COLOR_1 = theme.colors["accent-dark"][1];
-const COLOR_2 = theme.colors["accent-light"]["DEFAULT"];
-const FONT_SMALL = 10;
-const FONT_BASE = 12;
-const TOOLTIP_BACKGROUND = theme.colors["light"]["1"];
+import themeValues from "style/theme.preval";
+import { useTheme } from "next-themes";
 
 export type ChartData = {
   readonly thisYear: readonly { readonly month: number; readonly km: number }[];
   readonly lastYear: readonly { readonly month: number; readonly km: number }[];
 };
 
+function useChartTheme() {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+  console.log("isDark", isDark);
+
+  const fontFamily = Object.values(themeValues.fontFamily["mono"])
+    .map((font) => `'${font}'`)
+    .join(", ");
+  const colorLastYear = themeValues.colors["accent-dark"][1];
+  const colorThisYear = themeValues.colors["accent-light"]["DEFAULT"];
+  const fontSmall = 10;
+  const fontBase = 12;
+  const tooltipBackground = isDark
+    ? themeValues.colors["dark"]["1"]
+    : themeValues.colors["light"]["1"];
+  const baseColor = isDark
+    ? themeValues.colors["light"]["1"]
+    : themeValues.colors["dark"]["1"];
+
+  return {
+    fontFamily,
+    colorLastYear,
+    colorThisYear,
+    fontSmall,
+    fontBase,
+    tooltipBackground,
+    baseColor,
+  };
+}
+
 export default function ActivityChart({ data }: { data: ChartData }) {
+  const {
+    fontFamily,
+    colorLastYear,
+    colorThisYear,
+    fontSmall,
+    fontBase,
+    tooltipBackground,
+    baseColor,
+  } = useChartTheme();
+
   return (
     <VictoryChart
       containerComponent={
@@ -33,7 +65,7 @@ export default function ActivityChart({ data }: { data: ChartData }) {
           labelComponent={
             <VictoryTooltip
               cornerRadius={0}
-              flyoutStyle={{ stroke: "none", fill: TOOLTIP_BACKGROUND }}
+              flyoutStyle={{ stroke: "none", fill: tooltipBackground }}
               pointerWidth={0}
             />
           }
@@ -48,27 +80,44 @@ export default function ActivityChart({ data }: { data: ChartData }) {
         label="Km"
         axisLabelComponent={
           <VictoryLabel
-            style={{ fontFamily: FONT_FAMILY, fontSize: FONT_BASE }}
+            style={{
+              fontFamily: fontFamily,
+              fontSize: fontBase,
+              fill: baseColor,
+            }}
             dy={-20}
           />
         }
-        style={{ tickLabels: { fontFamily: FONT_FAMILY, fontSize: FONT_BASE } }}
+        style={{
+          tickLabels: {
+            fontFamily: fontFamily,
+            fontSize: fontBase,
+            fill: baseColor,
+          },
+          ticks: { stroke: baseColor, size: 5 },
+          axis: { stroke: baseColor },
+        }}
       />
       <VictoryAxis
         tickCount={12}
         tickFormat={(x) => monthNumberToName(x)}
         style={{
-          tickLabels: { fontFamily: FONT_FAMILY, fontSize: FONT_SMALL },
+          tickLabels: {
+            fontFamily: fontFamily,
+            fontSize: fontSmall,
+            fill: baseColor,
+          },
+          axis: { stroke: baseColor },
         }}
       />
       <VictoryGroup offset={-5}>
         <VictoryBar
           style={{
-            data: { fill: COLOR_1, width: 10 },
+            data: { fill: colorLastYear, width: 10 },
             labels: {
-              fill: COLOR_1,
-              fontFamily: FONT_FAMILY,
-              fontSize: FONT_SMALL,
+              fill: colorLastYear,
+              fontFamily: fontFamily,
+              fontSize: fontSmall,
             },
           }}
           data={data.lastYear}
@@ -78,15 +127,15 @@ export default function ActivityChart({ data }: { data: ChartData }) {
         <VictoryBar
           style={{
             data: {
-              fill: COLOR_2,
+              fill: colorThisYear,
               width: 10,
               strokeWidth: 0.5,
-              stroke: "black",
+              stroke: baseColor,
             },
             labels: {
-              fill: COLOR_2,
-              fontFamily: FONT_FAMILY,
-              fontSize: FONT_SMALL,
+              fill: colorThisYear,
+              fontFamily: fontFamily,
+              fontSize: fontSmall,
             },
           }}
           data={data.thisYear}
