@@ -28,7 +28,7 @@ export default function ActivityPageSection({ type }: { type: ActivityType }) {
             }
           />
           <ActivityTile
-            type="walking"
+            type={type}
             period="year"
             km={activity?.thisYear[TYPE_TO_GRAPH[type]].km}
             lastYearKm={activity?.lastYearToDate[TYPE_TO_GRAPH[type]].km}
