@@ -3,10 +3,10 @@ import { DataProvider } from "@mattb.tech/data-fetching";
 import { useQuery } from "@apollo/client";
 import formatISO from "date-fns/formatISO";
 import startOfYear from "date-fns/startOfYear";
+import endOfYear from "date-fns/endOfYear";
 import { ActivityQuery } from "generated/graphql";
 import subDays from "date-fns/subDays";
 import { subYears } from "date-fns";
-import formatPercentageChange from "utils/formatPercentageChange";
 
 const baseDate = subDays(new Date(), 1);
 
@@ -49,64 +49,31 @@ const QUERY = gql`
   }
 `;
 
-const activityDataProvider: DataProvider<
-  never,
-  ReturnType<typeof transformData>
-> = async (_: never, { client }) => {
+const activityDataProvider: DataProvider<never, ActivityQuery> = async (
+  _: never,
+  { client }
+) => {
   const result = await client.query<ActivityQuery>({
     query: QUERY,
-    variables: buildVariables(),
+    variables: buildActivityVariables(),
   });
-  return transformData(result.data);
+  return result.data;
 };
 
 export default activityDataProvider;
 
 export function useActivity() {
   const { data, loading } = useQuery<ActivityQuery>(QUERY, {
-    variables: buildVariables(),
+    variables: buildActivityVariables(),
     fetchPolicy: "cache-and-network",
   });
   return {
     loading,
-    activity: data ? transformData(data) : undefined,
+    activity: data,
   };
 }
 
-function transformData(data: ActivityQuery) {
-  return {
-    year: {
-      walkingRunningKm: formatKm(data.thisYear.walkingRunningDistance.km),
-      walkingRunningPercentageChange: formatPercentageChange(
-        data.thisYear.walkingRunningDistance.km,
-        data.lastYear.walkingRunningDistance.km
-      ),
-      swimmingDistanceKm: formatKm(data.thisYear.swimmingDistance.km),
-      swimmingDistancePercentageChange: formatPercentageChange(
-        data.thisYear.swimmingDistance.km,
-        data.lastYear.swimmingDistance.km
-      ),
-    },
-    trailing30: {
-      walkingRunningKm: formatKm(data.trailing30Days.walkingRunningDistance.km),
-      walkingRunningPercentageChange: formatPercentageChange(
-        data.trailing30Days.walkingRunningDistance.km,
-        data.lastYearTrailing30Days.walkingRunningDistance.km
-      ),
-      swimmingDistanceKm: formatKm(data.trailing30Days.swimmingDistance.km),
-      swimmingDistancePercentageChange: formatPercentageChange(
-        data.trailing30Days.swimmingDistance.km,
-        data.lastYearTrailing30Days.swimmingDistance.km
-      ),
-    },
-  };
-}
-
-function formatKm(value: number): string {
-  return `${value.toFixed(2)}km`;
-}
-
-function buildVariables() {
+export function buildActivityVariables() {
   return {
     startOfYear: formatISO(startOfYear(baseDate), { representation: "date" }),
     today: formatISO(baseDate, { representation: "date" }),
@@ -120,6 +87,9 @@ function buildVariables() {
       representation: "date",
     }),
     thirtyDaysAgoLastYear: formatISO(subDays(subYears(baseDate, 1), 30), {
+      representation: "date",
+    }),
+    endOfPreviousYear: formatISO(endOfYear(subYears(baseDate, 1)), {
       representation: "date",
     }),
   };

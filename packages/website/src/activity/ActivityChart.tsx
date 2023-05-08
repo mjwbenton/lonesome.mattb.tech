@@ -1,9 +1,3 @@
-import EmbeddedWrapper from "component/EmbeddedWrapper";
-import { TopRightSpinner } from "component/Spinner";
-import {
-  ActivityChartData,
-  useActivityCharts,
-} from "./activityChartDataProvider";
 import {
   VictoryAxis,
   VictoryBar,
@@ -15,30 +9,21 @@ import {
 } from "victory";
 import theme from "style/theme.preval";
 
-type ChartData = ActivityChartData["walking"];
-
-export default function ActivityCharts() {
-  const { loading, activity } = useActivityCharts();
-
-  return (
-    <EmbeddedWrapper>
-      <TopRightSpinner show={loading} />
-      {activity && <Chart label="Km Walked" data={activity.walking} />}
-      {activity && <Chart label="Km Swam" data={activity.swimming} />}
-    </EmbeddedWrapper>
-  );
-}
-
-const fontFamily = Object.values(theme.fontFamily["mono"])
+const FONT_FAMILY = Object.values(theme.fontFamily["mono"])
   .map((font) => `'${font}'`)
   .join(", ");
-const color1 = theme.colors["accent-dark"][1];
-const color2 = theme.colors["accent-light"]["DEFAULT"];
-const fontSmall = 10;
-const fontBase = 12;
-const tooltipBackground = theme.colors["light"]["1"];
+const COLOR_1 = theme.colors["accent-dark"][1];
+const COLOR_2 = theme.colors["accent-light"]["DEFAULT"];
+const FONT_SMALL = 10;
+const FONT_BASE = 12;
+const TOOLTIP_BACKGROUND = theme.colors["light"]["1"];
 
-function Chart({ data, label }: { data: ChartData; label: string }) {
+export type ChartData = {
+  readonly thisYear: readonly { readonly month: number; readonly km: number }[];
+  readonly lastYear: readonly { readonly month: number; readonly km: number }[];
+};
+
+export default function ActivityChart({ data }: { data: ChartData }) {
   return (
     <VictoryChart
       containerComponent={
@@ -48,7 +33,7 @@ function Chart({ data, label }: { data: ChartData; label: string }) {
           labelComponent={
             <VictoryTooltip
               cornerRadius={0}
-              flyoutStyle={{ stroke: "none", fill: tooltipBackground }}
+              flyoutStyle={{ stroke: "none", fill: TOOLTIP_BACKGROUND }}
               pointerWidth={0}
             />
           }
@@ -60,22 +45,31 @@ function Chart({ data, label }: { data: ChartData; label: string }) {
     >
       <VictoryAxis
         dependentAxis
-        label={label}
+        label="Km"
         axisLabelComponent={
-          <VictoryLabel style={{ fontFamily, fontSize: fontBase }} dy={-20} />
+          <VictoryLabel
+            style={{ fontFamily: FONT_FAMILY, fontSize: FONT_BASE }}
+            dy={-20}
+          />
         }
-        style={{ tickLabels: { fontFamily, fontSize: fontBase } }}
+        style={{ tickLabels: { fontFamily: FONT_FAMILY, fontSize: FONT_BASE } }}
       />
       <VictoryAxis
         tickCount={12}
         tickFormat={(x) => monthNumberToName(x)}
-        style={{ tickLabels: { fontFamily, fontSize: fontSmall } }}
+        style={{
+          tickLabels: { fontFamily: FONT_FAMILY, fontSize: FONT_SMALL },
+        }}
       />
       <VictoryGroup offset={-5}>
         <VictoryBar
           style={{
-            data: { fill: color1, width: 10 },
-            labels: { fill: color1, fontFamily, fontSize: fontSmall },
+            data: { fill: COLOR_1, width: 10 },
+            labels: {
+              fill: COLOR_1,
+              fontFamily: FONT_FAMILY,
+              fontSize: FONT_SMALL,
+            },
           }}
           data={data.lastYear}
           x="month"
@@ -84,12 +78,16 @@ function Chart({ data, label }: { data: ChartData; label: string }) {
         <VictoryBar
           style={{
             data: {
-              fill: color2,
+              fill: COLOR_2,
               width: 10,
               strokeWidth: 0.5,
               stroke: "black",
             },
-            labels: { fill: color2, fontFamily, fontSize: fontSmall },
+            labels: {
+              fill: COLOR_2,
+              fontFamily: FONT_FAMILY,
+              fontSize: FONT_SMALL,
+            },
           }}
           data={data.thisYear}
           x="month"

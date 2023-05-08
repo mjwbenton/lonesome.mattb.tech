@@ -1,20 +1,18 @@
 ---
 dataProviders:
-  - activity/activityDataProvider
-  - activity/activityChartDataProvider
+  - activity/activityPageDataProvider
 description: "My activity, tracked by my Apply Watch"
 title: "Activity"
 ---
 
-import Activity from "activity/Activity";
-import ActivityCharts from "activity/ActivityCharts";
+import ActivityPageSection from "activity/ActivityPageSection";
 
 # Activity
 
-Activity tracked by my Apple Watch.
+## Walking
 
-<Activity />
+<ActivityPageSection type="walking" />
 
-## Charts
+## Swimming
 
-<ActivityCharts />
+<ActivityPageSection type="swimming" />
