@@ -4,9 +4,8 @@ const LINKS = [
   { slug: "/photos", display: "Photos" },
   { slug: "/keyboard", display: "Keyboards" },
   { slug: "/playlist", display: "Playlists" },
-  { slug: "/reading", display: "Reading" },
-  { slug: "/playing", display: "Playing" },
-  { slug: "/watching", display: "Watching" },
+  { slug: "/entertainment", display: "Entertainment" },
+  { slug: "/activity", display: "Activity" },
   { slug: "/code", display: "Code" },
   { slug: "/year", display: "Years" },
 ];
