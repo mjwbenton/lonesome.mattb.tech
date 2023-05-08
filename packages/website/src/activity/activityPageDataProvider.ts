@@ -57,12 +57,20 @@ const QUERY = gql`
         month
         year
       }
+      days {
+        km
+        date
+      }
     }
     swimmingDistance {
       months {
         km
         month
         year
+      }
+      days {
+        km
+        date
       }
     }
   }
