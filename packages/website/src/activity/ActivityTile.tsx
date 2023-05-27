@@ -48,6 +48,6 @@ export default function ActivityTile({
   );
 }
 
-function formatKm(value: number): string {
+export function formatKm(value: number): string {
   return `${value.toFixed(2)}km`;
 }
