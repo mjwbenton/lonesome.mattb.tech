@@ -4,22 +4,10 @@ import { Wall } from "component/Tile";
 import ActivityBarChart from "./ActivityBarChart";
 import ActivityAccumulationChart from "./ActivityAccumulationChart";
 import { useActivityPage } from "./activityPageDataProvider";
-import ActivityTile, { formatKm } from "./ActivityTile";
+import ActivityTile from "./ActivityTile";
 import Expander from "component/Expander";
-import StripedList, { StripeElement } from "component/StripedList";
-import { RiAlertLine } from "react-icons/ri";
-import parseISO from "date-fns/parseISO";
-import isBefore from "date-fns/isBefore";
-import subDays from "date-fns/subDays";
-import Icon from "component/Icon";
 import ActivityRecentData from "./ActivityRecentData";
-
-type ActivityType = "walking" | "swimming";
-
-const TYPE_TO_GRAPH = {
-  walking: "walkingRunningDistance",
-  swimming: "swimmingDistance",
-} as const;
+import { ActivityType, ACTIVITY_TYPE_CONFIG } from "./activityTypes";
 
 export default function ActivityPageSection({ type }: { type: ActivityType }) {
   const { activity, loading } = useActivityPage();
@@ -32,33 +20,46 @@ export default function ActivityPageSection({ type }: { type: ActivityType }) {
           <ActivityTile
             type={type}
             period="trailing30"
-            km={activity?.trailing30Days[TYPE_TO_GRAPH[type]].km}
+            km={activity?.trailing30Days[ACTIVITY_TYPE_CONFIG[type].dataKey].km}
             lastYearKm={
-              activity?.lastYearTrailing30Days[TYPE_TO_GRAPH[type]].km
+              activity?.lastYearTrailing30Days[
+                ACTIVITY_TYPE_CONFIG[type].dataKey
+              ].km
             }
           />
           <ActivityTile
             type={type}
             period="year"
-            km={activity?.thisYear[TYPE_TO_GRAPH[type]].km}
-            lastYearKm={activity?.lastYearToDate[TYPE_TO_GRAPH[type]].km}
+            km={activity?.thisYear[ACTIVITY_TYPE_CONFIG[type].dataKey].km}
+            lastYearKm={
+              activity?.lastYearToDate[ACTIVITY_TYPE_CONFIG[type].dataKey].km
+            }
           />
         </Wall>
         <ActivityBarChart
           data={{
-            thisYear: activity?.thisYear[TYPE_TO_GRAPH[type]].months ?? [],
-            lastYear: activity?.lastYear[TYPE_TO_GRAPH[type]].months ?? [],
+            thisYear:
+              activity?.thisYear[ACTIVITY_TYPE_CONFIG[type].dataKey].months ??
+              [],
+            lastYear:
+              activity?.lastYear[ACTIVITY_TYPE_CONFIG[type].dataKey].months ??
+              [],
           }}
         />
         <ActivityAccumulationChart
           data={{
-            thisYear: activity?.thisYear[TYPE_TO_GRAPH[type]].days ?? [],
-            lastYear: activity?.lastYear[TYPE_TO_GRAPH[type]].days ?? [],
+            thisYear:
+              activity?.thisYear[ACTIVITY_TYPE_CONFIG[type].dataKey].days ?? [],
+            lastYear:
+              activity?.lastYear[ACTIVITY_TYPE_CONFIG[type].dataKey].days ?? [],
           }}
         />
         <Expander text="Recent Data">
           <ActivityRecentData
-            data={activity?.thisYear[TYPE_TO_GRAPH[type]].days ?? []}
+            type={type}
+            data={
+              activity?.thisYear[ACTIVITY_TYPE_CONFIG[type].dataKey].days ?? []
+            }
           />
         </Expander>
       </div>

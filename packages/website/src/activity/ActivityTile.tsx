@@ -1,20 +1,9 @@
 import Icon from "component/Icon";
 import Tile from "component/Tile";
-import { RiDropLine, RiWalkLine } from "react-icons/ri";
 import formatPercentageChange from "utils/formatPercentageChange";
+import { ActivityType, ACTIVITY_TYPE_CONFIG } from "./activityTypes";
 
-export type ActivityType = "walking" | "swimming";
 export type Period = "trailing30" | "year";
-
-const TYPE_TO_ICON = {
-  walking: RiWalkLine,
-  swimming: RiDropLine,
-};
-
-const TYPE_TO_VERB = {
-  walking: "walked",
-  swimming: "swam",
-};
 
 const PERIOD_TO_LABEL = {
   trailing30: "in the last 30 days",
@@ -36,8 +25,8 @@ export default function ActivityTile({
 }: ActivityTileProps) {
   return (
     <Tile>
-      <Icon component={TYPE_TO_ICON[type]} />
-      <strong>{formatKm(km ?? 0)}</strong> {TYPE_TO_VERB[type]}{" "}
+      <Icon component={ACTIVITY_TYPE_CONFIG[type].icon} />
+      <strong>{formatKm(km ?? 0)}</strong> {ACTIVITY_TYPE_CONFIG[type].verb}{" "}
       {PERIOD_TO_LABEL[period]}
       <br />
       <span className="text-xs">

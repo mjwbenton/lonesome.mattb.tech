@@ -5,10 +5,13 @@ import parseISO from "date-fns/parseISO";
 import subDays from "date-fns/subDays";
 import { RiAlertLine } from "react-icons/ri";
 import { formatKm } from "./ActivityTile";
+import { ActivityType, ACTIVITY_TYPE_CONFIG } from "./activityTypes";
 
 export default function ActivityRecentData({
+  type,
   data,
 }: {
+  type: ActivityType;
   data: readonly { readonly date: string; readonly km: number }[];
 }) {
   return (
@@ -33,7 +36,10 @@ export default function ActivityRecentData({
             <StripeElement key={day.date}>
               <div>
                 <div className="font-bold">{day.date}</div>
-                <div className="italic">{formatKm(day.km)}</div>
+                <div className="italic">
+                  <Icon component={ACTIVITY_TYPE_CONFIG[type].icon} />{" "}
+                  {formatKm(day.km)}
+                </div>
               </div>
             </StripeElement>
           </>
