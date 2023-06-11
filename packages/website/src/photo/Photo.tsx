@@ -3,6 +3,8 @@ import Infoline from "../component/Infoline";
 import LazyLoad from "react-lazyload";
 import gql from "graphql-tag";
 import { PhotoFragment } from "generated/graphql";
+import { Camera } from "react-feather";
+import Icon from "component/Icon";
 
 const DEFAULT_SIZES = `100vw`;
 
@@ -15,6 +17,8 @@ const Photo: React.FunctionComponent<
   title,
   lazyLoad,
   sizes = DEFAULT_SIZES,
+  camera,
+  lens,
 }) => {
   const img = (
     <img
@@ -22,7 +26,7 @@ const Photo: React.FunctionComponent<
       srcSet={generateSrcSet(sources)}
       sizes={sizes}
       alt={`Image titled "${title}"`}
-      className="block max-w-full max-h-95vh"
+      className="block max-w-full max-h-90vh"
     />
   );
   return (
@@ -35,7 +39,20 @@ const Photo: React.FunctionComponent<
         img
       )}
       <Infoline externalLinkUrl={pageUrl} externalLinkText="Fl">
-        <h2 className="text-xs font-bold line-clamp-1">{title}</h2>
+        <div className="space-y-2">
+          <h2 className="font-bold">{title}</h2>
+          {camera?.name || lens?.name ? (
+            <div>
+              <Icon component={Camera} size="small" />
+              {[
+                camera?.name,
+                lens?.tag !== camera?.tag ? lens?.name : undefined,
+              ]
+                .filter(Boolean)
+                .join(" / ")}
+            </div>
+          ) : null}
+        </div>
       </Infoline>
     </div>
   );
@@ -62,6 +79,14 @@ export const fragment = gql`
       url
       width
       height
+    }
+    camera {
+      tag
+      name
+    }
+    lens {
+      tag
+      name
     }
   }
 `;
