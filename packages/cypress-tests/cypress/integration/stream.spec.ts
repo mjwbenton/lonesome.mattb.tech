@@ -1,4 +1,4 @@
-const STREAM_PAGE = "/stream";
+const STREAM_PAGE = "/photos/stream";
 const PHOTO = "[data-testid='photo-content-block']";
 const LOAD_MORE = "[data-testid='load-more-button']";
 

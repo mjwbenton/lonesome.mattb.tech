@@ -4,7 +4,7 @@ module.exports = [
   "/",
   "/photos/rome",
   "/instant-timer",
-  "/stream",
+  "/photos/stream",
   "/keyboard/first-build",
   "/playlist/2020",
   "/reading",
