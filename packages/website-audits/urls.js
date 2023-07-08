@@ -7,6 +7,6 @@ module.exports = [
   "/photos/stream",
   "/keyboard/first-build",
   "/playlist/2020",
-  "/reading",
+  "/entertainment/reading",
   "/code/repositories",
 ].map((url) => BASE_URL.concat(url));
