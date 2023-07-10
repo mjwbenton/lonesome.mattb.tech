@@ -17,10 +17,6 @@ const plugin: Plugin<
       ...(pageMeta[DATA_PROVIDERS] ?? []),
     ];
 
-    if (dataProviders.length === 0) {
-      return;
-    }
-
     const importRuntimeNode = u(
       "import",
       `import { runtime } from "@mattb.tech/data-fetching"`
