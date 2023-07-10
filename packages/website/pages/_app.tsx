@@ -27,6 +27,8 @@ export default function MyApp({ Component, pageProps }) {
           <meta name="description" content={pageMeta.description} />
         ) : null}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://api.mattb.tech" />
+        <link rel="preconnect" href="https://live.staticflickr.com" />
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <ReakitProvider>
