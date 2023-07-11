@@ -1,9 +1,9 @@
 const PHOTO_PAGE = "/photos/lockdown";
 
 describe("Photoset", () => {
-  it("Loads two images initially", () => {
+  it("Loads one image initially", () => {
     cy.visit(PHOTO_PAGE);
-    cy.get("img").should("have.length", 2);
+    cy.get("img").should("have.length", 1);
   });
 
   it("Loads more images on scroll", () => {
