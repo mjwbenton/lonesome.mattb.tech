@@ -24,7 +24,7 @@ export function StripeElement({
     <>
       {children}
       {index ? (
-        <span className="absolute top-0 left-0 w-full pr-3 -mt-3 text-right striped-index text-9xl">
+        <span className="absolute top-0 right-0 -mt-3 text-right striped-index text-9xl pa11y-ignore-element">
           {index}
         </span>
       ) : null}
