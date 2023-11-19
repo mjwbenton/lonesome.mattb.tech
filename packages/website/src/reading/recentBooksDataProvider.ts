@@ -32,6 +32,9 @@ const QUERY = gql`
     movedAt
     notes
     rating
+    highlights(first: 0) {
+      total
+    }
   }
 `;
 

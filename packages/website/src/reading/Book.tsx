@@ -35,15 +35,28 @@ const Book: React.FunctionComponent<{ book: BookFragment }> = ({ book }) => (
         {book.notes ? <div className="text-xs">{book.notes}</div> : null}
       </div>
     </div>
-    <Infoline>
-      <span>
-        <>{book.shelf.name} </>
-        {book.rating ? (
-          <>
-            <Star className="inline" size={14} /> {book.rating}/10
-          </>
-        ) : null}
-      </span>
+    <Infoline
+      externalLinkText={
+        book.highlights.total
+          ? `${book.highlights.total} highlights`
+          : undefined
+      }
+      externalLinkUrl={
+        book.highlights.total
+          ? `/entertainment/reading/highlights?bookId=${book.id}`
+          : undefined
+      }
+    >
+      <div className="space-y-2">
+        <span>
+          <>{book.shelf.name} </>
+          {book.rating ? (
+            <>
+              <Star className="inline" size={14} /> {book.rating}/10
+            </>
+          ) : null}
+        </span>
+      </div>
     </Infoline>
   </ContentBlock>
 );
