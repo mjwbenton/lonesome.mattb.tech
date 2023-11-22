@@ -1,0 +1,94 @@
+---
+title: "2023"
+description: "In progress review of the year 2023."
+createdOn: "2023-11-22"
+group: Years
+dataProviders:
+  - yearReview/yearReviewDataProvider
+  - pagesList/pagesInYearDataProvider
+filterYear: 2023
+---
+
+import EmbeddedWrapper from "component/EmbeddedWrapper";
+import PagesList from "pagesList/PagesList";
+import Tile, { Wall } from "component/Tile";
+import Icon from "component/Icon";
+import CountTiles from "yearReview/CountTiles";
+import {
+  RiPlaneLine,
+  RiTrainLine,
+  RiKnifeLine,
+  RiMap2Line,
+  RiMusic2Line,
+} from "react-icons/ri";
+
+# Year in progress – 2023
+
+<EmbeddedWrapper>
+  <Wall>
+    <Tile>
+      <Icon component={RiMap2Line} />
+      Took <strong>6</strong> trips
+    </Tile>
+    <Tile>
+      <Icon component={RiMusic2Line} />
+      Attended <strong>4</strong> gigs
+    </Tile>
+    <Tile>
+      <Icon component={RiKnifeLine} />
+      Ate at <strong>22</strong> restaurants
+    </Tile>
+    <CountTiles />
+  </Wall>
+</EmbeddedWrapper>
+
+## Trips
+
+- <Icon component={RiTrainLine} />
+  Penzance (March)
+- <Icon component={RiTrainLine} />
+  Totnes (May)
+- <Icon component={RiTrainLine} />
+  London (July)
+- <Icon component={RiTrainLine} />
+  Paris (August)
+- <Icon component={RiPlaneLine} />
+  Milan & Lake Garda (September)
+- <Icon component={RiPlaneLine} />
+  Dublin (November)
+
+## Gigs
+
+- Jadu Heart @ Rough Trade Bristol
+- Weyes Blood @ SWX
+- Alex G @ SWX
+- Andy Shauf @ Trinity Centre
+
+## Restaurants
+
+- Mud Dock
+- Pasta Ripiena
+- Stem & Glory (Cambridge)
+- Tremenheere Kitchen (Penzance)
+- The Mexico Inn (Penzance)
+- Bianchis
+- The Spotted Cow
+- Sonny Stores
+- Seven Lucky Gods
+- The Weaving Shed
+- Grain Barge
+- The Bull Inn (Totnes)
+- Rumour Kitchen & Bar (Totnes)
+- COR
+- Tomo No Ramen
+- KIN (London)
+- Salt & Malt
+- Soya Cantine Bio (Paris)
+- The Cave (Lake Garda)
+- L'Arcimboldo Ristorante (Lake Garda)
+- Nose Bruchetteria (Lake Garda)
+- Santa (Lake Garda)
+
+## Pages Created in 2023
+
+<PagesList withIndex={true} />
