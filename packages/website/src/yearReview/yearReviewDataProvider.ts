@@ -1,6 +1,7 @@
 import gql from "graphql-tag";
 import { DataProvider } from "@mattb.tech/data-fetching";
 import { CountsBetweenDatesQuery } from "generated/graphql";
+import YEAR_VALUES from "./yearValues";
 
 const QUERY = gql`
   query CountsBetweenDates(
@@ -158,8 +159,12 @@ const yearReviewDataProvider: DataProvider<
       endDate: `${filterYear}-12-31`,
     },
   });
-  return {
-    commitStats: result.data.commitStats,
+  const value = {
+    year: filterYear,
+    commitStats: {
+      commits: result.data.commitStats.commits,
+      repositoriesCommittedTo: result.data.commitStats.repositoriesCommittedTo,
+    },
     books: {
       started: result.data.books.total,
       finished: result.data.readBooks?.items.total ?? 0,
@@ -185,6 +190,15 @@ const yearReviewDataProvider: DataProvider<
       swimmingDistance: Math.floor(result.data.activity.swimmingDistance.km),
     },
   };
+  // Check the values are those expected – hacky test to see if any code changes
+  // accidentally cause these values to change after the fact
+  if (
+    filterYear in YEAR_VALUES &&
+    JSON.stringify(value) !== JSON.stringify(YEAR_VALUES[filterYear])
+  ) {
+    throw new Error(`Year values for ${filterYear} have changed unexpectedly`);
+  }
+  return value;
 };
 
 export default yearReviewDataProvider;
