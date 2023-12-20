@@ -7,6 +7,7 @@ const LINKS = [
   { slug: "/entertainment", display: "Entertainment" },
   { slug: "/activity", display: "Activity" },
   { slug: "/code", display: "Code" },
+  { slug: "/recordings", display: "Recordings" },
   { slug: "/year", display: "Years" },
 ];
 
