@@ -28,4 +28,33 @@ export default {
       swimmingDistance: 25,
     },
   },
+  2023: {
+    year: 2023,
+    commitStats: {
+      commits: 482,
+      repositoriesCommittedTo: 21,
+    },
+    books: {
+      started: 17,
+      finished: 17,
+      gaveUp: 0,
+    },
+    movies: {
+      watched: 17,
+    },
+    videoGames: {
+      started: 13,
+      completed: 12,
+      gaveUp: 0,
+    },
+    tvSeasons: {
+      started: 51,
+      finished: 46,
+      gaveUp: 2,
+    },
+    activity: {
+      walkingRunningDistance: 3227,
+      swimmingDistance: 92,
+    },
+  },
 };
