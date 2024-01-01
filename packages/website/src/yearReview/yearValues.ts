@@ -31,7 +31,7 @@ export default {
   2023: {
     year: 2023,
     commitStats: {
-      commits: 482,
+      commits: 484,
       repositoriesCommittedTo: 21,
     },
     books: {
@@ -53,7 +53,7 @@ export default {
       gaveUp: 2,
     },
     activity: {
-      walkingRunningDistance: 3227,
+      walkingRunningDistance: 3230,
       swimmingDistance: 92,
     },
   },
