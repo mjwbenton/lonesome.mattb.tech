@@ -1,0 +1,72 @@
+---
+title: "2024"
+description: "In progress review of the year 2024."
+createdOn: "2024-01-23"
+group: Years
+dataProviders:
+  - yearReview/yearReviewDataProvider
+  - pagesList/pagesInYearDataProvider
+filterYear: 2024
+---
+
+import EmbeddedWrapper from "component/EmbeddedWrapper";
+import PagesList from "pagesList/PagesList";
+import Tile, { Wall } from "component/Tile";
+import Icon from "component/Icon";
+import CountTiles from "yearReview/CountTiles";
+import {
+  RiPlaneLine,
+  RiTrainLine,
+  RiKnifeLine,
+  RiMusic2Line,
+  RiLuggageCartLine,
+  RiTicketLine,
+  RiGalleryLine,
+} from "react-icons/ri";
+
+# Year in progress – 2024
+
+<EmbeddedWrapper>
+  <Wall>
+    <Tile>
+      <Icon component={RiLuggageCartLine} />
+      Took <strong>1</strong> trip
+    </Tile>
+    <Tile>
+      <Icon component={RiMusic2Line} />
+      Attended <strong>0</strong> gigs
+    </Tile>
+    <Tile>
+      <Icon component={RiTicketLine} />
+      Attended <strong>0</strong> theatre shows
+    </Tile>
+    <Tile>
+      <Icon component={RiGalleryLine} />
+      Attended <strong>0</strong> exhibitions
+    </Tile>
+    <Tile>
+      <Icon component={RiKnifeLine} />
+      Ate at <strong>1</strong> restaurant
+    </Tile>
+    <CountTiles />
+  </Wall>
+</EmbeddedWrapper>
+
+## Trips
+
+- <Icon component={RiTrainLine} />
+  London (January)
+
+## Gigs
+
+## Theatre
+
+## Exhibitions
+
+## Restaurants
+
+- Little Hollows
+
+## Pages Created in 2024
+
+<PagesList withIndex={true} />
