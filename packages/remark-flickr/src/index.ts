@@ -1,7 +1,6 @@
 import escape from "escape-html";
 import fetch from "node-fetch";
 import { visit } from "unist-util-visit";
-import { map } from "unist-util-map";
 import { Image, Paragraph } from "mdast";
 import { Node } from "unist";
 
