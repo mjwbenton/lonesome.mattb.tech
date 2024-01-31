@@ -2,7 +2,7 @@ import escape from "escape-html";
 import fetch from "node-fetch";
 import { visit } from "unist-util-visit";
 import { map } from "unist-util-map";
-import { Image } from "mdast";
+import { Image, Paragraph } from "mdast";
 import { Node } from "unist";
 
 const FLICKR_PROTOCOL = "flickr://";
@@ -92,11 +92,16 @@ export const plugin = ({ sizes }: { sizes?: string } = {}) => {
       },
       {}
     );
-    return map(tree, (node) => {
-      if (isImageNode(node) && isFlickrPhoto(node)) {
-        const imageId = flickrPhotoIdForNode(node);
+    return visit(tree, "paragraph", (node: Paragraph) => {
+      if (
+        node.children.length === 1 &&
+        isImageNode(node.children[0]) &&
+        isFlickrPhoto(node.children[0])
+      ) {
+        const imageNode = node.children[0];
+        const imageId = flickrPhotoIdForNode(imageNode);
         const response = responsesById[imageId]!;
-        return {
+        Object.assign(node, {
           type: "mdxJsxTextElement",
           name: "figure",
           attributes: [],
@@ -118,7 +123,7 @@ export const plugin = ({ sizes }: { sizes?: string } = {}) => {
                 {
                   type: "mdxJsxAttribute",
                   name: "alt",
-                  value: escape(node.alt || response.title),
+                  value: escape(imageNode.alt || response.title),
                 },
                 {
                   type: "mdxJsxAttribute",
@@ -128,7 +133,7 @@ export const plugin = ({ sizes }: { sizes?: string } = {}) => {
               ],
               children: [],
             },
-            ...(node.title
+            ...(imageNode.title
               ? [
                   {
                     type: "mdxJsxTextElement",
@@ -137,16 +142,15 @@ export const plugin = ({ sizes }: { sizes?: string } = {}) => {
                     children: [
                       {
                         type: "text",
-                        value: node.title,
+                        value: imageNode.title,
                       },
                     ],
                   },
                 ]
               : []),
           ],
-        };
+        });
       }
-      return node;
     });
   };
 };
