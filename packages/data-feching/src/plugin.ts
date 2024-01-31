@@ -1,5 +1,6 @@
 import { Plugin } from "unified";
 import { u } from "unist-builder";
+import { parse } from "acorn";
 
 const DATA_PROVIDERS = "dataProviders";
 
@@ -17,23 +18,53 @@ const plugin: Plugin<
       ...(pageMeta[DATA_PROVIDERS] ?? []),
     ];
 
+    const runtimeImport = `import { runtime } from "@mattb.tech/data-fetching"`;
     const importRuntimeNode = u(
-      "import",
-      `import { runtime } from "@mattb.tech/data-fetching"`
+      "mdxjsEsm",
+      {
+        data: {
+          estree: parse(runtimeImport, {
+            ecmaVersion: "latest",
+            sourceType: "module",
+          }),
+        },
+      },
+      runtimeImport
     );
 
-    const importDataProviderNodes = dataProviders.flatMap((provider, i) =>
-      u("import", `import _dp${i} from "${provider}"`)
-    );
+    const importDataProviderNodes = dataProviders.flatMap((provider, i) => {
+      const importStr = `import _dp${i} from "${provider}"`;
+      return u(
+        "mdxjsEsm",
+        {
+          data: {
+            estree: parse(importStr, {
+              ecmaVersion: "latest",
+              sourceType: "module",
+            }),
+          },
+        },
+        importStr
+      );
+    });
 
-    const getStaticPropsNode = u(
-      "export",
-      `export const getStaticProps = async () => {
+    const getStaticPropsExport = `export const getStaticProps = async () => {
         const pageMeta = ${JSON.stringify(pageMeta)};
         return await runtime(pageMeta, [${dataProviders
           .map((_, i) => `_dp${i}`)
           .join(", ")}])
-      }`
+      }`;
+    const getStaticPropsNode = u(
+      "mdxjsEsm",
+      {
+        data: {
+          estree: parse(getStaticPropsExport, {
+            ecmaVersion: "latest",
+            sourceType: "module",
+          }),
+        },
+      },
+      getStaticPropsExport
     );
 
     (tree as any).children = [

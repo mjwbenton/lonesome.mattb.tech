@@ -33,8 +33,8 @@ export function StripeElement({
   if (href) {
     return (
       <li className={ITEM_CLASSES}>
-        <Link href={href}>
-          <a className={LAYOUT_CLASSES}>{content}</a>
+        <Link href={href} className={LAYOUT_CLASSES}>
+          {content}
         </Link>
       </li>
     );
