@@ -1,11 +1,9 @@
 import escape from "escape-html";
-import { u } from "unist-builder";
 import fetch from "node-fetch";
 import { visit } from "unist-util-visit";
 import { map } from "unist-util-map";
 import { Image } from "mdast";
 import { Node } from "unist";
-import { Plugin } from "unified";
 
 const FLICKR_PROTOCOL = "flickr://";
 
@@ -75,7 +73,7 @@ async function getPhoto(photoId: string) {
   return result.data.photo;
 }
 
-export const plugin: Plugin<[{ sizes?: string }]> = ({ sizes } = {}) => {
+export const plugin = ({ sizes }: { sizes?: string } = {}) => {
   return async (tree: Node) => {
     const flickrImageNodes: Array<Image> = [];
     visit(tree, "image", (node: Image) => {
@@ -94,23 +92,59 @@ export const plugin: Plugin<[{ sizes?: string }]> = ({ sizes } = {}) => {
       },
       {}
     );
-    return map(tree, (node: Node) => {
+    return map(tree, (node) => {
       if (isImageNode(node) && isFlickrPhoto(node)) {
         const imageId = flickrPhotoIdForNode(node);
         const response = responsesById[imageId]!;
-        const srcAttr = `src="${response.mainSource.url}"`;
-        const srcsetAttr = `srcset="${generateSrcSet(response.sources)}"`;
-        const altAttr = `alt="${escape(node.alt || response.title)}"`;
-        const sizesAttr = sizes ? `sizes="${sizes}"` : "";
-        const imgHtml = `<img ${srcAttr} ${srcsetAttr} ${altAttr} ${sizesAttr} />`;
-        if (node.title) {
-          return u(
-            "html",
-            `<figure>${imgHtml}<figcaption>${node.title}</figcaption></figure>`
-          );
-        } else {
-          return u("html", imgHtml);
-        }
+        return {
+          type: "mdxJsxTextElement",
+          name: "figure",
+          attributes: [],
+          children: [
+            {
+              type: "mdxJsxTextElement",
+              name: "img",
+              attributes: [
+                {
+                  type: "mdxJsxAttribute",
+                  name: "src",
+                  value: response.mainSource.url,
+                },
+                {
+                  type: "mdxJsxAttribute",
+                  name: "srcSet",
+                  value: generateSrcSet(response.sources),
+                },
+                {
+                  type: "mdxJsxAttribute",
+                  name: "alt",
+                  value: escape(node.alt || response.title),
+                },
+                {
+                  type: "mdxJsxAttribute",
+                  name: "sizes",
+                  value: sizes,
+                },
+              ],
+              children: [],
+            },
+            ...(node.title
+              ? [
+                  {
+                    type: "mdxJsxTextElement",
+                    name: "figcaption",
+                    attributes: [],
+                    children: [
+                      {
+                        type: "text",
+                        value: node.title,
+                      },
+                    ],
+                  },
+                ]
+              : []),
+          ],
+        };
       }
       return node;
     });
