@@ -43,7 +43,7 @@ export default {
       watched: 17,
     },
     videoGames: {
-      started: 13,
+      started: 15,
       completed: 12,
       gaveUp: 0,
     },
