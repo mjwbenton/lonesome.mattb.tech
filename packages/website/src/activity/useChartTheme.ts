@@ -4,7 +4,6 @@ import { useTheme } from "next-themes";
 export default function useChartTheme() {
   const { theme } = useTheme();
   const isDark = theme === "dark";
-  console.log("isDark", isDark);
 
   const fontFamily = Object.values(themeValues.fontFamily["mono"])
     .map((font) => `'${font}'`)
