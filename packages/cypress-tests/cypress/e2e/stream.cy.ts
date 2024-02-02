@@ -9,6 +9,7 @@ describe("Stream", () => {
   });
 
   it("Loads more on clicking 'Load more'", () => {
+    cy.visit(STREAM_PAGE);
     cy.get(LOAD_MORE).click();
     cy.get(PHOTO).should("have.length", 40);
   });
