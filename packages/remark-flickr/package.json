@@ -13,15 +13,15 @@
     "fix": "../../scripts/fix.sh"
   },
   "devDependencies": {
-    "@types/escape-html": "^1.0.2",
-    "@types/mdast": "^3.0.10",
-    "@types/unist": "^2.0.6",
-    "prettier": "^2.7.1",
-    "typescript": "^4.8.2"
+    "@types/escape-html": "^1.0.4",
+    "@types/mdast": "^3.0.15",
+    "@types/unist": "^2.0.10",
+    "prettier": "^2.8.8",
+    "typescript": "^4.9.5"
   },
   "dependencies": {
     "escape-html": "^1.0.3",
-    "node-fetch": "^3.2.10",
+    "node-fetch": "^3.3.2",
     "unified": "^11.0.4",
     "unist-util-map": "^4.0.0",
     "unist-util-visit": "^5.0.0"
