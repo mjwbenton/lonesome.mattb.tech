@@ -27,8 +27,8 @@ export async function getPageMeta(pagePath: string): Promise<PageMeta> {
   if (!(title && description)) {
     throw new Error(
       `Page missing required field title or description: ${JSON.stringify(
-        data
-      )}`
+        data,
+      )}`,
     );
   }
 

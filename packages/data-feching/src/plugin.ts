@@ -8,7 +8,7 @@ const plugin: Plugin<
   [
     {
       globalDataProviders?: string[];
-    }
+    },
   ]
 > = ({ globalDataProviders = [] } = {}) => {
   return (tree, file) => {
@@ -29,7 +29,7 @@ const plugin: Plugin<
           }),
         },
       },
-      runtimeImport
+      runtimeImport,
     );
 
     const importDataProviderNodes = dataProviders.flatMap((provider, i) => {
@@ -44,7 +44,7 @@ const plugin: Plugin<
             }),
           },
         },
-        importStr
+        importStr,
       );
     });
 
@@ -64,7 +64,7 @@ const plugin: Plugin<
           }),
         },
       },
-      getStaticPropsExport
+      getStaticPropsExport,
     );
 
     (tree as any).children = [

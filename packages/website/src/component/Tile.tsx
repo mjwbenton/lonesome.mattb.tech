@@ -7,7 +7,7 @@ const Tile = (props: Omit<JSX.IntrinsicElements["div"], "className">) => {
 export default Tile;
 
 export const Wall = (
-  props: Omit<JSX.IntrinsicElements["div"], "className">
+  props: Omit<JSX.IntrinsicElements["div"], "className">,
 ) => {
   return <div {...props} className="w-full grid grid-cols-2 gap-4" />;
 };

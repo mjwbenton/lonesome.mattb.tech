@@ -119,7 +119,7 @@ export default function ActivityAccumulationChart({
 }
 
 function accumulateDays(
-  data: readonly { readonly date: string; readonly km: number }[]
+  data: readonly { readonly date: string; readonly km: number }[],
 ) {
   return data.reduce<{ dayOfYear: number; km: number }[]>((acc, cur) => {
     const km = acc.length > 0 ? acc[acc.length - 1].km + cur.km : cur.km;

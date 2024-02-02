@@ -7,7 +7,7 @@ const PageDataContext = React.createContext<any>({});
 export const DataFetchingProvider = ({ children, pageProps }) => {
   const client = useMemo(
     () => getClient(pageProps.apolloCache),
-    [pageProps.apolloCache]
+    [pageProps.apolloCache],
   );
   return (
     <ApolloProvider client={client}>

@@ -24,7 +24,7 @@ export default function ActivityRecentData({
             {i > 0 &&
             isBefore(
               parseISO(day.date),
-              subDays(parseISO(days[i - 1].date), 1)
+              subDays(parseISO(days[i - 1].date), 1),
             ) ? (
               <StripeElement key={`${day.date}-missing`}>
                 <span>

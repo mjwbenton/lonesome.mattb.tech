@@ -18,7 +18,7 @@ const RecentlyWatched: React.FunctionComponent = () => {
           <Movie movie={item} key={item.id} />
         ) : item?.__typename === "TvSeries" ? (
           <TvSeries tvSeries={item} key={item.id} />
-        ) : null
+        ) : null,
       )}
       {hasNextPage ? (
         <Button disabled={loading} onClick={loadNextPage}>

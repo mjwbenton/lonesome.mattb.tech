@@ -108,7 +108,7 @@ export const TvSeries: React.FunctionComponent<{
               <Date>{season.addedAt}</Date>{" "}
               {!isSameDay(
                 parseISO(season.addedAt),
-                parseISO(season.movedAt)
+                parseISO(season.movedAt),
               ) ? (
                 <>
                   — <Date>{season.movedAt}</Date>{" "}

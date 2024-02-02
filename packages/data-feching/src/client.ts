@@ -22,16 +22,16 @@ const LINK = createPersistedQueryLink({ sha256 }).concat(
     credentials: "omit",
     fetch,
     useGETForQueries: true,
-  })
+  }),
 );
 
 type SortFunction = (
-  readField: ReadFieldFunction
+  readField: ReadFieldFunction,
 ) => (a: Reference, b: Reference) => number;
 
 function concatPagination(
   keyArgs: false | string[] = false,
-  sort?: SortFunction
+  sort?: SortFunction,
 ): FieldPolicy {
   return {
     keyArgs,
@@ -40,10 +40,10 @@ function concatPagination(
         return incoming;
       }
       const incomingIds = new Set<string>(
-        incoming.items.map(({ __ref }) => __ref)
+        incoming.items.map(({ __ref }) => __ref),
       );
       const existingItems = existing.items.filter(
-        ({ __ref }) => !incomingIds.has(__ref)
+        ({ __ref }) => !incomingIds.has(__ref),
       );
       const items: Array<Reference> = [...existingItems, ...incoming.items];
       if (sort) {
@@ -61,7 +61,7 @@ function concatPagination(
 const movedAtSort: SortFunction = (readField) => (a, b) =>
   compareDesc(
     parseISO(readField("movedAt", a) ?? ""),
-    parseISO(readField("movedAt", b) ?? "")
+    parseISO(readField("movedAt", b) ?? ""),
   );
 
 function cacheByAlias(): FieldPolicy {
@@ -108,7 +108,7 @@ function createClient() {
 }
 
 export function getClient(
-  pageCache?: NormalizedCacheObject
+  pageCache?: NormalizedCacheObject,
 ): ApolloClient<NormalizedCacheObject> {
   const client = typeof window === "undefined" ? createClient() : CLIENT_SIDE;
   if (pageCache) {
@@ -117,7 +117,7 @@ export function getClient(
         arrayMerge: (target, source) => {
           return source;
         },
-      })
+      }),
     );
   }
   return client;

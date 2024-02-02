@@ -82,14 +82,14 @@ export const plugin = ({ sizes }: { sizes?: string } = {}) => {
     });
     const imageIds = flickrImageNodes.map(flickrPhotoIdForNode);
     const flickrResponses = await Promise.all(
-      imageIds.map((imageId) => getPhoto(imageId))
+      imageIds.map((imageId) => getPhoto(imageId)),
     );
     const responsesById = flickrResponses.reduce<{ [imageId: string]: Photo }>(
       (acc, cur) => {
         acc[cur.id] = cur;
         return acc;
       },
-      {}
+      {},
     );
     return visit(tree, "paragraph", (node: Paragraph) => {
       if (

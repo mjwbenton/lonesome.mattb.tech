@@ -28,7 +28,7 @@ const QUERY = gql`
 
 const repositoriesDataProvider: DataProvider<never, void> = async (
   _: never,
-  { client }
+  { client },
 ) => {
   await client.query({
     query: QUERY,

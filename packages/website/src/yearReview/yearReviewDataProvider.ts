@@ -181,20 +181,20 @@ const yearReviewDataProvider: DataProvider<
   });
   if (result.data.tvSeries.total > TV_SERIES_LIMIT) {
     throw new Error(
-      `Total TV series (${result.data.tvSeries.total}) exceeds fetch limit (${TV_SERIES_LIMIT})`
+      `Total TV series (${result.data.tvSeries.total}) exceeds fetch limit (${TV_SERIES_LIMIT})`,
     );
   }
   const tvSeriesWithoutSeasons = result.data.tvSeries.items.filter(
-    ({ seasons }) => seasons.length === 0
+    ({ seasons }) => seasons.length === 0,
   );
   const tvSeriesFinished = tvSeriesWithoutSeasons.filter(
-    ({ shelf }) => shelf.id === "Finished"
+    ({ shelf }) => shelf.id === "Finished",
   ).length;
   const tvSeriesGaveUp = tvSeriesWithoutSeasons.filter(
-    ({ shelf }) => shelf.id === "GaveUp"
+    ({ shelf }) => shelf.id === "GaveUp",
   ).length;
   const tvSeriesStarted = tvSeriesWithoutSeasons.filter(
-    ({ shelf }) => shelf.id === "Watching"
+    ({ shelf }) => shelf.id === "Watching",
   ).length;
   const value = {
     year: filterYear,
@@ -223,7 +223,7 @@ const yearReviewDataProvider: DataProvider<
     },
     activity: {
       walkingRunningDistance: Math.floor(
-        result.data.activity.walkingRunningDistance.km
+        result.data.activity.walkingRunningDistance.km,
       ),
       swimmingDistance: Math.floor(result.data.activity.swimmingDistance.km),
     },

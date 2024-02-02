@@ -9,7 +9,7 @@
     "aws-cdk": "^2.126.0",
     "aws-cdk-lib": "^2.126.0",
     "constructs": "^10.3.0",
-    "prettier": "^2.8.8",
+    "prettier": "^3.2.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },

@@ -51,7 +51,7 @@ const QUERY = gql`
 
 const activityDataProvider: DataProvider<never, ActivityQuery> = async (
   _: never,
-  { client }
+  { client },
 ) => {
   const result = await client.query<ActivityQuery>({
     query: QUERY,

@@ -15,7 +15,7 @@ const QUERY = gql`
 
 const likedTracksDataProvider: DataProvider<never, LikedTracksQuery> = async (
   _: never,
-  { client }
+  { client },
 ) => {
   const result = await client.query<LikedTracksQuery>({
     query: QUERY,

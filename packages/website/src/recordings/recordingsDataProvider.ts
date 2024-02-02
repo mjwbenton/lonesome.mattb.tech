@@ -14,7 +14,7 @@ const QUERY = gql`
 
 const recordingsDataProvider: DataProvider<never, RecordingsQuery> = async (
   _: never,
-  { client }
+  { client },
 ) => {
   const result = await client.query<RecordingsQuery>({
     query: QUERY,

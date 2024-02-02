@@ -1,7 +1,7 @@
 import React from "react";
 
 const ContentBlock = (
-  props: Omit<JSX.IntrinsicElements["div"], "className">
+  props: Omit<JSX.IntrinsicElements["div"], "className">,
 ) => {
   return (
     <div

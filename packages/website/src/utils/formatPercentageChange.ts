@@ -1,6 +1,6 @@
 export default function formatPercentageChange(
   newValue: number,
-  oldValue: number
+  oldValue: number,
 ): string {
   if (oldValue === 0) {
     return "↑ infinite%";

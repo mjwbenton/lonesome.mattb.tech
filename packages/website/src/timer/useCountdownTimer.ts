@@ -46,13 +46,13 @@ export default function useCountdownTimer(duration: number): {
         setRemaining(remaining - 1);
       }
     },
-    running ? SECOND : null
+    running ? SECOND : null,
   );
   const state: State = finished
     ? State.FINISHED
     : running
-    ? State.RUNNING
-    : State.READY;
+      ? State.RUNNING
+      : State.READY;
   return {
     ...secondsToMinutesAndSeconds(remaining),
     state,

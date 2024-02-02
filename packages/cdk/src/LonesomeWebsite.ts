@@ -28,7 +28,7 @@ export class LonesomeWebsite extends cdk.Stack {
       {
         hostedZoneId: HOSTED_ZONE_ID,
         zoneName: ZONE_NAME,
-      }
+      },
     );
 
     const pagesBucket = new s3.Bucket(this, "PagesBucket", {
@@ -77,7 +77,7 @@ export class LonesomeWebsite extends cdk.Stack {
       destinationBucket: pagesBucket,
       cacheControl: [
         s3deploy.CacheControl.fromString(
-          "max-age=0,no-cache,no-store,must-revalidate"
+          "max-age=0,no-cache,no-store,must-revalidate",
         ),
       ],
       distribution,
@@ -102,7 +102,7 @@ export class LonesomeWebsite extends cdk.Stack {
       recordName: DOMAIN_NAME,
       ttl: cdk.Duration.minutes(5),
       target: route53.RecordTarget.fromAlias(
-        new route53targets.CloudFrontTarget(distribution)
+        new route53targets.CloudFrontTarget(distribution),
       ),
     });
   }

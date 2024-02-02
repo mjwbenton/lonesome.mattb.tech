@@ -42,7 +42,7 @@ const QUERY = gql`
 
 const codeContributionsDataProvider: DataProvider<never, void> = async (
   _: never,
-  { client }
+  { client },
 ) => {
   await client.query<CodeContributionsQuery>({
     query: QUERY,
@@ -65,7 +65,7 @@ export function useCodeContributions() {
         repositories: data?.thisYear.repositoriesCommittedTo,
         percentageChange: formatPercentageChange(
           data?.thisYear.commits ?? 0,
-          data?.lastYear.commits ?? 0
+          data?.lastYear.commits ?? 0,
         ),
       },
       trailing30: {
@@ -73,7 +73,7 @@ export function useCodeContributions() {
         repositories: data?.trailing30Days.repositoriesCommittedTo,
         percentageChange: formatPercentageChange(
           data?.trailing30Days.commits ?? 0,
-          data?.lastYearTrailing30Days.commits ?? 0
+          data?.lastYearTrailing30Days.commits ?? 0,
         ),
       },
     },

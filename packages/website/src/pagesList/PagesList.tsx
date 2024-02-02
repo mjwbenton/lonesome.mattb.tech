@@ -26,7 +26,7 @@ export default function PagesList({
         {pagesList.map(
           (
             { slug, description, title, createdOn, updatedOn }: Page,
-            index: number
+            index: number,
           ) => (
             <StripeElement
               key={slug}
@@ -38,7 +38,7 @@ export default function PagesList({
                 <PageDate createdOn={createdOn} updatedOn={updatedOn} />
               </div>
             </StripeElement>
-          )
+          ),
         )}
       </StripedList>
     </EmbeddedWrapper>

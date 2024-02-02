@@ -32,6 +32,6 @@ export default nextPluginPreval()(
       eslint: {
         dirs: ["pages", "src"],
       },
-    })
-  )
+    }),
+  ),
 );

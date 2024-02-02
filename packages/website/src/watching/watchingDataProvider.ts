@@ -68,7 +68,7 @@ const QUERY = gql`
 
 const watchingDataProvider: DataProvider<never, WatchingQuery> = async (
   _: never,
-  { client }
+  { client },
 ) => {
   const result = await client.query<WatchingQuery>({
     query: QUERY,

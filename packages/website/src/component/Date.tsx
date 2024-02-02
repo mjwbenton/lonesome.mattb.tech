@@ -14,7 +14,7 @@ export default function Date({
     <>
       {format(
         parseISO(children),
-        showTime ? FORMAT_WITH_TIME : FORMAT_WITHOUT_TIME
+        showTime ? FORMAT_WITH_TIME : FORMAT_WITHOUT_TIME,
       )}
     </>
   );

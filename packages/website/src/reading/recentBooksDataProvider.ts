@@ -40,7 +40,7 @@ const QUERY = gql`
 
 const recentBooksDataProvider: DataProvider<never, RecentBooksQuery> = async (
   _: never,
-  { client }
+  { client },
 ) => {
   const result = await client.query<RecentBooksQuery>({
     query: QUERY,

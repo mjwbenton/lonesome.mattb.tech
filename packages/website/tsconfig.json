@@ -5,8 +5,8 @@
     "noEmit": true,
     "baseUrl": "./src",
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
   },
   "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
 }
