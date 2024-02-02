@@ -4,7 +4,7 @@
   "description": "Personal website where I can share things without using social media.",
   "private": true,
   "scripts": {
-    "build": "npm run codegen && rm -Rf out .next && next build && next export",
+    "build": "npm run codegen && rm -Rf out .next && next build",
     "analyze": "ANALYZE=true next build",
     "dev": "next dev",
     "start": "next start -p 3001",

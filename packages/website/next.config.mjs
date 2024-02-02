@@ -26,6 +26,7 @@ const withMDX = mdx({
 export default nextPluginPreval()(
   bundleAnalyzer({ enabled: process.env.ANALYZE === "true" })(
     withMDX({
+      output: "export",
       pageExtensions: ["tsx", "mdx"],
       reactStrictMode: true,
       eslint: {
