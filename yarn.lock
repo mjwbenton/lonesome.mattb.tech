@@ -3348,7 +3348,7 @@ __metadata:
   dependencies:
     cypress: ^6.9.1
     prettier: ^2.8.8
-    typescript: ^4.9.5
+    typescript: ^5.3.3
   languageName: unknown
   linkType: soft
 
@@ -3363,7 +3363,7 @@ __metadata:
     deepmerge: ^4.3.1
     isomorphic-fetch: ^3.0.0
     prettier: ^2.8.8
-    typescript: ^4.9.5
+    typescript: ^5.3.3
     unified: ^11.0.4
     unist-builder: ^4.0.0
   languageName: unknown
@@ -3377,8 +3377,8 @@ __metadata:
     aws-cdk-lib: ^2.126.0
     constructs: ^10.3.0
     prettier: ^2.8.8
-    ts-node: ^9.1.1
-    typescript: ^4.9.5
+    ts-node: ^10.9.2
+    typescript: ^5.3.3
   languageName: unknown
   linkType: soft
 
@@ -3388,7 +3388,7 @@ __metadata:
   dependencies:
     "@types/aws-lambda": ^8.10.133
     prettier: ^2.8.8
-    typescript: ^4.9.5
+    typescript: ^5.3.3
   languageName: unknown
   linkType: soft
 
@@ -3464,7 +3464,7 @@ __metadata:
     remark-parse: ^11.0.0
     remark-rehype: ^11.1.0
     tailwindcss: ^3.4.1
-    typescript: ^4.9.5
+    typescript: ^5.3.3
     unified: ^11.0.4
     unist-builder: ^4.0.0
     unist-util-visit: ^5.0.0
@@ -3485,7 +3485,7 @@ __metadata:
     escape-html: ^1.0.3
     node-fetch: ^3.3.2
     prettier: ^2.8.8
-    typescript: ^4.9.5
+    typescript: ^5.3.3
     unified: ^11.0.4
     unist-util-map: ^4.0.0
     unist-util-visit: ^5.0.0
@@ -17232,7 +17232,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map-support@npm:^0.5.16, source-map-support@npm:^0.5.17, source-map-support@npm:~0.5.12, source-map-support@npm:~0.5.20":
+"source-map-support@npm:^0.5.16, source-map-support@npm:~0.5.12, source-map-support@npm:~0.5.20":
   version: 0.5.21
   resolution: "source-map-support@npm:0.5.21"
   dependencies:
@@ -18283,7 +18283,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-node@npm:^10.9.1":
+"ts-node@npm:^10.9.1, ts-node@npm:^10.9.2":
   version: 10.9.2
   resolution: "ts-node@npm:10.9.2"
   dependencies:
@@ -18318,27 +18318,6 @@ __metadata:
     ts-node-transpile-only: dist/bin-transpile.js
     ts-script: dist/bin-script-deprecated.js
   checksum: fde256c9073969e234526e2cfead42591b9a2aec5222bac154b0de2fa9e4ceb30efcd717ee8bc785a56f3a119bdd5aa27b333d9dbec94ed254bd26f8944c67ac
-  languageName: node
-  linkType: hard
-
-"ts-node@npm:^9.1.1":
-  version: 9.1.1
-  resolution: "ts-node@npm:9.1.1"
-  dependencies:
-    arg: ^4.1.0
-    create-require: ^1.1.0
-    diff: ^4.0.1
-    make-error: ^1.1.1
-    source-map-support: ^0.5.17
-    yn: 3.1.1
-  peerDependencies:
-    typescript: ">=2.7"
-  bin:
-    ts-node: dist/bin.js
-    ts-node-script: dist/bin-script.js
-    ts-node-transpile-only: dist/bin-transpile.js
-    ts-script: dist/bin-script-deprecated.js
-  checksum: 356e2647b8b1e6ab00380c0537fa569b63bd9b6f006cc40fd650f81fae1817bd8fecc075300036950d8f45c1d85b95be33cd1e48a1a424a7d86c3dbb42bf60e5
   languageName: node
   linkType: hard
 
@@ -18527,23 +18506,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.9.5":
-  version: 4.9.5
-  resolution: "typescript@npm:4.9.5"
+"typescript@npm:^5.3.3":
+  version: 5.3.3
+  resolution: "typescript@npm:5.3.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: ee000bc26848147ad423b581bd250075662a354d84f0e06eb76d3b892328d8d4440b7487b5a83e851b12b255f55d71835b008a66cbf8f255a11e4400159237db
+  checksum: 2007ccb6e51bbbf6fde0a78099efe04dc1c3dfbdff04ca3b6a8bc717991862b39fd6126c0c3ebf2d2d98ac5e960bcaa873826bb2bb241f14277034148f41f6a2
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.9.5#~builtin<compat/typescript>":
-  version: 4.9.5
-  resolution: "typescript@patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=bda367"
+"typescript@patch:typescript@^5.3.3#~builtin<compat/typescript>":
+  version: 5.3.3
+  resolution: "typescript@patch:typescript@npm%3A5.3.3#~builtin<compat/typescript>::version=5.3.3&hash=bda367"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 2eee5c37cad4390385db5db5a8e81470e42e8f1401b0358d7390095d6f681b410f2c4a0c496c6ff9ebd775423c7785cdace7bcdad76c7bee283df3d9718c0f20
+  checksum: f61375590b3162599f0f0d5b8737877ac0a7bc52761dbb585d67e7b8753a3a4c42d9a554c4cc929f591ffcf3a2b0602f65ae3ce74714fd5652623a816862b610
   languageName: node
   linkType: hard
 
