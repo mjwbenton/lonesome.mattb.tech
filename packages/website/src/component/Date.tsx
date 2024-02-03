@@ -1,4 +1,5 @@
-import { parseISO, format } from "date-fns";
+import { format } from "date-fns/format";
+import { parseISO } from "date-fns/parseISO";
 
 const FORMAT_WITHOUT_TIME = "yyyy-MM-dd";
 const FORMAT_WITH_TIME = "yyyy-MM-dd HH:mm";

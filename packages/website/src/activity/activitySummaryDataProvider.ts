@@ -1,12 +1,12 @@
 import gql from "graphql-tag";
 import { DataProvider } from "@mattb.tech/data-fetching";
 import { useQuery } from "@apollo/client";
-import formatISO from "date-fns/formatISO";
-import startOfYear from "date-fns/startOfYear";
-import endOfYear from "date-fns/endOfYear";
+import { formatISO } from "date-fns/formatISO";
+import { startOfYear } from "date-fns/startOfYear";
+import { endOfYear } from "date-fns/endOfYear";
+import { subDays } from "date-fns/subDays";
+import { subYears } from "date-fns/subYears";
 import { ActivityQuery } from "generated/graphql";
-import subDays from "date-fns/subDays";
-import { subYears } from "date-fns";
 
 const baseDate = subDays(new Date(), 1);
 

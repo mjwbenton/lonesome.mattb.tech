@@ -3,8 +3,7 @@ import { getAllPageMeta } from "pageMeta";
 import { Page } from "./PagesList";
 import sortDate from "./sortDate";
 import toDisplayPage from "./toDisplayPage";
-import getYear from "date-fns/getYear";
-import hasDate from "./hasDate";
+import { getYear } from "date-fns/getYear";
 import appendGroupToTitle from "./appendGroupToTitle";
 
 const pagesInYearDataProvider: DataProvider<

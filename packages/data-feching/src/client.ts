@@ -11,7 +11,8 @@ import { NormalizedCacheObject } from "@apollo/client/cache/inmemory/types.js";
 import { createPersistedQueryLink } from "@apollo/client/link/persisted-queries/index.js";
 import { sha256 } from "crypto-hash";
 import deepmerge from "deepmerge";
-import { parseISO, compareDesc } from "date-fns";
+import { compareDesc } from "date-fns/compareDesc";
+import { parseISO } from "date-fns/parseISO"
 import { ReadFieldFunction } from "@apollo/client/cache/core/types/common.js";
 
 const ENDPOINT = "https://api.mattb.tech/";

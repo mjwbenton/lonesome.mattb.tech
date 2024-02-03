@@ -7,8 +7,8 @@ import {
   VictoryTooltip,
   VictoryVoronoiContainer,
 } from "victory";
-import getDayOfYear from "date-fns/getDayOfYear";
-import parseISO from "date-fns/parseISO";
+import { getDayOfYear } from "date-fns/getDayOfYear";
+import { parseISO } from "date-fns/parseISO";
 import useChartTheme from "./useChartTheme";
 
 export type AccumulationChartData = {

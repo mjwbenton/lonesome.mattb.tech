@@ -42,7 +42,7 @@
     "@types/isomorphic-fetch": "0.0.39",
     "@types/react-lazyload": "^3.2.3",
     "autoprefixer": "^10.4.17",
-    "date-fns": "^2.30.0",
+    "date-fns": "^3.3.1",
     "dotenv": "^16.4.1",
     "globby": "^11.1.0",
     "graphql": "^16.8.1",

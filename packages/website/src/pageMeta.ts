@@ -3,7 +3,7 @@ import fs from "fs";
 import { promisify } from "util";
 import matter from "gray-matter";
 import globby from "globby";
-import { parseISO } from "date-fns";
+import { parseISO } from "date-fns/parseISO";
 
 const readFile = promisify(fs.readFile);
 

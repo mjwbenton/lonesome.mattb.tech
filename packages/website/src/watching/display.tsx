@@ -5,7 +5,8 @@ import TwoRowText from "../component/TwoRowText";
 import Date from "../component/Date";
 import { Star, Clock } from "react-feather";
 import { MovieFragment, TvSeriesFragment } from "../generated/graphql";
-import { parseISO, isSameDay } from "date-fns";
+import { isSameDay } from "date-fns/isSameDay";
+import { parseISO } from "date-fns/parseISO";
 
 type WatchingItem = Pick<
   MovieFragment,

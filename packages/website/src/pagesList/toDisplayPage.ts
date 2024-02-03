@@ -1,4 +1,4 @@
-import { formatISO } from "date-fns";
+import { formatISO } from "date-fns/formatISO";
 import { PageMeta } from "pageMeta";
 
 export default function toDisplayPage(p: PageMeta) {

@@ -1,4 +1,4 @@
-import { compareDesc } from "date-fns";
+import { compareDesc } from "date-fns/compareDesc";
 import { PageMeta } from "pageMeta";
 
 const NEWEST_DATE = new Date();

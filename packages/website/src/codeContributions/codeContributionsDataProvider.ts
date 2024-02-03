@@ -2,10 +2,10 @@ import gql from "graphql-tag";
 import { DataProvider } from "@mattb.tech/data-fetching";
 import { CodeContributionsQuery } from "generated/graphql";
 import { useQuery } from "@apollo/client";
-import formatISO from "date-fns/formatISO";
-import startOfYear from "date-fns/startOfYear";
-import subDays from "date-fns/subDays";
-import subYears from "date-fns/subYears";
+import { formatISO } from "date-fns/formatISO";
+import { startOfYear } from "date-fns/startOfYear";
+import { subDays } from "date-fns/subDays";
+import { subYears } from "date-fns/subYears";
 import formatPercentageChange from "utils/formatPercentageChange";
 
 const QUERY = gql`

@@ -1,8 +1,8 @@
 import Icon from "component/Icon";
 import StripedList, { StripeElement } from "component/StripedList";
-import isBefore from "date-fns/isBefore";
-import parseISO from "date-fns/parseISO";
-import subDays from "date-fns/subDays";
+import { isBefore } from "date-fns/isBefore";
+import { parseISO } from "date-fns/parseISO";
+import { subDays } from "date-fns/subDays";
 import { RiAlertLine } from "react-icons/ri";
 import { formatKm } from "./ActivityTile";
 import { ActivityType, ACTIVITY_TYPE_CONFIG } from "./activityTypes";
