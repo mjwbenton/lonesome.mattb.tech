@@ -7,6 +7,6 @@
     "lib": ["es5", "dom"],
     "types": ["cypress", "node"],
     "isolatedModules": false,
-    "sourceMap": false
+    "sourceMap": false,
   },
 }
