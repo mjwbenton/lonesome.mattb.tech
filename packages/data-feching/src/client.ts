@@ -12,7 +12,7 @@ import { createPersistedQueryLink } from "@apollo/client/link/persisted-queries/
 import { sha256 } from "crypto-hash";
 import deepmerge from "deepmerge";
 import { compareDesc } from "date-fns/compareDesc";
-import { parseISO } from "date-fns/parseISO"
+import { parseISO } from "date-fns/parseISO";
 import { ReadFieldFunction } from "@apollo/client/cache/core/types/common.js";
 
 const ENDPOINT = "https://api.mattb.tech/";
