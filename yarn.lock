@@ -114,6 +114,39 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ariakit/core@npm:0.4.1":
+  version: 0.4.1
+  resolution: "@ariakit/core@npm:0.4.1"
+  checksum: 7e0be49464c6562d3470335915f083a896527d01841ec9022c05be38a68cda27622976a5bd033447313561532f526317223e273712d3e214c933515a0ea908c3
+  languageName: node
+  linkType: hard
+
+"@ariakit/react-core@npm:0.4.1":
+  version: 0.4.1
+  resolution: "@ariakit/react-core@npm:0.4.1"
+  dependencies:
+    "@ariakit/core": 0.4.1
+    "@floating-ui/dom": ^1.0.0
+    use-sync-external-store: ^1.2.0
+  peerDependencies:
+    react: ^17.0.0 || ^18.0.0
+    react-dom: ^17.0.0 || ^18.0.0
+  checksum: 267962e9e25ec9fdb5930eca734cb3a264b10c119b00d14037b315a43abfc528dba0a180fe86002381fc1b8ff0b3d9104d9f843924be827b83997f8cff80e2a6
+  languageName: node
+  linkType: hard
+
+"@ariakit/react@npm:^0.4.1":
+  version: 0.4.1
+  resolution: "@ariakit/react@npm:0.4.1"
+  dependencies:
+    "@ariakit/react-core": 0.4.1
+  peerDependencies:
+    react: ^17.0.0 || ^18.0.0
+    react-dom: ^17.0.0 || ^18.0.0
+  checksum: 92a72680ac66e119f917cde78a687de3b7f7cdc56827231e3ecf463bb33e5d4f1482eeb79315b82ac28b71ea5bc1b34aef878d098edf909182b4351b9f774eea
+  languageName: node
+  linkType: hard
+
 "@aws-cdk/asset-awscli-v1@npm:^2.2.202":
   version: 2.2.202
   resolution: "@aws-cdk/asset-awscli-v1@npm:2.2.202"
@@ -2384,6 +2417,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@floating-ui/core@npm:^1.6.0":
+  version: 1.6.0
+  resolution: "@floating-ui/core@npm:1.6.0"
+  dependencies:
+    "@floating-ui/utils": ^0.2.1
+  checksum: 2e25c53b0c124c5c9577972f8ae21d081f2f7895e6695836a53074463e8c65b47722744d6d2b5a993164936da006a268bcfe87fe68fd24dc235b1cb86bed3127
+  languageName: node
+  linkType: hard
+
+"@floating-ui/dom@npm:^1.0.0":
+  version: 1.6.1
+  resolution: "@floating-ui/dom@npm:1.6.1"
+  dependencies:
+    "@floating-ui/core": ^1.6.0
+    "@floating-ui/utils": ^0.2.1
+  checksum: 5565e4dee612bab62950913c311d75d3f773bd1d9dc437f7e33b46340f32ec565733c995c6185381adaf64e627df3c79901d0a9d555f58c02509d0764bceb57d
+  languageName: node
+  linkType: hard
+
+"@floating-ui/utils@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "@floating-ui/utils@npm:0.2.1"
+  checksum: 9ed4380653c7c217cd6f66ae51f20fdce433730dbc77f95b5abfb5a808f5fdb029c6ae249b4e0490a816f2453aa6e586d9a873cd157fdba4690f65628efc6e06
+  languageName: node
+  linkType: hard
+
 "@gar/promisify@npm:^1.1.3":
   version: 1.1.3
   resolution: "@gar/promisify@npm:1.1.3"
@@ -3342,6 +3401,7 @@ __metadata:
   resolution: "@mattb.tech/lonesome-website@workspace:packages/website"
   dependencies:
     "@apollo/client": ^3.9.2
+    "@ariakit/react": ^0.4.1
     "@graphql-codegen/cli": 5.0.0
     "@graphql-codegen/typescript": 4.0.1
     "@graphql-codegen/typescript-operations": 4.0.1
@@ -3385,7 +3445,6 @@ __metadata:
     react-feather: ^2.0.10
     react-icons: ^5.0.1
     react-lazyload: ^3.2.0
-    reakit: ^1.3.11
     rehype-react: ^8.0.0
     rehype-stringify: ^10.0.0
     remark: ^15.0.1
@@ -3661,13 +3720,6 @@ __metadata:
   version: 1.0.0-next.24
   resolution: "@polka/url@npm:1.0.0-next.24"
   checksum: 00baec4458ac86ca27edf7ce807ccfad97cd1d4b67bdedaf3401a9e755757588f3331e891290d1deea52d88df2bf2387caf8d94a6835b614d5b37b638a688273
-  languageName: node
-  linkType: hard
-
-"@popperjs/core@npm:^2.5.4":
-  version: 2.11.5
-  resolution: "@popperjs/core@npm:2.11.5"
-  checksum: fd7f9dca3fb716d7426332b6ee283f88d2724c0ab342fb678865a640bad403dfb9eeebd8204a406986162f7e2b33394f104320008b74d0e9066d7322f70ea35d
   languageName: node
   linkType: hard
 
@@ -5674,13 +5726,6 @@ __metadata:
     type-is: ~1.6.18
     unpipe: 1.0.0
   checksum: 12fffdeac82fe20dddcab7074215d5156e7d02a69ae90cbe9fee1ca3efa2f28ef52097cbea76685ee0a1509c71d85abd0056a08e612c09077cad6277a644cf88
-  languageName: node
-  linkType: hard
-
-"body-scroll-lock@npm:^3.1.5":
-  version: 3.1.5
-  resolution: "body-scroll-lock@npm:3.1.5"
-  checksum: 52c25b81d6e7a87cfbdd7870363c3e20a439dbc76535b735916e2df907abbce95c0da0d2c7a2cfe88f49775d53bbc4bd09445ffda2d61b999efa3f0b1dedfc5e
   languageName: node
   linkType: hard
 
@@ -14952,55 +14997,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"reakit-system@npm:^0.15.2":
-  version: 0.15.2
-  resolution: "reakit-system@npm:0.15.2"
-  dependencies:
-    reakit-utils: ^0.15.2
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0
-    react-dom: ^16.8.0 || ^17.0.0
-  checksum: 5466ed0414fb2990070c212e1704c0ee1628d49768c24d992e1db914f2a14120a4df24558cbc52f994b2d37e5a986ada89727a7576fa0143231235a801ad6641
-  languageName: node
-  linkType: hard
-
-"reakit-utils@npm:^0.15.2":
-  version: 0.15.2
-  resolution: "reakit-utils@npm:0.15.2"
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0
-    react-dom: ^16.8.0 || ^17.0.0
-  checksum: da978e7d0ce9e4db2cc3e5ee158f4a2b7d02320533a42712977bc195c042170a349745206d9d69c2048909b62c4d4a8a7a3514ca6d719a34ad258e390413b9c6
-  languageName: node
-  linkType: hard
-
-"reakit-warning@npm:^0.6.2":
-  version: 0.6.2
-  resolution: "reakit-warning@npm:0.6.2"
-  dependencies:
-    reakit-utils: ^0.15.2
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0
-  checksum: bc2d21a4619876b3fda6074493e79fc7aca3fdf7e87dc6b59d63f7ed911e44151f268c05aa78fdcce58bf6479ed9529a6f6f448f79f9735cb567b91470c363b4
-  languageName: node
-  linkType: hard
-
-"reakit@npm:^1.3.11":
-  version: 1.3.11
-  resolution: "reakit@npm:1.3.11"
-  dependencies:
-    "@popperjs/core": ^2.5.4
-    body-scroll-lock: ^3.1.5
-    reakit-system: ^0.15.2
-    reakit-utils: ^0.15.2
-    reakit-warning: ^0.6.2
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0
-    react-dom: ^16.8.0 || ^17.0.0
-  checksum: b9fecb0aad1ee7b06d573882cd856aa136e91acb20dd7c4fcccfd8fc8e4c20e31c23ff27e86c31f14312c3643692a539c37b6f92e70e7b21b65496b93942ca6a
-  languageName: node
-  linkType: hard
-
 "reflect.getprototypeof@npm:^1.0.4":
   version: 1.0.4
   resolution: "reflect.getprototypeof@npm:1.0.4"
@@ -17808,6 +17804,15 @@ __metadata:
   peerDependencies:
     react: ">=16.8.0 || ^17"
   checksum: d200165f310979236c7b5b1a4f6b92d0935a383d2be1a515ec00f3812bbd033a64ba7fc08f312608876d40fdae2e57859e70b1f3791f3f5a957af73fd46ae2ab
+  languageName: node
+  linkType: hard
+
+"use-sync-external-store@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "use-sync-external-store@npm:1.2.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 5c639e0f8da3521d605f59ce5be9e094ca772bd44a4ce7322b055a6f58eeed8dda3c94cabd90c7a41fb6fa852210092008afe48f7038792fd47501f33299116a
   languageName: node
   linkType: hard
 

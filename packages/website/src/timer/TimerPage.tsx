@@ -3,7 +3,7 @@ import { Thermometer, Watch } from "react-feather";
 import Timer from "./Timer";
 import useCountdownTimer, { State } from "./useCountdownTimer";
 import EmbeddedWrapper from "../component/EmbeddedWrapper";
-import { Button } from "reakit";
+import { Button } from "@ariakit/react";
 
 function TimerHeader(props: Omit<JSX.IntrinsicElements["th"], "className">) {
   return <th {...props} className="px-2 py-4" />;

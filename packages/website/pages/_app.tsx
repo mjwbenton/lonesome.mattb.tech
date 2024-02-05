@@ -8,7 +8,6 @@ import { DataFetchingProvider } from "@mattb.tech/data-fetching";
 import { ThemeProvider } from "next-themes";
 import ThemeChanger from "global/ThemeChanger";
 import { PageMeta } from "pageMeta";
-import { Provider as ReakitProvider } from "reakit";
 
 export default function MyApp({ Component, pageProps }) {
   const {
@@ -31,20 +30,18 @@ export default function MyApp({ Component, pageProps }) {
         <link rel="preconnect" href="https://live.staticflickr.com" />
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
-      <ReakitProvider>
-        <ThemeProvider attribute="class">
-          <header className="flex relative">
-            <Logo />
-            <ThemeChanger />
-          </header>
-          <Navigation />
-          <main className="prose dark:prose-invert m-4 md:m-8">
-            <DataFetchingProvider pageProps={pageProps}>
-              <Component />
-            </DataFetchingProvider>
-          </main>
-        </ThemeProvider>
-      </ReakitProvider>
+      <ThemeProvider attribute="class">
+        <header className="flex relative">
+          <Logo />
+          <ThemeChanger />
+        </header>
+        <Navigation />
+        <main className="prose dark:prose-invert m-4 md:m-8">
+          <DataFetchingProvider pageProps={pageProps}>
+            <Component />
+          </DataFetchingProvider>
+        </main>
+      </ThemeProvider>
     </>
   );
 }

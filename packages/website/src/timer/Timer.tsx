@@ -1,6 +1,6 @@
 import React from "react";
 import { Play, Gift, Bell } from "react-feather";
-import { Button } from "reakit";
+import { Button } from "@ariakit/react";
 import { State } from "./useCountdownTimer";
 
 const CelebrateIfFinished = ({ state }: { state: State }) => {

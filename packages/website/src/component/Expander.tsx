@@ -1,32 +1,25 @@
 import {
-  useDisclosureState,
   Disclosure,
   DisclosureContent,
-} from "reakit/Disclosure";
+  useDisclosureStore,
+} from "@ariakit/react";
 import { ChevronsDown as DownIcon, ChevronsUp as UpIcon } from "react-feather";
 
 export interface ExpanderProps {
   text: string;
   children: React.ReactNode;
-  defaultVisible?: boolean;
 }
 
-export default function Expander({
-  text,
-  children,
-  defaultVisible = false,
-}: ExpanderProps) {
-  const disclosure = useDisclosureState({ visible: defaultVisible });
-  const Icon = disclosure.visible ? UpIcon : DownIcon;
+export default function Expander({ text, children }: ExpanderProps) {
+  const disclosure = useDisclosureStore();
+  const Icon = disclosure.getState().open ? UpIcon : DownIcon;
   return (
     <>
-      <Disclosure {...disclosure}>
+      <Disclosure store={disclosure}>
         <Icon size={14} className="inline-block" />{" "}
         <span className="underline">{text}</span>
       </Disclosure>
-      <DisclosureContent {...disclosure}>
-        {(props) => disclosure.visible && <div {...props}>{children}</div>}
-      </DisclosureContent>
+      <DisclosureContent store={disclosure}>{children}</DisclosureContent>
     </>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "react-feather";
-import { Button } from "reakit";
+import { Button } from "@ariakit/react";
 
 export default function ThemeChanger() {
   const [mounted, setMounted] = useState(false);
