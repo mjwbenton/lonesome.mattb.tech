@@ -31,8 +31,8 @@ export default {
   2023: {
     year: 2023,
     commitStats: {
-      commits: 484,
-      repositoriesCommittedTo: 21,
+      commits: 483,
+      repositoriesCommittedTo: 20,
     },
     books: {
       started: 17,
