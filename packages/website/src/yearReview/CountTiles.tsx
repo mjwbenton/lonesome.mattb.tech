@@ -10,6 +10,7 @@ import {
   RiGitCommitLine,
   RiDropLine,
   RiWalkLine,
+  RiCamera2Line,
 } from "react-icons/ri";
 import React from "react";
 import Icon from "component/Icon";
@@ -17,6 +18,7 @@ import { PageMeta } from "pageMeta";
 
 export default function CountTiles() {
   const {
+    photos,
     movies,
     books,
     tvSeasons,
@@ -69,6 +71,10 @@ export default function CountTiles() {
         <Icon component={RiGitCommitLine} />
         Committed <strong>{commitStats.commits}</strong> times to{" "}
         <strong>{commitStats.repositoriesCommittedTo}</strong> repositories
+      </Tile>
+      <Tile>
+        <Icon component={RiCamera2Line} />
+        Took <strong>{photos}</strong> photos
       </Tile>
     </>
   );

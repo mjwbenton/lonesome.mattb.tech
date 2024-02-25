@@ -1,6 +1,7 @@
 export default {
   2022: {
     year: 2022,
+    photos: 270,
     commitStats: {
       commits: 350,
       repositoriesCommittedTo: 19,
@@ -30,6 +31,7 @@ export default {
   },
   2023: {
     year: 2023,
+    photos: 567,
     commitStats: {
       commits: 483,
       repositoriesCommittedTo: 20,

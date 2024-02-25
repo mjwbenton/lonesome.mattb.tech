@@ -13,6 +13,9 @@ const QUERY = gql`
     $endDate: Date!
     $tvSeriesLimit: Int!
   ) {
+    photos(first: 0, startDate: $startDateTime, endDate: $endDateTime) {
+      total
+    }
     commitStats(startDate: $startDateTime, endDate: $endDateTime) {
       commits
       repositoriesCommittedTo
@@ -137,6 +140,7 @@ const QUERY = gql`
 `;
 
 export type YearCounts = {
+  photos: number;
   books: {
     started: number;
     finished: number;
@@ -198,6 +202,7 @@ const yearReviewDataProvider: DataProvider<
   ).length;
   const value = {
     year: filterYear,
+    photos: result.data.photos.total,
     commitStats: {
       commits: result.data.commitStats.commits,
       repositoriesCommittedTo: result.data.commitStats.repositoriesCommittedTo,
