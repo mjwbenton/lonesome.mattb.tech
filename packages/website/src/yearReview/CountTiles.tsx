@@ -74,7 +74,7 @@ export default function CountTiles() {
       </Tile>
       <Tile>
         <Icon component={RiCamera2Line} />
-        Took <strong>{photos}</strong> photos
+        Uploaded <strong>{photos}</strong> photos
       </Tile>
     </>
   );
