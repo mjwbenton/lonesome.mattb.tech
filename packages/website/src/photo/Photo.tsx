@@ -19,6 +19,7 @@ const Photo: React.FunctionComponent<
   sizes = DEFAULT_SIZES,
   camera,
   lens,
+  film,
 }) => {
   const img = (
     <img
@@ -42,11 +43,12 @@ const Photo: React.FunctionComponent<
         <div className="space-y-2">
           <h2 className="font-bold">{title}</h2>
           {camera?.name || lens?.name ? (
-            <div>
+            <div className="whitespace-nowrap overflow-clip text-ellipsis">
               <Icon component={Camera} size="small" />
               {[
                 camera?.name,
-                lens?.tag !== camera?.tag ? lens?.name : undefined,
+                lens?.name !== camera?.name ? lens?.name : undefined,
+                film?.name,
               ]
                 .filter(Boolean)
                 .join(" / ")}
@@ -81,11 +83,12 @@ export const fragment = gql`
       height
     }
     camera {
-      tag
       name
     }
     lens {
-      tag
+      name
+    }
+    film {
       name
     }
   }
