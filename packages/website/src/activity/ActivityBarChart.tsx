@@ -8,6 +8,7 @@ import {
   VictoryVoronoiContainer,
 } from "victory";
 import useChartTheme from "./useChartTheme";
+import { useEffect, useState } from "react";
 
 export type BarChartData = {
   readonly thisYear: readonly { readonly month: number; readonly km: number }[];
@@ -24,6 +25,15 @@ export default function ActivityBarChart({ data }: { data: BarChartData }) {
     tooltipBackground,
     baseColor,
   } = useChartTheme();
+
+  // Only mount on the server as the chart is dependent on the theme which cannot be known on the server
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <VictoryChart

@@ -10,6 +10,7 @@ import {
 import { getDayOfYear } from "date-fns/getDayOfYear";
 import { parseISO } from "date-fns/parseISO";
 import useChartTheme from "./useChartTheme";
+import { useEffect, useState } from "react";
 
 export type AccumulationChartData = {
   readonly thisYear: readonly { readonly date: string; readonly km: number }[];
@@ -30,6 +31,15 @@ export default function ActivityAccumulationChart({
     baseColor,
     tooltipBackground,
   } = useChartTheme();
+
+  // Only mount on the server as the chart is dependent on the theme which cannot be known on the server
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  if (!mounted) {
+    return null;
+  }
 
   const thisYear = accumulateDays(data.thisYear);
   const lastYear = accumulateDays(data.lastYear);
