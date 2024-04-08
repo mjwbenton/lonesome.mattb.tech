@@ -31,7 +31,7 @@ export default function Spinner({
 export function TopRightSpinner({ show = true }: { show?: boolean }) {
   return (
     <div className="relative h-0 w-full">
-      <Spinner show={show} className="absolute top-[-8px] right-[-8px] z-10" />
+      <Spinner show={show} className="absolute top-[-12px] right-[-8px] z-10" />
     </div>
   );
 }
