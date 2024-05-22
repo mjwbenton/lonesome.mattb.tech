@@ -1,4 +1,4 @@
-export default {
+const YEAR_VALUES = {
   2022: {
     year: 2022,
     photos: 270,
@@ -60,3 +60,5 @@ export default {
     },
   },
 };
+
+export default YEAR_VALUES;

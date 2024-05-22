@@ -84,8 +84,5 @@ module.exports = {
       "spin-slow": "spin 3s linear infinite",
     },
   },
-  plugins: [
-    require("@tailwindcss/typography"),
-    require("@tailwindcss/line-clamp"),
-  ],
+  plugins: [require("@tailwindcss/typography")],
 };
