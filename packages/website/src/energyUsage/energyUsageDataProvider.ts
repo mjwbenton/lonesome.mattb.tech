@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 import { DataProvider } from "@mattb.tech/data-fetching";
-import { EnergyUsage } from "generated/graphql";
+import { EnergyUsageQuery } from "generated/graphql";
 import { useQuery } from "@apollo/client";
 import { formatISO } from "date-fns/formatISO";
 import { startOfYear } from "date-fns/startOfYear";
@@ -45,11 +45,11 @@ const QUERY = gql`
   }
 `;
 
-const energyUsageDataProvider: DataProvider<never, EnergyUsage> = async (
+const energyUsageDataProvider: DataProvider<never, EnergyUsageQuery> = async (
   _: never,
   { client },
 ) => {
-  const result = await client.query<EnergyUsage>({
+  const result = await client.query<EnergyUsageQuery>({
     query: QUERY,
     variables: buildVariables(),
   });
@@ -59,7 +59,7 @@ const energyUsageDataProvider: DataProvider<never, EnergyUsage> = async (
 export default energyUsageDataProvider;
 
 export function useEnergyUsage() {
-  const { data, loading } = useQuery<EnergyUsage>(QUERY, {
+  const { data, loading } = useQuery<EnergyUsageQuery>(QUERY, {
     fetchPolicy: "cache-and-network",
     variables: buildVariables(),
   });
