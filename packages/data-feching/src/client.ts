@@ -94,6 +94,7 @@ const CACHE_CONFIGURATION: InMemoryCacheConfig = {
          * be used while updated data is fetched*/
         activity: cacheByAlias(),
         commitStats: cacheByAlias(),
+        energy: cacheByAlias(),
       },
     },
   },
