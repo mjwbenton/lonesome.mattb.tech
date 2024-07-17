@@ -5,6 +5,7 @@ dataProviders:
   - likedTracks/likedTracksDataProvider
   - codeContributions/codeContributionsDataProvider
   - activity/activitySummaryDataProvider
+  - energyUsage/energyUsageDataProvider
 description: 'My social media replacement: "Lonesome Media".'
 title: "Welcome"
 ---
@@ -14,6 +15,7 @@ import ClimateImpact from "climateImpact/ClimateImpact";
 import LikedTracks from "likedTracks/LikedTracks";
 import CodeContributions from "codeContributions/CodeContributions";
 import ActivitySummary from "activity/ActivitySummary";
+import EnergyUsage from "energyUsage/EnergyUsage";
 import Link from "next/link";
 
 # Welcome
@@ -45,3 +47,9 @@ Code contributions on Github. See my [Github Profile](https://github.com/mjwbent
 Recently liked tracks on Spotify.
 
 <LikedTracks />
+
+## Energy
+
+Data for my energy usage from Octopus Energy and National Grid.
+
+<EnergyUsage />
