@@ -32,14 +32,14 @@ export default function Activity() {
             {Math.round(energyLast30Days?.electricity.usage ?? 0)}kwH
           </strong>{" "}
           of electricity used in the last 30 days
-          <ResultingIn value={energyThisYear?.gas.emissions} />
+          <ResultingIn value={energyLast30Days?.electricity.emissions} />
           <MissingData show={energyLast30Days?.electricity.missingData} />
         </Tile>
         <Tile>
           <Icon component={RiTempHotLine} />
           <strong>{Math.round(energyLast30Days?.gas.usage ?? 0)}kwH</strong> of
           gas used in the last 30 days
-          <ResultingIn value={energyThisYear?.gas.emissions} />
+          <ResultingIn value={energyLast30Days?.gas.emissions} />
           <MissingData show={energyLast30Days?.gas.missingData} />
         </Tile>
         <Tile>
@@ -48,7 +48,7 @@ export default function Activity() {
             {Math.round(energyThisYear?.electricity.usage ?? 0)}kwH
           </strong>{" "}
           of electricity used so far this year
-          <ResultingIn value={energyThisYear?.gas.emissions} />
+          <ResultingIn value={energyThisYear?.electricity.emissions} />
           <MissingData show={energyThisYear?.electricity.missingData} />
         </Tile>
         <Tile>
