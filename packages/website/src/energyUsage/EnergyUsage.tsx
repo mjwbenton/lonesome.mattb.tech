@@ -65,7 +65,7 @@ export default function Activity() {
         <Tile>
           <Icon component={RiWindyLine} />
           <strong>{renewables}</strong>% of electricity from solar, wind, hydro
-          or nuclear
+          or nuclear this year
         </Tile>
       </Wall>
     </EmbeddedWrapper>
