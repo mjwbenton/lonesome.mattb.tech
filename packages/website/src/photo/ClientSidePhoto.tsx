@@ -1,10 +1,11 @@
 import * as React from "react";
 import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import Photo, { fragment } from "./Photo";
+import { fragment } from "./Photo";
 import ErrorDisplay from "component/ErrorDisplay";
 import Spinner from "component/Spinner";
 import { PhotoQuery, PhotoQueryVariables } from "generated/graphql";
+import Photos from "./Photos";
 
 const QUERY = gql`
   query Photo($p: ID!) {
@@ -27,7 +28,7 @@ const LoadPhoto = ({ p }: { p: string }) => {
   }
   return (
     <>
-      <Photo {...data.photo} />
+      <Photos photos={[data.photo]} />
     </>
   );
 };
