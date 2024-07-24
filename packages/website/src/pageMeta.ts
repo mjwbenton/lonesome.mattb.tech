@@ -17,6 +17,7 @@ export interface PageMeta {
   readonly createdOn?: Date;
   readonly updatedOn?: Date;
   readonly data?: any;
+  readonly shareEnabled?: boolean;
 }
 
 export async function getPageMeta(pagePath: string): Promise<PageMeta> {

@@ -8,6 +8,9 @@ import { DataFetchingProvider } from "@mattb.tech/data-fetching";
 import { ThemeProvider } from "next-themes";
 import ThemeChanger from "global/ThemeChanger";
 import { PageMeta } from "pageMeta";
+import { isShareMode } from "utils/isShareMode";
+
+const BASE_PAGE_TITLE = isShareMode() ? "share.mattb.tech" : "lonesome media";
 
 export default function MyApp({ Component, pageProps }) {
   const {
@@ -16,8 +19,8 @@ export default function MyApp({ Component, pageProps }) {
     pageMeta?: PageMeta;
   } = pageProps;
   const title = pageMeta?.title
-    ? `${pageMeta.title} - lonesome media`
-    : "lonesome media";
+    ? `${pageMeta.title} - ${BASE_PAGE_TITLE}`
+    : BASE_PAGE_TITLE;
   return (
     <>
       <Head>
@@ -31,16 +34,28 @@ export default function MyApp({ Component, pageProps }) {
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <ThemeProvider attribute="class">
-        <header className="flex relative">
-          <Logo />
-          <ThemeChanger />
-        </header>
-        <Navigation />
-        <main className="prose dark:prose-invert m-4 md:m-8">
-          <DataFetchingProvider pageProps={pageProps}>
-            <Component />
-          </DataFetchingProvider>
-        </main>
+        {isShareMode() ? (
+          <></>
+        ) : (
+          <>
+            <header className="flex relative">
+              <Logo />
+              <ThemeChanger />
+            </header>
+            <Navigation />
+          </>
+        )}
+        {isShareMode() && !pageMeta?.shareEnabled ? (
+          <></>
+        ) : (
+          <>
+            <main className="prose dark:prose-invert m-4 md:m-8">
+              <DataFetchingProvider pageProps={pageProps}>
+                <Component />
+              </DataFetchingProvider>
+            </main>
+          </>
+        )}
       </ThemeProvider>
     </>
   );
