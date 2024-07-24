@@ -14,8 +14,8 @@
     "typescript": "^5.3.3"
   },
   "scripts": {
-    "deploy": "cdk deploy LonesomeWebsite --require-approval never",
-    "deploy:local": "cdk deploy LonesomeWebsite --profile cdk-deploy --require-approval never",
+    "deploy": "cdk deploy --all --require-approval never",
+    "deploy:local": "cdk deploy --all --profile cdk-deploy --require-approval never",
     "build": "../../scripts/build.sh",
     "check": "../../scripts/check.sh",
     "clean": "../../scripts/clean.sh",
