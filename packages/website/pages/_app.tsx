@@ -54,7 +54,9 @@ export default function MyApp({ Component, pageProps }) {
           <FourOhFour />
         ) : (
           <>
-            <main className="prose dark:prose-invert m-4 md:m-8">
+            <main
+              className={`prose dark:prose-invert ${isShareMode() ? "ml-4 mr-4 md:ml-8 md:mr-8" : "m-4 md:m-8"}`}
+            >
               <DataFetchingProvider pageProps={pageProps}>
                 <Component />
               </DataFetchingProvider>
