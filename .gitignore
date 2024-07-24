@@ -4,7 +4,8 @@
 cdk.out
 dist
 node_modules
-out
+out-lonesome
+out-share
 generated
 tsconfig.tsbuildinfo
 yarn-error.log

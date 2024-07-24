@@ -12,22 +12,24 @@ import {
 import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
 import { Construct } from "constructs";
 
-const ZONE_NAME = "mattb.tech";
-const DOMAIN_NAME = "lonesome.mattb.tech";
-const HOSTED_ZONE_ID = "Z2GPSB1CDK86DH";
+export type StaticWebsiteProps = cdk.StackProps & {
+  domainName: string;
+  hostedZoneId: string;
+  zoneName: string;
+  outPath: string;
+};
 
-const OUT_PATH = path.join(__dirname, "../../website/out");
-
-export class LonesomeWebsite extends cdk.Stack {
-  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+export class StaticWebsite extends cdk.Stack {
+  constructor(scope: Construct, id: string, props: StaticWebsiteProps) {
     super(scope, id, props);
+    const { domainName, hostedZoneId, zoneName, outPath } = props;
 
-    const mainHostedZone = route53.HostedZone.fromHostedZoneAttributes(
+    const hostedZone = route53.HostedZone.fromHostedZoneAttributes(
       this,
       "HostedZone",
       {
-        hostedZoneId: HOSTED_ZONE_ID,
-        zoneName: ZONE_NAME,
+        hostedZoneId,
+        zoneName,
       },
     );
 
@@ -42,8 +44,8 @@ export class LonesomeWebsite extends cdk.Stack {
     });
 
     const certificate = new acm.DnsValidatedCertificate(this, "Certificate", {
-      domainName: DOMAIN_NAME,
-      hostedZone: mainHostedZone,
+      domainName,
+      hostedZone,
     });
 
     const routerLambda = new lambda.Function(this, "RouterFunction", {
@@ -63,14 +65,14 @@ export class LonesomeWebsite extends cdk.Stack {
           },
         ],
       },
-      domainNames: [DOMAIN_NAME],
+      domainNames: [domainName],
       certificate,
     });
     distribution.addBehavior("_next/*", new origins.S3Origin(assetsBucket));
 
     new s3deploy.BucketDeployment(this, "DeployPages", {
       sources: [
-        s3deploy.Source.asset(OUT_PATH, {
+        s3deploy.Source.asset(outPath, {
           exclude: ["_next"],
         }),
       ],
@@ -85,7 +87,7 @@ export class LonesomeWebsite extends cdk.Stack {
 
     new s3deploy.BucketDeployment(this, "DeployAssets", {
       sources: [
-        s3deploy.Source.asset(OUT_PATH, {
+        s3deploy.Source.asset(outPath, {
           exclude: ["*.html"],
         }),
       ],
@@ -98,8 +100,8 @@ export class LonesomeWebsite extends cdk.Stack {
     });
 
     new route53.ARecord(this, "DomainRecord", {
-      zone: mainHostedZone,
-      recordName: DOMAIN_NAME,
+      zone: hostedZone,
+      recordName: domainName,
       ttl: cdk.Duration.minutes(5),
       target: route53.RecordTarget.fromAlias(
         new route53targets.CloudFrontTarget(distribution),

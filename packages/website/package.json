@@ -4,7 +4,9 @@
   "description": "Personal website where I can share things without using social media.",
   "private": true,
   "scripts": {
-    "build": "npm run codegen && rm -Rf out .next && next build",
+    "build": "npm run codegen && yarn build:lonesome && yarn build:share",
+    "build:lonesome": "next build",
+    "build:share": "SHARE_MODE=true next build",
     "analyze": "ANALYZE=true next build",
     "dev": "next dev",
     "start": "next start -p 3001",

@@ -8,6 +8,9 @@ import nextPluginPreval from "next-plugin-preval/config.js";
 import bundleAnalyzer from "@next/bundle-analyzer";
 import mdx from "@next/mdx";
 
+const SHARE_MODE = process.env.SHARE_MODE;
+const isShareMode = SHARE_MODE === "true";
+
 const withMDX = mdx({
   options: {
     remarkPlugins: [
@@ -32,6 +35,10 @@ export default nextPluginPreval()(
       eslint: {
         dirs: ["pages", "src"],
       },
+      env: {
+        SHARE_MODE,
+      },
+      distDir: isShareMode ? "out-share" : "out-lonesome",
     }),
   ),
 );
