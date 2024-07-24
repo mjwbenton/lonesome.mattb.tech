@@ -9,8 +9,16 @@ import { ThemeProvider } from "next-themes";
 import ThemeChanger from "global/ThemeChanger";
 import { PageMeta } from "pageMeta";
 import { isShareMode } from "utils/isShareMode";
+import FourOhFour from "./404";
 
 const BASE_PAGE_TITLE = isShareMode() ? "share.mattb.tech" : "lonesome media";
+
+function pageTitle(pageMeta?: PageMeta) {
+  const useTitle =
+    pageMeta?.title &&
+    (!isShareMode() || (isShareMode() && pageMeta?.shareEnabled));
+  return useTitle ? `${pageMeta.title} - ${BASE_PAGE_TITLE}` : BASE_PAGE_TITLE;
+}
 
 export default function MyApp({ Component, pageProps }) {
   const {
@@ -18,13 +26,10 @@ export default function MyApp({ Component, pageProps }) {
   }: {
     pageMeta?: PageMeta;
   } = pageProps;
-  const title = pageMeta?.title
-    ? `${pageMeta.title} - ${BASE_PAGE_TITLE}`
-    : BASE_PAGE_TITLE;
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>{pageTitle(pageMeta)}</title>
         {pageMeta?.description ? (
           <meta name="description" content={pageMeta.description} />
         ) : null}
@@ -46,7 +51,7 @@ export default function MyApp({ Component, pageProps }) {
           </>
         )}
         {isShareMode() && !pageMeta?.shareEnabled ? (
-          <></>
+          <FourOhFour />
         ) : (
           <>
             <main className="prose dark:prose-invert m-4 md:m-8">
