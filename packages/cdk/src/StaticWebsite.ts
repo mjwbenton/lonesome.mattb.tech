@@ -37,10 +37,22 @@ export class StaticWebsite extends cdk.Stack {
       websiteIndexDocument: "index.html",
       websiteErrorDocument: "404.html",
       publicReadAccess: true,
+      blockPublicAccess: {
+        blockPublicAcls: false,
+        blockPublicPolicy: false,
+        ignorePublicAcls: false,
+        restrictPublicBuckets: false,
+      },
     });
     const assetsBucket = new s3.Bucket(this, "AssetsBucket", {
       websiteIndexDocument: "index.html",
       publicReadAccess: true,
+      blockPublicAccess: {
+        blockPublicAcls: false,
+        blockPublicPolicy: false,
+        ignorePublicAcls: false,
+        restrictPublicBuckets: false,
+      },
     });
 
     const certificate = new acm.DnsValidatedCertificate(this, "Certificate", {
