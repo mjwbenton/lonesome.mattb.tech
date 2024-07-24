@@ -11,6 +11,7 @@ const DEFAULT_SIZES = `100vw`;
 const Photo: React.FunctionComponent<
   PhotoFragment & { lazyLoad?: boolean; sizes?: string }
 > = ({
+  id,
   pageUrl,
   sources,
   mainSource,
@@ -39,7 +40,11 @@ const Photo: React.FunctionComponent<
       ) : (
         img
       )}
-      <Infoline externalLinkUrl={pageUrl} externalLinkText="Fl">
+      <Infoline
+        externalLinkUrl={pageUrl}
+        externalLinkText="Fl"
+        shareUrl={`https://share.mattb.tech/photo?p=${id}`}
+      >
         <div className="space-y-2">
           <h2 className="font-bold">{title}</h2>
           {camera?.name || lens?.name ? (

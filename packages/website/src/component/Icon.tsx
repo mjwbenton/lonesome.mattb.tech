@@ -9,14 +9,18 @@ const SIZE_MAP = {
     size: 14,
     className: "mr-2",
   },
-};
+  xsmall: {
+    size: 12,
+    className: "-top-[1px] mr-1",
+  },
+} as const;
 
 export default function Icon({
   component,
   size = "default",
 }: {
   component: React.FC<IconBaseProps>;
-  size?: "default" | "small";
+  size?: keyof typeof SIZE_MAP;
 }) {
   const Component = component;
   return (
