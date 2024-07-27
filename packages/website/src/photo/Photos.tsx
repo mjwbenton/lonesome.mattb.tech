@@ -55,7 +55,7 @@ export default function Photos({
 export function PhotosWrapper(
   props: Omit<JSX.IntrinsicElements["div"], "className"> & {
     marginless?: boolean;
-  }
+  },
 ) {
   // Marginless removes all margins from the PhotoWrapper and uses negative margins to push the wrapper to the edge of the screen
   const { marginless, ...rest } = props;
