@@ -14,11 +14,19 @@ import ShareButton from "global/ShareButton";
 
 const BASE_PAGE_TITLE = isShareMode() ? "share.mattb.tech" : "lonesome media";
 
-function pageTitle(pageMeta?: PageMeta) {
+function pageTitle(
+  pageMeta?: PageMeta,
+  { includeBase = true }: { includeBase?: boolean } = {},
+) {
   const useTitle =
     pageMeta?.title &&
     (!isShareMode() || (isShareMode() && pageMeta?.shareEnabled));
-  return useTitle ? `${pageMeta.title} - ${BASE_PAGE_TITLE}` : BASE_PAGE_TITLE;
+  if (!useTitle) {
+    return BASE_PAGE_TITLE;
+  }
+  return includeBase
+    ? `${pageMeta.title} - ${BASE_PAGE_TITLE}`
+    : pageMeta.title;
 }
 
 export default function MyApp({ Component, pageProps }) {
@@ -27,12 +35,14 @@ export default function MyApp({ Component, pageProps }) {
   }: {
     pageMeta?: PageMeta;
   } = pageProps;
-  const title = pageTitle(pageMeta);
   return (
     <>
       <Head>
-        <title>{title}</title>
-        <meta name="og:title" content={title} />
+        <title>{pageTitle(pageMeta)}</title>
+        <meta
+          name="og:title"
+          content={pageTitle(pageMeta, { includeBase: false })}
+        />
         {pageMeta?.description ? (
           <>
             <meta name="description" content={pageMeta.description} />
