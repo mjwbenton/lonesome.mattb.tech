@@ -1,7 +1,7 @@
 import React from "react";
 import Icon from "./Icon";
 import { Share } from "react-feather";
-import { isShareMode } from "utils/isShareMode";
+import { NoShareMode } from "utils/isShareMode";
 
 const Infoline = ({
   externalLinkUrl,
@@ -16,10 +16,12 @@ const Infoline = ({
 }) => (
   <div className="flex text-xs bg-light-1 dark:bg-dark-1 max-w-[100vw]">
     <div className="p-2 flex-1 min-w-0">{children}</div>
-    {shareUrl && !isShareMode() ? (
-      <a className="block flex-none p-2 min-w-14 text-center" href={shareUrl}>
-        Sh <Icon component={Share} size="xsmall" />
-      </a>
+    {shareUrl ? (
+      <NoShareMode>
+        <a className="block flex-none p-2 min-w-14 text-center" href={shareUrl}>
+          Sh <Icon component={Share} size="xsmall" />
+        </a>
+      </NoShareMode>
     ) : null}
     {externalLinkUrl ? (
       <a

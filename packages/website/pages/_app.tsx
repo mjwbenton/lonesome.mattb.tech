@@ -8,7 +8,7 @@ import { DataFetchingProvider } from "@mattb.tech/data-fetching";
 import { ThemeProvider } from "next-themes";
 import ThemeChanger from "global/ThemeChanger";
 import { PageMeta } from "pageMeta";
-import { isShareMode } from "utils/isShareMode";
+import { NoShareMode, isShareMode } from "utils/isShareMode";
 import FourOhFour from "./404";
 
 const BASE_PAGE_TITLE = isShareMode() ? "share.mattb.tech" : "lonesome media";
@@ -39,24 +39,19 @@ export default function MyApp({ Component, pageProps }) {
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <ThemeProvider attribute="class">
-        {isShareMode() ? (
-          <></>
-        ) : (
-          <>
-            <header className="flex relative">
-              <Logo />
-              <ThemeChanger />
-            </header>
-            <Navigation />
-          </>
-        )}
+        <NoShareMode>
+          <header className="flex relative">
+            <Logo />
+            <ThemeChanger />
+          </header>
+          <Navigation />
+        </NoShareMode>
+        {/* If we're in share mode and the page doesn't have sharing enabled, show a 404 (though unfortunately it'll actually return 200) */}
         {isShareMode() && !pageMeta?.shareEnabled ? (
           <FourOhFour />
         ) : (
           <>
-            <main
-              className={`prose dark:prose-invert ${isShareMode() ? "ml-4 mr-4 md:ml-8 md:mr-8" : "m-4 md:m-8"}`}
-            >
+            <main className={`prose dark:prose-invert m-4 md:m-8`}>
               <DataFetchingProvider pageProps={pageProps}>
                 <Component />
               </DataFetchingProvider>

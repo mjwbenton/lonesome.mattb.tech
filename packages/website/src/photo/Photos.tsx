@@ -55,13 +55,14 @@ export default function Photos({
 export function PhotosWrapper(
   props: Omit<JSX.IntrinsicElements["div"], "className"> & {
     marginless?: boolean;
-  },
+  }
 ) {
+  // Marginless removes all margins from the PhotoWrapper and uses negative margins to push the wrapper to the edge of the screen
   const { marginless, ...rest } = props;
   return (
     <div
       {...rest}
-      className={`not-prose flex flex-col items-start w-screen -ml-4 md:-ml-8 space-y-16 ${marginless ? "" : "mt-16 mb-16"}`}
+      className={`not-prose flex flex-col items-start w-screen -mx-4 md:-mx-8 space-y-16 ${marginless ? "-my-4 md:-my-8" : "my-16"}`}
     />
   );
 }
