@@ -10,6 +10,7 @@ import ThemeChanger from "global/ThemeChanger";
 import { PageMeta } from "pageMeta";
 import { NoShareMode, isShareMode } from "utils/isShareMode";
 import FourOhFour from "./404";
+import ShareButton from "global/ShareButton";
 
 const BASE_PAGE_TITLE = isShareMode() ? "share.mattb.tech" : "lonesome media";
 
@@ -26,12 +27,17 @@ export default function MyApp({ Component, pageProps }) {
   }: {
     pageMeta?: PageMeta;
   } = pageProps;
+  const title = pageTitle(pageMeta);
   return (
     <>
       <Head>
-        <title>{pageTitle(pageMeta)}</title>
+        <title>{title}</title>
+        <meta name="og:title" content={title} />
         {pageMeta?.description ? (
-          <meta name="description" content={pageMeta.description} />
+          <>
+            <meta name="description" content={pageMeta.description} />
+            <meta name="og:description" content={pageMeta.description} />
+          </>
         ) : null}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="preconnect" href="https://api.mattb.tech" />
@@ -51,7 +57,8 @@ export default function MyApp({ Component, pageProps }) {
           <FourOhFour />
         ) : (
           <>
-            <main className={`prose dark:prose-invert m-4 md:m-8`}>
+            <main className={`relative prose dark:prose-invert m-4 md:m-8`}>
+              <ShareButton shareEnabled={pageMeta?.shareEnabled} />
               <DataFetchingProvider pageProps={pageProps}>
                 <Component />
               </DataFetchingProvider>
