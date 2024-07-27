@@ -6,6 +6,7 @@ import ErrorDisplay from "component/ErrorDisplay";
 import Spinner from "component/Spinner";
 import { PhotoQuery, PhotoQueryVariables } from "generated/graphql";
 import Photos, { PhotosWrapper } from "./Photos";
+import { ApiOgImage } from "global/OgImage";
 
 const QUERY = gql`
   query Photo($p: ID!) {
@@ -27,9 +28,12 @@ const LoadPhoto = ({ p }: { p: string }) => {
     return <Spinner />;
   }
   return (
-    <PhotosWrapper marginless>
-      <Photo {...data.photo} />
-    </PhotosWrapper>
+    <>
+      <ApiOgImage photo={data.photo} />
+      <PhotosWrapper marginless>
+        <Photo {...data.photo} />
+      </PhotosWrapper>
+    </>
   );
 };
 
