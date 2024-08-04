@@ -13,6 +13,8 @@ const QUERY = gql`
     $todayLastYear: Date!
     $thirtyDaysAgoLastYear: Date!
     $endOfPreviousYear: Date!
+    $thirtyOneDaysAgo: Date!
+    $sixtyOneDaysAgo: Date!
   ) {
     thisYear: activity(startDate: $startOfYear, endDate: $today) {
       ...ActivityChartData
@@ -32,6 +34,15 @@ const QUERY = gql`
     }
     trailing30Days: activity(startDate: $thirtyDaysAgo, endDate: $today) {
       ...ActivitySummaryData
+      ...SwimWorkoutData
+      ...StrengthWorkoutData
+    }
+    previous30Days: activity(
+      startDate: $sixtyOneDaysAgo
+      endDate: $thirtyOneDaysAgo
+    ) {
+      ...SwimSpeedData
+      ...StrengthDurationData
     }
     lastYearTrailing30Days: activity(
       startDate: $thirtyDaysAgoLastYear
@@ -71,6 +82,55 @@ const QUERY = gql`
       days {
         km
         date
+      }
+    }
+  }
+
+  fragment StrengthDurationData on Activity {
+    strengthWorkouts: workouts(type: "functional_strength_training") {
+      count
+      durationSeconds
+      activeEnergyBurned
+    }
+  }
+
+  fragment StrengthWorkoutData on Activity {
+    strengthWorkouts: workouts(type: "functional_strength_training") {
+      count
+      durationSeconds
+      activeEnergyBurned
+      workouts {
+        startTime
+        durationSeconds
+        activeEnergyBurned
+      }
+    }
+  }
+
+  fragment SwimSpeedData on Activity {
+    swimWorkouts: workouts(type: "pool_swim") {
+      count
+      speed {
+        spm
+      }
+    }
+  }
+
+  fragment SwimWorkoutData on Activity {
+    swimWorkouts: workouts(type: "pool_swim") {
+      count
+      speed {
+        spm
+      }
+      workouts {
+        startTime
+        durationSeconds
+        distance {
+          km
+        }
+        speed {
+          spm
+        }
       }
     }
   }

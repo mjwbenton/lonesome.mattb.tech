@@ -80,6 +80,12 @@ export function buildActivityVariables() {
     thirtyDaysAgo: formatISO(subDays(baseDate, 30), {
       representation: "date",
     }),
+    thirtyOneDaysAgo: formatISO(subDays(baseDate, 31), {
+      representation: "date",
+    }),
+    sixtyOneDaysAgo: formatISO(subDays(baseDate, 61), {
+      representation: "date",
+    }),
     startOfPreviousYear: formatISO(startOfYear(subYears(baseDate, 1)), {
       representation: "date",
     }),
