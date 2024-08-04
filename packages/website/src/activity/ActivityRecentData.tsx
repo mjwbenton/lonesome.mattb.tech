@@ -6,6 +6,7 @@ import { subDays } from "date-fns/subDays";
 import { RiAlertLine } from "react-icons/ri";
 import { formatKm } from "./ActivityTile";
 import { ActivityType, ACTIVITY_TYPE_CONFIG } from "./activityTypes";
+import React from "react";
 
 export default function ActivityRecentData({
   type,
@@ -20,20 +21,20 @@ export default function ActivityRecentData({
         .slice(-30)
         .reverse()
         .map((day, i, days) => (
-          <>
+          <React.Fragment key={day.date}>
             {i > 0 &&
             isBefore(
               parseISO(day.date),
-              subDays(parseISO(days[i - 1].date), 1),
+              subDays(parseISO(days[i - 1].date), 1)
             ) ? (
-              <StripeElement key={`${day.date}-missing`}>
+              <StripeElement>
                 <span>
                   <Icon component={RiAlertLine} /> No data for days between{" "}
                   {day.date} and {days[i - 1].date}
                 </span>
               </StripeElement>
             ) : null}
-            <StripeElement key={day.date}>
+            <StripeElement>
               <div>
                 <div className="font-bold">{day.date}</div>
                 <div className="italic">
@@ -42,7 +43,7 @@ export default function ActivityRecentData({
                 </div>
               </div>
             </StripeElement>
-          </>
+          </React.Fragment>
         ))}
     </StripedList>
   );
