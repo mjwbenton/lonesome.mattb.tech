@@ -11,6 +11,7 @@ import Icon from "component/Icon";
 import { formatDuration, formatKm, formatStartTime } from "./format";
 import StripedList, { StripeElement } from "component/StripedList";
 import formatPercentageChange from "utils/formatPercentageChange";
+import SwimSpeedChart from "./SwimSpeedChart";
 
 export default function SwimmingSection() {
   const { activity, loading } = useActivityPage();
@@ -81,6 +82,24 @@ export default function SwimmingSection() {
             </span>
           </Tile>
         </Wall>
+        <SwimSpeedChart
+          data={{
+            thisYear:
+              activity?.thisYear.swimWorkouts?.months.map(
+                ({ month, speed }) => ({
+                  month,
+                  mps: speed?.mps ?? 0,
+                })
+              ) ?? [],
+            lastYear:
+              activity?.lastYear.swimWorkouts?.months.map(
+                ({ month, speed }) => ({
+                  month,
+                  mps: speed?.mps ?? 0,
+                })
+              ) ?? [],
+          }}
+        />
         <Expander text="Recent Swims">
           <StripedList>
             {activity?.trailing30Days.swimWorkouts?.workouts.map((workout) => (

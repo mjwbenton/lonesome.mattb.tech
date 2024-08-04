@@ -19,12 +19,14 @@ const QUERY = gql`
     thisYear: activity(startDate: $startOfYear, endDate: $today) {
       ...ActivityChartData
       ...ActivitySummaryData
+      ...SwimSpeedData
     }
     lastYear: activity(
       startDate: $startOfPreviousYear
       endDate: $endOfPreviousYear
     ) {
       ...ActivityChartData
+      ...SwimSpeedData
     }
     lastYearToDate: activity(
       startDate: $startOfPreviousYear
@@ -115,6 +117,13 @@ const QUERY = gql`
         mps
       }
       activeEnergyBurned
+      months {
+        year
+        month
+        speed {
+          mps
+        }
+      }
     }
   }
 
