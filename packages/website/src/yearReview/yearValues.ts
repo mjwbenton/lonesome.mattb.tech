@@ -55,7 +55,7 @@ const YEAR_VALUES = {
       gaveUp: 2,
     },
     activity: {
-      walkingRunningDistance: 3230,
+      walkingRunningDistance: 3254,
       swimmingDistance: 92,
     },
   },
