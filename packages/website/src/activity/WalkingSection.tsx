@@ -7,6 +7,7 @@ import { useActivityPage } from "./activityPageDataProvider";
 import ActivityTile from "./ActivityTile";
 import Expander from "component/Expander";
 import ActivityRecentData from "./ActivityRecentData";
+import { ACTIVITY_TYPE_CONFIG } from "./activityTypes";
 
 export default function WalkingSection() {
   const { activity, loading } = useActivityPage();
@@ -17,7 +18,8 @@ export default function WalkingSection() {
       <div className="space-y-12">
         <Wall>
           <ActivityTile
-            type="walking"
+            icon={ACTIVITY_TYPE_CONFIG.walking.icon}
+            verb={ACTIVITY_TYPE_CONFIG.walking.verb}
             period="trailing30"
             km={activity?.trailing30Days.walkingRunningDistance.km}
             lastYearKm={
@@ -25,7 +27,8 @@ export default function WalkingSection() {
             }
           />
           <ActivityTile
-            type="walking"
+            icon={ACTIVITY_TYPE_CONFIG.walking.icon}
+            verb={ACTIVITY_TYPE_CONFIG.walking.verb}
             period="year"
             km={activity?.thisYear.walkingRunningDistance.km}
             lastYearKm={activity?.lastYearToDate.walkingRunningDistance.km}
@@ -45,7 +48,7 @@ export default function WalkingSection() {
         />
         <Expander text="Recent Data">
           <ActivityRecentData
-            type="walking"
+            icon={ACTIVITY_TYPE_CONFIG.walking.icon}
             data={activity?.thisYear.walkingRunningDistance.days ?? []}
           />
         </Expander>

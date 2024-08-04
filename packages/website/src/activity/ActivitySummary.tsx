@@ -3,6 +3,7 @@ import { TopRightSpinner } from "component/Spinner";
 import { Wall } from "component/Tile";
 import { useActivity } from "./activitySummaryDataProvider";
 import ActivityTile from "./ActivityTile";
+import { ACTIVITY_TYPE_CONFIG } from "./activityTypes";
 
 export default function ActivitySummary() {
   const { loading, activity } = useActivity();
@@ -12,7 +13,8 @@ export default function ActivitySummary() {
       <TopRightSpinner show={loading} />
       <Wall>
         <ActivityTile
-          type="walking"
+          icon={ACTIVITY_TYPE_CONFIG.walking.icon}
+          verb={ACTIVITY_TYPE_CONFIG.walking.verb}
           period="trailing30"
           km={activity?.trailing30Days.walkingRunningDistance.km}
           lastYearKm={
@@ -20,19 +22,22 @@ export default function ActivitySummary() {
           }
         />
         <ActivityTile
-          type="swimming"
+          icon={ACTIVITY_TYPE_CONFIG.swimming.icon}
+          verb={ACTIVITY_TYPE_CONFIG.swimming.verb}
           period="trailing30"
           km={activity?.trailing30Days.swimmingDistance.km}
           lastYearKm={activity?.lastYearTrailing30Days.swimmingDistance.km}
         />
         <ActivityTile
-          type="walking"
+          icon={ACTIVITY_TYPE_CONFIG.walking.icon}
+          verb={ACTIVITY_TYPE_CONFIG.walking.verb}
           period="year"
           km={activity?.thisYear.walkingRunningDistance.km}
           lastYearKm={activity?.lastYear.walkingRunningDistance.km}
         />
         <ActivityTile
-          type="swimming"
+          icon={ACTIVITY_TYPE_CONFIG.swimming.icon}
+          verb={ACTIVITY_TYPE_CONFIG.swimming.verb}
           period="year"
           km={activity?.thisYear.swimmingDistance.km}
           lastYearKm={activity?.lastYear.swimmingDistance.km}

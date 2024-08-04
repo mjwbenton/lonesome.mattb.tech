@@ -7,6 +7,7 @@ import { useActivityPage } from "./activityPageDataProvider";
 import ActivityTile from "./ActivityTile";
 import Expander from "component/Expander";
 import ActivityRecentData from "./ActivityRecentData";
+import { ACTIVITY_TYPE_CONFIG } from "./activityTypes";
 
 export default function SwimmingSection() {
   const { activity, loading } = useActivityPage();
@@ -17,13 +18,15 @@ export default function SwimmingSection() {
       <div className="space-y-12">
         <Wall>
           <ActivityTile
-            type="swimming"
+            icon={ACTIVITY_TYPE_CONFIG.swimming.icon}
+            verb={ACTIVITY_TYPE_CONFIG.swimming.verb}
             period="trailing30"
             km={activity?.trailing30Days.swimmingDistance.km}
             lastYearKm={activity?.lastYearTrailing30Days.swimmingDistance.km}
           />
           <ActivityTile
-            type="swimming"
+            icon={ACTIVITY_TYPE_CONFIG.swimming.icon}
+            verb={ACTIVITY_TYPE_CONFIG.swimming.verb}
             period="year"
             km={activity?.thisYear.swimmingDistance.km}
             lastYearKm={activity?.lastYearToDate.swimmingDistance.km}
@@ -43,7 +46,7 @@ export default function SwimmingSection() {
         />
         <Expander text="Recent Data">
           <ActivityRecentData
-            type="swimming"
+            icon={ACTIVITY_TYPE_CONFIG.swimming.icon}
             data={activity?.thisYear.swimmingDistance.days ?? []}
           />
         </Expander>
