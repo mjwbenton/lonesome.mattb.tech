@@ -8,6 +8,9 @@ import ActivityTile from "./ActivityTile";
 import Expander from "component/Expander";
 import ActivityRecentData from "./ActivityRecentData";
 import { ACTIVITY_TYPE_CONFIG } from "./activityTypes";
+import Icon from "component/Icon";
+import { formatDuration, formatKm, formatStartTime } from "./format";
+import StripedList, { StripeElement } from "component/StripedList";
 
 export default function SwimmingSection() {
   const { activity, loading } = useActivityPage();
@@ -45,10 +48,25 @@ export default function SwimmingSection() {
           }}
         />
         <Expander text="Recent Data">
-          <ActivityRecentData
-            icon={ACTIVITY_TYPE_CONFIG.swimming.icon}
-            data={activity?.thisYear.swimmingDistance.days ?? []}
-          />
+          <StripedList>
+            {activity?.trailing30Days.swimWorkouts?.workouts.map((workout) => (
+              <StripeElement key={workout.startTime}>
+                <div>
+                  <div className="font-bold">
+                    {formatStartTime(workout.startTime)}
+                  </div>
+                  <div>
+                    <Icon component={ACTIVITY_TYPE_CONFIG.swimming.icon} />{" "}
+                    {formatDuration(workout.speed!.spm * 100)} per 100m{" "}
+                    <span className="text-xs">
+                      ({formatKm(workout.distance!.km)} in{" "}
+                      {formatDuration(workout.durationSeconds)})
+                    </span>
+                  </div>
+                </div>
+              </StripeElement>
+            )) ?? []}
+          </StripedList>
         </Expander>
       </div>
     </EmbeddedWrapper>

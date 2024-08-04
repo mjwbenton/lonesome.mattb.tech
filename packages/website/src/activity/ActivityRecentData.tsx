@@ -4,7 +4,7 @@ import { isBefore } from "date-fns/isBefore";
 import { parseISO } from "date-fns/parseISO";
 import { subDays } from "date-fns/subDays";
 import { RiAlertLine } from "react-icons/ri";
-import { formatKm } from "./ActivityTile";
+import { formatKm } from "./format";
 import React from "react";
 import { IconBaseProps } from "react-icons";
 
@@ -37,7 +37,7 @@ export default function ActivityRecentData({
             <StripeElement>
               <div>
                 <div className="font-bold">{day.date}</div>
-                <div className="italic">
+                <div>
                   <Icon component={IconComponent} /> {formatKm(day.km)}
                 </div>
               </div>

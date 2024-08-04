@@ -2,6 +2,7 @@ import Icon from "component/Icon";
 import Tile from "component/Tile";
 import formatPercentageChange from "utils/formatPercentageChange";
 import { IconBaseProps } from "react-icons";
+import { formatKm } from "./format";
 
 export type Period = "trailing30" | "year";
 
@@ -36,8 +37,4 @@ export default function ActivityTile({
       </span>
     </Tile>
   );
-}
-
-export function formatKm(value: number): string {
-  return `${value.toFixed(2)}km`;
 }

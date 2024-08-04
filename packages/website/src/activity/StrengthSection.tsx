@@ -8,11 +8,7 @@ import Icon from "component/Icon";
 import formatPercentageChange from "utils/formatPercentageChange";
 import StripedList, { StripeElement } from "component/StripedList";
 import { parseISO } from "date-fns/parseISO";
-
-const DATE_FORMAT = new Intl.DateTimeFormat("en-GB", {
-  dateStyle: "short",
-  timeStyle: "short",
-});
+import { formatDuration, formatStartTime } from "./format";
 
 export default function StrengthSection() {
   const { activity, loading } = useActivityPage();
@@ -66,9 +62,10 @@ export default function StrengthSection() {
               <StripeElement key={workout.startTime}>
                 <div>
                   <div className="font-bold">
-                    {DATE_FORMAT.format(parseISO(workout.startTime))}
+                    {formatStartTime(workout.startTime)}
                   </div>
-                  <div className="italic">
+                  <div>
+                    <Icon component={PiBarbell} />{" "}
                     {formatDuration(workout.durationSeconds)} -{" "}
                     {workout.activeEnergyBurned} kcals
                   </div>
@@ -80,10 +77,4 @@ export default function StrengthSection() {
       </div>
     </EmbeddedWrapper>
   );
-}
-
-function formatDuration(value: number): string {
-  const minutes = Math.floor(value / 60);
-  const seconds = value % 60;
-  return `${minutes}m ${seconds}s`;
 }
