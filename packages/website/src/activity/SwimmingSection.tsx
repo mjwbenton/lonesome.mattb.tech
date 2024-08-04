@@ -1,6 +1,6 @@
 import EmbeddedWrapper from "component/EmbeddedWrapper";
 import { TopRightSpinner } from "component/Spinner";
-import { Wall } from "component/Tile";
+import Tile, { Wall } from "component/Tile";
 import DistanceBarChart from "./DistanceBarChart";
 import DistanceAccumulationChart from "./DistanceAccumulationChart";
 import { useActivityPage } from "./activityPageDataProvider";
@@ -10,6 +10,7 @@ import { ACTIVITY_TYPE_CONFIG } from "./activityTypes";
 import Icon from "component/Icon";
 import { formatDuration, formatKm, formatStartTime } from "./format";
 import StripedList, { StripeElement } from "component/StripedList";
+import formatPercentageChange from "utils/formatPercentageChange";
 
 export default function SwimmingSection() {
   const { activity, loading } = useActivityPage();
@@ -46,6 +47,40 @@ export default function SwimmingSection() {
             lastYear: activity?.lastYear.swimmingDistance.days ?? [],
           }}
         />
+        <Wall>
+          <Tile>
+            <Icon component={ACTIVITY_TYPE_CONFIG.swimming.icon} />
+            <strong>
+              {formatDuration(
+                (activity?.trailing30Days.swimWorkouts?.speed?.spm ?? 0) * 100
+              )}
+            </strong>{" "}
+            per 100m average in the last 30 days <br />
+            <span className="text-xs">
+              speed{" "}
+              {formatPercentageChange(
+                activity?.trailing30Days.swimWorkouts?.speed?.mps ?? 0,
+                activity?.previous30Days.swimWorkouts?.speed?.mps ?? 0
+              )}{" "}
+              verses previous 30 days
+            </span>
+          </Tile>
+          <Tile>
+            <Icon component={ACTIVITY_TYPE_CONFIG.swimming.icon} />
+            <strong>
+              {activity?.trailing30Days.swimWorkouts?.activeEnergyBurned ?? 0}{" "}
+              kcals
+            </strong>{" "}
+            burned in the last 30 days <br />
+            <span className="text-xs">
+              {formatPercentageChange(
+                activity?.trailing30Days.swimWorkouts?.activeEnergyBurned ?? 0,
+                activity?.previous30Days.swimWorkouts?.activeEnergyBurned ?? 0
+              )}{" "}
+              change on the previous 30 days
+            </span>
+          </Tile>
+        </Wall>
         <Expander text="Recent Swims">
           <StripedList>
             {activity?.trailing30Days.swimWorkouts?.workouts.map((workout) => (
