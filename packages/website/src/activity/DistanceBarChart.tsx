@@ -15,7 +15,7 @@ export type BarChartData = {
   readonly lastYear: readonly { readonly month: number; readonly km: number }[];
 };
 
-export default function ActivityBarChart({ data }: { data: BarChartData }) {
+export default function DistanceBarChart({ data }: { data: BarChartData }) {
   const {
     fontFamily,
     colorLastYear,

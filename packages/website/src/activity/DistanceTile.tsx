@@ -19,7 +19,7 @@ export type ActivityTileProps = {
   lastYearKm: number | undefined;
 };
 
-export default function ActivityTile({
+export default function DistanceTile({
   icon: IconComponent,
   verb,
   period,

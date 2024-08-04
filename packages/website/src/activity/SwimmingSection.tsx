@@ -1,12 +1,11 @@
 import EmbeddedWrapper from "component/EmbeddedWrapper";
 import { TopRightSpinner } from "component/Spinner";
 import { Wall } from "component/Tile";
-import ActivityBarChart from "./ActivityBarChart";
-import ActivityAccumulationChart from "./ActivityAccumulationChart";
+import DistanceBarChart from "./DistanceBarChart";
+import DistanceAccumulationChart from "./DistanceAccumulationChart";
 import { useActivityPage } from "./activityPageDataProvider";
-import ActivityTile from "./ActivityTile";
+import DistanceTile from "./DistanceTile";
 import Expander from "component/Expander";
-import ActivityRecentData from "./ActivityRecentData";
 import { ACTIVITY_TYPE_CONFIG } from "./activityTypes";
 import Icon from "component/Icon";
 import { formatDuration, formatKm, formatStartTime } from "./format";
@@ -20,14 +19,14 @@ export default function SwimmingSection() {
       <TopRightSpinner show={loading} />
       <div className="space-y-12">
         <Wall>
-          <ActivityTile
+          <DistanceTile
             icon={ACTIVITY_TYPE_CONFIG.swimming.icon}
             verb={ACTIVITY_TYPE_CONFIG.swimming.verb}
             period="trailing30"
             km={activity?.trailing30Days.swimmingDistance.km}
             lastYearKm={activity?.lastYearTrailing30Days.swimmingDistance.km}
           />
-          <ActivityTile
+          <DistanceTile
             icon={ACTIVITY_TYPE_CONFIG.swimming.icon}
             verb={ACTIVITY_TYPE_CONFIG.swimming.verb}
             period="year"
@@ -35,19 +34,19 @@ export default function SwimmingSection() {
             lastYearKm={activity?.lastYearToDate.swimmingDistance.km}
           />
         </Wall>
-        <ActivityBarChart
+        <DistanceBarChart
           data={{
             thisYear: activity?.thisYear.swimmingDistance.months ?? [],
             lastYear: activity?.lastYear.swimmingDistance.months ?? [],
           }}
         />
-        <ActivityAccumulationChart
+        <DistanceAccumulationChart
           data={{
             thisYear: activity?.thisYear.swimmingDistance.days ?? [],
             lastYear: activity?.lastYear.swimmingDistance.days ?? [],
           }}
         />
-        <Expander text="Recent Data">
+        <Expander text="Recent Swims">
           <StripedList>
             {activity?.trailing30Days.swimWorkouts?.workouts.map((workout) => (
               <StripeElement key={workout.startTime}>
