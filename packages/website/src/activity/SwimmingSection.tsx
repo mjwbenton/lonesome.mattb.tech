@@ -83,42 +83,37 @@ export default function SwimmingSection() {
           </Tile>
         </Wall>
         <SwimSpeedChart
-          data={{
-            thisYear:
-              activity?.thisYear.swimWorkouts?.months.map(
-                ({ month, speed }) => ({
-                  month,
-                  mps: speed?.mps ?? 0,
-                }),
-              ) ?? [],
-            lastYear:
-              activity?.lastYear.swimWorkouts?.months.map(
-                ({ month, speed }) => ({
-                  month,
-                  mps: speed?.mps ?? 0,
-                }),
-              ) ?? [],
-          }}
+          data={
+            activity?.lastYear.swimWorkouts?.months
+              .concat(activity?.thisYear.swimWorkouts?.months ?? [])
+              .map(({ year, month, speed }) => ({
+                year,
+                month,
+                mps: speed?.mps ?? 0,
+              })) ?? []
+          }
         />
         <Expander text="Recent Swims">
           <StripedList>
-            {activity?.trailing30Days.swimWorkouts?.workouts.map((workout) => (
-              <StripeElement key={workout.startTime}>
-                <div>
-                  <div className="font-bold">
-                    {formatStartTime(workout.startTime)}
-                  </div>
+            {activity?.trailing30Days.swimWorkouts?.workouts
+              .toReversed()
+              .map((workout) => (
+                <StripeElement key={workout.startTime}>
                   <div>
-                    <Icon component={ACTIVITY_TYPE_CONFIG.swimming.icon} />{" "}
-                    {formatDuration(workout.speed!.spm * 100)} per 100m{" "}
-                    <span className="text-xs">
-                      ({formatKm(workout.distance!.km)} in{" "}
-                      {formatDuration(workout.durationSeconds)})
-                    </span>
+                    <div className="font-bold">
+                      {formatStartTime(workout.startTime)}
+                    </div>
+                    <div>
+                      <Icon component={ACTIVITY_TYPE_CONFIG.swimming.icon} />{" "}
+                      {formatDuration(workout.speed!.spm * 100)} per 100m{" "}
+                      <span className="text-xs">
+                        ({formatKm(workout.distance!.km)} in{" "}
+                        {formatDuration(workout.durationSeconds)})
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </StripeElement>
-            )) ?? []}
+                </StripeElement>
+              )) ?? []}
           </StripedList>
         </Expander>
       </div>

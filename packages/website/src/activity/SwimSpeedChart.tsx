@@ -11,21 +11,14 @@ import {
 import useChartTheme from "./useChartTheme";
 import { useEffect, useState } from "react";
 
-export type BarChartData = {
-  readonly thisYear: readonly {
-    readonly month: number;
-    readonly mps: number;
-  }[];
-  readonly lastYear: readonly {
-    readonly month: number;
-    readonly mps: number;
-  }[];
-};
+export type BarChartData = readonly {
+  readonly month: number;
+  readonly mps: number;
+}[];
 
 export default function SwimSpeedChart({ data }: { data: BarChartData }) {
   const {
     fontFamily,
-    colorLastYear,
     colorThisYear,
     fontSmall,
     fontBase,
@@ -59,7 +52,7 @@ export default function SwimSpeedChart({ data }: { data: BarChartData }) {
         />
       }
       domainPadding={10}
-      padding={{ left: 60, bottom: 30, right: 20, top: 30 }}
+      padding={{ left: 60, bottom: 60, right: 20, top: 30 }}
     >
       <VictoryLabel
         text="Speed by month"
@@ -81,31 +74,20 @@ export default function SwimSpeedChart({ data }: { data: BarChartData }) {
         }}
       />
       <VictoryAxis
-        tickCount={12}
-        tickFormat={(x) => monthNumberToName(x)}
+        tickCount={data.length}
         style={{
           tickLabels: {
             fontFamily: fontFamily,
             fontSize: fontSmall,
             fill: baseColor,
+            angle: -45,
+            verticalAnchor: "middle",
+            textAnchor: "end",
           },
           axis: { stroke: baseColor },
         }}
       />
       <VictoryGroup offset={-5}>
-        <VictoryLine
-          style={{
-            data: { stroke: colorLastYear, strokeWidth: 1 },
-            labels: {
-              fill: colorLastYear,
-              fontFamily: fontFamily,
-              fontSize: fontSmall,
-            },
-          }}
-          data={data.lastYear}
-          x="month"
-          y="mps"
-        />
         <VictoryLine
           style={{
             data: {
@@ -118,8 +100,8 @@ export default function SwimSpeedChart({ data }: { data: BarChartData }) {
               fontSize: fontSmall,
             },
           }}
-          data={data.thisYear}
-          x="month"
+          data={data}
+          x={(d) => formatMonthYear(d)}
           y="mps"
         />
       </VictoryGroup>
@@ -127,8 +109,6 @@ export default function SwimSpeedChart({ data }: { data: BarChartData }) {
   );
 }
 
-function monthNumberToName(month: number) {
-  const date = new Date();
-  date.setMonth(month - 1);
-  return date.toLocaleString("default", { month: "short" });
+function formatMonthYear({ month, year }: { month: number; year: number }) {
+  return `${year}-${month.toString().padStart(2, "0")}`;
 }
