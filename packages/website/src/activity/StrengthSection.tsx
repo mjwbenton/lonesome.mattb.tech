@@ -58,7 +58,7 @@ export default function StrengthSection() {
         </Wall>
         <Expander text="Recent Workouts">
           <StripedList>
-            {trailing30.workouts.map((workout) => (
+            {trailing30.workouts.toReversed().map((workout) => (
               <StripeElement key={workout.startTime}>
                 <div>
                   <div className="font-bold">
