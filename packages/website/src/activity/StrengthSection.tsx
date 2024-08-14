@@ -36,7 +36,8 @@ export default function StrengthSection() {
           <Tile>
             <Icon component={PiBarbell} />
             <strong>{trailing30.count}</strong> strength workouts lasting{" "}
-            <strong>{formatDuration(trailing30.duration)}</strong> seconds
+            <strong>{formatDuration(trailing30.duration)}</strong> seconds in
+            the last 30 days
             <br />
             <span className="text-xs">
               {formatPercentageChange(trailing30.duration, previous30.duration)}{" "}
@@ -45,12 +46,13 @@ export default function StrengthSection() {
           </Tile>
           <Tile>
             <Icon component={PiBarbell} />
-            <strong>{trailing30.activeEnergyBurned}</strong> kcals burned
+            <strong>{trailing30.activeEnergyBurned}</strong> kcals burned in the
+            last 30 days
             <br />
             <span className="text-xs">
               {formatPercentageChange(
                 trailing30.activeEnergyBurned,
-                previous30.activeEnergyBurned,
+                previous30.activeEnergyBurned
               )}{" "}
               change on the previous 30 days
             </span>
