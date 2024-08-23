@@ -24,12 +24,14 @@ const Infoline = ({
       </NoShareMode>
     ) : null}
     {externalLinkUrl ? (
-      <a
-        className="block flex-none p-2 min-w-14 text-center external-link"
-        href={externalLinkUrl}
-      >
-        {externalLinkText}
-      </a>
+      <NoShareMode>
+        <a
+          className="block flex-none p-2 min-w-14 text-center external-link"
+          href={externalLinkUrl}
+        >
+          {externalLinkText}
+        </a>
+      </NoShareMode>
     ) : null}
   </div>
 );
