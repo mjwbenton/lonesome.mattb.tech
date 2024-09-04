@@ -12,3 +12,8 @@ generates:
       preResolveTypes: true
       onlyOperationTypes: true
       skipTypename: true
+      defaultScalarType: unknown
+      scalars:
+        DateTime: string
+        Date: string
+        Rating: number
