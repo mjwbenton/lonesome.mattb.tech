@@ -79,7 +79,7 @@
     "unist-util-visit": "^5.0.0",
     "use-interval": "^1.4.0",
     "victory": "^36.8.6",
-    "webpack": "^4.47.0",
+    "webpack": "^5.94.0",
     "yaml": "^2.3.4"
   }
 }
