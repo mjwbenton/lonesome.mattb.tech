@@ -10,10 +10,11 @@ import {
 } from "victory";
 import useChartTheme from "./useChartTheme";
 import { useEffect, useState } from "react";
+import { formatDuration } from "./format";
 
 export type BarChartData = readonly {
   readonly month: number;
-  readonly mps: number;
+  readonly spm: number | undefined;
 }[];
 
 export default function SwimSpeedChart({ data }: { data: BarChartData }) {
@@ -40,7 +41,7 @@ export default function SwimSpeedChart({ data }: { data: BarChartData }) {
       containerComponent={
         <VictoryVoronoiContainer
           voronoiDimension="x"
-          labels={({ datum }) => `${datum.mps} mps`}
+          labels={({ datum }) => `${formatDuration(datum.spm * 100)} per 100m`}
           labelComponent={
             <VictoryTooltip
               cornerRadius={0}
@@ -55,7 +56,7 @@ export default function SwimSpeedChart({ data }: { data: BarChartData }) {
       padding={{ left: 60, bottom: 60, right: 20, top: 30 }}
     >
       <VictoryLabel
-        text="Speed by month"
+        text="Average time to swim 100m by month"
         x={230}
         y={10}
         textAnchor="middle"
@@ -63,6 +64,7 @@ export default function SwimSpeedChart({ data }: { data: BarChartData }) {
       />
       <VictoryAxis
         dependentAxis
+        tickFormat={(t) => formatDuration(t * 100)}
         style={{
           tickLabels: {
             fontFamily: fontFamily,
@@ -102,7 +104,7 @@ export default function SwimSpeedChart({ data }: { data: BarChartData }) {
           }}
           data={data}
           x={(d) => formatMonthYear(d)}
-          y="mps"
+          y="spm"
         />
       </VictoryGroup>
     </VictoryChart>

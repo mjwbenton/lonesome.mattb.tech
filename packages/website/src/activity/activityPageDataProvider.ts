@@ -121,6 +121,7 @@ const QUERY = gql`
         year
         month
         speed {
+          spm
           mps
         }
       }
@@ -151,7 +152,7 @@ const QUERY = gql`
 
 const activityPageDataProvider: DataProvider<never, ActivityPageQuery> = async (
   _: never,
-  { client },
+  { client }
 ) => {
   const result = await client.query<ActivityPageQuery>({
     query: QUERY,
