@@ -53,7 +53,7 @@ export default function SwimmingSection() {
             <Icon component={ACTIVITY_TYPE_CONFIG.swimming.icon} />
             <strong>
               {formatDuration(
-                (activity?.trailing30Days.swimWorkouts?.speed?.spm ?? 0) * 100
+                (activity?.trailing30Days.swimWorkouts?.speed?.spm ?? 0) * 100,
               )}
             </strong>{" "}
             per 100m average in the last 30 days <br />
@@ -61,7 +61,7 @@ export default function SwimmingSection() {
               speed{" "}
               {formatPercentageChange(
                 activity?.trailing30Days.swimWorkouts?.speed?.mps ?? 0,
-                activity?.previous30Days.swimWorkouts?.speed?.mps ?? 0
+                activity?.previous30Days.swimWorkouts?.speed?.mps ?? 0,
               )}{" "}
               verses previous 30 days
             </span>
@@ -76,7 +76,7 @@ export default function SwimmingSection() {
             <span className="text-xs">
               {formatPercentageChange(
                 activity?.trailing30Days.swimWorkouts?.activeEnergyBurned ?? 0,
-                activity?.previous30Days.swimWorkouts?.activeEnergyBurned ?? 0
+                activity?.previous30Days.swimWorkouts?.activeEnergyBurned ?? 0,
               )}{" "}
               change on the previous 30 days
             </span>
