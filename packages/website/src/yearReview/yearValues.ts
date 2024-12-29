@@ -3,8 +3,8 @@ const YEAR_VALUES = {
     year: 2022,
     photos: 270,
     commitStats: {
-      commits: 350,
-      repositoriesCommittedTo: 19,
+      commits: 351,
+      repositoriesCommittedTo: 20,
     },
     books: {
       started: 11,
