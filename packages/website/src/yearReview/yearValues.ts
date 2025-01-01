@@ -61,7 +61,7 @@ const YEAR_VALUES = {
   },
   2024: {
     year: 2024,
-    photos: 1049,
+    photos: 1056,
     commitStats: {
       commits: 559,
       repositoriesCommittedTo: 20,
@@ -80,12 +80,12 @@ const YEAR_VALUES = {
       gaveUp: 0,
     },
     tvSeasons: {
-      started: 59,
-      finished: 57,
+      started: 60,
+      finished: 58,
       gaveUp: 1,
     },
     activity: {
-      walkingRunningDistance: 3515,
+      walkingRunningDistance: 3554,
       swimmingDistance: 133,
     },
   },
