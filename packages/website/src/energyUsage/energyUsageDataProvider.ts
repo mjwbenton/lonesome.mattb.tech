@@ -47,7 +47,7 @@ const QUERY = gql`
 
 const energyUsageDataProvider: DataProvider<never, EnergyUsageQuery> = async (
   _: never,
-  { client },
+  { client }
 ) => {
   const result = await client.query<EnergyUsageQuery>({
     query: QUERY,
@@ -71,7 +71,7 @@ export function useEnergyUsage() {
 
 function buildVariables() {
   return {
-    startOfYear: formatISO(startOfYear(BASE_DATE)),
+    startOfYear: formatISO(startOfYear(subDays(BASE_DATE, 1))),
     yesterday: formatISO(endOfDay(subDays(BASE_DATE, 1))),
     thirtyOneDaysAgo: formatISO(startOfDay(subDays(BASE_DATE, 31))),
   };
