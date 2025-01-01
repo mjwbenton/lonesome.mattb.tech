@@ -1,0 +1,64 @@
+---
+title: "2025"
+description: "In progress review of the year 2025."
+createdOn: "2025-01-01"
+group: Years
+dataProviders:
+  - yearReview/yearReviewDataProvider
+  - pagesList/pagesInYearDataProvider
+filterYear: 2025
+---
+
+import EmbeddedWrapper from "component/EmbeddedWrapper";
+import PagesList from "pagesList/PagesList";
+import Tile, { Wall } from "component/Tile";
+import Icon from "component/Icon";
+import CountTiles from "yearReview/CountTiles";
+import {
+  RiPlaneLine,
+  RiTrainLine,
+  RiCarLine,
+  RiKnifeLine,
+  RiMusic2Line,
+  RiLuggageCartLine,
+  RiTicketLine,
+  RiGalleryLine,
+} from "react-icons/ri";
+
+# Year in progress – 2025
+
+<EmbeddedWrapper>
+  <Wall>
+    <Tile>
+      <Icon component={RiLuggageCartLine} /> Took <strong>0</strong> trips
+    </Tile>
+    <Tile>
+      <Icon component={RiMusic2Line} /> Attended <strong>0</strong> gigs
+    </Tile>
+    <Tile>
+      <Icon component={RiTicketLine} /> Attended <strong>0</strong> theatre
+      shows
+    </Tile>
+    <Tile>
+      <Icon component={RiGalleryLine} /> Attended <strong>0</strong> exhibitions
+    </Tile>
+    <Tile>
+      <Icon component={RiKnifeLine} /> Ate at <strong>0</strong> restaurants
+    </Tile>
+    <CountTiles />
+  </Wall>
+</EmbeddedWrapper>
+
+## Trips
+
+## Gigs
+
+## Theatre
+
+## Exhibitions
+
+## Restaurants
+
+## Pages Created in 2025
+
+<PagesList withIndex={true} />
