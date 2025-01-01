@@ -47,7 +47,7 @@ const QUERY = gql`
 
 const energyUsageDataProvider: DataProvider<never, EnergyUsageQuery> = async (
   _: never,
-  { client }
+  { client },
 ) => {
   const result = await client.query<EnergyUsageQuery>({
     query: QUERY,
