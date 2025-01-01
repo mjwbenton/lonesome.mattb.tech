@@ -59,6 +59,36 @@ const YEAR_VALUES = {
       swimmingDistance: 92,
     },
   },
+  2024: {
+    year: 2024,
+    photos: 1049,
+    commitStats: {
+      commits: 559,
+      repositoriesCommittedTo: 20,
+    },
+    books: {
+      started: 18,
+      finished: 18,
+      gaveUp: 0,
+    },
+    movies: {
+      watched: 27,
+    },
+    videoGames: {
+      started: 16,
+      completed: 11,
+      gaveUp: 0,
+    },
+    tvSeasons: {
+      started: 59,
+      finished: 57,
+      gaveUp: 1,
+    },
+    activity: {
+      walkingRunningDistance: 3515,
+      swimmingDistance: 133,
+    },
+  },
 };
 
 export default YEAR_VALUES;
