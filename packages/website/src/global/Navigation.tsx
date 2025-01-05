@@ -3,7 +3,6 @@ import Link from "next/link";
 const LINKS = [
   { slug: "/photos", display: "Photos" },
   { slug: "/keyboard", display: "Keyboards" },
-  { slug: "/playlist", display: "Playlists" },
   { slug: "/entertainment", display: "Entertainment" },
   { slug: "/activity", display: "Activity" },
   { slug: "/code", display: "Code" },
