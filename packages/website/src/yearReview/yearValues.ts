@@ -28,6 +28,9 @@ const YEAR_VALUES = {
       walkingRunningDistance: 3059,
       swimmingDistance: 25,
     },
+    tracks: {
+      listened: 4204,
+    },
   },
   2023: {
     year: 2023,
@@ -58,6 +61,9 @@ const YEAR_VALUES = {
       walkingRunningDistance: 3254,
       swimmingDistance: 92,
     },
+    tracks: {
+      listened: 5286,
+    },
   },
   2024: {
     year: 2024,
@@ -87,6 +93,9 @@ const YEAR_VALUES = {
     activity: {
       walkingRunningDistance: 3554,
       swimmingDistance: 133,
+    },
+    tracks: {
+      listened: 4998,
     },
   },
 };

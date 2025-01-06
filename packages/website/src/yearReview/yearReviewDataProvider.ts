@@ -136,6 +136,9 @@ const QUERY = gql`
         km
       }
     }
+    plays(first: 0, startDate: $startDateTime, endDate: $endDateTime) {
+      total
+    }
   }
 `;
 
@@ -166,6 +169,9 @@ export type YearCounts = {
   activity: {
     walkingRunningDistance: number;
     swimmingDistance: number;
+  };
+  tracks: {
+    listened: number;
   };
 };
 
@@ -231,6 +237,9 @@ const yearReviewDataProvider: DataProvider<
         result.data.activity.walkingRunningDistance.km,
       ),
       swimmingDistance: Math.floor(result.data.activity.swimmingDistance.km),
+    },
+    tracks: {
+      listened: result.data.plays.total,
     },
   };
   // Check the values are those expected – hacky test to see if any code changes

@@ -11,6 +11,7 @@ import {
   RiDropLine,
   RiWalkLine,
   RiCamera2Line,
+  RiMusicLine,
 } from "react-icons/ri";
 import React from "react";
 import Icon from "component/Icon";
@@ -26,6 +27,7 @@ export default function CountTiles() {
     pagesList,
     commitStats,
     activity,
+    tracks,
   }: YearCounts & { pagesList: PageMeta[] } = usePageData();
 
   return (
@@ -66,6 +68,10 @@ export default function CountTiles() {
         <span className="text-xs">
           Started {tvSeasons.started}, gave up on {tvSeasons.gaveUp}.
         </span>
+      </Tile>
+      <Tile>
+        <Icon component={RiMusicLine} />
+        Listened to <strong>{tracks.listened}</strong> tracks.
       </Tile>
       <Tile>
         <Icon component={RiGitCommitLine} />
