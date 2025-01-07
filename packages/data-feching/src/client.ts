@@ -30,23 +30,27 @@ type SortFunction = (
   readField: ReadFieldFunction,
 ) => (a: Reference, b: Reference) => number;
 
-function concatPagination(
-  keyArgs: false | string[] = false,
-  sort?: SortFunction,
-): FieldPolicy {
+function concatPagination(sort?: SortFunction): FieldPolicy {
   return {
-    keyArgs,
+    keyArgs: (args, context) => {
+      const updatedArgs = { ...args };
+      delete updatedArgs.first;
+      delete updatedArgs.after;
+      return `${context?.fieldName}(${JSON.stringify(updatedArgs)})`;
+    },
     merge: (existing, incoming, { readField }) => {
       if (!existing) {
         return incoming;
       }
       const incomingIds = new Set<string>(
-        incoming.items.map(({ __ref }) => __ref),
+        incoming.items?.map(({ __ref }) => __ref) ?? [],
       );
-      const existingItems = existing.items.filter(
-        ({ __ref }) => !incomingIds.has(__ref),
-      );
-      const items: Array<Reference> = [...existingItems, ...incoming.items];
+      const existingItems =
+        existing.items?.filter(({ __ref }) => !incomingIds.has(__ref)) ?? [];
+      const items: Array<Reference> = [
+        ...existingItems,
+        ...(incoming.items ?? []),
+      ];
       if (sort) {
         items.sort(sort(readField));
       }
@@ -69,7 +73,8 @@ function cacheByAlias(): FieldPolicy {
   return {
     keyArgs: (args, context) => {
       const aliasOrUndefined = context?.field?.alias?.value;
-      return `activity(${aliasOrUndefined ?? JSON.stringify(args)});`;
+      const fieldName = context?.fieldName;
+      return `${fieldName}(${aliasOrUndefined ?? JSON.stringify(args)});`;
     },
   };
 }
@@ -79,16 +84,17 @@ const CACHE_CONFIGURATION: InMemoryCacheConfig = {
     Query: {
       fields: {
         githubRepositories: concatPagination(),
-        recentGoodreadsBooks: concatPagination(),
-        books: concatPagination(false, movedAtSort),
-        videoGames: concatPagination(false, movedAtSort),
-        movies: concatPagination(false, movedAtSort),
-        watching: concatPagination(false, movedAtSort),
-        tvSeries: concatPagination(false, movedAtSort),
-        tvSeasons: concatPagination(false, movedAtSort),
+        books: concatPagination(movedAtSort),
+        videoGames: concatPagination(movedAtSort),
+        movies: concatPagination(movedAtSort),
+        watching: concatPagination(movedAtSort),
+        tvSeries: concatPagination(movedAtSort),
+        tvSeasons: concatPagination(movedAtSort),
         recentPhotos: concatPagination(),
-        photoSet: concatPagination(["photosetId"]),
-        photosWithTag: concatPagination(["tag"]),
+        photoSet: concatPagination(),
+        photosWithTag: concatPagination(),
+        photos: concatPagination(),
+        plays: concatPagination(),
         /* These fields are queried by date. This means that the arguments change each day thus invalidating the cache.
          * Instead we put the name of the alias used to query them in as the cache key, which means that the cache can still
          * be used while updated data is fetched*/
@@ -106,6 +112,7 @@ function createClient() {
   return new ApolloClient({
     link: LINK,
     cache: new InMemoryCache(CACHE_CONFIGURATION),
+    connectToDevTools: true,
   });
 }
 
