@@ -1,6 +1,6 @@
 import { usePageData } from "@mattb.tech/data-fetching";
 import Tile from "component/Tile";
-import { YearCounts } from "./yearReviewDataProvider";
+import { YearData } from "./yearReviewDataProvider";
 import {
   RiTvLine,
   RiGamepadLine,
@@ -16,19 +16,18 @@ import {
 import React from "react";
 import Icon from "component/Icon";
 import { PageMeta } from "pageMeta";
+import formatNumberChange from "utils/formatNumberChange";
 
-export default function CountTiles() {
+export default function CountTiles({
+  showChange = true,
+}: {
+  showChange?: boolean;
+}) {
   const {
-    photos,
-    movies,
-    books,
-    tvSeasons,
-    videoGames,
+    year,
+    previousYear,
     pagesList,
-    commitStats,
-    activity,
-    tracks,
-  }: YearCounts & { pagesList: PageMeta[] } = usePageData();
+  }: YearData & { pagesList: PageMeta[] } = usePageData();
 
   return (
     <>
@@ -38,50 +37,121 @@ export default function CountTiles() {
       </Tile>
       <Tile>
         <Icon component={RiWalkLine} />
-        Walked <strong>{activity.walkingRunningDistance}km</strong>
+        Walked <strong>{year.activity.walkingRunningDistance}km</strong>{" "}
+        <NumberChange
+          showChange={showChange}
+          current={year.activity.walkingRunningDistance}
+          previous={previousYear.activity.walkingRunningDistance}
+        />
       </Tile>
       <Tile>
         <Icon component={RiDropLine} />
-        Swam <strong>{activity.swimmingDistance}km</strong>
+        Swam <strong>{year.activity.swimmingDistance}km</strong>{" "}
+        <NumberChange
+          showChange={showChange}
+          current={year.activity.swimmingDistance}
+          previous={previousYear.activity.swimmingDistance}
+        />
       </Tile>
       <Tile>
         <Icon component={RiFilmLine} />
-        Watched <strong>{movies.watched}</strong> movies
+        Watched <strong>{year.movies.watched}</strong> movies{" "}
+        <NumberChange
+          showChange={showChange}
+          current={year.movies.watched}
+          previous={previousYear.movies.watched}
+        />
       </Tile>
       <Tile>
         <Icon component={RiBookLine} />
-        Finished <strong>{books.finished}</strong> books. <br />{" "}
+        Finished <strong>{year.books.finished}</strong> books.{" "}
+        <NumberChange
+          showChange={showChange}
+          current={year.books.finished}
+          previous={previousYear.books.finished}
+        />
+        <br />
         <span className="text-xs">
-          Started {books.started}, gave up on {books.gaveUp}.
+          Started {year.books.started}, gave up on {year.books.gaveUp}.
         </span>
       </Tile>
       <Tile>
         <Icon component={RiGamepadLine} />
-        Completed <strong>{videoGames.completed}</strong> video games. <br />{" "}
+        Completed <strong>{year.videoGames.completed}</strong> video games.{" "}
+        <NumberChange
+          showChange={showChange}
+          current={year.videoGames.completed}
+          previous={previousYear.videoGames.completed}
+        />
+        <br />
         <span className="text-xs">
-          Started {videoGames.started}, gave up on {videoGames.gaveUp}.
+          Started {year.videoGames.started}, gave up on {year.videoGames.gaveUp}
+          .
         </span>
       </Tile>
       <Tile>
         <Icon component={RiTvLine} />
-        Finished <strong>{tvSeasons.finished}</strong> TV seasons. <br />{" "}
+        Finished <strong>{year.tvSeasons.finished}</strong> TV seasons.{" "}
+        <NumberChange
+          showChange={showChange}
+          current={year.tvSeasons.finished}
+          previous={previousYear.tvSeasons.finished}
+        />
+        <br />
         <span className="text-xs">
-          Started {tvSeasons.started}, gave up on {tvSeasons.gaveUp}.
+          Started {year.tvSeasons.started}, gave up on {year.tvSeasons.gaveUp}.
         </span>
       </Tile>
       <Tile>
         <Icon component={RiMusicLine} />
-        Listened to <strong>{tracks.listened}</strong> tracks.
+        Listened to <strong>{year.tracks.listened}</strong> tracks.{" "}
+        <NumberChange
+          showChange={showChange}
+          current={year.tracks.listened}
+          previous={previousYear.tracks.listened}
+        />
       </Tile>
       <Tile>
         <Icon component={RiGitCommitLine} />
-        Committed <strong>{commitStats.commits}</strong> times to{" "}
-        <strong>{commitStats.repositoriesCommittedTo}</strong> repositories
+        Committed <strong>{year.commitStats.commits}</strong>{" "}
+        <NumberChange
+          showChange={showChange}
+          current={year.commitStats.commits}
+          previous={previousYear.commitStats.commits}
+        />{" "}
+        times to <strong>{year.commitStats.repositoriesCommittedTo}</strong>{" "}
+        <NumberChange
+          showChange={showChange}
+          current={year.commitStats.repositoriesCommittedTo}
+          previous={previousYear.commitStats.repositoriesCommittedTo}
+        />{" "}
+        repositories
       </Tile>
       <Tile>
         <Icon component={RiCamera2Line} />
-        Uploaded <strong>{photos}</strong> photos
+        Uploaded <strong>{year.photos}</strong> photos{" "}
+        <NumberChange
+          showChange={showChange}
+          current={year.photos}
+          previous={previousYear.photos}
+        />
       </Tile>
     </>
   );
+}
+
+function NumberChange({
+  showChange,
+  current,
+  previous,
+}: {
+  showChange: boolean;
+  current: number;
+  previous: number;
+}) {
+  return showChange ? (
+    <span className="text-xs whitespace-nowrap">
+      ({formatNumberChange(current, previous)})
+    </span>
+  ) : null;
 }

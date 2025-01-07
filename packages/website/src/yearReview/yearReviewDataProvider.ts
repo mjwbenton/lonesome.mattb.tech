@@ -2,6 +2,7 @@ import gql from "graphql-tag";
 import { DataProvider } from "@mattb.tech/data-fetching";
 import { CountsBetweenDatesQuery } from "generated/graphql";
 import YEAR_VALUES from "./yearValues";
+import { ApolloClient, NormalizedCacheObject } from "@apollo/client";
 
 const TV_SERIES_LIMIT = 100;
 
@@ -175,17 +176,22 @@ export type YearCounts = {
   };
 };
 
-const yearReviewDataProvider: DataProvider<
-  { filterYear: number },
-  YearCounts
-> = async ({ filterYear }, { client }) => {
+export type YearData = {
+  year: YearCounts;
+  previousYear: YearCounts;
+};
+
+async function fetchForYear(
+  client: ApolloClient<NormalizedCacheObject>,
+  year: number,
+): Promise<YearCounts> {
   const result = await client.query<CountsBetweenDatesQuery>({
     query: QUERY,
     variables: {
-      startDateTime: `${filterYear}-01-01T00:00:00Z`,
-      endDateTime: `${filterYear}-12-31T23:59:59Z`,
-      startDate: `${filterYear}-01-01`,
-      endDate: `${filterYear}-12-31`,
+      startDateTime: `${year}-01-01T00:00:00Z`,
+      endDateTime: `${year}-12-31T23:59:59Z`,
+      startDate: `${year}-01-01`,
+      endDate: `${year}-12-31`,
       tvSeriesLimit: TV_SERIES_LIMIT,
     },
   });
@@ -207,7 +213,7 @@ const yearReviewDataProvider: DataProvider<
     ({ shelf }) => shelf.id === "Watching",
   ).length;
   const value = {
-    year: filterYear,
+    year,
     photos: result.data.photos.total,
     commitStats: {
       commits: result.data.commitStats.commits,
@@ -245,13 +251,23 @@ const yearReviewDataProvider: DataProvider<
   // Check the values are those expected – hacky test to see if any code changes
   // accidentally cause these values to change after the fact
   if (
-    filterYear in YEAR_VALUES &&
-    JSON.stringify(value) !== JSON.stringify(YEAR_VALUES[filterYear])
+    year in YEAR_VALUES &&
+    JSON.stringify(value) !== JSON.stringify(YEAR_VALUES[year])
   ) {
     console.log(JSON.stringify(value, null, 2));
-    throw new Error(`Year values for ${filterYear} have changed unexpectedly`);
+    throw new Error(`Year values for ${year} have changed unexpectedly`);
   }
   return value;
+}
+
+const yearReviewDataProvider: DataProvider<
+  { filterYear: number },
+  YearData
+> = async ({ filterYear }, { client }) => {
+  return {
+    year: await fetchForYear(client, filterYear),
+    previousYear: await fetchForYear(client, filterYear - 1),
+  };
 };
 
 export default yearReviewDataProvider;
