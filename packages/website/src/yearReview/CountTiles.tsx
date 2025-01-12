@@ -26,14 +26,23 @@ export default function CountTiles({
   const {
     year,
     previousYear,
-    pagesList,
-  }: YearData & { pagesList: PageMeta[] } = usePageData();
+    filterYearPagesCount,
+    previousYearPagesCount,
+  }: YearData & {
+    filterYearPagesCount: number;
+    previousYearPagesCount: number;
+  } = usePageData();
 
   return (
     <>
       <Tile>
         <Icon component={RiArticleLine} />
-        Created <strong>{pagesList.length}</strong> pages
+        Created <strong>{filterYearPagesCount}</strong> pages{" "}
+        <NumberChange
+          showChange={showChange}
+          current={filterYearPagesCount}
+          previous={previousYearPagesCount}
+        />
       </Tile>
       <Tile>
         <Icon component={RiWalkLine} />
@@ -150,8 +159,6 @@ function NumberChange({
   previous: number;
 }) {
   return showChange ? (
-    <span className="text-xs whitespace-nowrap">
-      ({formatNumberChange(current, previous)})
-    </span>
+    <span className="text-xs">({formatNumberChange(current, previous)})</span>
   ) : null;
 }
