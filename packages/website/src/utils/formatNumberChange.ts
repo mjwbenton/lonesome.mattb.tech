@@ -7,7 +7,7 @@ export default function formatNumberChange(
     return "→ flat";
   }
   if (oldValue > newValue) {
-    return `↓ ${(oldValue - newValue).toFixed(places)}`;
+    return `↓\xA0${(oldValue - newValue).toFixed(places)}`;
   }
-  return `↑ ${(newValue - oldValue).toFixed(places)}`;
+  return `↑\xA0${(newValue - oldValue).toFixed(places)}`;
 }
