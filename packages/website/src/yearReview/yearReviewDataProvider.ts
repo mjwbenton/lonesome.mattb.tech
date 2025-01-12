@@ -3,6 +3,8 @@ import { DataProvider } from "@mattb.tech/data-fetching";
 import { CountsBetweenDatesQuery } from "generated/graphql";
 import YEAR_VALUES from "./yearValues";
 import { ApolloClient, NormalizedCacheObject } from "@apollo/client";
+import { formatISO } from "date-fns/formatISO";
+import { subYears } from "date-fns/subYears";
 
 const TV_SERIES_LIMIT = 100;
 
@@ -184,14 +186,19 @@ export type YearData = {
 async function fetchForYear(
   client: ApolloClient<NormalizedCacheObject>,
   year: number,
+  overrideEndDate?: Date,
 ): Promise<YearCounts> {
   const result = await client.query<CountsBetweenDatesQuery>({
     query: QUERY,
     variables: {
       startDateTime: `${year}-01-01T00:00:00Z`,
-      endDateTime: `${year}-12-31T23:59:59Z`,
+      endDateTime: overrideEndDate
+        ? formatISO(overrideEndDate)
+        : `${year}-12-31T23:59:59Z`,
       startDate: `${year}-01-01`,
-      endDate: `${year}-12-31`,
+      endDate: overrideEndDate
+        ? formatISO(overrideEndDate, { representation: "date" })
+        : `${year}-12-31`,
       tvSeriesLimit: TV_SERIES_LIMIT,
     },
   });
@@ -251,6 +258,7 @@ async function fetchForYear(
   // Check the values are those expected – hacky test to see if any code changes
   // accidentally cause these values to change after the fact
   if (
+    !overrideEndDate &&
     year in YEAR_VALUES &&
     JSON.stringify(value) !== JSON.stringify(YEAR_VALUES[year])
   ) {
@@ -264,6 +272,17 @@ const yearReviewDataProvider: DataProvider<
   { filterYear: number },
   YearData
 > = async ({ filterYear }, { client }) => {
+  const thisYear = new Date().getFullYear();
+  if (filterYear === thisYear) {
+    return {
+      year: await fetchForYear(client, filterYear, new Date()),
+      previousYear: await fetchForYear(
+        client,
+        filterYear - 1,
+        subYears(new Date(), 1),
+      ),
+    };
+  }
   return {
     year: await fetchForYear(client, filterYear),
     previousYear: await fetchForYear(client, filterYear - 1),
