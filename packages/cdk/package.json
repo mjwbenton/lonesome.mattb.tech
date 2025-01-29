@@ -7,7 +7,7 @@
   "private": true,
   "devDependencies": {
     "aws-cdk": "^2.126.0",
-    "aws-cdk-lib": "^2.126.0",
+    "aws-cdk-lib": "^2.177.0",
     "constructs": "^10.3.0",
     "prettier": "^3.2.4",
     "ts-node": "^10.9.2",
