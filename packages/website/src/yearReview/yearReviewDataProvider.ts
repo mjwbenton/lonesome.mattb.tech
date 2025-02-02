@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
-import { DataProvider } from "@mattb.tech/data-fetching";
+import { DataProvider, usePageData } from "@mattb.tech/data-fetching";
 import { CountsBetweenDatesQuery } from "generated/graphql";
 import YEAR_VALUES from "./yearValues";
-import { ApolloClient, NormalizedCacheObject } from "@apollo/client";
+import { ApolloClient, NormalizedCacheObject, useQuery } from "@apollo/client";
 import { formatISO } from "date-fns/formatISO";
 import { subYears } from "date-fns/subYears";
 
@@ -146,6 +146,7 @@ const QUERY = gql`
 `;
 
 export type YearCounts = {
+  year: number;
   photos: number;
   books: {
     started: number;
@@ -190,71 +191,9 @@ async function fetchForYear(
 ): Promise<YearCounts> {
   const result = await client.query<CountsBetweenDatesQuery>({
     query: QUERY,
-    variables: {
-      startDateTime: `${year}-01-01T00:00:00Z`,
-      endDateTime: overrideEndDate
-        ? formatISO(overrideEndDate)
-        : `${year}-12-31T23:59:59Z`,
-      startDate: `${year}-01-01`,
-      endDate: overrideEndDate
-        ? formatISO(overrideEndDate, { representation: "date" })
-        : `${year}-12-31`,
-      tvSeriesLimit: TV_SERIES_LIMIT,
-    },
+    variables: buildYearQueryVariables(year, overrideEndDate),
   });
-  if (result.data.tvSeries.total > TV_SERIES_LIMIT) {
-    throw new Error(
-      `Total TV series (${result.data.tvSeries.total}) exceeds fetch limit (${TV_SERIES_LIMIT})`,
-    );
-  }
-  const tvSeriesWithoutSeasons = result.data.tvSeries.items.filter(
-    ({ seasons }) => seasons.length === 0,
-  );
-  const tvSeriesFinished = tvSeriesWithoutSeasons.filter(
-    ({ shelf }) => shelf.id === "Finished",
-  ).length;
-  const tvSeriesGaveUp = tvSeriesWithoutSeasons.filter(
-    ({ shelf }) => shelf.id === "GaveUp",
-  ).length;
-  const tvSeriesStarted = tvSeriesWithoutSeasons.filter(
-    ({ shelf }) => shelf.id === "Watching",
-  ).length;
-  const value = {
-    year,
-    photos: result.data.photos.total,
-    commitStats: {
-      commits: result.data.commitStats.commits,
-      repositoriesCommittedTo: result.data.commitStats.repositoriesCommittedTo,
-    },
-    books: {
-      started: result.data.books.total,
-      finished: result.data.readBooks?.items.total ?? 0,
-      gaveUp: result.data.gaveUpBooks?.items.total ?? 0,
-    },
-    movies: {
-      watched: result.data.movies.total,
-    },
-    videoGames: {
-      started: result.data.videoGames.total,
-      completed: result.data.completedVideoGames?.items.total ?? 0,
-      gaveUp: result.data.gaveUpVideoGames?.items.total ?? 0,
-    },
-    tvSeasons: {
-      started: result.data.tvSeasons.total + tvSeriesStarted,
-      finished:
-        result.data.finishedTvSeasons?.items.total ?? 0 + tvSeriesFinished,
-      gaveUp: result.data.gaveUpTvSeasons?.items.total ?? 0 + tvSeriesGaveUp,
-    },
-    activity: {
-      walkingRunningDistance: Math.floor(
-        result.data.activity.walkingRunningDistance.km,
-      ),
-      swimmingDistance: Math.floor(result.data.activity.swimmingDistance.km),
-    },
-    tracks: {
-      listened: result.data.plays.total,
-    },
-  };
+  const value = transformResult(year, result.data);
   // Check the values are those expected – hacky test to see if any code changes
   // accidentally cause these values to change after the fact
   if (
@@ -272,9 +211,9 @@ const yearReviewDataProvider: DataProvider<
   { filterYear: number },
   YearData
 > = async ({ filterYear }, { client }) => {
-  const thisYear = new Date().getFullYear();
-  if (filterYear === thisYear) {
+  if (isCurrentYear(filterYear)) {
     return {
+      filterYear,
       year: await fetchForYear(client, filterYear, new Date()),
       previousYear: await fetchForYear(
         client,
@@ -290,3 +229,141 @@ const yearReviewDataProvider: DataProvider<
 };
 
 export default yearReviewDataProvider;
+
+/**
+ * Hook to load data directly from the API
+ * Skips fetching unless its the current year
+ */
+export function useLiveYearReviewData(year: number) {
+  const { data: currentYearData, loading: currentYearLoading } =
+    useQuery<CountsBetweenDatesQuery>(QUERY, {
+      variables: buildYearQueryVariables(
+        year,
+        isCurrentYear(year) ? new Date() : undefined,
+      ),
+      skip: !isCurrentYear(year),
+      fetchPolicy: "network-only",
+    });
+
+  const { data: previousYearData, loading: previousYearLoading } =
+    useQuery<CountsBetweenDatesQuery>(QUERY, {
+      variables: buildYearQueryVariables(
+        year - 1,
+        isCurrentYear(year) ? subYears(new Date(), 1) : undefined,
+      ),
+      skip: !isCurrentYear(year),
+      fetchPolicy: "network-only",
+    });
+
+  return {
+    loading: currentYearLoading || previousYearLoading,
+    year: currentYearData ? transformResult(year, currentYearData) : undefined,
+    previousYear: previousYearData
+      ? transformResult(year - 1, previousYearData)
+      : undefined,
+  };
+}
+
+/*
+ * Hook to combine data from build time with data live from the API
+ * Uses build data unless its the in progress year, in which case use the
+ * build data only until the live data has loaded
+ */
+export function useYearReviewData(): { loading: boolean } & YearData {
+  const fromPage: YearData = usePageData();
+  const filterYear = fromPage.year.year;
+  const live: { loading: boolean } & Partial<YearData> =
+    useLiveYearReviewData(filterYear);
+  if (isCurrentYear(filterYear)) {
+    return {
+      loading: live.loading,
+      year: live.year ?? fromPage.year,
+      previousYear: live.previousYear ?? fromPage.previousYear,
+    };
+  } else {
+    return {
+      loading: false,
+      year: fromPage.year,
+      previousYear: fromPage.previousYear,
+    };
+  }
+}
+
+function isCurrentYear(year: number) {
+  return year === new Date().getFullYear();
+}
+
+function buildYearQueryVariables(
+  year: number,
+  overrideEndDate?: Date | undefined,
+) {
+  return {
+    startDateTime: `${year}-01-01T00:00:00Z`,
+    endDateTime: overrideEndDate
+      ? formatISO(overrideEndDate)
+      : `${year}-12-31T23:59:59Z`,
+    startDate: `${year}-01-01`,
+    endDate: overrideEndDate
+      ? formatISO(overrideEndDate, { representation: "date" })
+      : `${year}-12-31`,
+    tvSeriesLimit: TV_SERIES_LIMIT,
+  };
+}
+
+function transformResult(
+  year: number,
+  data: CountsBetweenDatesQuery,
+): YearCounts {
+  if (data.tvSeries.total > TV_SERIES_LIMIT) {
+    throw new Error(
+      `Total TV series (${data.tvSeries.total}) exceeds fetch limit (${TV_SERIES_LIMIT})`,
+    );
+  }
+  const tvSeriesWithoutSeasons = data.tvSeries.items.filter(
+    ({ seasons }) => seasons.length === 0,
+  );
+  const tvSeriesFinished = tvSeriesWithoutSeasons.filter(
+    ({ shelf }) => shelf.id === "Finished",
+  ).length;
+  const tvSeriesGaveUp = tvSeriesWithoutSeasons.filter(
+    ({ shelf }) => shelf.id === "GaveUp",
+  ).length;
+  const tvSeriesStarted = tvSeriesWithoutSeasons.filter(
+    ({ shelf }) => shelf.id === "Watching",
+  ).length;
+  return {
+    year,
+    photos: data.photos.total,
+    commitStats: {
+      commits: data.commitStats.commits,
+      repositoriesCommittedTo: data.commitStats.repositoriesCommittedTo,
+    },
+    books: {
+      started: data.books.total,
+      finished: data.readBooks?.items.total ?? 0,
+      gaveUp: data.gaveUpBooks?.items.total ?? 0,
+    },
+    movies: {
+      watched: data.movies.total,
+    },
+    videoGames: {
+      started: data.videoGames.total,
+      completed: data.completedVideoGames?.items.total ?? 0,
+      gaveUp: data.gaveUpVideoGames?.items.total ?? 0,
+    },
+    tvSeasons: {
+      started: data.tvSeasons.total + tvSeriesStarted,
+      finished: data.finishedTvSeasons?.items.total ?? 0 + tvSeriesFinished,
+      gaveUp: data.gaveUpTvSeasons?.items.total ?? 0 + tvSeriesGaveUp,
+    },
+    activity: {
+      walkingRunningDistance: Math.floor(
+        data.activity.walkingRunningDistance.km,
+      ),
+      swimmingDistance: Math.floor(data.activity.swimmingDistance.km),
+    },
+    tracks: {
+      listened: data.plays.total,
+    },
+  };
+}

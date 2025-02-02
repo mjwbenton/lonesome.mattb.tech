@@ -1,6 +1,6 @@
 import { usePageData } from "@mattb.tech/data-fetching";
 import Tile from "component/Tile";
-import { YearData } from "./yearReviewDataProvider";
+import { useYearReviewData, YearData } from "./yearReviewDataProvider";
 import {
   RiTvLine,
   RiGamepadLine,
@@ -15,8 +15,8 @@ import {
 } from "react-icons/ri";
 import React from "react";
 import Icon from "component/Icon";
-import { PageMeta } from "pageMeta";
 import formatNumberChange from "utils/formatNumberChange";
+import { TopRightSpinner } from "component/Spinner";
 
 export default function CountTiles({
   showChange = true,
@@ -24,18 +24,19 @@ export default function CountTiles({
   showChange?: boolean;
 }) {
   const {
-    year,
-    previousYear,
     filterYearPagesCount,
     previousYearPagesCount,
-  }: YearData & {
+  }: {
     filterYearPagesCount: number;
     previousYearPagesCount: number;
   } = usePageData();
 
+  const { loading, year, previousYear } = useYearReviewData();
+
   return (
     <>
       <Tile>
+        <TopRightSpinner show={loading} />
         <Icon component={RiArticleLine} />
         Created <strong>{filterYearPagesCount}</strong> pages{" "}
         <NumberChange
