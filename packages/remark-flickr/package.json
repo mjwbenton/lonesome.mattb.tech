@@ -14,15 +14,15 @@
   },
   "devDependencies": {
     "@types/escape-html": "^1.0.4",
-    "@types/mdast": "^4.0.3",
-    "@types/unist": "^3.0.2",
-    "prettier": "^3.2.4",
-    "typescript": "^5.3.3"
+    "@types/mdast": "^4.0.4",
+    "@types/unist": "^3.0.3",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.3"
   },
   "dependencies": {
     "escape-html": "^1.0.3",
     "node-fetch": "^3.3.2",
-    "unified": "^11.0.4",
+    "unified": "^11.0.5",
     "unist-util-map": "^4.0.0",
     "unist-util-visit": "^5.0.0"
   }

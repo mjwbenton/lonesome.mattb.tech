@@ -14,9 +14,9 @@
     "site-test": "cypress run"
   },
   "devDependencies": {
-    "@types/node": "^20.11.16",
-    "cypress": "^13.6.4",
-    "prettier": "^3.2.4",
-    "typescript": "^5.3.3"
+    "@types/node": "^20.17.16",
+    "cypress": "^13.17.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.3"
   }
 }
