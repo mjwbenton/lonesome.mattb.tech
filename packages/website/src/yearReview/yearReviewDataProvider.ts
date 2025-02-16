@@ -5,6 +5,7 @@ import YEAR_VALUES from "./yearValues";
 import { ApolloClient, NormalizedCacheObject, useQuery } from "@apollo/client";
 import { formatISO } from "date-fns/formatISO";
 import { subYears } from "date-fns/subYears";
+import { useMemo } from "react";
 
 const TV_SERIES_LIMIT = 100;
 
@@ -235,22 +236,34 @@ export default yearReviewDataProvider;
  * Skips fetching unless its the current year
  */
 export function useLiveYearReviewData(year: number) {
-  const { data: currentYearData, loading: currentYearLoading } =
-    useQuery<CountsBetweenDatesQuery>(QUERY, {
-      variables: buildYearQueryVariables(
+  const currentYearVariables = useMemo(
+    () =>
+      buildYearQueryVariables(
         year,
         isCurrentYear(year) ? new Date() : undefined,
       ),
+    [year],
+  );
+
+  const previousYearVariables = useMemo(
+    () =>
+      buildYearQueryVariables(
+        year - 1,
+        isCurrentYear(year) ? subYears(new Date(), 1) : undefined,
+      ),
+    [year],
+  );
+
+  const { data: currentYearData, loading: currentYearLoading } =
+    useQuery<CountsBetweenDatesQuery>(QUERY, {
+      variables: currentYearVariables,
       skip: !isCurrentYear(year),
       fetchPolicy: "network-only",
     });
 
   const { data: previousYearData, loading: previousYearLoading } =
     useQuery<CountsBetweenDatesQuery>(QUERY, {
-      variables: buildYearQueryVariables(
-        year - 1,
-        isCurrentYear(year) ? subYears(new Date(), 1) : undefined,
-      ),
+      variables: previousYearVariables,
       skip: !isCurrentYear(year),
       fetchPolicy: "network-only",
     });
