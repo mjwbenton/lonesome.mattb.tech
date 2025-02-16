@@ -35,12 +35,12 @@ jobs:
       - uses: cypress-io/github-action@v5
         with:
           project: packages/cypress-tests
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: cypress-screenshots
           path: packages/cypress-tests/cypress/screenshots
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: cypress-videos
