@@ -9,29 +9,26 @@ permissions:
 concurrency: production
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: "yarn"
-
-      - uses: aws-actions/configure-aws-credentials@v1-node16
+      - uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::858777967843:role/github-actions-cdk
           aws-region: us-east-1
-
       - run: yarn install --frozen-lockfile
       - run: yarn build
       - run: yarn run check
       - run: yarn deploy
   cypress-tests:
     needs: deploy
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: cypress-io/github-action@v5
         with:
           project: packages/cypress-tests
@@ -47,10 +44,10 @@ jobs:
           path: packages/cypress-tests/cypress/videos
   lighthouse:
     needs: deploy
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: "18"
           cache: "yarn"
@@ -58,10 +55,10 @@ jobs:
       - run: yarn workspace @mattb.tech/lonesome-website-audits run lighthouse
   pa11y:
     needs: deploy
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: "18"
           cache: "yarn"
