@@ -27,26 +27,23 @@ import formatNumberChange from "utils/formatNumberChange";
 
 # Year in review – 2023
 
-<EmbeddedWrapper>
-  <Wall>
-    <Tile>
-      <Icon component={RiLuggageCartLine} /> Took <strong>6</strong> trips
-      <span className="text-xs">({formatNumberChange(6, 4)})</span>
-    </Tile>
-    <Tile>
-      <Icon component={RiMusic2Line} /> Attended <strong>4</strong> gigs
-      <span className="text-xs">({formatNumberChange(4, 2)})</span>
-    </Tile>
-    <Tile>
-      <Icon component={RiTicketLine} /> Attended <strong>1</strong> theatre show
-    </Tile>
-    <Tile>
-      <Icon component={RiKnifeLine} /> Ate at <strong>25</strong> restaurants
-      <span className="text-xs">({formatNumberChange(25, 17)})</span>
-    </Tile>
-    <CountTiles />
-  </Wall>
-</EmbeddedWrapper>
+<CountTiles>
+  <Tile>
+    <Icon component={RiLuggageCartLine} /> Took <strong>6</strong> trips
+    <span className="text-xs">({formatNumberChange(6, 4)})</span>
+  </Tile>
+  <Tile>
+    <Icon component={RiMusic2Line} /> Attended <strong>4</strong> gigs
+    <span className="text-xs">({formatNumberChange(4, 2)})</span>
+  </Tile>
+  <Tile>
+    <Icon component={RiTicketLine} /> Attended <strong>1</strong> theatre show
+  </Tile>
+  <Tile>
+    <Icon component={RiKnifeLine} /> Ate at <strong>25</strong> restaurants
+    <span className="text-xs">({formatNumberChange(25, 17)})</span>
+  </Tile>
+</CountTiles>
 
 ## Trips
 

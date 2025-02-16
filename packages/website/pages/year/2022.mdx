@@ -25,20 +25,17 @@ import {
 
 # Year in review – 2022
 
-<EmbeddedWrapper>
-  <Wall>
-    <Tile>
-      <Icon component={RiLuggageCartLine} /> Took <strong>4</strong> trips
-    </Tile>
-    <Tile>
-      <Icon component={RiMusic2Line} /> Attended <strong>2</strong> gigs
-    </Tile>
-    <Tile>
-      <Icon component={RiKnifeLine} /> Ate at <strong>17</strong> restaurants
-    </Tile>
-    <CountTiles showChange={false} />
-  </Wall>
-</EmbeddedWrapper>
+<CountTiles showChange={false}>
+  <Tile>
+    <Icon component={RiLuggageCartLine} /> Took <strong>4</strong> trips
+  </Tile>
+  <Tile>
+    <Icon component={RiMusic2Line} /> Attended <strong>2</strong> gigs
+  </Tile>
+  <Tile>
+    <Icon component={RiKnifeLine} /> Ate at <strong>17</strong> restaurants
+  </Tile>
+</CountTiles>
 
 ## Trips
 
