@@ -38,8 +38,8 @@ export default function CountTiles({
 
   return (
     <EmbeddedWrapper>
+      <TopRightSpinner show={loading} />
       <Wall>
-        <TopRightSpinner show={loading} />
         {children}
         <Tile>
           <Icon component={RiArticleLine} />
