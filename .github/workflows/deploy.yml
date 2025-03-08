@@ -30,6 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: corepack enable
       - uses: cypress-io/github-action@v5
         with:
           project: packages/cypress-tests
@@ -48,20 +49,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: corepack enable
       - uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version: "20"
           cache: "yarn"
-      - run: yarn install --frozen-lockfile
+      - run: yarn install --immutable
       - run: yarn workspace @mattb.tech/lonesome-website-audits run lighthouse
   pa11y:
     needs: deploy
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: corepack enable
       - uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version: "20"
           cache: "yarn"
-      - run: yarn install --frozen-lockfile
+      - run: yarn install --immutable
       - run: yarn workspace @mattb.tech/lonesome-website-audits run pa11y
