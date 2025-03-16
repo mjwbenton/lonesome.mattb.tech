@@ -67,7 +67,7 @@ const YEAR_VALUES = {
   },
   2024: {
     year: 2024,
-    photos: 1056,
+    photos: 1057,
     commitStats: {
       commits: 560,
       repositoriesCommittedTo: 21,
