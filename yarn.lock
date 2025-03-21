@@ -3495,7 +3495,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@mattb.tech/lonesome-cdk@workspace:packages/cdk"
   dependencies:
-    aws-cdk: ^2.177.0
+    aws-cdk: ^2.178.2
     aws-cdk-lib: ^2.177.0
     constructs: ^10.4.2
     prettier: ^3.4.2
@@ -5579,9 +5579,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aws-cdk@npm:^2.177.0":
-  version: 2.177.0
-  resolution: "aws-cdk@npm:2.177.0"
+"aws-cdk@npm:^2.178.2":
+  version: 2.1005.0
+  resolution: "aws-cdk@npm:2.1005.0"
   dependencies:
     fsevents: 2.3.2
   dependenciesMeta:
@@ -5589,7 +5589,7 @@ __metadata:
       optional: true
   bin:
     cdk: bin/cdk
-  checksum: 736fa32885eb98d5672a513d4650699903eb267e15874e172a22d3ba9050afc33ee98fd5355676eb14d93762ac4dfe80f881581b75a55c0db328e9f22dadcfc6
+  checksum: b2c6f9ba5e5cc7a78990562f92f13c1d7779a6c0c42fc70777be2fc0aab5f96afb40779105d5c818ff9fe445bc4efecd8e7f314cbdd962348547a7e3b38c69a3
   languageName: node
   linkType: hard
 
