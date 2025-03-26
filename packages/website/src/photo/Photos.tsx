@@ -51,7 +51,10 @@ export default function Photos({
             return <Photo key={p1.pageUrl} {...p1} lazyLoad={i > 0} />;
           } else {
             return (
-              <div className="flex flex-col flex-wrap space-y-16 md:space-y-0 md:flex-row md:space-x-8 md:mx-8">
+              <div
+                key={p1.pageUrl}
+                className="flex flex-col flex-wrap space-y-16 md:space-y-0 md:flex-row md:space-x-8 md:mx-8"
+              >
                 <div className="min-w-0 md:max-w-[calc(50vw-theme(spacing.12))]">
                   <Photo {...p1} lazyLoad={i > 0} />
                 </div>
