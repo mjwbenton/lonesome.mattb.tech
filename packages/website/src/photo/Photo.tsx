@@ -46,7 +46,9 @@ const Photo: React.FunctionComponent<
         shareUrl={`https://share.mattb.tech/photo?p=${id}`}
       >
         <div className="space-y-2">
-          <h2 className="font-bold">{title}</h2>
+          <h2 className="font-bold whitespace-nowrap overflow-clip text-ellipsis">
+            {title}
+          </h2>
           {camera?.name || lens?.name ? (
             <div className="whitespace-nowrap overflow-clip text-ellipsis">
               <Icon component={Camera} size="small" />
