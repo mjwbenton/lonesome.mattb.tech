@@ -3489,7 +3489,7 @@ __metadata:
   resolution: "@mattb.tech/lonesome-cdk@workspace:packages/cdk"
   dependencies:
     aws-cdk: ^2.178.2
-    aws-cdk-lib: ^2.187.0
+    aws-cdk-lib: ^2.189.1
     constructs: ^10.4.2
     prettier: ^3.4.2
     ts-node: ^10.9.2
@@ -5547,9 +5547,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aws-cdk-lib@npm:^2.187.0":
-  version: 2.188.0
-  resolution: "aws-cdk-lib@npm:2.188.0"
+"aws-cdk-lib@npm:^2.189.1":
+  version: 2.189.1
+  resolution: "aws-cdk-lib@npm:2.189.1"
   dependencies:
     "@aws-cdk/asset-awscli-v1": ^2.2.229
     "@aws-cdk/asset-node-proxy-agent-v6": ^2.1.0
@@ -5567,7 +5567,7 @@ __metadata:
     yaml: 1.10.2
   peerDependencies:
     constructs: ^10.0.0
-  checksum: 2fd9617432f485d1c87f88e4ca22f405d9028ceae64a2af6e743af3fd73601e6aac24efc9c2f3b4990afa97f455581f27c40e97e6389dd3da090dd7b8fbf99b0
+  checksum: 9a885dd6b184035f6d66999d28c115c8d670a6fa6e6f8387eb9acdb6c8b6fd93dfa503b69eaa98f12c72bed0f463185fffb1fc5016fb9e9f66ff015fa3706f23
   languageName: node
   linkType: hard
 
