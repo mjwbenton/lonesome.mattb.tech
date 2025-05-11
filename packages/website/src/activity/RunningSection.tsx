@@ -7,24 +7,21 @@ import { PiBarbell } from "react-icons/pi";
 import Icon from "component/Icon";
 import formatPercentageChange from "utils/formatPercentageChange";
 import StripedList, { StripeElement } from "component/StripedList";
-import { formatDuration, formatStartTime } from "./format";
-
-export default function StrengthSection() {
+import { formatDuration, formatStartTime, formatKm } from "./format";
+export default function RunningSection() {
   const { activity, loading } = useActivityPage();
 
   const trailing30 = {
-    count: activity?.trailing30Days.strengthWorkouts?.count ?? 0,
-    duration: activity?.trailing30Days.strengthWorkouts?.durationSeconds ?? 0,
-    activeEnergyBurned:
-      activity?.trailing30Days.strengthWorkouts?.activeEnergyBurned ?? 0,
-    workouts: activity?.trailing30Days.strengthWorkouts?.workouts ?? [],
+    count: activity?.trailing30Days.runningWorkouts?.count ?? 0,
+    duration: activity?.trailing30Days.runningWorkouts?.durationSeconds ?? 0,
+    distance: activity?.trailing30Days.runningWorkouts?.distance?.km ?? 0,
+    workouts: activity?.trailing30Days.runningWorkouts?.workouts ?? [],
   };
 
   const previous30 = {
-    count: activity?.previous30Days.strengthWorkouts?.count ?? 0,
-    duration: activity?.previous30Days.strengthWorkouts?.durationSeconds ?? 0,
-    activeEnergyBurned:
-      activity?.previous30Days.strengthWorkouts?.activeEnergyBurned ?? 0,
+    count: activity?.previous30Days.runningWorkouts?.count ?? 0,
+    duration: activity?.previous30Days.runningWorkouts?.durationSeconds ?? 0,
+    distance: activity?.previous30Days.runningWorkouts?.distance?.km ?? 0,
   };
 
   return (
@@ -34,7 +31,7 @@ export default function StrengthSection() {
         <Wall>
           <Tile>
             <Icon component={PiBarbell} />
-            <strong>{trailing30.count}</strong> strength workouts lasting{" "}
+            <strong>{trailing30.count}</strong> runs lasting{" "}
             <strong>{formatDuration(trailing30.duration)}</strong> in the last
             30 days
             <br />
@@ -45,14 +42,11 @@ export default function StrengthSection() {
           </Tile>
           <Tile>
             <Icon component={PiBarbell} />
-            <strong>{trailing30.activeEnergyBurned}</strong> kcals burned in the
-            last 30 days
+            <strong>{formatKm(trailing30.distance)}</strong> run in the last 30
+            days
             <br />
             <span className="text-xs">
-              {formatPercentageChange(
-                trailing30.activeEnergyBurned,
-                previous30.activeEnergyBurned
-              )}{" "}
+              {formatPercentageChange(trailing30.distance, previous30.distance)}{" "}
               change on the previous 30 days
             </span>
           </Tile>
@@ -68,7 +62,7 @@ export default function StrengthSection() {
                   <div>
                     <Icon component={PiBarbell} />{" "}
                     {formatDuration(workout.durationSeconds)} -{" "}
-                    {workout.activeEnergyBurned} kcals
+                    {formatKm(workout.distance?.km ?? 0)}
                   </div>
                 </div>
               </StripeElement>
