@@ -51,7 +51,7 @@ export default function StrengthSection() {
             <span className="text-xs">
               {formatPercentageChange(
                 trailing30.activeEnergyBurned,
-                previous30.activeEnergyBurned
+                previous30.activeEnergyBurned,
               )}{" "}
               change on the previous 30 days
             </span>
