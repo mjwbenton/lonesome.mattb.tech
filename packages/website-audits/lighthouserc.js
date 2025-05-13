@@ -21,6 +21,7 @@ module.exports = {
         "unused-javascript": "warn",
         "uses-optimized-images": "warn",
         "uses-responsive-images": "warn",
+        "is-crawlable": "off",
       },
     },
     upload: {
