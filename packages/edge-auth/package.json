@@ -1,0 +1,22 @@
+{
+  "name": "@mattb.tech/lonesome-edge-auth",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "author": "Matt Benton <m@mattb.tech>",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "../../scripts/build.sh",
+    "check": "../../scripts/check.sh",
+    "clean": "../../scripts/clean.sh",
+    "fix": "../../scripts/fix.sh"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.147",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "@aws-sdk/client-ssm": "^3.808.0",
+    "cognito-at-edge": "^1.5.3"
+  }
+}

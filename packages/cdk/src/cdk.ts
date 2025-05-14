@@ -11,10 +11,21 @@ new StaticWebsite(app, "LonesomeWebsite", {
   hostedZoneId: HOSTED_ZONE_ID,
   zoneName: ZONE_NAME,
   outPath: path.join(__dirname, "../../website/out-lonesome"),
+  enableSSOAuthentication: false,
 });
 new StaticWebsite(app, "ShareWebsite", {
   domainName: "share.mattb.tech",
   hostedZoneId: HOSTED_ZONE_ID,
   zoneName: ZONE_NAME,
   outPath: path.join(__dirname, "../../website/out-share"),
+  enableSSOAuthentication: false,
+});
+
+// Temporary to try out auth setup
+new StaticWebsite(app, "AuthTestWebsite", {
+  domainName: "authtest.lonesome.mattb.tech",
+  hostedZoneId: HOSTED_ZONE_ID,
+  zoneName: ZONE_NAME,
+  outPath: path.join(__dirname, "../../website/out-lonesome"),
+  enableSSOAuthentication: false,
 });

@@ -17,6 +17,7 @@ export type StaticWebsiteProps = cdk.StackProps & {
   hostedZoneId: string;
   zoneName: string;
   outPath: string;
+  enableSSOAuthentication: boolean;
 };
 
 export class StaticWebsite extends cdk.Stack {
@@ -66,6 +67,12 @@ export class StaticWebsite extends cdk.Stack {
       code: lambda.Code.fromAsset(path.join(__dirname, "../../edge-router")),
     });
 
+    const authLambda = new lambda.Function(this, "AuthFunction", {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: "dist/index.handler",
+      code: lambda.Code.fromAsset(path.join(__dirname, "../../edge-auth")),
+    });
+
     const distribution = new cloudfront.Distribution(this, "Distribution", {
       defaultBehavior: {
         origin: origins.S3BucketOrigin.withOriginAccessControl(pagesBucket),
@@ -75,6 +82,14 @@ export class StaticWebsite extends cdk.Stack {
             functionVersion: routerLambda.currentVersion,
             eventType: cloudfront.LambdaEdgeEventType.ORIGIN_REQUEST,
           },
+          ...(props.enableSSOAuthentication
+            ? [
+                {
+                  functionVersion: authLambda.currentVersion,
+                  eventType: cloudfront.LambdaEdgeEventType.VIEWER_REQUEST,
+                },
+              ]
+            : []),
         ],
       },
       domainNames: [domainName],
@@ -122,5 +137,9 @@ export class StaticWebsite extends cdk.Stack {
         new route53targets.CloudFrontTarget(distribution),
       ),
     });
+  }
+
+  public withSSOAuthentication() {
+    return this;
   }
 }
