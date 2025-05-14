@@ -79,7 +79,6 @@ export class StaticWebsite extends cdk.Stack {
           NODE_ENV: "production",
         },
       },
-      memorySize: 1024,
     });
     authLambda.addToRolePolicy(
       new iam.PolicyStatement({
