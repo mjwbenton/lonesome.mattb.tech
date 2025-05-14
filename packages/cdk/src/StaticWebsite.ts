@@ -55,20 +55,20 @@ export class StaticWebsite extends cdk.Stack {
       },
     });
 
-    const certificate = new acm.DnsValidatedCertificate(this, "Certificate", {
+    const certificate = new acm.Certificate(this, "Certificate", {
       domainName,
-      hostedZone,
+      validation: acm.CertificateValidation.fromDns(hostedZone),
     });
 
     const routerLambda = new lambda.Function(this, "RouterFunction", {
-      runtime: lambda.Runtime.NODEJS_16_X,
+      runtime: lambda.Runtime.NODEJS_22_X,
       handler: "dist/index.handler",
       code: lambda.Code.fromAsset(path.join(__dirname, "../../edge-router")),
     });
 
     const distribution = new cloudfront.Distribution(this, "Distribution", {
       defaultBehavior: {
-        origin: new origins.S3Origin(pagesBucket),
+        origin: origins.S3BucketOrigin.withOriginAccessControl(pagesBucket),
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
         edgeLambdas: [
           {
@@ -80,7 +80,10 @@ export class StaticWebsite extends cdk.Stack {
       domainNames: [domainName],
       certificate,
     });
-    distribution.addBehavior("_next/*", new origins.S3Origin(assetsBucket));
+    distribution.addBehavior(
+      "_next/*",
+      origins.S3BucketOrigin.withOriginAccessControl(assetsBucket),
+    );
 
     new s3deploy.BucketDeployment(this, "DeployPages", {
       sources: [
