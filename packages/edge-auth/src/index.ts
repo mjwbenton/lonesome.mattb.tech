@@ -1,7 +1,7 @@
 import { GetParameterCommand, SSMClient } from "@aws-sdk/client-ssm";
 import { Authenticator } from "cognito-at-edge";
 
-const SSM_CLIENT = new SSMClient();
+const SSM_CLIENT = new SSMClient({ region: "us-east-1" });
 
 async function getParameter(name: string) {
   const command = new GetParameterCommand({ Name: name });
