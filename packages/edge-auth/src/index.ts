@@ -14,8 +14,9 @@ async function buildAuthenticator() {
   const COGNITO_CLIENT_ID = await getParameter(
     "/mattb-sso/user-pool-client-id",
   );
+  const COGNITO_DOMAIN = await getParameter("/mattb-sso/user-pool-domain");
 
-  if (!COGNITO_USER_POOL_ID || !COGNITO_CLIENT_ID) {
+  if (!COGNITO_USER_POOL_ID || !COGNITO_CLIENT_ID || !COGNITO_DOMAIN) {
     throw new Error("Missing Cognito parameters");
   }
 
@@ -23,7 +24,7 @@ async function buildAuthenticator() {
     region: "us-east-1",
     userPoolId: COGNITO_USER_POOL_ID,
     userPoolAppId: COGNITO_CLIENT_ID,
-    userPoolDomain: "mattb-sso.auth.us-east-1.amazoncognito.com",
+    userPoolDomain: COGNITO_DOMAIN,
   });
 }
 

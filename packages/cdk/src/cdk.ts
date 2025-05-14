@@ -27,5 +27,5 @@ new StaticWebsite(app, "AuthTestWebsite", {
   hostedZoneId: HOSTED_ZONE_ID,
   zoneName: ZONE_NAME,
   outPath: path.join(__dirname, "../../website/out-lonesome"),
-  enableSSOAuthentication: false,
+  enableSSOAuthentication: true,
 });

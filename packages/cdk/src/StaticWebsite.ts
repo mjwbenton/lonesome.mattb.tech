@@ -8,6 +8,8 @@ import {
   aws_certificatemanager as acm,
   aws_s3_deployment as s3deploy,
   aws_lambda as lambda,
+  aws_lambda_nodejs as lambda_nodejs,
+  aws_iam as iam,
 } from "aws-cdk-lib";
 import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
 import { Construct } from "constructs";
@@ -67,11 +69,28 @@ export class StaticWebsite extends cdk.Stack {
       code: lambda.Code.fromAsset(path.join(__dirname, "../../edge-router")),
     });
 
-    const authLambda = new lambda.Function(this, "AuthFunction", {
+    const authLambda = new lambda_nodejs.NodejsFunction(this, "AuthFunction", {
       runtime: lambda.Runtime.NODEJS_22_X,
-      handler: "dist/index.handler",
-      code: lambda.Code.fromAsset(path.join(__dirname, "../../edge-auth")),
+      entry: path.join(__dirname, "../../edge-auth/dist/index.js"),
+      handler: "handler",
+      bundling: {
+        target: "es2020",
+        environment: {
+          NODE_ENV: "production",
+        },
+      },
+      memorySize: 1024,
     });
+    authLambda.addToRolePolicy(
+      new iam.PolicyStatement({
+        actions: ["ssm:GetParameter"],
+        resources: [
+          "arn:aws:ssm:us-east-1:858777967843:parameter/mattb-sso/user-pool-id",
+          "arn:aws:ssm:us-east-1:858777967843:parameter/mattb-sso/user-pool-client-id",
+          "arn:aws:ssm:us-east-1:858777967843:parameter/mattb-sso/user-pool-domain",
+        ],
+      }),
+    );
 
     const distribution = new cloudfront.Distribution(this, "Distribution", {
       defaultBehavior: {
@@ -137,9 +156,5 @@ export class StaticWebsite extends cdk.Stack {
         new route53targets.CloudFrontTarget(distribution),
       ),
     });
-  }
-
-  public withSSOAuthentication() {
-    return this;
   }
 }
