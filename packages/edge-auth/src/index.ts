@@ -10,11 +10,12 @@ async function getParameter(name: string) {
 }
 
 async function buildAuthenticator() {
-  const COGNITO_USER_POOL_ID = await getParameter("/mattb-sso/user-pool-id");
-  const COGNITO_CLIENT_ID = await getParameter(
-    "/mattb-sso/user-pool-client-id",
-  );
-  const COGNITO_DOMAIN = await getParameter("/mattb-sso/user-pool-domain");
+  const [COGNITO_USER_POOL_ID, COGNITO_CLIENT_ID, COGNITO_DOMAIN] =
+    await Promise.all([
+      getParameter("/mattb-sso/user-pool-id"),
+      getParameter("/mattb-sso/user-pool-client-id"),
+      getParameter("/mattb-sso/user-pool-domain"),
+    ]);
 
   if (!COGNITO_USER_POOL_ID || !COGNITO_CLIENT_ID || !COGNITO_DOMAIN) {
     throw new Error("Missing Cognito parameters");
