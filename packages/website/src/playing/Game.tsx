@@ -23,7 +23,7 @@ const Game: React.FunctionComponent<{ game: VideoGameFragment }> = ({
       <div className="my-2 space-y-2">
         <TwoRowText
           row1={game.title}
-          row2={game.platforms.map(({ name }) => name).join(", ")}
+          row2={game.platforms?.map(({ name }) => name).join(", ") ?? ""}
         />
         {game.addedAt ? (
           <div className="text-xs">
