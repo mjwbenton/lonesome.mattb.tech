@@ -70,11 +70,11 @@ export default function CountTiles({
         </Tile>
         <Tile>
           <Icon component={RiFilmLine} />
-          Watched <strong>{year.movies.watched}</strong> movies{" "}
+          Watched <strong>{year.features.watched}</strong> features{" "}
           <NumberChange
             showChange={showChange}
-            current={year.movies.watched}
-            previous={previousYear.movies.watched}
+            current={year.features.watched}
+            previous={previousYear.features.watched}
           />
         </Tile>
         <Tile>

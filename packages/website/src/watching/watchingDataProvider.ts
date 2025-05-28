@@ -11,7 +11,7 @@ const QUERY = gql`
       nextPageCursor
       items {
         __typename
-        ...Movie
+        ...Feature
         ...TvSeries
       }
     }
@@ -48,7 +48,7 @@ const QUERY = gql`
     }
   }
 
-  fragment Movie on Movie {
+  fragment Feature on Feature {
     id
     title
     image {

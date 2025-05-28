@@ -52,7 +52,7 @@ const QUERY = gql`
         total
       }
     }
-    movies(
+    features(
       first: 0
       startDate: $startDateTime
       endDate: $endDateTime
@@ -154,7 +154,7 @@ export type YearCounts = {
     finished: number;
     gaveUp: number;
   };
-  movies: {
+  features: {
     watched: number;
   };
   videoGames: {
@@ -356,8 +356,8 @@ function transformResult(
       finished: data.readBooks?.items.total ?? 0,
       gaveUp: data.gaveUpBooks?.items.total ?? 0,
     },
-    movies: {
-      watched: data.movies.total,
+    features: {
+      watched: data.features.total,
     },
     videoGames: {
       started: data.videoGames.total,

@@ -4,12 +4,12 @@ import Infoline from "../component/Infoline";
 import TwoRowText from "../component/TwoRowText";
 import Date from "../component/Date";
 import { Star, Clock } from "react-feather";
-import { MovieFragment, TvSeriesFragment } from "../generated/graphql";
+import { FeatureFragment, TvSeriesFragment } from "../generated/graphql";
 import { isSameDay } from "date-fns/isSameDay";
 import { parseISO } from "date-fns/parseISO";
 
 type WatchingItem = Pick<
-  MovieFragment,
+  FeatureFragment,
   "image" | "title" | "rating" | "releaseYear" | "shelf"
 >;
 
@@ -62,14 +62,14 @@ const Watching = ({
   </ContentBlock>
 );
 
-export const Movie: React.FunctionComponent<{ movie: MovieFragment }> = ({
-  movie,
+export const Feature: React.FunctionComponent<{ feature: FeatureFragment }> = ({
+  feature,
 }) => (
-  <Watching {...movie} type="Movie">
+  <Watching {...feature} type="Feature">
     <div className="text-xs">
-      <Clock className="inline" size={14} /> <Date>{movie.movedAt}</Date>
+      <Clock className="inline" size={14} /> <Date>{feature.movedAt}</Date>
     </div>
-    {movie.notes ? <div className="text-xs">{movie.notes}</div> : null}
+    {feature.notes ? <div className="text-xs">{feature.notes}</div> : null}
   </Watching>
 );
 

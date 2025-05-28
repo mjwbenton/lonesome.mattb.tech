@@ -11,7 +11,7 @@ const YEAR_VALUES = {
       finished: 11,
       gaveUp: 1,
     },
-    movies: {
+    features: {
       watched: 16,
     },
     videoGames: {
@@ -44,7 +44,7 @@ const YEAR_VALUES = {
       finished: 17,
       gaveUp: 0,
     },
-    movies: {
+    features: {
       watched: 17,
     },
     videoGames: {
@@ -77,7 +77,7 @@ const YEAR_VALUES = {
       finished: 18,
       gaveUp: 0,
     },
-    movies: {
+    features: {
       watched: 27,
     },
     videoGames: {
