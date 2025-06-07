@@ -28,8 +28,8 @@ const YEAR_VALUES = {
       walkingRunningDistance: 3059,
       swimmingDistance: 25,
       workouts: {
-        count: 0,
-        duration: 0,
+        count: 58,
+        duration: 58879,
       },
     },
     tracks: {
