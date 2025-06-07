@@ -18,6 +18,8 @@ import Icon from "component/Icon";
 import formatNumberChange from "utils/formatNumberChange";
 import { TopRightSpinner } from "component/Spinner";
 import EmbeddedWrapper from "component/EmbeddedWrapper";
+import { PiBarbell } from "react-icons/pi";
+import { formatDuration } from "activity/format";
 
 export default function CountTiles({
   showChange = true,
@@ -49,6 +51,26 @@ export default function CountTiles({
             current={filterYearPagesCount}
             previous={previousYearPagesCount}
           />
+        </Tile>
+        <Tile>
+          <Icon component={PiBarbell} />
+          Spent{" "}
+          <strong>
+            {formatDuration(year.activity.workouts.duration)}
+          </strong>{" "}
+          <NumberChange
+            showChange={showChange}
+            current={year.activity.workouts.duration}
+            previous={previousYear.activity.workouts.duration}
+            formatter={(value) => formatDuration(value)}
+          />{" "}
+          working out across <strong>{year.activity.workouts.count}</strong>{" "}
+          <NumberChange
+            showChange={showChange}
+            current={year.activity.workouts.count}
+            previous={previousYear.activity.workouts.count}
+          />{" "}
+          workouts.
         </Tile>
         <Tile>
           <Icon component={RiWalkLine} />
@@ -161,12 +183,16 @@ function NumberChange({
   showChange,
   current,
   previous,
+  formatter,
 }: {
   showChange: boolean;
   current: number;
   previous: number;
+  formatter?: (value: number) => string;
 }) {
   return showChange ? (
-    <span className="text-xs">({formatNumberChange(current, previous)})</span>
+    <span className="text-xs">
+      ({formatNumberChange(current, previous, formatter)})
+    </span>
   ) : null;
 }

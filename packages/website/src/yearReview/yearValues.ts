@@ -27,6 +27,10 @@ const YEAR_VALUES = {
     activity: {
       walkingRunningDistance: 3059,
       swimmingDistance: 25,
+      workouts: {
+        count: 0,
+        duration: 0,
+      },
     },
     tracks: {
       listened: 4204,
@@ -60,6 +64,10 @@ const YEAR_VALUES = {
     activity: {
       walkingRunningDistance: 3254,
       swimmingDistance: 92,
+      workouts: {
+        count: 108,
+        duration: 188328,
+      },
     },
     tracks: {
       listened: 5286,
@@ -93,6 +101,10 @@ const YEAR_VALUES = {
     activity: {
       walkingRunningDistance: 3554,
       swimmingDistance: 133,
+      workouts: {
+        count: 162,
+        duration: 229019,
+      },
     },
     tracks: {
       listened: 4998,

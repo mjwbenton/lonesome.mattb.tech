@@ -1,13 +1,13 @@
 export default function formatNumberChange(
   newValue: number,
   oldValue: number,
-  places = 0,
+  formatter: (value: number) => string = (value) => value.toFixed(0),
 ): string {
   if (oldValue === newValue) {
     return "→ flat";
   }
   if (oldValue > newValue) {
-    return `↓\xA0${(oldValue - newValue).toFixed(places)}`;
+    return `↓\xA0${formatter(oldValue - newValue)}`;
   }
-  return `↑\xA0${(newValue - oldValue).toFixed(places)}`;
+  return `↑\xA0${formatter(newValue - oldValue)}`;
 }

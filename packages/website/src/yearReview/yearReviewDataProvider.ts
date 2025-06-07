@@ -139,6 +139,10 @@ const QUERY = gql`
       walkingRunningDistance {
         km
       }
+      workouts {
+        count
+        durationSeconds
+      }
     }
     plays(first: 0, startDate: $startDateTime, endDate: $endDateTime) {
       total
@@ -174,6 +178,10 @@ export type YearCounts = {
   activity: {
     walkingRunningDistance: number;
     swimmingDistance: number;
+    workouts: {
+      count: number;
+      duration: number;
+    };
   };
   tracks: {
     listened: number;
@@ -374,6 +382,10 @@ function transformResult(
         data.activity.walkingRunningDistance.km,
       ),
       swimmingDistance: Math.floor(data.activity.swimmingDistance.km),
+      workouts: {
+        count: data.activity.workouts?.count ?? 0,
+        duration: data.activity.workouts?.durationSeconds ?? 0,
+      },
     },
     tracks: {
       listened: data.plays.total,

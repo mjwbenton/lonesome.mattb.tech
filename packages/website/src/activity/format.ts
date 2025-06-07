@@ -1,6 +1,11 @@
 import { parseISO } from "date-fns/parseISO";
 
 export function formatDuration(value: number): string {
+  const hours = Math.floor(value / 3600);
+  if (hours > 0) {
+    const minutes = Math.floor((value % 3600) / 60);
+    return `${hours}h ${minutes}m`;
+  }
   const minutes = Math.floor(value / 60);
   const seconds = Math.round(value % 60);
   return `${minutes}m ${seconds}s`;
