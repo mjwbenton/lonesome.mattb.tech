@@ -26,6 +26,10 @@ async function buildAuthenticator() {
     userPoolId: COGNITO_USER_POOL_ID,
     userPoolAppId: COGNITO_CLIENT_ID,
     userPoolDomain: COGNITO_DOMAIN,
+    logoutConfiguration: {
+      logoutUri: "/logout",
+      logoutRedirectUri: "/",
+    },
   });
 }
 
