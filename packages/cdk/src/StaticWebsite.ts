@@ -116,6 +116,18 @@ export class StaticWebsite extends cdk.Stack {
     distribution.addBehavior(
       "_next/*",
       origins.S3BucketOrigin.withOriginAccessControl(assetsBucket),
+      {
+        edgeLambdas: [
+          ...(props.enableSSOAuthentication
+            ? [
+                {
+                  functionVersion: authLambda.currentVersion,
+                  eventType: cloudfront.LambdaEdgeEventType.VIEWER_REQUEST,
+                },
+              ]
+            : []),
+        ],
+      },
     );
 
     new s3deploy.BucketDeployment(this, "DeployPages", {
