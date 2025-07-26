@@ -9,11 +9,10 @@ import {
   aws_s3_deployment as s3deploy,
   aws_lambda as lambda,
   aws_lambda_nodejs as lambda_nodejs,
-  aws_iam as iam,
-  aws_ssm as ssm,
 } from "aws-cdk-lib";
 import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
 import { Construct } from "constructs";
+import { env } from "./env";
 
 export type StaticWebsiteProps = cdk.StackProps & {
   domainName: string;
@@ -70,19 +69,6 @@ export class StaticWebsite extends cdk.Stack {
       code: lambda.Code.fromAsset(path.join(__dirname, "../../edge-router")),
     });
 
-    const userPoolId = ssm.StringParameter.valueFromLookup(
-      this,
-      "/mattb-sso/user-pool-id",
-    );
-    const clientId = ssm.StringParameter.valueFromLookup(
-      this,
-      "/mattb-sso/user-pool-client-id",
-    );
-    const domain = ssm.StringParameter.valueFromLookup(
-      this,
-      "/mattb-sso/user-pool-domain",
-    );
-
     const authLambda = new lambda_nodejs.NodejsFunction(this, "AuthFunction", {
       runtime: lambda.Runtime.NODEJS_22_X,
       entry: path.join(__dirname, "../../edge-auth/dist/index.js"),
@@ -93,9 +79,13 @@ export class StaticWebsite extends cdk.Stack {
           NODE_ENV: "production",
         },
         define: {
-          "process.env.COGNITO_USER_POOL_ID": JSON.stringify(userPoolId),
-          "process.env.COGNITO_CLIENT_ID": JSON.stringify(clientId),
-          "process.env.COGNITO_DOMAIN": JSON.stringify(domain),
+          "process.env.COGNITO_USER_POOL_ID": JSON.stringify(
+            env.COGNITO_USER_POOL_ID,
+          ),
+          "process.env.COGNITO_CLIENT_ID": JSON.stringify(
+            env.COGNITO_CLIENT_ID,
+          ),
+          "process.env.COGNITO_DOMAIN": JSON.stringify(env.COGNITO_DOMAIN),
         },
       },
     });

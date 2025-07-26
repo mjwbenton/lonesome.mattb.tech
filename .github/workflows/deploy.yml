@@ -21,10 +21,19 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::858777967843:role/github-actions-cdk
           aws-region: us-east-1
+      - name: Fetch Cognito Configuration
+        run: |
+          echo "COGNITO_USER_POOL_ID=$(aws ssm get-parameter --region us-east-1 --name "arn:aws:ssm:us-east-1:858777967843:parameter/mattb-sso/user-pool-id" --query "Parameter.Value" --output text)" >> $GITHUB_ENV
+          echo "COGNITO_CLIENT_ID=$(aws ssm get-parameter --region us-east-1 --name "arn:aws:ssm:us-east-1:858777967843:parameter/mattb-sso/user-pool-client-id" --query "Parameter.Value" --output text)" >> $GITHUB_ENV
+          echo "COGNITO_DOMAIN=$(aws ssm get-parameter --region us-east-1 --name "arn:aws:ssm:us-east-1:858777967843:parameter/mattb-sso/user-pool-domain" --query "Parameter.Value" --output text)" >> $GITHUB_ENV
       - run: yarn install --immutable
       - run: yarn build
       - run: yarn run check
       - run: yarn deploy
+        env:
+          COGNITO_USER_POOL_ID: ${{ env.COGNITO_USER_POOL_ID }}
+          COGNITO_CLIENT_ID: ${{ env.COGNITO_CLIENT_ID }}
+          COGNITO_DOMAIN: ${{ env.COGNITO_DOMAIN }}
   cypress-tests:
     needs: deploy
     runs-on: ubuntu-latest
