@@ -7,9 +7,6 @@ module.exports = {
     chromeLaunchConfig: {
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
     },
-    headers: {
-      "x-lonesome-test-auth": process.env.TEST_AUTH_SECRET,
-    },
   },
   urls,
 };

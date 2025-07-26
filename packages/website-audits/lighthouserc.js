@@ -6,9 +6,6 @@ module.exports = {
       url: urls,
       settings: {
         useThrottling: false,
-        extraHeaders: {
-          "x-lonesome-test-auth": process.env.TEST_AUTH_SECRET,
-        },
       },
     },
     assert: {
