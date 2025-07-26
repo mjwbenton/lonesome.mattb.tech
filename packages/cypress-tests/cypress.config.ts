@@ -7,6 +7,6 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       return require("./cypress/plugins/index.js")(on, config);
     },
-    baseUrl: "https://lonesome.mattb.tech",
+    baseUrl: "https://share.mattb.tech",
   },
 });
