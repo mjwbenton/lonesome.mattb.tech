@@ -17,9 +17,10 @@ jobs:
         with:
           node-version: "20"
           cache: "yarn"
-      - uses: aws-actions/configure-aws-credentials@v4
+      - name: Configure AWS credentials for fetching Cognito configuration
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::858777967843:role/github-actions-cdk
+          role-to-assume: arn:aws:iam::858777967843:role/github-actions-ssm-read
           aws-region: us-east-1
       - name: Fetch Cognito Configuration
         run: |
@@ -29,6 +30,11 @@ jobs:
       - run: yarn install --immutable
       - run: yarn build
       - run: yarn run check
+      - name: Configure AWS credentials for deployment
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::858777967843:role/github-actions-cdk
+          aws-region: us-east-1
       - run: yarn deploy
         env:
           COGNITO_USER_POOL_ID: ${{ env.COGNITO_USER_POOL_ID }}
