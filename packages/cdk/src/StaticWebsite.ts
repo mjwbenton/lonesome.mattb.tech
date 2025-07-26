@@ -10,6 +10,7 @@ import {
   aws_lambda as lambda,
   aws_lambda_nodejs as lambda_nodejs,
   aws_iam as iam,
+  aws_ssm as ssm,
 } from "aws-cdk-lib";
 import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
 import { Construct } from "constructs";
@@ -69,6 +70,19 @@ export class StaticWebsite extends cdk.Stack {
       code: lambda.Code.fromAsset(path.join(__dirname, "../../edge-router")),
     });
 
+    const userPoolId = ssm.StringParameter.valueFromLookup(
+      this,
+      "/mattb-sso/user-pool-id",
+    );
+    const clientId = ssm.StringParameter.valueFromLookup(
+      this,
+      "/mattb-sso/user-pool-client-id",
+    );
+    const domain = ssm.StringParameter.valueFromLookup(
+      this,
+      "/mattb-sso/user-pool-domain",
+    );
+
     const authLambda = new lambda_nodejs.NodejsFunction(this, "AuthFunction", {
       runtime: lambda.Runtime.NODEJS_22_X,
       entry: path.join(__dirname, "../../edge-auth/dist/index.js"),
@@ -78,18 +92,13 @@ export class StaticWebsite extends cdk.Stack {
         environment: {
           NODE_ENV: "production",
         },
+        define: {
+          "process.env.COGNITO_USER_POOL_ID": JSON.stringify(userPoolId),
+          "process.env.COGNITO_CLIENT_ID": JSON.stringify(clientId),
+          "process.env.COGNITO_DOMAIN": JSON.stringify(domain),
+        },
       },
     });
-    authLambda.addToRolePolicy(
-      new iam.PolicyStatement({
-        actions: ["ssm:GetParameter"],
-        resources: [
-          "arn:aws:ssm:us-east-1:858777967843:parameter/mattb-sso/user-pool-id",
-          "arn:aws:ssm:us-east-1:858777967843:parameter/mattb-sso/user-pool-client-id",
-          "arn:aws:ssm:us-east-1:858777967843:parameter/mattb-sso/user-pool-domain",
-        ],
-      }),
-    );
 
     const distribution = new cloudfront.Distribution(this, "Distribution", {
       defaultBehavior: {

@@ -1,41 +1,14 @@
-import { GetParameterCommand, SSMClient } from "@aws-sdk/client-ssm";
 import { Authenticator } from "cognito-at-edge";
 
-const SSM_CLIENT = new SSMClient({ region: "us-east-1" });
+const authenticator = new Authenticator({
+  region: "us-east-1",
+  userPoolId: process.env.COGNITO_USER_POOL_ID!,
+  userPoolAppId: process.env.COGNITO_CLIENT_ID!,
+  userPoolDomain: process.env.COGNITO_DOMAIN!,
+  logoutConfiguration: {
+    logoutUri: "/",
+    logoutRedirectUri: "/",
+  },
+});
 
-async function getParameter(name: string) {
-  const command = new GetParameterCommand({ Name: name });
-  const response = await SSM_CLIENT.send(command);
-  return response.Parameter?.Value;
-}
-
-async function buildAuthenticator() {
-  const [COGNITO_USER_POOL_ID, COGNITO_CLIENT_ID, COGNITO_DOMAIN] =
-    await Promise.all([
-      getParameter("/mattb-sso/user-pool-id"),
-      getParameter("/mattb-sso/user-pool-client-id"),
-      getParameter("/mattb-sso/user-pool-domain"),
-    ]);
-
-  if (!COGNITO_USER_POOL_ID || !COGNITO_CLIENT_ID || !COGNITO_DOMAIN) {
-    throw new Error("Missing Cognito parameters");
-  }
-
-  return new Authenticator({
-    region: "us-east-1",
-    userPoolId: COGNITO_USER_POOL_ID,
-    userPoolAppId: COGNITO_CLIENT_ID,
-    userPoolDomain: COGNITO_DOMAIN,
-    logoutConfiguration: {
-      logoutUri: "/logout",
-      logoutRedirectUri: "/",
-    },
-  });
-}
-
-const AUTHENTICATOR_PROMISE = buildAuthenticator();
-
-exports.handler = async (request) => {
-  const authenticator = await AUTHENTICATOR_PROMISE;
-  return authenticator.handle(request);
-};
+export const handler = async (event: any) => authenticator.handle(event);
