@@ -15,8 +15,6 @@ export default defineConfig({
         ...config.env,
         TEST_AUTH_SECRET: env.TEST_AUTH_SECRET,
       };
-
-      return require("./cypress/plugins/index.js")(on, config);
     },
     baseUrl: "https://lonesome.mattb.tech",
   },
