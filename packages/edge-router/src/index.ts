@@ -1,5 +1,6 @@
 import { CloudFrontRequestEvent } from "aws-lambda";
 
+// Build timestamp: 2025-01-16T19:58:00Z - Forces new Lambda version
 const HAS_EXTENSION_REGEX = /(.+)\.[a-zA-Z0-9]{2,5}$/;
 const HTML_EXTENSION_REGEX = /\.html$/;
 
