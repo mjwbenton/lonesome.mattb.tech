@@ -18,3 +18,10 @@ import "./commands";
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+// Set test authentication header for all requests
+beforeEach(() => {
+  cy.intercept("*", (req) => {
+    req.headers["x-lonesome-test-auth"] = Cypress.env("TEST_AUTH_SECRET");
+  });
+});

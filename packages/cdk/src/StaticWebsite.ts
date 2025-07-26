@@ -86,6 +86,7 @@ export class StaticWebsite extends cdk.Stack {
             env.COGNITO_CLIENT_ID,
           ),
           "process.env.COGNITO_DOMAIN": JSON.stringify(env.COGNITO_DOMAIN),
+          "process.env.TEST_AUTH_SECRET": JSON.stringify(env.TEST_AUTH_SECRET),
         },
       },
     });
