@@ -2,12 +2,9 @@ import Link from "next/link";
 
 const LINKS = [
   { slug: "/photos", display: "Photos" },
-  { slug: "/keyboard", display: "Keyboards" },
   { slug: "/entertainment", display: "Entertainment" },
-  { slug: "/activity", display: "Activity" },
-  { slug: "/code", display: "Code" },
-  { slug: "/recordings", display: "Recordings" },
   { slug: "/year", display: "Years" },
+  { slug: "/other", display: "Other" },
 ];
 
 export default function Navigation() {

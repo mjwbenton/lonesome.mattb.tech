@@ -1,0 +1,41 @@
+---
+title: Other Index
+indexOf: Other
+dataProviders:
+  - pagesList/indexPagesDataProvider
+description: "Index page for other pages."
+---
+
+import PagesList from "pagesList/PagesList";
+import EmbeddedWrapper from "component/EmbeddedWrapper";
+import StripedList, { StripeElement } from "component/StripedList";
+import TwoRowText from "component/TwoRowText";
+
+# Other
+
+<PagesList />
+
+## Links
+
+<EmbeddedWrapper>
+  <StripedList>
+    <StripeElement href="https://graphique.mattb.tech">
+      <TwoRowText row1="Graphique" row2="Randomly generated images" />
+    </StripeElement>
+    <StripeElement href="https://mattb.tech">
+      <TwoRowText row1="mattb.tech" row2="CV website" />
+    </StripeElement>
+    <StripeElement href="https://alliance.mattb.tech">
+      <TwoRowText row1="The Alliance Book" row2="Cleo & Matt" />
+    </StripeElement>
+    <StripeElement href="https://api.mattb.tech">
+      <TwoRowText row1="api.mattb.tech" row2="API explorer" />
+    </StripeElement>
+    <StripeElement href="https://admin.billio.mattb.tech">
+      <TwoRowText row1="Billio" row2="Entertainment tracker admin" />
+    </StripeElement>
+    <StripeElement href="https://family.mattb.tech">
+      <TwoRowText row1="family.mattb.tech" row2="Family site" />
+    </StripeElement>
+  </StripedList>
+</EmbeddedWrapper>
