@@ -1,5 +1,6 @@
 import detectFrontmatter from "remark-frontmatter";
 import extractFrontmatter from "remark-extract-frontmatter";
+import gfm from "remark-gfm";
 import yaml from "yaml";
 import { plugin as mdxDataFetching } from "@mattb.tech/data-fetching";
 import { plugin as remarkFlickr } from "@mattb.tech/remark-flickr";
@@ -19,6 +20,7 @@ const withMDX = mdx({
         extractFrontmatter,
         { name: "pageMeta", yaml: yaml.parse, throws: true },
       ],
+      gfm,
       mdxDataFetching,
       [remarkFlickr, { sizes: "100vw" }],
     ],
