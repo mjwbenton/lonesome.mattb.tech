@@ -3,6 +3,8 @@ on:
   workflow_dispatch:
   push:
     branches: [master]
+  repository_dispatch:
+    types: [pages-updated]
 permissions:
   id-token: write
   contents: read
