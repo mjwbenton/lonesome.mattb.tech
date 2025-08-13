@@ -11,7 +11,14 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code repository
+        uses: actions/checkout@v4
+      - name: Checkout pages repository
+        uses: actions/checkout@v4
+        with:
+          repository: mjwbenton/share.mattb.tech-pages
+          token: ${{ secrets.PAGES_REPO_TOKEN }}
+          path: share.mattb.tech-pages
       - run: corepack enable
       - uses: actions/setup-node@v4
         with:
@@ -28,6 +35,8 @@ jobs:
           echo "COGNITO_CLIENT_ID=$(aws ssm get-parameter --region us-east-1 --name "arn:aws:ssm:us-east-1:858777967843:parameter/mattb-sso/user-pool-client-id" --query "Parameter.Value" --output text)" >> $GITHUB_ENV
           echo "COGNITO_DOMAIN=$(aws ssm get-parameter --region us-east-1 --name "arn:aws:ssm:us-east-1:858777967843:parameter/mattb-sso/user-pool-domain" --query "Parameter.Value" --output text)" >> $GITHUB_ENV
       - run: yarn install --immutable
+      - name: Copy pages from share.mattb.tech-pages repository
+        run: yarn workspace @mattb.tech/lonesome-website run copy-pages:ci
       - run: yarn build
       - run: yarn run check
       - name: Configure AWS credentials for deployment
