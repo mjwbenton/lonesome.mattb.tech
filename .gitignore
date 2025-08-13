@@ -15,3 +15,7 @@ yarn-error.log
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+packages/website/pages
+!packages/website/pages/404.tsx
+!packages/website/pages/_*.tsx
